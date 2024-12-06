@@ -8,6 +8,7 @@ from django.http import JsonResponse, HttpResponse
 from django.views.decorators.csrf import ensure_csrf_cookie, csrf_exempt
 from django.utils.decorators import method_decorator
 from django.views import View
+from django.contrib.auth.decorators import login_required
 import asyncio
 
 from interview_app.openai_client import OpenAIClient
@@ -27,6 +28,7 @@ recognition_service = SpeechRecognitionService(deepgram_service)
 elevenlabs_service = ElevenLabsService()
 controller = SpeechController(recognition_service, elevenlabs_service)
 
+@login_required
 @ensure_csrf_cookie
 def index(request):
     return render(request, 'index.html')
