@@ -31,7 +31,7 @@ controller = SpeechController(recognition_service, elevenlabs_service)
 @login_required
 @ensure_csrf_cookie
 def index(request):
-    return render(request, 'index.html')
+    return render(request, 'interview_app/index.html')
 
 def get_response(request):
     if request.method == 'POST':
