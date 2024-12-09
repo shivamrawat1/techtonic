@@ -1,5 +1,3 @@
-// main.js
-
 // Initialize Monaco Editor
 require.config({ paths: { 'vs': 'https://cdn.jsdelivr.net/npm/monaco-editor@0.33.0/min/vs' } });
 require(['vs/editor/editor.main'], function () {
@@ -27,6 +25,8 @@ var sendButton = document.getElementById('send-button');
 var userInput = document.getElementById('user-input');
 var chatMessages = document.getElementById('chat-messages');
 var voiceButton = document.getElementById('voice-button');
+var leaveButton = document.getElementById('leave-button');  // Leave button
+var conversation = [];  // Store conversation for scoring and saving
 
 // Get CSRF token from cookie
 function getCookie(name) {
@@ -63,7 +63,7 @@ voiceButton.addEventListener('click', async function () {
                 formData.append('audio', audioBlob);
 
                 try {
-                    const response = await fetch('/interview/process_audio/', {  // Updated URL
+                    const response = await fetch('/interview/process_audio/', {
                         method: 'POST',
                         headers: {
                             'X-CSRFToken': csrftoken
@@ -89,7 +89,6 @@ voiceButton.addEventListener('click', async function () {
         }
     }
 });
-
 
 // Handle sending message
 sendButton.addEventListener('click', function () {
@@ -140,7 +139,37 @@ function appendMessage(sender, message) {
     messageElement.innerHTML = '<strong>' + sender + ':</strong> ' + message;
     chatMessages.appendChild(messageElement);
     chatMessages.scrollTop = chatMessages.scrollHeight;
+
+    // Add to conversation array for saving
+    conversation.push({ sender: sender, message: message });
+
     if (sender === 'Assistant') {
         speak(message);
     }
 }
+
+// Handle Leave Button Click
+leaveButton.addEventListener('click', function () {
+    fetch('/assessments/save/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrftoken,
+        },
+        body: JSON.stringify({ conversation: conversation })
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.message) {
+                alert(`Conversation saved with score: ${data.score}`);
+                window.location.href = '/assessments/list/';  // Redirect to list page
+            } else {
+                console.error('Error:', data.error);
+                alert('Error saving conversation');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error saving conversation');
+        });
+});

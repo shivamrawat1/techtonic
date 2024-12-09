@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="{% static 'favicon.ico' %}">
+    <meta charset="UTF-8">
+    <title>My Interviews</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <h1>Your Interview Sessions</h1>
+
+    {% if error %}
+        <p>{{ error }}</p>
+    {% else %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Score</th>
+                    <th>Date</th>
+                    <th>Conversation</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for assessment in assessments %}
+                <tr>
+                    <td>{{ assessment.score }}</td>
+                    <td>{{ assessment.created_at }}</td>
+                    <td>
+                        <details>
+                            <summary>View Conversation</summary>
+                            <pre>{{ assessment.conversation }}</pre>
+                        </details>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+    <button onclick="window.location.href='/'">Go Back Home</button>
+</body>
+</html>
