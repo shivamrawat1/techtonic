@@ -1,10 +1,9 @@
-# urls.py
 from django.urls import path
-from . import views
+from .views import index, get_response, ProcessAudioView, SynthesizeTextView
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('get_response/', views.get_response, name='get_response'),
-    path('process_audio/', views.ProcessAudioView.as_view(), name='process_audio'),
-    path('synthesize_text/', views.SynthesizeTextView.as_view(), name='synthesize_text'),
+    path('', index, name='index'),  # The index view
+    path('get_response/', get_response, name='get_response'),  # Map to get_response
+    path('process_audio/', ProcessAudioView.as_view(), name='process_audio'),  # Map to ProcessAudioView
+    path('synthesize_text/', SynthesizeTextView.as_view(), name='synthesize_text'),  # Map to SynthesizeTextView
 ]

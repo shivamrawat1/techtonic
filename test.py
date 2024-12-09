@@ -1,5 +1,5 @@
 # test_elevenlabs_service.py
-from interview_app.services.elevenlabs_service import ElevenLabsService
+from interview_app.services.gtts_service import ElevenLabsService
 
 def main():
     # Replace this with your actual ElevenLabs API key

@@ -1,8 +1,8 @@
 // main.js
 
 // Initialize Monaco Editor
-require.config({ paths: { 'vs': 'https://cdn.jsdelivr.net/npm/monaco-editor@0.33.0/min/vs' }});
-require(['vs/editor/editor.main'], function() {
+require.config({ paths: { 'vs': 'https://cdn.jsdelivr.net/npm/monaco-editor@0.33.0/min/vs' } });
+require(['vs/editor/editor.main'], function () {
     var editor = monaco.editor.create(document.getElementById('editor'), {
         value: '',
         language: 'javascript',
@@ -14,10 +14,10 @@ require(['vs/editor/editor.main'], function() {
 var video = document.getElementById('videoElement');
 if (navigator.mediaDevices.getUserMedia) {
     navigator.mediaDevices.getUserMedia({ video: true })
-        .then(function(stream) {
+        .then(function (stream) {
             video.srcObject = stream;
         })
-        .catch(function(error) {
+        .catch(function (error) {
             console.log("Something went wrong!", error);
         });
 }
@@ -46,7 +46,7 @@ function getCookie(name) {
 let csrftoken = getCookie('csrftoken');
 
 // Handle voice input using Deepgram
-voiceButton.addEventListener('click', async function() {
+voiceButton.addEventListener('click', async function () {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
         try {
             const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -63,7 +63,7 @@ voiceButton.addEventListener('click', async function() {
                 formData.append('audio', audioBlob);
 
                 try {
-                    const response = await fetch('/process_audio/', {
+                    const response = await fetch('/interview/process_audio/', {  // Updated URL
                         method: 'POST',
                         headers: {
                             'X-CSRFToken': csrftoken
@@ -90,15 +90,16 @@ voiceButton.addEventListener('click', async function() {
     }
 });
 
+
 // Handle sending message
-sendButton.addEventListener('click', function() {
+sendButton.addEventListener('click', function () {
     var message = userInput.value;
     if (message.trim() === '') return;
     appendMessage('You', message);
     userInput.value = '';
 
     // Send message to server and handle response
-    fetch('/get_response/', {
+    fetch(getResponseUrl, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -106,15 +107,15 @@ sendButton.addEventListener('click', function() {
         },
         body: JSON.stringify({ message: message })
     })
-    .then(response => response.json())
-    .then(data => {
-        appendMessage('Assistant', data.message);
-    });
+        .then(response => response.json())
+        .then(data => {
+            appendMessage('Assistant', data.message);
+        });
 });
 
 // Handle speech synthesis using ElevenLabs
 function speak(text) {
-    fetch('/synthesize_text/', {
+    fetch('synthesize_text/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -122,15 +123,15 @@ function speak(text) {
         },
         body: new URLSearchParams({ text: text })
     })
-    .then(response => response.blob())
-    .then(blob => {
-        const audioUrl = URL.createObjectURL(blob);
-        const audio = new Audio(audioUrl);
-        audio.play();
-    })
-    .catch(error => {
-        console.error('Error synthesizing speech:', error);
-    });
+        .then(response => response.blob())
+        .then(blob => {
+            const audioUrl = URL.createObjectURL(blob);
+            const audio = new Audio(audioUrl);
+            audio.play();
+        })
+        .catch(error => {
+            console.error('Error synthesizing speech:', error);
+        });
 }
 
 // Append message and use ElevenLabs Speech Synthesis for Assistant's response

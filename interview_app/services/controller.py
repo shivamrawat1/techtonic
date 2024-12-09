@@ -1,9 +1,8 @@
-# services/controller.py
 from .speech_recognition_handler import SpeechRecognitionService
-from .elevenlabs_service import ElevenLabsService
+from .gtts_service import GTTSService
 
 class SpeechController:
-    def __init__(self, recognition_service: SpeechRecognitionService, synthesis_service: ElevenLabsService):
+    def __init__(self, recognition_service: SpeechRecognitionService, synthesis_service: GTTSService):
         self.recognition_service = recognition_service
         self.synthesis_service = synthesis_service
 

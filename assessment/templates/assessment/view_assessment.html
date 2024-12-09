@@ -1,0 +1,47 @@
+<!-- Assessment/templates/Assessment/view_assessment.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Assessment</title>
+    
+    <style>
+        #transcript {
+            white-space: pre-wrap; /* Preserve formatting */
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            max-width: 800px;
+            margin: auto;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #eef2f3;
+        }
+        h1 {
+            text-align: center;
+        }
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a:hover {
+            color: #007BFF;
+        }
+    </style>
+</head>
+<body>
+    <h1>Interview Transcript</h1>
+    <div id="transcript">
+        <pre>{{ transcript }}</pre>
+    </div>
+    <a href="{% url 'home' %}">Back to Home</a>
+</body>
+</html>
