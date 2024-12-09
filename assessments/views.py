@@ -1,12 +1,14 @@
 import json
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from .models import Assessment
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from django.shortcuts import render
 from .models import Assessment
 
 
 @csrf_exempt
+@login_required  # Ensures only logged-in users can access this view
 def save_assessment(request):
     if request.method == 'POST':
         try:
@@ -18,8 +20,12 @@ def save_assessment(request):
             # Example scoring logic (replace with your logic)
             score = len(conversation) * 10  # Dummy score based on message count
 
-            # Save to database
-            Assessment.objects.create(conversation=json.dumps(conversation), score=score)
+            # Save to database with the logged-in user
+            Assessment.objects.create(
+                user=request.user,  # Automatically associate the assessment with the logged-in user
+                conversation=json.dumps(conversation),  # Store the conversation as JSON
+                score=score
+            )
 
             return JsonResponse({'message': 'Assessment saved successfully', 'score': score})
         except Exception as e:
@@ -27,9 +33,12 @@ def save_assessment(request):
     return JsonResponse({'error': 'Invalid request method'}, status=400)
 
 
+@login_required  # Ensures only logged-in users can access this view
 def list_interviews(request):
     if request.user.is_authenticated:
+        # Fetch assessments only for the logged-in user
         assessments = Assessment.objects.filter(user=request.user).order_by('-created_at')
         return render(request, 'assessments/list_interviews.html', {'assessments': assessments})
     else:
+        # This case will rarely occur since @login_required ensures the user is authenticated
         return render(request, 'assessments/list_interviews.html', {'error': 'You need to log in to view your interviews.'})

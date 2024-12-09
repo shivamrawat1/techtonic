@@ -1,18 +1,14 @@
-{% load static %}
+<!-- assessments/templates/assessments/list_interviews.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" href="{% static 'favicon.ico' %}">
     <meta charset="UTF-8">
-    <title>My Interviews</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>My Assessments</title>
 </head>
 <body>
-    <h1>Your Interview Sessions</h1>
+    <h1>Your Assessments</h1>
 
-    {% if error %}
-        <p>{{ error }}</p>
-    {% else %}
+    {% if assessments %}
         <table>
             <thead>
                 <tr>
@@ -36,8 +32,10 @@
                 {% endfor %}
             </tbody>
         </table>
+    {% else %}
+        <p>You have no assessments yet.</p>
     {% endif %}
 
-    <button onclick="window.location.href='/'">Go Back Home</button>
+    <button onclick="window.location.href='{% url 'home' %}'">Go Back Home</button>
 </body>
 </html>
