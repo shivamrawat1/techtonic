@@ -10,7 +10,7 @@
     {% if user.is_authenticated %}
         <p>You are logged in as {{ user.username }}.</p>
         <!-- "Take Interview" points to the index view in interview_app -->
-        <a href="{% url 'index' %}">Take Interview</a><br>
+        <a href="{% url 'choose_interview' %}">Take Interview</a><br>
         <a href="{% url 'list_interviews' %}">View My Assessments</a><br>
         <a href="{% url 'logout' %}">Logout</a>
     {% else %}

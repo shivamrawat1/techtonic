@@ -9,6 +9,9 @@ def home(request):
     # Otherwise show "Login" and "Register"
     return render(request, 'users/home.html')
 
+def choose_interview(request):
+    return render(request, 'users/choose_interview.html')
+
 def login_view(request):
     if request.user.is_authenticated:
         return redirect('home')
