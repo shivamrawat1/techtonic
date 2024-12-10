@@ -35,7 +35,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'assessments',
     'users',
-    'interview_app',
+    'interview_technical',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="{% static 'favicon.ico' %}">
+    <meta charset="UTF-8">
+    <title>UMPIRE Interview Prep</title>
+    <!-- Load the separated CSS file -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <!-- Monaco Editor CSS -->
+    <link rel="stylesheet" data-name="vs/editor/editor.main"
+          href="https://cdn.jsdelivr.net/npm/monaco-editor@0.33.0/min/vs/editor/editor.main.css">
+    <!-- Split.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/split.js/dist/split.min.js"></script>
+</head>
+<body>
+    <!-- Include CSRF token to set the CSRF cookie -->
+    {% csrf_token %}
+    <div id="container">
+        <div id="editor-pane">
+            <div id="editor" style="width: 100%; height: 100%;"></div>
+        </div>
+        <div id="right-pane">
+            <div id="video-feed">
+                <video id="videoElement" autoplay muted style="width:100%; height:100%;"></video>
+            </div>
+            <div id="chat">
+                <div id="chat-messages"></div>
+                <div id="chat-input">
+                    <textarea id="user-input" rows="2"></textarea>
+                    <button id="send-button">Send</button>
+                    <button id="voice-button">🎤</button>
+                    <button id="leave-button">Leave</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Monaco Editor Loader -->
+    <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.33.0/min/vs/loader.js"></script>
+    <!-- Define the URL for AJAX requests -->
+    <script type="text/javascript">
+        var getResponseUrl = "{% url 'get_response' %}";
+    </script>
+    <!-- Load the separated JavaScript file -->
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

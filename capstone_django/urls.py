@@ -21,7 +21,7 @@ from django.shortcuts import redirect
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('interview/', include('interview_app.urls')),
+    path('interview/', include('interview_technical.urls')),
     path('', include('users.urls')),
     path('assessments/', include('assessments.urls')),
 ]
