@@ -6,7 +6,8 @@
 </head>
 <body>
     <h1>Choose Your Interview Type</h1>
+    <!-- Use Django template tags to generate URLs for the respective views -->
     <button onclick="location.href='{% url 'index' %}'">Technical</button>
-    <button onclick="alert('Behavioral interviews are coming soon!')">Behavioral</button>
+    <button onclick="location.href='{% url 'behavioral_index' %}'">Behavioral</button>
 </body>
 </html>

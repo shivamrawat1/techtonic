@@ -7,6 +7,14 @@ from django.shortcuts import render
 from .models import Assessment
 
 
+# assessments/views.py
+
+import json
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
+from .models import Assessment
+
 @csrf_exempt
 @login_required  # Ensures only logged-in users can access this view
 def save_assessment(request):
@@ -14,24 +22,31 @@ def save_assessment(request):
         try:
             data = json.loads(request.body)
             conversation = data.get('conversation', [])
+            assessment_type = data.get('assessment_type', 'technical')  # default to technical
+            
             if not conversation:
-                return JsonResponse({'error': 'No conversation provided'}, status=400)
+                return JsonResponse({'error': 'No conversation provided.'}, status=400)
+            
+            if assessment_type not in dict(Assessment.ASSESSMENT_TYPES):
+                return JsonResponse({'error': 'Invalid assessment type.'}, status=400)
 
             # Example scoring logic (replace with your logic)
             score = len(conversation) * 10  # Dummy score based on message count
 
-            # Save to database with the logged-in user
+            # Save to database with the logged-in user and type
             Assessment.objects.create(
                 user=request.user,  # Automatically associate the assessment with the logged-in user
                 conversation=json.dumps(conversation),  # Store the conversation as JSON
-                score=score
+                score=score,
+                assessment_type=assessment_type
             )
 
             return JsonResponse({'message': 'Assessment saved successfully', 'score': score})
+        except json.JSONDecodeError:
+            return JsonResponse({'error': 'Invalid JSON.'}, status=400)
         except Exception as e:
             return JsonResponse({'error': str(e)}, status=500)
-    return JsonResponse({'error': 'Invalid request method'}, status=400)
-
+    return JsonResponse({'error': 'Invalid request method.'}, status=400)
 
 @login_required  # Ensures only logged-in users can access this view
 def list_interviews(request):

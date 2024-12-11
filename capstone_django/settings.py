@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'interview_behavioral',
     'assessments',
     'users',
     'interview_technical',
@@ -123,7 +124,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'interview_app', 'static'),
+    os.path.join(BASE_DIR, 'interview_technical', 'static'),
+    os.path.join(BASE_DIR, 'interview_behavioral', 'static'),
 ]
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

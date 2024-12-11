@@ -1,3 +1,5 @@
+// interview_technical/static/js/main.js
+
 // Initialize Monaco Editor
 require.config({ paths: { 'vs': 'https://cdn.jsdelivr.net/npm/monaco-editor@0.33.0/min/vs' } });
 require(['vs/editor/editor.main'], function () {
@@ -98,13 +100,16 @@ sendButton.addEventListener('click', function () {
     userInput.value = '';
 
     // Send message to server and handle response
-    fetch(getResponseUrl, {
+    fetch('/interview/get_response/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'X-CSRFToken': csrftoken,
         },
-        body: JSON.stringify({ message: message })
+        body: JSON.stringify({
+            message: message,
+            assessment_type: 'technical' // Include assessment_type
+        })
     })
         .then(response => response.json())
         .then(data => {
@@ -114,7 +119,7 @@ sendButton.addEventListener('click', function () {
 
 // Handle speech synthesis using ElevenLabs
 function speak(text) {
-    fetch('synthesize_text/', {
+    fetch('/interview/synthesize_text/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -148,15 +153,23 @@ function appendMessage(sender, message) {
     }
 }
 
-// Handle Leave Button Click
-leaveButton.addEventListener('click', function () {
+// Function to Save Assessment
+function saveAssessment() {
+    if (conversation.length === 0) {
+        alert('No conversation to save.');
+        return;
+    }
+
     fetch('/assessments/save/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'X-CSRFToken': csrftoken,
         },
-        body: JSON.stringify({ conversation: conversation })
+        body: JSON.stringify({
+            conversation: conversation,
+            assessment_type: 'technical' // Specify the assessment type
+        })
     })
         .then(response => response.json())
         .then(data => {
@@ -172,4 +185,10 @@ leaveButton.addEventListener('click', function () {
             console.error('Error:', error);
             alert('Error saving conversation');
         });
+}
+
+// Handle Leave Button Click
+leaveButton.addEventListener('click', function () {
+    // Save the assessment
+    saveAssessment();
 });

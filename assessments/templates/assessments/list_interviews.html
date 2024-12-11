@@ -4,6 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <title>My Assessments</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            text-align: left;
+        }
+
+        pre {
+            white-space: pre-wrap; /* Allows wrapping in pre tag */
+            word-wrap: break-word;
+        }
+    </style>
 </head>
 <body>
     <h1>Your Assessments</h1>
@@ -12,6 +33,7 @@
         <table>
             <thead>
                 <tr>
+                    <th>Type</th> <!-- Added Type Column -->
                     <th>Score</th>
                     <th>Date</th>
                     <th>Conversation</th>
@@ -20,6 +42,7 @@
             <tbody>
                 {% for assessment in assessments %}
                 <tr>
+                    <td>{{ assessment.get_assessment_type_display }}</td> <!-- Display Type -->
                     <td>{{ assessment.score }}</td>
                     <td>{{ assessment.created_at }}</td>
                     <td>
