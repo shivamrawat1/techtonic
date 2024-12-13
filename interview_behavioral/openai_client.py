@@ -6,19 +6,29 @@ from openai import OpenAI
 class OpenAIClient:
     def __init__(self):
         self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-        self.assistant = self.create_assistant()
+        self.assistant = None
+        self.resume = None
+        self.job_description = None
 
     def create_assistant(self):
         try:
+            context = (
+                f"CANDIDATE'S RESUME:\n{self.resume}\n\n"
+                f"JOB DESCRIPTION:\n{self.job_description}\n\n"
+            ) if self.resume and self.job_description else ""
+            
             assistant = self.client.beta.assistants.create(
-                name="UMPIRE Interview Assistant",
+                name="STAR Behavioral Interview Assistant",
                 instructions=(
-                                "You are an expert behavioral interviewer guiding students through their responses using the STAR method. "
-                                "Your role is to help interviewees structure their answers to behavioral questions effectively. "
-                                "Begin by asking the user which behavioral question they would like to practice. "
-                                "Then, guide them to respond by outlining the Situation, Task, Action, and Result for each question. "
-                                "Provide feedback and suggestions to improve their responses as needed."
-                            ),
+                    f"You are an expert behavioral interviewer. {context}"
+                    "Your role is to help interviewees structure their answers using the STAR method:\n"
+                    "- Situation: Set the context\n"
+                    "- Task: Describe the challenge\n"
+                    "- Action: Explain what you did\n"
+                    "- Result: Share the outcome\n\n"
+                    "Ask relevant behavioral questions based on the job requirements and candidate's experience.\n"
+                    "Provide constructive feedback on their responses."
+                ),
                 model="gpt-4",
             )
             print(f"Assistant created with ID: {assistant.id}")
@@ -26,6 +36,11 @@ class OpenAIClient:
         except Exception as e:
             print(f"Error creating assistant: {e}")
             return None
+
+    def initialize_interview(self, resume, job_description):
+        self.resume = resume
+        self.job_description = job_description
+        self.assistant = self.create_assistant()
 
     def get_response(self, user_message):
         try:

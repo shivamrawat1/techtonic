@@ -3,11 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Choose Interview Type</title>
+    <style>
+        .container {
+            text-align: center;
+            margin-top: 50px;
+        }
+        button {
+            padding: 15px 30px;
+            margin: 10px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <h1>Choose Your Interview Type</h1>
-    <!-- Use Django template tags to generate URLs for the respective views -->
-    <button onclick="location.href='{% url 'index' %}'">Technical</button>
-    <button onclick="location.href='{% url 'behavioral_index' %}'">Behavioral</button>
+    <div class="container">
+        <h1>Choose Your Interview Type</h1>
+        <button onclick="location.href='{% url 'interview_technical:setup' %}'">Technical</button>
+        <button onclick="location.href='{% url 'interview_behavioral:setup' %}'">Behavioral</button>
+    </div>
 </body>
 </html>

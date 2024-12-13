@@ -3,11 +3,12 @@
 from django.urls import path
 from . import views
 
+app_name = 'interview_behavioral'
+
 urlpatterns = [
-    path('', views.index, name='behavioral_index'),  # Behavioral index view
-    path('get_response/', views.get_response, name='behavioral_get_response'),  # For chat interactions
-    path('process_audio/', views.ProcessAudioView.as_view(), name='behavioral_process_audio'),  # For processing audio
-    path('synthesize_text/', views.SynthesizeTextView.as_view(), name='behavioral_synthesize_text'),  # For TTS
-    # Removed the separate 'save/' endpoint
-    # Removed the 'list/' endpoint if it exists
+    path('setup/', views.setup, name='setup'),
+    path('', views.index, name='index'),
+    path('get_response/', views.get_response, name='get_response'),
+    path('process_audio/', views.ProcessAudioView.as_view(), name='process_audio'),
+    path('synthesize_text/', views.SynthesizeTextView.as_view(), name='synthesize_text'),
 ]

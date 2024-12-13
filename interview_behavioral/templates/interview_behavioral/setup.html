@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Behavioral Interview Setup</title>
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        textarea {
+            width: 100%;
+            height: 200px;
+            margin-top: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Behavioral Interview Setup</h2>
+        <form action="{% url 'interview_behavioral:index' %}" method="POST">            {% csrf_token %}
+            <div class="form-group">
+                <label>Resume Content:</label>
+                <textarea name="resume" required></textarea>
+            </div>
+            <div class="form-group">
+                <label>Job Description:</label>
+                <textarea name="job_description" required></textarea>
+            </div>
+            <div class="form-group">
+                <label>Interview Duration (minutes):</label>
+                <input type="number" name="duration" min="5" max="60" value="30" required>
+            </div>
+            <button type="submit">Start Interview</button>
+        </form>
+    </div>
+</body>
+</html>

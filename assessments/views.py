@@ -3,8 +3,9 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Assessment
+from .interview_analyzer import InterviewAnalyzer
 
 
 # assessments/views.py
@@ -22,7 +23,7 @@ def save_assessment(request):
         try:
             data = json.loads(request.body)
             conversation = data.get('conversation', [])
-            assessment_type = data.get('assessment_type', 'technical')  # default to technical
+            assessment_type = data.get('assessment_type', 'technical')
             
             if not conversation:
                 return JsonResponse({'error': 'No conversation provided.'}, status=400)
@@ -30,18 +31,14 @@ def save_assessment(request):
             if assessment_type not in dict(Assessment.ASSESSMENT_TYPES):
                 return JsonResponse({'error': 'Invalid assessment type.'}, status=400)
 
-            # Example scoring logic (replace with your logic)
-            score = len(conversation) * 10  # Dummy score based on message count
-
-            # Save to database with the logged-in user and type
+            # Create assessment without score
             Assessment.objects.create(
-                user=request.user,  # Automatically associate the assessment with the logged-in user
-                conversation=json.dumps(conversation),  # Store the conversation as JSON
-                score=score,
+                user=request.user,
+                conversation=json.dumps(conversation),
                 assessment_type=assessment_type
             )
 
-            return JsonResponse({'message': 'Assessment saved successfully', 'score': score})
+            return JsonResponse({'message': 'Assessment saved successfully'})
         except json.JSONDecodeError:
             return JsonResponse({'error': 'Invalid JSON.'}, status=400)
         except Exception as e:
@@ -57,3 +54,43 @@ def list_interviews(request):
     else:
         # This case will rarely occur since @login_required ensures the user is authenticated
         return render(request, 'assessments/list_interviews.html', {'error': 'You need to log in to view your interviews.'})
+
+@login_required
+def view_analysis(request, assessment_id):
+    assessment = get_object_or_404(Assessment, id=assessment_id, user=request.user)
+    
+    if not assessment.analysis:
+        try:
+            # Check if conversation is already JSON
+            if isinstance(assessment.conversation, str):
+                conversation = json.loads(assessment.conversation)
+            else:
+                conversation = assessment.conversation
+            
+            analyzer = InterviewAnalyzer()
+            analysis = analyzer.analyze_interview(conversation, assessment.assessment_type)
+            
+            # Store the analysis
+            assessment.analysis = analysis
+            assessment.save()
+            
+        except json.JSONDecodeError as e:
+            print(f"Error decoding conversation: {e}")
+            print(f"Raw conversation data: {assessment.conversation}")
+            return render(request, 'assessments/view_analysis.html', {
+                'error': 'Unable to analyze conversation data',
+                'assessment': assessment
+            })
+    
+    return render(request, 'assessments/view_analysis.html', {
+        'assessment': assessment,
+        'analysis': assessment.analysis
+    })
+
+@login_required
+def delete_assessment(request, assessment_id):
+    if request.method == 'POST':
+        assessment = get_object_or_404(Assessment, id=assessment_id, user=request.user)
+        assessment.delete()
+        return JsonResponse({'message': 'Assessment deleted successfully'})
+    return JsonResponse({'error': 'Invalid request method'}, status=400)

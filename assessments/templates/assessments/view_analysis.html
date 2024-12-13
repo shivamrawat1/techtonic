@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Interview Analysis</title>
+    <style>
+        .analysis-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .component {
+            margin-bottom: 30px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .score {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        .feedback {
+            margin: 10px 0;
+        }
+        .observations {
+            margin-left: 20px;
+        }
+        .error {
+            color: red;
+            padding: 20px;
+            border: 1px solid red;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="analysis-container">
+        <h1>Interview Analysis</h1>
+        
+        {% if error %}
+            <div class="error">
+                <h2>Error</h2>
+                <p>{{ error }}</p>
+                <p>Please try again later or contact support if the problem persists.</p>
+            </div>
+        {% else %}
+            <div class="overall-score">
+                <h2>Overall Score: {{ analysis.overall_score }}%</h2>
+                <p class="summary">{{ analysis.summary }}</p>
+            </div>
+
+            <div class="components">
+                {% for component, data in analysis.components.items %}
+                <div class="component">
+                    <h3>{{ component|title }}</h3>
+                    <div class="score">Score: {{ data.score }}%</div>
+                    
+                    <div class="feedback">
+                        <h4>Feedback</h4>
+                        <p>{{ data.feedback }}</p>
+                    </div>
+                    
+                    <div class="observations">
+                        <h4>Key Observations</h4>
+                        <ul>
+                            {% for observation in data.observations %}
+                            <li>{{ observation }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <div class="actions">
+            <button onclick="window.location.href='{% url 'list_interviews' %}'">Back to List</button>
+        </div>
+    </div>
+</body>
+</html> 

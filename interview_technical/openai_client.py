@@ -6,17 +6,25 @@ from openai import OpenAI
 class OpenAIClient:
     def __init__(self):
         self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-        self.assistant = self.create_assistant()
+        self.assistant = None
+        self.selected_question = None
 
     def create_assistant(self):
         try:
+            question_context = f"The selected LeetCode question is: {self.selected_question}\n\n" if self.selected_question else ""
+            
             assistant = self.client.beta.assistants.create(
                 name="UMPIRE Interview Assistant",
                 instructions=(
-                    "You are an expert technical interviewer conducting a LeetCode interview. "
-                    "Your job is to direct the interviewee to structure their responses using the UMPIRE method. "
-                    "Start by asking the user what Leetcode question they want to work on and then direct them to answer "
-                    "the question using the UMPIRE method. Direct them through each step of the UMPIRE method."
+                    f"You are an expert technical interviewer conducting a LeetCode interview. {question_context}"
+                    "Your job is to direct the interviewee to structure their responses using the UMPIRE method:\n"
+                    "- Understand the problem\n"
+                    "- Match the constraints\n"
+                    "- Plan the approach\n"
+                    "- Implement the solution\n"
+                    "- Review the solution\n"
+                    "- Evaluate the complexity\n\n"
+                    "Guide them through each step of the UMPIRE method."
                 ),
                 model="gpt-4",
             )
@@ -25,6 +33,10 @@ class OpenAIClient:
         except Exception as e:
             print(f"Error creating assistant: {e}")
             return None
+
+    def initialize_interview(self, question):
+        self.selected_question = question
+        self.assistant = self.create_assistant()
 
     def get_response(self, user_message):
         try:

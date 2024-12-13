@@ -9,15 +9,15 @@ class Assessment(models.Model):
         ('technical', 'Technical'),
     ]
     
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)  # Default user ID
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     conversation = models.TextField()
-    score = models.FloatField()
     assessment_type = models.CharField(
         max_length=20,
         choices=ASSESSMENT_TYPES,
-        default='technical'  # Set 'technical' as default to avoid migration issues
+        default='technical'
     )
     created_at = models.DateTimeField(auto_now_add=True)
+    analysis = models.JSONField(null=True, blank=True)
     
     def __str__(self):
         return f"{self.get_assessment_type_display()} Assessment by {self.user.username} on {self.created_at.strftime('%Y-%m-%d')}"

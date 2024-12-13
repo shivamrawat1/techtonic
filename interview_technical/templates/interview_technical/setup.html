@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Technical Interview Setup</title>
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        select, input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Technical Interview Setup</h2>
+        <form action="{% url 'interview_technical:index' %}" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label>Select Question:</label>
+                <select name="question" required>
+                    <option value="two_sum">Two Sum</option>
+                    <option value="rotten_oranges">Rotten Oranges</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Interview Duration (minutes):</label>
+                <input type="number" name="duration" min="5" max="60" value="30" required>
+            </div>
+            <button type="submit">Start Interview</button>
+        </form>
+    </div>
+</body>
+</html>
