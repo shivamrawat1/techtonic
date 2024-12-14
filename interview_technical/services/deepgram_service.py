@@ -5,6 +5,7 @@ import traceback
 
 class DeepgramService:
     def __init__(self, api_key: str = None):
+        # Initialize Deepgram client with API key
         if not api_key:
             api_key = os.getenv('DEEPGRAM_API_KEY')
         if not api_key:
@@ -12,6 +13,7 @@ class DeepgramService:
         self.deepgram_client = Deepgram(api_key)
 
     async def transcribe_audio(self, buffer: bytes, mimetype: str = 'audio/wav') -> str:
+        """Transcribe audio using Deepgram and return the transcript."""
         try:
             response = await self.deepgram_client.transcription.prerecorded(
                 {'buffer': buffer, 'mimetype': mimetype},

@@ -5,14 +5,15 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
 
 def home(request):
-    # If user is logged in, show "Take Interview" and "Logout"
-    # Otherwise show "Login" and "Register"
+    """Render the home page with options based on authentication status."""
     return render(request, 'users/home.html')
 
 def choose_interview(request):
+    """Render the page to choose the type of interview."""
     return render(request, 'users/choose_interview.html')
 
 def login_view(request):
+    """Handle user login."""
     if request.user.is_authenticated:
         return redirect('home')
     
@@ -30,10 +31,12 @@ def login_view(request):
     return render(request, 'users/login.html', {'form': form})
 
 def logout_view(request):
+    """Log out the user and redirect to home."""
     logout(request)
     return redirect('home')
 
 def register_view(request):
+    """Handle user registration."""
     if request.user.is_authenticated:
         return redirect('home')
 

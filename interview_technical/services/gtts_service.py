@@ -3,9 +3,11 @@ from gtts import gTTS
 
 class GTTSService:
     def __init__(self):
+        # Initialize GTTS service
         pass
 
     def synthesize_speech(self, text: str) -> bytes:
+        """Synthesize speech from text using gTTS and return audio bytes."""
         print(f"Synthesizing speech for text: {text}")
         
         # Create an in-memory bytes buffer

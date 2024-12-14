@@ -1,0 +1,131 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #eaeff2;
+    /* Soft light gray-blue background */
+    color: #333;
+    /* Dark text for readability */
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    background-color: #3b5998;
+    /* Muted blue for the nav background */
+    padding: 10px;
+    text-align: right;
+}
+
+.nav-right a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #fff;
+    /* White text for contrast */
+    font-weight: bold;
+}
+
+.nav-right a:hover {
+    text-decoration: underline;
+    color: #dfe3ee;
+    /* Light gray-blue on hover */
+}
+
+.content-container,
+.analysis-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    /* White background for content */
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow for depth */
+}
+
+h1,
+h2 {
+    text-align: center;
+    color: #3b5998;
+    /* Match the nav color for consistency */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.delete-btn {
+    color: red;
+    cursor: pointer;
+    font-size: 1.2em;
+    background: none;
+    border: none;
+    padding: 5px;
+}
+
+.delete-btn:hover {
+    opacity: 0.7;
+}
+
+.btn,
+.btn-link {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: #6d84b4;
+    /* Softer blue for buttons */
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn:hover,
+.btn-link:hover {
+    background-color: #5a7391;
+    /* Slightly darker blue on hover */
+}
+
+.error {
+    color: red;
+    padding: 20px;
+    border: 1px solid red;
+    margin-bottom: 20px;
+}
+
+.component {
+    margin-bottom: 30px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.score {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.feedback,
+.observations {
+    margin: 10px 0;
+}

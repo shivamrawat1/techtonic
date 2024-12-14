@@ -5,12 +5,14 @@ from openai import OpenAI
 
 class OpenAIClient:
     def __init__(self):
+        # Initialize OpenAI client with API key from environment variables
         self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
         self.assistant = None
         self.resume = None
         self.job_description = None
 
     def create_assistant(self):
+        """Create an assistant for conducting behavioral interviews."""
         try:
             context = (
                 f"CANDIDATE'S RESUME:\n{self.resume}\n\n"
@@ -38,20 +40,17 @@ class OpenAIClient:
             return None
 
     def initialize_interview(self, resume, job_description):
+        """Initialize the interview with a resume and job description."""
         self.resume = resume
         self.job_description = job_description
         self.assistant = self.create_assistant()
 
     def get_response(self, user_message):
+        """Get a response from the assistant based on the user's message."""
         try:
             # Create a new thread with the user's message
             thread = self.client.beta.threads.create(
-                messages=[
-                    {
-                        "role": "user",
-                        "content": user_message
-                    }
-                ]
+                messages=[{"role": "user", "content": user_message}]
             )
             print(f"Thread created with ID: {thread.id}")
 
@@ -81,10 +80,9 @@ class OpenAIClient:
                 if assistant_messages:
                     assistant_reply = assistant_messages[-1]  # Get the last assistant message
                     # Extract the text content from the message
-                    assistant_message = ''
-                    for content_item in assistant_reply.content:
-                        if content_item.type == 'text':
-                            assistant_message += content_item.text.value
+                    assistant_message = ''.join(
+                        content_item.text.value for content_item in assistant_reply.content if content_item.type == 'text'
+                    )
                     print(f"Assistant's response: {assistant_message}")
                     return assistant_message
                 else:
