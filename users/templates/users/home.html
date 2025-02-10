@@ -1,36 +1,26 @@
 <!-- users/templates/users/home.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>User Home</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'users/css/style.css' %}">
-</head>
-<body>
-    <nav>
-        <div class="nav-right">
-            {% if user.is_authenticated %}
-                <a href="{% url 'logout' %}">Logout</a>
-            {% else %}
-                <a href="{% url 'login' %}">Login</a>
-                <a href="{% url 'register' %}">Register</a>
-            {% endif %}
-        </div>
-    </nav>
-    <h1>Welcome to UMPIRE Interview Prep</h1>
+{% extends 'users/base.html' %}
+
+{% block title %}Home - UMPIRE Interview Prep{% endblock %}
+
+{% block content %}
     {% if not user.is_authenticated %}
-        <h2>Turn Coding into Clarity and Clarity into your Dream Career.</h2>
-        <section id="about">
-            <h2>About Us</h2>
-            <p>Our platform transforms technical interview preparation by focusing not just on solving coding problems but on structuring thought processes for clear, logical communication. Through AI-driven, structured feedback based on proven frameworks like UMPIRE, we help you identify and improve weaknesses, enhance their problem-solving skills, and build confidence for high-pressure interview scenarios.</p>
-        </section>
+        <div class="landing-content">
+            <h1>Welcome to UMPIRE Interview Prep</h1>
+            <h2>Turn Coding into Clarity and Clarity into your Dream Career.</h2>
+            <section id="about">
+                <h2>About Us</h2>
+                <p>Our platform transforms technical interview preparation by focusing not just on solving coding problems but on structuring thought processes for clear, logical communication. Through AI-driven, structured feedback based on proven frameworks like UMPIRE, we help you identify and improve weaknesses, enhance their problem-solving skills, and build confidence for high-pressure interview scenarios.</p>
+            </section>
+            <div class="auth-buttons">
+                <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+                <a href="{% url 'register' %}" class="btn btn-secondary">Register</a>
+            </div>
+        </div>
     {% else %}
-        <div class="actions">
-            <a href="{% url 'choose_interview' %}">Take Interview</a><br>
-            <a href="{% url 'list_interviews' %}">View My Assessments</a>
+        <div class="dashboard">
+            <h1>Welcome, {{ user.username }}!</h1>
+            <p>Select an option from the sidebar to get started.</p>
         </div>
     {% endif %}
-    <script src="{% static 'users/js/script.js' %}"></script>
-</body>
-</html>
+{% endblock %}

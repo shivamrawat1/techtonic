@@ -1,17 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Choose Interview Type</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'users/css/style.css' %}">
-</head>
-<body>
-    <div class="container">
-        <h1>Choose Your Interview Type</h1>
-        <button class="interview-button" onclick="location.href='{% url 'interview_technical:setup' %}'">Technical</button>
-        <button class="interview-button" onclick="location.href='{% url 'interview_behavioral:setup' %}'">Behavioral</button>
+{% extends 'users/base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Choose Your Interview Type</h1>
+    <div class="interview-buttons">
+        <button class="btn btn-primary interview-button" onclick="location.href='{% url 'interview_technical:setup' %}'">Technical</button>
+        <button class="btn btn-primary interview-button" onclick="location.href='{% url 'interview_behavioral:setup' %}'">Behavioral</button>
     </div>
-    <script src="{% static 'users/js/script.js' %}"></script>
-</body>
-</html>
+</div>
+{% endblock %}

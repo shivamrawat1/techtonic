@@ -4,27 +4,54 @@
 <head>
     <meta charset="UTF-8">
     <title>Behavioral Interview</title>
-    <link rel="stylesheet" href="{% static 'css/stylesb.css' %}">
+    <link rel="stylesheet" href="{% static 'interview_behavioral/css/styles.css' %}">
 </head>
 <body>
-    <div id="container">
-        <!-- Left Section: Video Feed -->
-        <div id="video-feed">
-            <video id="videoElement" autoplay muted></video>
-        </div>
-        <!-- Right Section: Chat -->
-        <div id="chat">
-            <div id="chat-messages"></div>
-            <div id="chat-input">
-                <textarea id="user-input" rows="2" placeholder="Type a message"></textarea>
-                <button id="send-button">Send</button>
-                <button id="voice-button">🎤</button>
-                <button id="leave-button">Leave</button>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-left">
+                <h1>Techtonic</h1>
+                <span class="user-name">Behavioral Interview</span>
             </div>
-        </div>
+            <div class="header-right">
+                <span class="recording-status"></span>
+                <span class="timer"></span>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Video Feed -->
+            <div class="video-container">
+                <video id="videoElement" autoplay muted></video>
+            </div>
+
+            <!-- Chat Interface -->
+            <div class="chat-interface">
+                <div class="chat-header">
+                    <h2>Live Transcript</h2>
+                    <button class="close-button">×</button>
+                </div>
+                <div id="chat-messages" class="chat-messages"></div>
+                <div class="chat-controls">
+                    <textarea id="user-input" placeholder="Type a message"></textarea>
+                    <button id="send-button" class="control-button">Send</button>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer Controls -->
+        <footer class="app-footer">
+            <div class="footer-controls">
+                <button id="leave-button" class="control-button leave">Leave</button>
+                <button id="mute-button" class="control-button">Mute</button>
+                <button id="voice-button" class="control-button">🎤</button>
+            </div>
+        </footer>
     </div>
     
     <!-- Load main script -->
-    <script src="{% static 'js/mainb.js' %}"></script>
+    <script src="{% static 'interview_behavioral/js/main.js' %}"></script>
 </body>
 </html>

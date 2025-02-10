@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Technical Interview</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'interview_technical/css/styles.css' %}">
     <!-- Monaco Editor CSS -->
     <link rel="stylesheet" data-name="vs/editor/editor.main"
           href="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.43.0/min/vs/editor/editor.main.css">
@@ -67,6 +67,6 @@
         var synthesizeTextUrl = "{% url 'interview_technical:synthesize_text' %}";
     </script>
     <!-- Load the separated JavaScript file -->
-    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'interview_technical/js/main.js' %}"></script>
 </body>
 </html>

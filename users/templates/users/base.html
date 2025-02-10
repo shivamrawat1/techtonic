@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}UMPIRE Interview Prep{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'users/css/style.css' %}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        {% if user.is_authenticated %}
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1>Techtonic</h1>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-group">
+                        <button class="nav-group-header" onclick="toggleGroup(this)">
+                            <span class="material-icons">person</span>
+                            AI Interview Buddy
+                            <span class="material-icons arrow">expand_more</span>
+                        </button>
+                        <div class="nav-group-items">
+                            <a href="{% url 'interview_technical:setup' %}" class="nav-item sub-item {% if active_page == 'technical' %}active{% endif %}" 
+                               onclick="loadContent(event, this.href)">
+                                <span class="material-icons">code</span>
+                                Technical
+                            </a>
+                            <a href="{% url 'interview_behavioral:setup' %}" class="nav-item sub-item {% if active_page == 'behavioral' %}active{% endif %}"
+                               onclick="loadContent(event, this.href)">
+                                <span class="material-icons">psychology</span>
+                                Behavioral
+                            </a>
+                        </div>
+                    </div>
+                    <a href="{% url 'list_interviews' %}" class="nav-item {% if active_page == 'assessments' %}active{% endif %}" 
+                       onclick="loadContent(event, this.href)">
+                        <span class="material-icons">assessment</span>
+                        Assessment Report
+                    </a>
+                    <a href="#" class="nav-item">
+                        <span class="material-icons">payment</span>
+                        Billing
+                    </a>
+                    <a href="#" class="nav-item">
+                        <span class="material-icons">account_circle</span>
+                        Account
+                    </a>
+                    <a href="{% url 'logout' %}" class="nav-item">
+                        <span class="material-icons">logout</span>
+                        Logout
+                    </a>
+                </div>
+            </nav>
+        </aside>
+        {% endif %}
+        
+        <main class="main-content">
+            <div class="content-wrapper" id="main-content">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </main>
+    </div>
+    <script>
+    function loadContent(event, url) {
+        event.preventDefault();
+        
+        fetch(url)
+            .then(response => response.text())
+            .then(html => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                // Look for content in the block content area
+                const content = doc.querySelector('#main-content') || 
+                              doc.querySelector('.setup-container') || 
+                              doc.querySelector('.container') || 
+                              doc.querySelector('.content-container');
+                
+                if (content) {
+                    document.getElementById('main-content').innerHTML = content.innerHTML;
+                } else {
+                    console.error('No content found in the response');
+                }
+            })
+            .catch(error => {
+                console.error('Error loading content:', error);
+            });
+    }
+
+    function toggleGroup(button) {
+        const group = button.parentElement;
+        group.classList.toggle('expanded');
+    }
+
+    // Helper function to get CSRF token
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    </script>
+</body>
+</html> 

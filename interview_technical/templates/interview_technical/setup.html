@@ -1,57 +1,39 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Technical Interview Setup</title>
-    <style>
-        .container {
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 20px;
-            text-align: center;
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        select, input {
-            width: 100%;
-            padding: 8px;
-            margin-top: 5px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-        button {
-            padding: 10px 20px;
-            background-color: #6d84b4;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        button:hover {
-            background-color: #5a7391;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h2>Technical Interview Setup</h2>
-        <form action="{% url 'interview_technical:index' %}" method="POST">
+{% extends 'users/base.html' %}
+
+{% block content %}
+<div class="setup-container">
+    <div class="setup-card">
+        <div class="setup-header">
+            <h1>Technical Interview Setup</h1>
+            <p class="setup-description">Configure your technical interview settings below to get started.</p>
+        </div>
+        
+        <form action="{% url 'interview_technical:index' %}" method="POST" class="setup-form">
             {% csrf_token %}
+            
             <div class="form-group">
-                <label>Select Question:</label>
-                <select name="question" required>
+                <label for="question">Select Coding Question</label>
+                <select name="question" id="question" required>
+                    <option value="" disabled selected>Choose a question...</option>
                     <option value="two_sum">Two Sum</option>
                     <option value="rotten_oranges">Rotten Oranges</option>
                 </select>
+                <div class="form-help">Choose the coding problem you'd like to solve during the interview.</div>
             </div>
+
             <div class="form-group">
-                <label>Interview Duration (minutes):</label>
-                <input type="number" name="duration" min="5" max="60" value="30" required>
+                <label for="duration">Interview Duration</label>
+                <div class="duration-input">
+                    <input type="number" name="duration" id="duration" min="5" max="60" value="30" required>
+                    <span class="duration-unit">minutes</span>
+                </div>
+                <div class="form-help">Set how long you'd like your interview to last (5-60 minutes).</div>
             </div>
-            <button type="submit">Start Interview</button>
+
+            <div class="setup-actions">
+                <button type="submit" class="btn btn-primary">Start Interview</button>
+            </div>
         </form>
     </div>
-</body>
-</html>
+</div>
+{% endblock %}
