@@ -1,12 +1,12 @@
 /* Reset and Variables */
 :root {
     --dark-bg: #000000;
-    --panel-bg: rgba(0, 0, 0, 0.8);
-    --text-primary: #ffffff;
-    --text-secondary: rgba(255, 255, 255, 0.7);
+    --panel-bg: #ffffff;
+    --text-primary: #000000;
+    --text-secondary: rgba(0, 0, 0, 0.7);
     --accent-blue: #007AFF;
     --recording-red: #FF3B30;
-    --button-hover: rgba(255, 255, 255, 0.2);
+    --button-hover: rgba(0, 0, 0, 0.1);
     --header-height: 64px;
     --footer-height: 80px;
 }
@@ -88,15 +88,17 @@ body {
 .main-content {
     flex: 1;
     position: relative;
-    height: calc(100vh - var(--header-height) - var(--footer-height));
+    height: calc(100vh - var(--header-height) - var(--footer-height) - 2rem);
     overflow: hidden;
-    padding: 1.5rem;
     display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    margin-bottom: calc(var(--footer-height) + 1rem);
 }
 
 /* Video Container */
 .video-container {
-    flex: 1;
+    flex: 2;
     background-color: #1a1a1a;
     border-radius: 12px;
     overflow: hidden;
@@ -104,6 +106,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 100%;
 }
 
 #videoElement {
@@ -115,14 +118,12 @@ body {
 
 /* Chat Interface */
 .chat-interface {
-    position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
-    width: 360px;
-    height: calc(100% - 3rem);
+    flex: 1;
+    min-width: 300px;
+    max-width: 400px;
+    height: 100%;
     background-color: var(--panel-bg);
     border-radius: 12px;
-    backdrop-filter: blur(10px);
     display: flex;
     flex-direction: column;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -133,7 +134,8 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: var(--panel-bg);
 }
 
 .chat-header h2 {
@@ -157,73 +159,207 @@ body {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    background-color: var(--panel-bg);
 }
 
+/* Recording Timer */
+.recording-timer {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    color: white;
+    font-size: 0.9rem;
+    z-index: 10;
+}
+
+.recording-timer .dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--recording-red);
+    border-radius: 50%;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Chat Message Styling */
+.chat-message {
+    padding: 0.5rem;
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.05);
+    margin-bottom: 0.5rem;
+}
+
+/* Chat Controls Update */
 .chat-controls {
     padding: 1rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    background-color: rgba(0, 0, 0, 0.2);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: var(--panel-bg);
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    min-height: 80px;
 }
 
 #user-input {
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0.1);
-    border: none;
+    flex: 1;
+    background-color: rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     color: var(--text-primary);
     padding: 0.8rem;
-    margin-bottom: 0.5rem;
-    resize: none;
-    height: 60px;
+    resize: vertical;
+    min-height: 40px;
+    max-height: 120px;
     font-size: 0.9rem;
+    margin-bottom: 0;
+    font-family: inherit;
 }
 
-#user-input::placeholder {
-    color: var(--text-secondary);
+#user-input:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+    background-color: white;
+}
+
+.send-button {
+    background-color: var(--accent-blue);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0.8rem 1.5rem;
+    cursor: pointer;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.send-button:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+.send-button:active {
+    transform: translateY(0);
 }
 
 /* Footer Controls */
 .app-footer {
     height: var(--footer-height);
     padding: 1rem;
-    background-color: var(--panel-bg);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: transparent;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 100;
+}
+
+.current-time {
+    position: absolute;
+    left: 2rem;
+    bottom: 2rem;
+    color: white;
+    font-size: 0.9rem;
+    opacity: 0.8;
 }
 
 .footer-controls {
     display: flex;
     justify-content: center;
-    gap: 1.5rem;
-    width: 100%;
-    max-width: 600px;
+    gap: 2rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 1rem 2rem;
+    border-radius: 30px;
+    margin-bottom: 1rem;
 }
 
-/* Buttons */
-.control-button {
-    background-color: rgba(255, 255, 255, 0.1);
-    border: none;
-    color: var(--text-primary);
-    padding: 0.8rem 1.5rem;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    transition: all 0.2s ease;
-    min-width: 100px;
+.control-wrapper {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
     gap: 0.5rem;
 }
 
-.control-button:hover {
-    background-color: var(--button-hover);
+.button-label {
+    color: white;
+    font-size: 0.8rem;
+    opacity: 0.8;
+    text-transform: capitalize;
+}
+
+/* Control Buttons */
+.control-button {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    padding: 0;
+}
+
+.control-button svg {
+    width: 24px;
+    height: 24px;
 }
 
 .control-button.leave {
     background-color: var(--recording-red);
+}
+
+.control-button.mute {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Microphone Icons */
+.control-button.mute .mic-off {
+    display: none;
+}
+
+.control-button.mute.active {
+    background-color: var(--recording-red);
+}
+
+.control-button.mute.active .mic-on {
+    display: none;
+}
+
+.control-button.mute.active .mic-off {
+    display: block;
+}
+
+.control-button:hover {
+    transform: scale(1.1);
 }
 
 .control-button.leave:hover {
