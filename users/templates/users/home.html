@@ -1,27 +1,179 @@
 <!-- users/templates/users/home.html -->
-{% extends 'users/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+    {% load static %}
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'users/css/home.css' %}">
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="logo">
+            <img src="{% static 'users/images/techtonic-logo.svg' %}" alt="Techtonic Logo" style="height: 40px;">
+        </div>
+        <div class="nav-links">
+            <a href="#about">About Us</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#contact">Contact Us</a>
+            <a href="{% url 'register' %}" class="register-btn">Register</a>
+        </div>
+    </nav>
 
-{% block title %}Home - UMPIRE Interview Prep{% endblock %}
-
-{% block content %}
-    {% if not user.is_authenticated %}
-        <div class="landing-content">
-            <h1>Welcome to UMPIRE Interview Prep</h1>
-            <h2>Turn Coding into Clarity and Clarity into your Dream Career.</h2>
-            <section id="about">
-                <h2>About Us</h2>
-                <p>Our platform transforms technical interview preparation by focusing not just on solving coding problems but on structuring thought processes for clear, logical communication. Through AI-driven, structured feedback based on proven frameworks like UMPIRE, we help you identify and improve weaknesses, enhance their problem-solving skills, and build confidence for high-pressure interview scenarios.</p>
-            </section>
-            <div class="auth-buttons">
-                <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
-                <a href="{% url 'register' %}" class="btn btn-secondary">Register</a>
+    <main>
+        <section id="hero" class="hero">
+            <div class="hero-content">
+                <h1>Master Your <span class="highlight">Technical</span><br>Interview <span class="highlight">Skills</span></h1>
+                <p>Transform your technical interview preparation by focusing on solving coding problems and structuring thought processes through proven frameworks like UMPIRE.</p>
+                <div class="hero-buttons">
+                    <a href="{% url 'login' %}" class="primary-btn">Get Started</a>
+                    <a href="#how-it-works" class="secondary-btn">Learn More</a>
+                </div>
             </div>
-        </div>
-    {% else %}
-        <div class="dashboard">
-            <h1>Welcome, {{ user.username }}!</h1>
-            <p>Select an option from the sidebar to get started.</p>
+        </section>
 
-        </div>
-    {% endif %}
-{% endblock %}
+        <section id="demo" class="demo-section">
+            <h2>See How It Works</h2>
+            <p class="demo-description">Watch our quick demo to see how our platform helps you prepare for technical interviews.</p>
+            <div class="video-container">
+                <iframe 
+                    class="demo-video"
+                    src="https://www.youtube.com/embed/7Z2cGemTM9k?rel=0&modestbranding=1" 
+                    title="Demo Video"
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </section>
+
+        <section id="how-it-works" class="how-it-works">
+            <h2>How <span class="highlight">Platform</span> Works</h2>
+            <div class="steps-container">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Select your Question</h3>
+                        <p>Based on our library of 100+ questions</p>
+                        <div class="step-icon">
+                            <!-- Sample SVG 1 -->
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M12 8v8M8 12h8"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Mock with AI</h3>
+                        <p>Practice as if you're in a real technical interview</p>
+                        <div class="step-icon">
+                            <!-- Sample SVG 2 -->
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                                <path d="M12 8v8M8 12h8"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Actionable Feedback</h3>
+                        <p>Get detailed feedback based on UMPIRE Framework</p>
+                        <div class="step-icon">
+                            <!-- Sample SVG 3 -->
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M20 6L9 17l-5-5"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="trusted-by" class="trusted-by">
+            <h2>Trusted by 1000+ job applicants from</h2>
+            <div class="company-logos">
+                <div class="logo-container">
+                    <img src="{% static 'users/images/netflix-logo.svg' %}" alt="Meta" class="company-logo">
+                </div>
+                <div class="logo-container">
+                    <img src="{% static 'users/images/google-logo.svg' %}" alt="Google" class="company-logo">
+                </div>
+                <div class="logo-container">
+                    <img src="{% static 'users/images/amazon-logo.svg' %}" alt="Amazon" class="company-logo">
+                </div>
+                <div class="logo-container">
+                    <img src="{% static 'users/images/linkedin-logo.svg' %}" alt="LinkedIn" class="company-logo">
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials" class="testimonials">
+            <h2>What Our Users Say</h2>
+            <div class="testimonials-container">
+                <button class="testimonial-nav prev" aria-label="Previous testimonial">❮</button>
+                <div class="testimonial-slider">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"This platform helped me structure my thoughts better. I got an offer from Google!"</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar"></div>
+                                <div class="author-info">
+                                    <h4>John Doe</h4>
+                                    <p>Software Engineer @ Google</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"The UMPIRE framework really helped me communicate my problem-solving approach clearly."</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar"></div>
+                                <div class="author-info">
+                                    <h4>Jane Smith</h4>
+                                    <p>Software Engineer @ Meta</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"Practice with AI interviews gave me confidence for my Amazon interview."</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar"></div>
+                                <div class="author-info">
+                                    <h4>Mike Johnson</h4>
+                                    <p>Software Engineer @ Amazon</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="testimonial-nav next" aria-label="Next testimonial">❯</button>
+            </div>
+        </section>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="#about">About</a>
+                    <a href="#privacy">Privacy</a>
+                    <a href="#terms">Terms</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <p class="copyright">© 2024 Your Platform Name. All rights reserved.</p>
+            </div>
+        </footer>
+    </main>
+
+    <script src="{% static 'users/js/home.js' %}"></script>
+
+</body>
+</html> 
