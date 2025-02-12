@@ -45,14 +45,17 @@
                         <span class="material-icons">payment</span>
                         Billing
                     </a>
-                    <a href="#" class="nav-item">
+                    <a href="{% url 'account' %}" class="nav-item {% if active_page == 'account' %}active{% endif %}">
                         <span class="material-icons">account_circle</span>
                         Account
                     </a>
-                    <a href="{% url 'logout' %}" class="nav-item">
-                        <span class="material-icons">logout</span>
-                        Logout
-                    </a>
+                    <form method="post" action="{% url 'logout' %}" class="nav-item-form">
+                        {% csrf_token %}
+                        <button type="submit" class="nav-item logout-btn">
+                            <span class="material-icons">logout</span>
+                            Logout
+                        </button>
+                    </form>
                 </div>
             </nav>
         </aside>
@@ -112,5 +115,29 @@
         return cookieValue;
     }
     </script>
+    <style>
+    .nav-item-form {
+        margin: 0;
+        padding: 0;
+    }
+
+    .logout-btn {
+        width: 100%;
+        background: none;
+        border: none;
+        text-align: left;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1rem;
+        color: inherit;
+        font-size: inherit;
+    }
+
+    .logout-btn:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+    </style>
 </body>
 </html> 
