@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="50" viewBox="0 0 200 50" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background Rectangle with Gradient -->
+    <defs>
+        <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#4A90E2;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#357ABD;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+    
+    <!-- Tech-inspired Circuit Lines -->
+    <path d="M10,25 L30,25 M40,25 L60,25 M70,25 L90,25" 
+          stroke="#4A90E2" 
+          stroke-width="2" 
+          fill="none"/>
+    
+    <!-- Main Text -->
+    <text x="40" y="35" 
+          font-family="Arial, sans-serif" 
+          font-size="28" 
+          font-weight="bold" 
+          fill="#2C3E50">
+        Techtonic
+    </text>
+    
+    <!-- Decorative Circuit Dots -->
+    <circle cx="30" cy="25" r="3" fill="#4A90E2"/>
+    <circle cx="60" cy="25" r="3" fill="#4A90E2"/>
+    <circle cx="90" cy="25" r="3" fill="#4A90E2"/>
+</svg> 

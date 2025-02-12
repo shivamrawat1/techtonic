@@ -5,68 +5,87 @@
     <meta charset="UTF-8">
     <title>Technical Interview</title>
     <link rel="stylesheet" href="{% static 'interview_technical/css/styles.css' %}">
-    <!-- Monaco Editor CSS -->
-    <link rel="stylesheet" data-name="vs/editor/editor.main"
-          href="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.43.0/min/vs/editor/editor.main.css">
-    <!-- Split.js Library -->
-    <script src="https://cdn.jsdelivr.net/npm/split.js/dist/split.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.43.0/min/vs/editor/editor.main.css">
 </head>
 <body>
-    <!-- Include CSRF token to set the CSRF cookie -->
-    {% csrf_token %}
-    <div id="container">
-        <div id="editor-pane">
-            <div id="editor" style="width: 100%; height: 100%;"></div>
-        </div>
-        <div id="right-pane">
-            <div id="video-feed">
-                <video id="videoElement" autoplay muted style="width:100%; height:100%;"></video>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-left">
+                <h1>Techtonic</h1>
+                <span class="user-name">Technical Interview</span>
             </div>
-            <div id="chat">
-                <div id="chat-messages"></div>
-                <div id="chat-input">
-                    <textarea id="user-input" rows="2" placeholder="Type a message"></textarea>
-                    <button id="send-button">Send</button>
-                    <button id="voice-button">🎤</button>
-                    <button id="leave-button">Leave</button>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Editor Container -->
+            <div class="editor-container">
+                <div id="editor"></div>
+            </div>
+
+            <!-- Right Side -->
+            <div class="right-side">
+                <!-- Video Container -->
+                <div class="video-container">
+                    <video id="videoElement" autoplay playsinline></video>
+                    <div class="recording-timer">
+                        <div class="dot"></div>
+                        <span id="timer-display">30:00</span>
+                    </div>
+                </div>
+
+                <!-- Chat Interface -->
+                <div class="chat-interface">
+                    <div class="chat-header">
+                        <h2>Live Transcript</h2>
+                    </div>
+                    <div id="chat-messages" class="chat-messages"></div>
+                    <div class="chat-controls">
+                        <textarea id="user-input" placeholder="Type a message"></textarea>
+                        <button id="send-button" class="send-button">Send</button>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <div class="footer-controls">
+                <div class="control-wrapper">
+                    <button id="leave-button" class="control-button leave">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                    <span class="button-label">Leave</span>
+                </div>
+                <div class="control-wrapper">
+                    <button id="mute-button" class="control-button mute">
+                        <svg class="mic-on" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 15c1.66 0 2.99-1.34 2.99-3L15 5c0-1.66-1.34-3-3-3S9 3.34 9 5v7c0 1.66 1.34 3 3 3z" fill="currentColor"/>
+                        </svg>
+                    </button>
+                    <span class="button-label">Mute</span>
+                </div>
+            </div>
+        </footer>
     </div>
 
-    <!-- Update Monaco Editor loading -->
-    <script>
-        // Configure AMD loader for Monaco
-        require.config({
-            paths: {
-                'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.43.0/min/vs'
-            }
-        });
+    <!-- Hidden input for interview duration -->
+    <input type="hidden" id="interview-duration" value="{{ duration }}">
 
-        // Load Monaco editor
-        require(['vs/editor/editor.main'], function() {
-            // Create Monaco editor instance
-            window.editor = monaco.editor.create(document.getElementById('editor'), {
-                value: '// Write your code here\n',
-                language: 'javascript',
-                theme: 'vs-dark',
-                automaticLayout: true,
-                minimap: {
-                    enabled: false
-                }
-            });
-        });
-    </script>
-
-    <!-- Monaco Editor Loader -->
+    <!-- Scripts -->
+    <script>var require = { paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.43.0/min/vs' } };</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.43.0/min/vs/loader.js"></script>
-    <!-- Define the URL for AJAX requests -->
-    <script type="text/javascript">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.43.0/min/vs/editor/editor.main.nls.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.43.0/min/vs/editor/editor.main.js"></script>
+    
+    <script>
         var getResponseUrl = "{% url 'interview_technical:get_response' %}";
         var processAudioUrl = "{% url 'interview_technical:process_audio' %}";
         var synthesizeTextUrl = "{% url 'interview_technical:synthesize_text' %}";
     </script>
-    <!-- Load the separated JavaScript file -->
     <script src="{% static 'interview_technical/js/main.js' %}"></script>
 </body>
 </html>
