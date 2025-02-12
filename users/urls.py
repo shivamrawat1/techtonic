@@ -7,8 +7,7 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('login/', views.user_login, name='login'),
     path('logout/', auth_views.LogoutView.as_view(
-        template_name='users/login.html',
-        next_page='login'
+        next_page='home'
     ), name='logout'),
     path('account/', views.account, name='account'),
     path('account/delete/', views.delete_account, name='delete_account'),
