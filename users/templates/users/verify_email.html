@@ -1,0 +1,137 @@
+{% extends 'users/base.html' %}
+
+{% block title %}Verify Email - UMPIRE Interview Prep{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="auth-box">
+        <h1>Verify Your Email</h1>
+        <p class="verification-message">We've sent a verification code to your email address. Please enter it below to verify your account.</p>
+        
+        <form method="post" class="auth-form">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="code">Verification Code</label>
+                <input type="text" id="code" name="code" required maxlength="6" pattern="\d{6}" 
+                       title="Please enter the 6-digit code" autocomplete="off">
+            </div>
+            {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                <p class="{% if message.tags %}{{ message.tags }}-message{% endif %}">{{ message }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+            <button type="submit" class="btn btn-primary">Verify Email</button>
+        </form>
+        
+        <form method="post" action="{% url 'resend_code' %}" class="resend-form">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-secondary">Resend Code</button>
+        </form>
+    </div>
+</div>
+
+<style>
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 2rem;
+    background-color: #f3f4f6;
+}
+
+.auth-box {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+.auth-box h1 {
+    margin-bottom: 1rem;
+    text-align: center;
+    color: #374151;
+}
+
+.verification-message {
+    text-align: center;
+    color: #6b7280;
+    margin-bottom: 2rem;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-weight: 500;
+    color: #374151;
+}
+
+.form-group input {
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    font-size: 1rem;
+    text-align: center;
+    letter-spacing: 0.25em;
+}
+
+.error-message {
+    color: #dc2626;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+.success-message {
+    color: #059669;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+.btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    width: 100%;
+}
+
+.btn-primary {
+    background-color: #6366f1;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #4f46e5;
+}
+
+.btn-secondary {
+    background-color: #9ca3af;
+    color: white;
+    margin-top: 1rem;
+}
+
+.btn-secondary:hover {
+    background-color: #6b7280;
+}
+
+.resend-form {
+    margin-top: 1rem;
+}
+</style>
+{% endblock %} 

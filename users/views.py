@@ -5,8 +5,11 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from .models import UserProfile
+from .models import UserProfile, EmailVerification
 from django.db import transaction
+from django.utils import timezone
+from datetime import timedelta
+from .services import EmailService
 
 def home(request):
     """Render the home page with options based on authentication status."""
@@ -82,9 +85,20 @@ def register(request):
                 messages.error(request, 'Username already exists')
                 return redirect('register')
 
-            if User.objects.filter(email=email).exists():
-                messages.error(request, 'Email already exists')
-                return redirect('register')
+            # Check for existing email but handle unverified users
+            existing_user = User.objects.filter(email=email).first()
+            if existing_user:
+                # If user exists but is not active (unverified)
+                if not existing_user.is_active:
+                    # Delete the old unverified user and their associated data
+                    try:
+                        EmailVerification.objects.filter(user=existing_user).delete()
+                        existing_user.delete()
+                    except Exception as e:
+                        print(f"Error deleting unverified user: {str(e)}")
+                else:
+                    messages.error(request, 'Email already exists')
+                    return redirect('register')
 
             # Create user and profile
             try:
@@ -93,17 +107,26 @@ def register(request):
                     user = User.objects.create_user(
                         username=username,
                         email=email,
-                        password=password1
+                        password=password1,
+                        is_active=False  # User starts inactive until email is verified
                     )
                     
-                    # Log the user in
-                    user = authenticate(username=username, password=password1)
-                    if user is not None:
-                        login(request, user)
-                        messages.success(request, 'Registration successful!')
-                        return redirect('home')
-                    else:
-                        raise Exception('Authentication failed after user creation')
+                    # Create verification code
+                    verification_code = EmailVerification.generate_code()
+                    EmailVerification.objects.create(
+                        user=user,
+                        code=verification_code
+                    )
+                    
+                    # Send verification email using EmailService
+                    if not EmailService.send_verification_email(user, verification_code):
+                        raise Exception("Failed to send verification email")
+                    
+                    # Store user ID in session for verification
+                    request.session['verification_user_id'] = user.id
+                    
+                    messages.success(request, 'Registration successful! Please check your email for verification code.')
+                    return redirect('verify_email')
             
             except Exception as e:
                 # If anything goes wrong, delete the user if it was created
@@ -117,6 +140,75 @@ def register(request):
             return redirect('register')
 
     return render(request, 'users/register.html')
+
+def verify_email(request):
+    user_id = request.session.get('verification_user_id')
+    if not user_id:
+        messages.error(request, 'Verification session expired. Please register again.')
+        return redirect('register')
+    
+    try:
+        user = User.objects.get(id=user_id)
+        verification = EmailVerification.objects.get(user=user)
+    except (User.DoesNotExist, EmailVerification.DoesNotExist):
+        messages.error(request, 'Invalid verification session. Please register again.')
+        return redirect('register')
+    
+    if request.method == 'POST':
+        code = request.POST.get('code', '').strip()
+        
+        # Check if code is expired
+        if timezone.now() - verification.created_at > timedelta(minutes=EmailService.VERIFICATION_EXPIRY_MINUTES):
+            messages.error(request, 'Verification code expired. Please request a new one.')
+            return render(request, 'users/verify_email.html')
+        
+        if code == verification.code:
+            user.is_active = True
+            user.save()
+            
+            user_profile = UserProfile.objects.get(user=user)
+            user_profile.is_email_verified = True
+            user_profile.save()
+            
+            verification.delete()
+            del request.session['verification_user_id']
+            
+            login(request, user)
+            messages.success(request, 'Email verified successfully!')
+            return redirect('home')
+        else:
+            messages.error(request, 'Invalid verification code. Please try again.')
+    
+    return render(request, 'users/verify_email.html')
+
+def resend_code(request):
+    user_id = request.session.get('verification_user_id')
+    if not user_id:
+        messages.error(request, 'Verification session expired. Please register again.')
+        return redirect('register')
+    
+    try:
+        user = User.objects.get(id=user_id)
+        verification = EmailVerification.objects.get(user=user)
+        
+        # Generate new code
+        new_code = EmailVerification.generate_code()
+        verification.code = new_code
+        verification.created_at = timezone.now()
+        verification.save()
+        
+        # Send new verification email using EmailService
+        if not EmailService.send_verification_email(user, new_code):
+            raise Exception("Failed to send verification email")
+        
+        messages.success(request, 'New verification code sent to your email.')
+    except (User.DoesNotExist, EmailVerification.DoesNotExist):
+        messages.error(request, 'Invalid verification session. Please register again.')
+        return redirect('register')
+    except Exception as e:
+        messages.error(request, 'Failed to send verification code. Please try again.')
+    
+    return redirect('verify_email')
 
 def user_login(request):
     if request.method == 'POST':

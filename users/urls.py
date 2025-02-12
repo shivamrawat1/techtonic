@@ -12,4 +12,6 @@ urlpatterns = [
     ), name='logout'),
     path('account/', views.account, name='account'),
     path('account/delete/', views.delete_account, name='delete_account'),
+    path('verify-email/', views.verify_email, name='verify_email'),
+    path('resend-code/', views.resend_code, name='resend_code'),
 ]

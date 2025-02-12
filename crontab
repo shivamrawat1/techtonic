@@ -1,0 +1,2 @@
+# Run cleanup_expired_codes management command every 10 minutes
+*/10 * * * * cd /Users/shivamrawat/capstone_django && python manage.py cleanup_expired_codes >> /tmp/cleanup_codes.log 2>&1 
