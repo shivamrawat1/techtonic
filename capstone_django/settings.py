@@ -127,6 +127,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'interview_technical', 'static'),
     os.path.join(BASE_DIR, 'interview_behavioral', 'static'),
     os.path.join(BASE_DIR, 'assessments', 'static'),
+    os.path.join(BASE_DIR, 'users', 'static'),
 ]
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
@@ -138,7 +139,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'dashboard'
-LOGOUT_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'landingpage'
 
 # Email settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

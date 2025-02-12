@@ -11,9 +11,9 @@ from django.utils import timezone
 from datetime import timedelta
 from .services import EmailService
 
-def home(request):
+def landingpage(request):
     """Render the home page with options based on authentication status."""
-    return render(request, 'users/home.html')
+    return render(request, 'users/landingpage.html')
 
 def choose_interview(request):
     """Render the page to choose the type of interview."""

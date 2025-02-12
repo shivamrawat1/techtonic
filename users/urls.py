@@ -3,11 +3,11 @@ from . import views
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-    path('', views.home, name='home'),
+    path('', views.landingpage, name='landingpage'),
     path('register/', views.register, name='register'),
     path('login/', views.login_view, name='login'),
     path('logout/', auth_views.LogoutView.as_view(
-        next_page='home'
+        next_page='landingpage'
     ), name='logout'),
     path('account/', views.account, name='account'),
     path('account/delete/', views.delete_account, name='delete_account'),
