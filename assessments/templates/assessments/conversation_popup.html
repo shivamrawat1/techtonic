@@ -1,0 +1,15 @@
+<!-- assessments/templates/assessments/conversation_popup.html -->
+{% load static %}
+<link rel="stylesheet" href="{% static 'assessments/css/conversation_popup.css' %}">
+
+<div class="conversation-popup" id="conversationPopup">
+    <div class="popup-content">
+        <div class="popup-header">
+            <h2>Interview Conversation</h2>
+            <button class="close-btn" onclick="closeConversationPopup()">&times;</button>
+        </div>
+        <div class="conversation-container">
+            <!-- Messages will be dynamically inserted here -->
+        </div>
+    </div>
+</div>

@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}UMPIRE Interview Prep{% endblock %}</title>
+    <title>{% block title %}Techtonic{% endblock %}</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'users/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assessments/css/conversation_popup.css' %}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="{% static 'assessments/js/assessment.js' %}"></script>
 </head>
 <body>
     <div class="app-container">
@@ -68,6 +70,10 @@
             </div>
         </main>
     </div>
+
+    <!-- Include the conversation popup globally -->
+    {% include 'assessments/conversation_popup.html' %}
+
     <script>
     function loadContent(event, url) {
         event.preventDefault();

@@ -126,6 +126,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'interview_technical', 'static'),
     os.path.join(BASE_DIR, 'interview_behavioral', 'static'),
+    os.path.join(BASE_DIR, 'assessments', 'static'),
 ]
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
