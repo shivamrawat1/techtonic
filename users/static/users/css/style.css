@@ -494,3 +494,12 @@ details pre {
 .setup-actions .btn {
     min-width: 150px;
 }
+
+.dashboard-welcome {
+    padding: 2rem;
+}
+
+.dashboard-welcome h1 {
+    margin-bottom: 1rem;
+    color: #333;
+}

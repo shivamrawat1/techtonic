@@ -22,20 +22,32 @@ def choose_interview(request):
 def login_view(request):
     """Handle user login."""
     if request.user.is_authenticated:
-        return redirect('home')
+        return redirect('dashboard')
     
     if request.method == 'POST':
-        form = AuthenticationForm(request, data=request.POST)
-        if form.is_valid():
-            user = form.get_user()
+        username = request.POST.get('login')
+        password = request.POST.get('password')
+        
+        # First try to authenticate with username
+        user = authenticate(username=username, password=password)
+        
+        # If username authentication fails, try email
+        if user is None:
+            try:
+                # Try to find user by email
+                user_profile = UserProfile.objects.get(email=username)
+                user = authenticate(username=user_profile.user.username, password=password)
+            except UserProfile.DoesNotExist:
+                user = None
+        
+        if user is not None:
             login(request, user)
-            return redirect('home')
+            messages.success(request, f'Welcome back, {user.username}!')
+            return redirect('dashboard')
         else:
-            messages.error(request, 'Invalid username or password.')
-    else:
-        form = AuthenticationForm()
+            messages.error(request, 'Invalid username/email or password')
     
-    return render(request, 'users/login.html', {'form': form})
+    return render(request, 'users/login.html')
 
 def logout_view(request):
     """Log out the user and redirect to home."""
@@ -210,36 +222,6 @@ def resend_code(request):
     
     return redirect('verify_email')
 
-def user_login(request):
-    if request.method == 'POST':
-        login_field = request.POST.get('login', '').strip()
-        password = request.POST.get('password', '')
-        
-        if not login_field or not password:
-            messages.error(request, 'Please enter both login and password')
-            return render(request, 'users/login.html')
-        
-        # First try to authenticate with username
-        user = authenticate(username=login_field, password=password)
-        
-        # If username authentication fails, try email
-        if user is None:
-            try:
-                # Try to find user by email
-                user_profile = UserProfile.objects.get(email=login_field)
-                user = authenticate(username=user_profile.user.username, password=password)
-            except UserProfile.DoesNotExist:
-                user = None
-        
-        if user is not None:
-            login(request, user)
-            messages.success(request, 'Login successful!')
-            return redirect('home')
-        else:
-            messages.error(request, 'Invalid username/email or password')
-    
-    return render(request, 'users/login.html')
-
 @login_required
 def account(request):
     user_profile, created = UserProfile.objects.get_or_create(
@@ -274,3 +256,7 @@ def delete_account(request):
         messages.success(request, 'Your account has been deleted successfully')
         return redirect('login')
     return redirect('account')
+
+@login_required
+def dashboard_view(request):
+    return render(request, 'users/dashboard.html')
