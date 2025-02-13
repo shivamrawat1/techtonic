@@ -20,16 +20,14 @@ class OpenAIClient:
             ) if self.resume and self.job_description else ""
             
             assistant = self.client.beta.assistants.create(
-                name="STAR Behavioral Interview Assistant",
+                name="Behavioral Interview Assistant",
                 instructions=(
                     f"You are an expert behavioral interviewer. {context}"
-                    "Your role is to help interviewees structure their answers using the STAR method:\n"
-                    "- Situation: Set the context\n"
-                    "- Task: Describe the challenge\n"
-                    "- Action: Explain what you did\n"
-                    "- Result: Share the outcome\n\n"
-                    "Ask relevant behavioral questions based on the job requirements and candidate's experience.\n"
-                    "Provide constructive feedback on their responses."
+                    "Your role is to ask behavioral questions based on candidate's resume and job description:\n"
+                    "Ask questions that are relevant to the job description and candidate's resume.\n"
+                    "Ask follow-up questions if necessary to clarify the candidate's answers.\n"
+                    "You do not have to provide any feedback on the candidate's answers, rather nudge them to answer the questioin in detail before moving forward to the next question.\n"
+                    "Be sure to ask questions that are relevant to the job description and candidate's resume.\n"
                 ),
                 model="gpt-4",
             )

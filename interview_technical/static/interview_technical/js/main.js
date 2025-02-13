@@ -3,10 +3,11 @@
 // Initialize Monaco Editor
 require.config({ paths: { 'vs': 'https://cdn.jsdelivr.net/npm/monaco-editor@0.33.0/min/vs' } });
 require(['vs/editor/editor.main'], function () {
-    var editor = monaco.editor.create(document.getElementById('editor'), {
+    var editor = monaco.editor.create(document.getElementById('monaco-editor'), {
         value: '',
         language: 'javascript',
-        theme: 'vs-dark'
+        theme: 'vs-dark',
+        automaticLayout: true
     });
 });
 
