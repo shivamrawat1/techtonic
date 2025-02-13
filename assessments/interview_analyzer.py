@@ -82,7 +82,7 @@ class InterviewAnalyzer:
         ]
 
         response = self.client.chat.completions.create(
-            model="gpt-4",
+            model="gpt-4-turbo",
             messages=messages,
             temperature=0.7,
         )
