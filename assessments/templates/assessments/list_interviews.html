@@ -2,12 +2,13 @@
 {% extends 'users/base.html' %}
 {% load static %}
 
+{% block header_title %}Your Assessments{% endblock %}
+{% block header_description %}View and manage your interview assessments and results.{% endblock %}
+
 {% block content %}
 <link rel="stylesheet" href="{% static 'assessments/css/list_interviews.css' %}">
 
 <div class="content-container">
-    <h1>Your Assessments</h1>
-
     {% if assessments %}
         <table class="assessment-table">
             <thead>

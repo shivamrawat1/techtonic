@@ -1,13 +1,11 @@
 {% extends 'users/base.html' %}
 
+{% block header_title %}Technical Interview Setup{% endblock %}
+{% block header_description %}Configure your technical interview settings below to get started.{% endblock %}
+
 {% block content %}
 <div class="setup-container">
     <div class="setup-card">
-        <div class="setup-header">
-            <h1>Technical Interview Setup</h1>
-            <p class="setup-description">Configure your technical interview settings below to get started.</p>
-        </div>
-        
         <form action="{% url 'interview_technical:index' %}" method="POST" class="setup-form">
             {% csrf_token %}
             

@@ -157,16 +157,41 @@ timerInterval = setInterval(updateTimer, 1000);
 
 // Helper: Get CSRF Token
 function getCookie(name) {
+    if (name === 'csrftoken') {
+        // First try to get from meta tag
+        const metaTag = document.querySelector('meta[name="csrf-token"]');
+        if (metaTag) {
+            const token = metaTag.getAttribute('content');
+            console.log('CSRF token found in meta tag');
+            return token;
+        }
+        console.log('CSRF token not found in meta tag, trying cookies');
+    }
+
+    // Try cookies as fallback
     const cookies = document.cookie.split(';');
     for (let cookie of cookies) {
         const trimmed = cookie.trim();
         if (trimmed.startsWith(name + '=')) {
-            return decodeURIComponent(trimmed.substring(name.length + 1));
+            const token = decodeURIComponent(trimmed.substring(name.length + 1));
+            console.log('CSRF token found in cookies');
+            return token;
         }
     }
+
+    console.error('CSRF token not found in meta tag or cookies');
     return null;
 }
+
+// Initialize CSRF token with more detailed logging
 const csrftoken = getCookie('csrftoken');
+if (!csrftoken) {
+    console.error('CSRF token initialization failed. Form submissions will fail.');
+    console.error('Meta tag status:', document.querySelector('meta[name="csrf-token"]') ? 'present' : 'missing');
+    console.error('Cookie status:', document.cookie.includes('csrftoken') ? 'present' : 'missing');
+} else {
+    console.log('CSRF token successfully initialized');
+}
 
 // Append a Message to the Chat
 function appendMessage(sender, message) {

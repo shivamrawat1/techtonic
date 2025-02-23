@@ -1,13 +1,11 @@
 {% extends 'users/base.html' %}
 
+{% block header_title %}Behavioral Interview Setup{% endblock %}
+{% block header_description %}Prepare for your behavioral interview by providing some background information.{% endblock %}
+
 {% block content %}
 <div class="setup-container">
     <div class="setup-card">
-        <div class="setup-header">
-            <h1>Behavioral Interview Setup</h1>
-            <p class="setup-description">Prepare for your behavioral interview by providing some background information.</p>
-        </div>
-        
         <form action="{% url 'interview_behavioral:index' %}" method="POST" class="setup-form">
             {% csrf_token %}
             

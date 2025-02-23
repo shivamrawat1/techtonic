@@ -240,17 +240,21 @@ def account(request):
     )
     
     if request.method == 'POST':
-        user_profile.first_name = request.POST.get('first_name', '')
-        user_profile.last_name = request.POST.get('last_name', '')
-        user_profile.linkedin_profile = request.POST.get('linkedin_profile', '')
-        user_profile.save()
-        
-        request.user.first_name = user_profile.first_name
-        request.user.last_name = user_profile.last_name
-        request.user.save()
-        
-        messages.success(request, 'Profile updated successfully')
-        return redirect('account')
+        try:
+            user_profile.first_name = request.POST.get('first_name', '')
+            user_profile.last_name = request.POST.get('last_name', '')
+            user_profile.linkedin_profile = request.POST.get('linkedin_profile', '')
+            user_profile.save()
+            
+            request.user.first_name = user_profile.first_name
+            request.user.last_name = user_profile.last_name
+            request.user.save()
+            
+            return redirect(f'{request.path}?success=true')
+        except Exception as e:
+            print(f"Error updating profile: {str(e)}")  # For debugging
+            messages.error(request, 'Failed to update profile. Please try again.')
+            return redirect('account')
     
     return render(request, 'users/account.html', {'user_profile': user_profile})
 

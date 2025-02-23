@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Behavioral Interview</title>
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    {% csrf_token %}
     <link rel="stylesheet" href="{% static 'interview_behavioral/css/styles.css' %}">
 </head>
 <body>
