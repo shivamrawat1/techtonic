@@ -3,6 +3,13 @@
 {% block header_title %}Behavioral Interview Setup{% endblock %}
 {% block header_description %}Prepare for your behavioral interview by providing some background information.{% endblock %}
 
+{% block extra_css %}
+<div id="extra_css_block">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'users/css/setup.css' %}">
+</div>
+{% endblock %}
+
 {% block content %}
 <div class="setup-container">
     <div class="setup-card">

@@ -1,7 +1,133 @@
-.content-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
+.content-container h1 {
+    color: #2c3e50;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.assessment-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.assessment-table thead {
+    background-color: #f8f9fa;
+}
+
+.assessment-table th {
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: #2c3e50;
+    border-bottom: 2px solid #e9ecef;
+}
+
+.assessment-table td {
+    padding: 1rem;
+    border-bottom: 1px solid #e9ecef;
+    color: #495057;
+}
+
+.assessment-table tr:last-child td {
+    border-bottom: none;
+}
+
+.assessment-table tr:hover {
+    background-color: #f8f9fa;
+}
+
+.assessment-table a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.assessment-table a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+details {
+    margin: 0.5rem 0;
+}
+
+details summary {
+    cursor: pointer;
+    color: #6c757d;
+    font-weight: 500;
+    user-select: none;
+}
+
+details summary:hover {
+    color: #495057;
+}
+
+details pre {
+    margin-top: 0.5rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    white-space: pre-wrap;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.delete-btn {
+    background: none;
+    border: none;
+    color: #dc3545;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.delete-btn:hover {
+    background-color: #ffebee;
+    transform: scale(1.1);
+}
+
+.view-conversation-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.view-conversation-btn:hover {
+    background-color: #45a049;
+    transform: translateY(-1px);
+}
+
+.view-conversation-btn:active {
+    transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+    .content-container {
+        padding: 1rem;
+    }
+
+    .assessment-table {
+        display: block;
+        overflow-x: auto;
+    }
+
+    .assessment-table th,
+    .assessment-table td {
+        padding: 0.75rem;
+    }
 }
 
 .content-container h1 {

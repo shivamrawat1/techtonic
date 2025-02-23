@@ -395,102 +395,11 @@ details pre {
     overflow-y: auto;
 }
 
-/* Interview Setup Pages */
-.setup-container {
-    max-width: 800px;
-    margin: 0 auto;
+.dashboard-welcome {
     padding: 2rem;
 }
 
-.setup-card {
-    background-color: #ffffff;
-    border-radius: 8px;
-    padding: 2rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
-
-.setup-header {
-    margin-bottom: 2rem;
-    text-align: center;
-}
-
-.setup-header h1 {
-    color: #1a73e8;
-    margin-bottom: 0.5rem;
-    font-size: 2rem;
-}
-
-.setup-description {
-    color: #666;
-    font-size: 1.1rem;
-}
-
-.setup-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-
-.setup-form .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.setup-form label {
-    font-weight: 500;
-    color: #444;
-}
-
-.setup-form select,
-.setup-form input,
-.setup-form textarea {
-    padding: 0.75rem;
-    border: 1px solid #e1e4e8;
-    border-radius: 4px;
-    font-size: 1rem;
-    transition: border-color 0.2s, box-shadow 0.2s;
-    background-color: #fff;
-}
-
-.setup-form textarea {
-    min-height: 120px;
-    resize: vertical;
-}
-
-.setup-form select:focus,
-.setup-form input:focus,
-.setup-form textarea:focus {
-    outline: none;
-    border-color: #1a73e8;
-    box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
-}
-
-.duration-input {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.duration-input input {
-    width: 100px;
-}
-
-.duration-unit {
-    color: #666;
-}
-
-.form-help {
-    font-size: 0.875rem;
-    color: #666;
-}
-
-.setup-actions {
-    margin-top: 1rem;
-    display: flex;
-    justify-content: flex-end;
-}
-
-.setup-actions .btn {
-    min-width: 150px;
+.dashboard-welcome h1 {
+    margin-bottom: 1rem;
+    color: #333;
 }

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{% static 'users/css/style.css' %}">
     <link rel="stylesheet" href="{% static 'assessments/css/conversation_popup.css' %}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    {% block extra_css %}{% endblock %}
     <script src="{% static 'assessments/js/assessment.js' %}"></script>
 </head>
 <body>
@@ -38,8 +39,7 @@
                                 <span class="material-icons">code</span>
                                 Technical
                             </a>
-                            <a href="{% url 'interview_behavioral:setup' %}" class="nav-item sub-item {% if active_page == 'behavioral' %}active{% endif %}"
-                               onclick="loadContent(event, this.href)">
+                            <a href="{% url 'interview_behavioral:setup' %}" class="nav-item sub-item {% if active_page == 'behavioral' %}active{% endif %}">
                                 <span class="material-icons">psychology</span>
                                 Behavioral
                             </a>
@@ -144,6 +144,28 @@
             .then(html => {
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(html, 'text/html');
+                
+                // Handle extra CSS files
+                const extraCss = doc.querySelector('#extra_css_block');
+                if (extraCss) {
+                    // Remove any previously injected extra CSS
+                    const oldExtraCss = document.querySelector('#extra_css_block');
+                    if (oldExtraCss) {
+                        oldExtraCss.remove();
+                    }
+                    
+                    // Update the timestamp in the CSS URL to prevent caching
+                    const cssLink = extraCss.querySelector('link');
+                    if (cssLink) {
+                        const cssUrl = new URL(cssLink.href);
+                        cssUrl.searchParams.set('v', Date.now());
+                        cssLink.href = cssUrl.toString();
+                    }
+                    
+                    // Add the new extra CSS
+                    document.head.appendChild(extraCss);
+                }
+
                 const content = doc.querySelector('.main-content-body') || 
                               doc.querySelector('.setup-container') || 
                               doc.querySelector('.container') || 
@@ -223,6 +245,7 @@
     }
     </script>
     <style>
+
     /* Main content layout */
     .main-content {
         flex: 1;
@@ -238,7 +261,6 @@
         flex: 1;
         overflow-y: auto;
         padding: 32px;
-        background-color: #f9fafb;
     }
 
     /* Header styles */

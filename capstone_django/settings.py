@@ -123,14 +123,25 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'interview_technical', 'static'),
-    os.path.join(BASE_DIR, 'interview_behavioral', 'static'),
-    os.path.join(BASE_DIR, 'assessments', 'static'),
-    os.path.join(BASE_DIR, 'users', 'static'),
-]
 
+# In development, serve static files directly from the apps
+if DEBUG:
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, 'interview_technical', 'static'),
+        os.path.join(BASE_DIR, 'interview_behavioral', 'static'),
+        os.path.join(BASE_DIR, 'assessments', 'static'),
+        os.path.join(BASE_DIR, 'users', 'static'),
+    ]
+else:
+    # In production, use collectstatic
+    STATICFILES_DIRS = []
+
+# Directory where collectstatic will collect files for production
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# Use ManifestStaticFilesStorage in production only
+if not DEBUG:
+    STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

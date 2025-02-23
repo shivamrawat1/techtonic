@@ -1,121 +1,14 @@
 // interview_technical/static/js/main.js
 
-// Wait for DOM content to be loaded
-document.addEventListener('DOMContentLoaded', function () {
-    // Initialize Monaco Editor with proper loading sequence
-    require(['vs/editor/editor.main'], function () {
-        // Create editor instance
-        const editorContainer = document.getElementById('editor');
-        if (!editorContainer) {
-            console.error('Editor container not found');
-            return;
-        }
-
-        try {
-            window.editor = monaco.editor.create(editorContainer, {
-                value: '// Write your code here\n',
-                language: 'javascript',
-                theme: 'vs-dark',
-                automaticLayout: true,
-                minimap: {
-                    enabled: false
-                },
-                scrollBeyondLastLine: false,
-                fontSize: 14,
-                lineNumbers: 'on',
-                renderLineHighlight: 'all',
-                roundedSelection: false,
-                scrollbar: {
-                    vertical: 'visible',
-                    horizontal: 'visible'
-                }
-            });
-
-            // Handle window resize
-            window.addEventListener('resize', function () {
-                if (window.editor) {
-                    window.editor.layout();
-                }
-            });
-
-            console.log('Monaco editor initialized successfully');
-        } catch (error) {
-            console.error('Failed to initialize Monaco editor:', error);
-        }
+// Initialize Monaco Editor
+require.config({ paths: { 'vs': 'https://cdn.jsdelivr.net/npm/monaco-editor@0.33.0/min/vs' } });
+require(['vs/editor/editor.main'], function () {
+    var editor = monaco.editor.create(document.getElementById('editor'), {
+        value: '',
+        language: 'javascript',
+        theme: 'vs-dark'
     });
-
-    // Initialize video with proper constraints
-    const video = document.getElementById('videoElement');
-    if (video) {
-        navigator.mediaDevices.getUserMedia({
-            video: {
-                width: { ideal: 1280 },
-                height: { ideal: 720 }
-            },
-            audio: true
-        })
-            .then(stream => {
-                video.srcObject = stream;
-                window.videoStream = stream;
-                initializeAudioRecording(stream);
-            })
-            .catch(err => console.error('Error accessing media devices:', err));
-    }
-
-    // Initialize timer
-    initializeTimer();
-
-    // Initialize event listeners
-    initializeEventListeners();
 });
-
-// Add layout refresh on visibility change
-document.addEventListener('visibilitychange', function () {
-    if (!document.hidden && window.editor) {
-        window.editor.layout();
-    }
-});
-
-// Initialize Split.js
-Split(['.editor-pane', '.video-chat-pane'], {
-    sizes: [50, 50],
-    minSize: [300, 300],
-    gutterSize: 8,
-    cursor: 'col-resize'
-});
-
-// Initialize timer
-function initializeTimer() {
-    const timerDisplay = document.getElementById('timer-display');
-    const duration = parseInt(document.getElementById('interview-duration').value) || 30;
-    let timeRemaining = duration * 60;
-
-    window.timerInterval = setInterval(() => {
-        const minutes = Math.floor(timeRemaining / 60);
-        const seconds = timeRemaining % 60;
-        timerDisplay.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-
-        if (timeRemaining <= 0) {
-            clearInterval(window.timerInterval);
-            handleInterviewEnd();
-        } else {
-            timeRemaining--;
-        }
-    }, 1000);
-}
-
-// Initialize event listeners
-function initializeEventListeners() {
-    const sendButton = document.getElementById('send-button');
-    const userInput = document.getElementById('user-input');
-    const leaveButton = document.getElementById('leave-button');
-    const muteButton = document.getElementById('mute-button');
-
-    sendButton.addEventListener('click', handleSendMessage);
-    userInput.addEventListener('keypress', handleInputKeypress);
-    leaveButton.addEventListener('click', handleLeave);
-    muteButton.addEventListener('click', handleMute);
-}
 
 // Webcam setup
 var video = document.getElementById('videoElement');
