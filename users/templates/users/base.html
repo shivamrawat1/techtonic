@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% csrf_token %}
+    <meta name="csrf-token" content="{{ csrf_token }}">
     <title>{% block title %}Techtonic{% endblock %}</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'users/css/style.css' %}">
@@ -107,6 +109,15 @@
 
     // Helper function to get CSRF token
     function getCookie(name) {
+        // First try to get from meta tag
+        if (name === 'csrftoken') {
+            const metaTag = document.querySelector('meta[name="csrf-token"]');
+            if (metaTag) {
+                return metaTag.getAttribute('content');
+            }
+        }
+        
+        // Then try cookies
         let cookieValue = null;
         if (document.cookie && document.cookie !== '') {
             const cookies = document.cookie.split(';');

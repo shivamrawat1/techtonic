@@ -10,6 +10,7 @@ from django.db import transaction
 from django.utils import timezone
 from datetime import timedelta
 from .services import EmailService
+from django.views.decorators.csrf import ensure_csrf_cookie
 
 def landingpage(request):
     """Render the home page with options based on authentication status."""
@@ -57,14 +58,14 @@ def logout_view(request):
 def register_view(request):
     """Handle user registration."""
     if request.user.is_authenticated:
-        return redirect('home')
+        return redirect('landingpage')
 
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('home')
+            return redirect('landingpage')
         else:
             messages.error(request, 'Please correct the errors below.')
     else:
@@ -73,6 +74,10 @@ def register_view(request):
     return render(request, 'users/register.html', {'form': form})
 
 def register(request):
+    # If user is already authenticated, redirect to dashboard
+    if request.user.is_authenticated:
+        return redirect('dashboard')
+
     if request.method == 'POST':
         try:
             username = request.POST.get('username', '').strip()
@@ -153,6 +158,7 @@ def register(request):
 
     return render(request, 'users/register.html')
 
+@ensure_csrf_cookie
 def verify_email(request):
     user_id = request.session.get('verification_user_id')
     if not user_id:
@@ -187,7 +193,7 @@ def verify_email(request):
             
             login(request, user)
             messages.success(request, 'Email verified successfully!')
-            return redirect('home')
+            return redirect('landingpage')
         else:
             messages.error(request, 'Invalid verification code. Please try again.')
     
