@@ -1,4 +1,4 @@
-A web application for generating custom newsletters on latest news and research that matches your interest.
+Fullstack web application for technical and behavioural interview simulation and structured feedback based on STAR and UMPIRE framework.
 
 ## Prerequisites
 
