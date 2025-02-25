@@ -34,6 +34,10 @@ venv\Scripts\activate
 ```bash
 pip install -r requirements.txt
 ```
+and
+```bash
+npm install
+```
 
 5. Set Up Environment Variables using the .env.local file
 
