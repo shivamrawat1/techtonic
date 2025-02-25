@@ -15,7 +15,7 @@
 </head>
 <body>
     <div class="app-container">
-        {% if user.is_authenticated %}
+        {% if user.is_authenticated and request.resolver_match.url_name != 'login' and request.resolver_match.url_name != 'register' %}
         <aside class="sidebar">
             <div class="sidebar-header">
                 <h1>Techtonic</h1>
@@ -89,7 +89,8 @@
             </div>
         </div>
 
-        <main class="main-content">
+        <main class="{% if request.resolver_match.url_name == 'login' or request.resolver_match.url_name == 'register' %}auth-main{% else %}main-content{% endif %}">
+            {% if user.is_authenticated and request.resolver_match.url_name != 'login' and request.resolver_match.url_name != 'register' %}
             {% block header %}
             <div class="page-header">
                 <div class="header-content">
@@ -106,6 +107,7 @@
                 </div>
             </div>
             {% endblock %}
+            {% endif %}
             <div class="main-content-body">
                 {% block content %}
                 {% endblock %}
@@ -166,6 +168,17 @@
                     document.head.appendChild(extraCss);
                 }
 
+                // Update header title and description if they exist
+                const newHeaderTitle = doc.querySelector('.header-text h1');
+                const newHeaderDesc = doc.querySelector('.header-description');
+                if (newHeaderTitle) {
+                    document.querySelector('.header-text h1').innerHTML = newHeaderTitle.innerHTML;
+                }
+                if (newHeaderDesc) {
+                    document.querySelector('.header-description').innerHTML = newHeaderDesc.innerHTML;
+                }
+
+                // Update main content
                 const content = doc.querySelector('.main-content-body') || 
                               doc.querySelector('.setup-container') || 
                               doc.querySelector('.container') || 
@@ -175,6 +188,12 @@
                     document.querySelector('.main-content-body').innerHTML = content.innerHTML;
                 } else {
                     console.error('No content found in the response');
+                }
+
+                // Update page title if it exists
+                const newTitle = doc.title;
+                if (newTitle) {
+                    document.title = newTitle;
                 }
             })
             .catch(error => {
@@ -255,6 +274,16 @@
         overflow: hidden;
         padding: 0;
         background-color: #ffffff;
+    }
+
+    .auth-main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        overflow: hidden;
+        padding: 0;
+        background-color: #f3f4f6;
     }
 
     .main-content-body {

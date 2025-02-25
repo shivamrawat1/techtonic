@@ -1,0 +1,703 @@
+INFO 2025-02-25 02:37:38,578 autoreload Watching for file changes with StatReloader
+INFO 2025-02-25 02:37:49,424 autoreload /Users/shivamrawat/capstone_django/interview_behavioral/consumers.py changed, reloading.
+INFO 2025-02-25 02:37:50,102 autoreload Watching for file changes with StatReloader
+INFO 2025-02-25 02:38:12,887 runserver [mHTTP GET /assessments/list/ 200 [0.06, 127.0.0.1:62993][0m
+INFO 2025-02-25 02:38:12,955 runserver [36mHTTP GET /static/assessments/css/conversation_popup.css 304 [0.00, 127.0.0.1:62993][0m
+INFO 2025-02-25 02:38:12,958 runserver [36mHTTP GET /static/assessments/js/assessment.js 304 [0.00, 127.0.0.1:62993][0m
+INFO 2025-02-25 02:38:12,959 runserver [36mHTTP GET /static/users/css/style.css 304 [0.00, 127.0.0.1:62994][0m
+INFO 2025-02-25 02:38:14,327 runserver [mHTTP GET /interview_behavioral/setup/ 200 [0.01, 127.0.0.1:62994][0m
+INFO 2025-02-25 02:38:14,350 runserver [36mHTTP GET /static/users/css/style.css 304 [0.01, 127.0.0.1:62994][0m
+INFO 2025-02-25 02:38:14,350 runserver [36mHTTP GET /static/assessments/js/assessment.js 304 [0.01, 127.0.0.1:62996][0m
+INFO 2025-02-25 02:38:14,350 runserver [36mHTTP GET /static/assessments/css/conversation_popup.css 304 [0.01, 127.0.0.1:62995][0m
+INFO 2025-02-25 02:38:23,487 runserver [mHTTP POST /interview_behavioral/ 200 [6.33, 127.0.0.1:62995][0m
+INFO 2025-02-25 02:38:23,516 runserver [36mHTTP GET /static/interview_behavioral/css/styles.css 304 [0.00, 127.0.0.1:62995][0m
+INFO 2025-02-25 02:38:23,521 runserver [mHTTP GET /static/interview_behavioral/js/main.js 200 [0.01, 127.0.0.1:62998][0m
+INFO 2025-02-25 02:38:23,557 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:62999]
+INFO 2025-02-25 02:38:23,561 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:38:23,561 consumers WebSocket connection attempt
+INFO 2025-02-25 02:38:23,562 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:62999]
+INFO 2025-02-25 02:38:23,562 consumers WebSocket connection accepted
+INFO 2025-02-25 02:38:23,562 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:38:23,779 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:38:23,782 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:38:23,782 consumers Received start message
+INFO 2025-02-25 02:38:23,783 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:62999]
+WARNING 2025-02-25 02:38:25,116 log Not Found: /favicon.ico
+WARNING 2025-02-25 02:38:25,117 runserver [33mHTTP GET /favicon.ico 404 [0.01, 127.0.0.1:63001][0m
+INFO 2025-02-25 02:38:26,817 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63002]
+INFO 2025-02-25 02:38:26,824 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:38:26,824 consumers WebSocket connection attempt
+INFO 2025-02-25 02:38:26,824 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63002]
+INFO 2025-02-25 02:38:26,825 consumers WebSocket connection accepted
+INFO 2025-02-25 02:38:26,825 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:38:26,914 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:38:26,915 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63002]
+INFO 2025-02-25 02:38:26,915 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:38:26,916 consumers Received start message
+INFO 2025-02-25 02:38:26,916 consumers WebSocket disconnected with code: 1000
+INFO 2025-02-25 02:38:28,486 runserver [mHTTP POST /interview_behavioral/get_response/ 200 [4.93, 127.0.0.1:62998][0m
+INFO 2025-02-25 02:38:29,927 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63011]
+INFO 2025-02-25 02:38:29,930 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:38:29,931 consumers WebSocket connection attempt
+INFO 2025-02-25 02:38:29,931 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63011]
+INFO 2025-02-25 02:38:29,931 consumers WebSocket connection accepted
+INFO 2025-02-25 02:38:29,931 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:38:29,977 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:38:29,978 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63011]
+INFO 2025-02-25 02:38:29,978 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:38:29,978 consumers Received start message
+INFO 2025-02-25 02:38:29,979 consumers WebSocket disconnected with code: 1000
+INFO 2025-02-25 02:38:30,133 runserver [mHTTP POST /interview_behavioral/synthesize_text/ 200 [1.62, 127.0.0.1:62998][0m
+INFO 2025-02-25 02:38:32,987 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63014]
+INFO 2025-02-25 02:38:32,992 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:38:32,993 consumers WebSocket connection attempt
+INFO 2025-02-25 02:38:32,993 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63014]
+INFO 2025-02-25 02:38:32,994 consumers WebSocket connection accepted
+INFO 2025-02-25 02:38:32,994 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:38:33,122 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:38:33,124 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63014]
+INFO 2025-02-25 02:38:33,124 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:38:33,124 consumers Received start message
+INFO 2025-02-25 02:38:33,125 consumers WebSocket disconnected with code: 1000
+INFO 2025-02-25 02:38:36,192 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63016]
+INFO 2025-02-25 02:38:36,216 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:38:36,217 consumers WebSocket connection attempt
+INFO 2025-02-25 02:38:36,217 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63016]
+INFO 2025-02-25 02:38:36,217 consumers WebSocket connection accepted
+INFO 2025-02-25 02:38:36,217 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:38:36,302 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:38:36,303 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:38:36,303 consumers Received start message
+INFO 2025-02-25 02:38:36,307 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63016]
+INFO 2025-02-25 02:38:39,329 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63018]
+INFO 2025-02-25 02:38:39,333 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:38:39,334 consumers WebSocket connection attempt
+INFO 2025-02-25 02:38:39,334 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63018]
+INFO 2025-02-25 02:38:39,335 consumers WebSocket connection accepted
+INFO 2025-02-25 02:38:39,335 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:38:39,748 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:38:39,751 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63018]
+INFO 2025-02-25 02:38:39,752 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:38:39,752 consumers Received start message
+INFO 2025-02-25 02:38:39,753 consumers WebSocket disconnected with code: 1000
+INFO 2025-02-25 02:38:42,759 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63020]
+INFO 2025-02-25 02:38:42,765 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:38:42,766 consumers WebSocket connection attempt
+INFO 2025-02-25 02:38:42,766 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63020]
+INFO 2025-02-25 02:38:42,767 consumers WebSocket connection accepted
+INFO 2025-02-25 02:38:42,767 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:38:43,225 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:38:43,227 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63020]
+INFO 2025-02-25 02:38:43,227 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:38:43,227 consumers Received start message
+INFO 2025-02-25 02:38:43,228 consumers WebSocket disconnected with code: 1000
+INFO 2025-02-25 02:38:46,234 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63022]
+INFO 2025-02-25 02:38:46,239 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:38:46,241 consumers WebSocket connection attempt
+INFO 2025-02-25 02:38:46,241 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63022]
+INFO 2025-02-25 02:38:46,241 consumers WebSocket connection accepted
+INFO 2025-02-25 02:38:46,241 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:38:46,581 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:38:46,582 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63022]
+INFO 2025-02-25 02:38:46,582 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:38:46,582 consumers Received start message
+INFO 2025-02-25 02:38:46,583 consumers WebSocket disconnected with code: 1000
+INFO 2025-02-25 02:38:49,590 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63028]
+INFO 2025-02-25 02:38:49,592 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:38:49,593 consumers WebSocket connection attempt
+INFO 2025-02-25 02:38:49,593 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63028]
+INFO 2025-02-25 02:38:49,593 consumers WebSocket connection accepted
+INFO 2025-02-25 02:38:49,593 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:38:49,977 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:38:49,981 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63028]
+INFO 2025-02-25 02:38:49,982 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:38:49,982 consumers Received start message
+INFO 2025-02-25 02:38:49,983 consumers WebSocket disconnected with code: 1000
+INFO 2025-02-25 02:38:52,988 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63032]
+INFO 2025-02-25 02:38:52,992 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:38:52,993 consumers WebSocket connection attempt
+INFO 2025-02-25 02:38:52,994 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63032]
+INFO 2025-02-25 02:38:52,994 consumers WebSocket connection accepted
+INFO 2025-02-25 02:38:52,994 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:38:53,292 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:38:53,294 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63032]
+INFO 2025-02-25 02:38:53,294 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:38:53,295 consumers Received start message
+INFO 2025-02-25 02:38:53,295 consumers WebSocket disconnected with code: 1000
+INFO 2025-02-25 02:38:56,308 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63034]
+INFO 2025-02-25 02:38:56,314 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:38:56,315 consumers WebSocket connection attempt
+INFO 2025-02-25 02:38:56,315 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63034]
+INFO 2025-02-25 02:38:56,316 consumers WebSocket connection accepted
+INFO 2025-02-25 02:38:56,316 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:38:56,479 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:38:56,481 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63034]
+INFO 2025-02-25 02:38:56,481 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:38:56,481 consumers Received start message
+INFO 2025-02-25 02:38:56,482 consumers WebSocket disconnected with code: 1000
+INFO 2025-02-25 02:38:59,488 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63036]
+INFO 2025-02-25 02:38:59,496 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:38:59,510 consumers WebSocket connection attempt
+INFO 2025-02-25 02:38:59,512 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63036]
+INFO 2025-02-25 02:38:59,514 consumers WebSocket connection accepted
+INFO 2025-02-25 02:38:59,514 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:38:59,594 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:38:59,595 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:38:59,595 consumers Received start message
+INFO 2025-02-25 02:38:59,595 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63036]
+INFO 2025-02-25 02:39:02,606 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63040]
+INFO 2025-02-25 02:39:02,612 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:39:02,613 consumers WebSocket connection attempt
+INFO 2025-02-25 02:39:02,613 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63040]
+INFO 2025-02-25 02:39:02,613 consumers WebSocket connection accepted
+INFO 2025-02-25 02:39:02,613 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:39:02,657 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:39:02,658 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63040]
+INFO 2025-02-25 02:39:02,658 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:39:02,658 consumers Received start message
+INFO 2025-02-25 02:39:02,659 consumers WebSocket disconnected with code: 1000
+INFO 2025-02-25 02:39:05,667 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63044]
+INFO 2025-02-25 02:39:05,677 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:39:05,677 consumers WebSocket connection attempt
+INFO 2025-02-25 02:39:05,677 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63044]
+INFO 2025-02-25 02:39:05,677 consumers WebSocket connection accepted
+INFO 2025-02-25 02:39:05,677 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:39:05,721 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:39:05,723 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63044]
+INFO 2025-02-25 02:39:05,724 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:39:05,724 consumers Received start message
+INFO 2025-02-25 02:39:05,724 consumers WebSocket disconnected with code: 1000
+INFO 2025-02-25 02:39:05,998 runserver [mHTTP POST /interview_behavioral/process_audio/ 200 [1.25, 127.0.0.1:63042][0m
+INFO 2025-02-25 02:39:08,731 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63047]
+INFO 2025-02-25 02:39:08,739 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:39:08,740 consumers WebSocket connection attempt
+INFO 2025-02-25 02:39:08,740 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63047]
+INFO 2025-02-25 02:39:08,740 consumers WebSocket connection accepted
+INFO 2025-02-25 02:39:08,741 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:39:08,834 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:39:08,836 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63047]
+INFO 2025-02-25 02:39:08,836 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:39:08,836 consumers Received start message
+INFO 2025-02-25 02:39:08,837 consumers WebSocket disconnected with code: 1000
+INFO 2025-02-25 02:39:11,883 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63049]
+INFO 2025-02-25 02:39:11,907 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:39:11,907 consumers WebSocket connection attempt
+INFO 2025-02-25 02:39:11,908 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63049]
+INFO 2025-02-25 02:39:11,908 consumers WebSocket connection accepted
+INFO 2025-02-25 02:39:11,908 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:39:12,067 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:39:12,067 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:39:12,067 consumers Received start message
+INFO 2025-02-25 02:39:12,068 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63049]
+INFO 2025-02-25 02:39:14,687 runserver [mHTTP POST /interview_behavioral/get_response/ 200 [8.68, 127.0.0.1:63042][0m
+INFO 2025-02-25 02:39:15,042 runserver [mHTTP POST /interview_behavioral/synthesize_text/ 200 [0.34, 127.0.0.1:63042][0m
+INFO 2025-02-25 02:39:15,091 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63052]
+INFO 2025-02-25 02:39:15,120 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:39:15,120 consumers WebSocket connection attempt
+INFO 2025-02-25 02:39:15,121 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63052]
+INFO 2025-02-25 02:39:15,121 consumers WebSocket connection accepted
+INFO 2025-02-25 02:39:15,121 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:39:15,199 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:39:15,200 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63052]
+INFO 2025-02-25 02:39:15,200 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:39:15,200 consumers Received start message
+INFO 2025-02-25 02:39:15,200 consumers WebSocket disconnected with code: 1000
+INFO 2025-02-25 02:39:18,206 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63054]
+INFO 2025-02-25 02:39:18,209 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:39:18,210 consumers WebSocket connection attempt
+INFO 2025-02-25 02:39:18,210 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63054]
+INFO 2025-02-25 02:39:18,211 consumers WebSocket connection accepted
+INFO 2025-02-25 02:39:18,211 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:39:18,274 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:39:18,275 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:39:18,275 consumers Received start message
+INFO 2025-02-25 02:39:18,275 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63054]
+INFO 2025-02-25 02:39:21,283 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63056]
+INFO 2025-02-25 02:39:21,289 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:39:21,289 consumers WebSocket connection attempt
+INFO 2025-02-25 02:39:21,290 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63056]
+INFO 2025-02-25 02:39:21,290 consumers WebSocket connection accepted
+INFO 2025-02-25 02:39:21,290 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:39:21,367 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:39:21,369 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63056]
+INFO 2025-02-25 02:39:21,370 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:39:21,370 consumers Received start message
+INFO 2025-02-25 02:39:21,371 consumers WebSocket disconnected with code: 1000
+INFO 2025-02-25 02:39:24,376 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63058]
+INFO 2025-02-25 02:39:24,381 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:39:24,382 consumers WebSocket connection attempt
+INFO 2025-02-25 02:39:24,382 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63058]
+INFO 2025-02-25 02:39:24,382 consumers WebSocket connection accepted
+INFO 2025-02-25 02:39:24,382 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:39:24,524 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:39:24,527 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63058]
+INFO 2025-02-25 02:39:24,527 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:39:24,527 consumers Received start message
+INFO 2025-02-25 02:39:24,528 consumers WebSocket disconnected with code: 1000
+INFO 2025-02-25 02:39:27,316 runserver [mHTTP POST /interview_behavioral/process_audio/ 200 [1.21, 127.0.0.1:63060][0m
+INFO 2025-02-25 02:39:27,533 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63063]
+INFO 2025-02-25 02:39:27,537 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:39:27,538 consumers WebSocket connection attempt
+INFO 2025-02-25 02:39:27,538 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63063]
+INFO 2025-02-25 02:39:27,538 consumers WebSocket connection accepted
+INFO 2025-02-25 02:39:27,539 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:39:27,757 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:39:27,759 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63063]
+INFO 2025-02-25 02:39:27,759 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:39:27,759 consumers Received start message
+INFO 2025-02-25 02:39:27,760 consumers WebSocket disconnected with code: 1000
+INFO 2025-02-25 02:39:30,767 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63065]
+INFO 2025-02-25 02:39:30,771 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:39:30,771 consumers WebSocket connection attempt
+INFO 2025-02-25 02:39:30,772 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63065]
+INFO 2025-02-25 02:39:30,772 consumers WebSocket connection accepted
+INFO 2025-02-25 02:39:30,772 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:39:30,850 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:39:30,852 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63065]
+INFO 2025-02-25 02:39:30,852 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:39:30,852 consumers Received start message
+INFO 2025-02-25 02:39:30,853 consumers WebSocket disconnected with code: 1000
+INFO 2025-02-25 02:39:31,700 runserver [mHTTP POST /interview_behavioral/get_response/ 200 [4.37, 127.0.0.1:63060][0m
+INFO 2025-02-25 02:39:33,688 runserver [mHTTP POST /interview_behavioral/synthesize_text/ 200 [1.98, 127.0.0.1:63060][0m
+INFO 2025-02-25 02:39:33,857 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63076]
+INFO 2025-02-25 02:39:33,859 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:39:33,859 consumers WebSocket connection attempt
+INFO 2025-02-25 02:39:33,859 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63076]
+INFO 2025-02-25 02:39:33,859 consumers WebSocket connection accepted
+INFO 2025-02-25 02:39:33,860 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:39:34,004 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:39:34,038 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63076]
+INFO 2025-02-25 02:39:34,040 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:39:34,040 consumers Received start message
+INFO 2025-02-25 02:39:34,042 consumers WebSocket disconnected with code: 1000
+INFO 2025-02-25 02:39:37,047 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63078]
+INFO 2025-02-25 02:39:37,053 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:39:37,054 consumers WebSocket connection attempt
+INFO 2025-02-25 02:39:37,055 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63078]
+INFO 2025-02-25 02:39:37,055 consumers WebSocket connection accepted
+INFO 2025-02-25 02:39:37,055 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:39:37,136 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:39:37,137 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:39:37,137 consumers Received start message
+INFO 2025-02-25 02:39:37,137 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63078]
+INFO 2025-02-25 02:39:40,151 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63080]
+INFO 2025-02-25 02:39:40,155 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:39:40,157 consumers WebSocket connection attempt
+INFO 2025-02-25 02:39:40,157 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63080]
+INFO 2025-02-25 02:39:40,158 consumers WebSocket connection accepted
+INFO 2025-02-25 02:39:40,158 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:39:40,256 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:39:40,258 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63080]
+INFO 2025-02-25 02:39:40,259 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:39:40,259 consumers Received start message
+INFO 2025-02-25 02:39:40,259 consumers WebSocket disconnected with code: 1000
+INFO 2025-02-25 02:39:43,265 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63082]
+INFO 2025-02-25 02:39:43,270 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:39:43,271 consumers WebSocket connection attempt
+INFO 2025-02-25 02:39:43,272 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63082]
+INFO 2025-02-25 02:39:43,272 consumers WebSocket connection accepted
+INFO 2025-02-25 02:39:43,272 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:39:43,499 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:39:43,500 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63082]
+INFO 2025-02-25 02:39:43,500 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:39:43,500 consumers Received start message
+INFO 2025-02-25 02:39:43,500 consumers WebSocket disconnected with code: 1000
+INFO 2025-02-25 02:39:46,510 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63085]
+INFO 2025-02-25 02:39:46,513 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:39:46,513 consumers WebSocket connection attempt
+INFO 2025-02-25 02:39:46,513 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63085]
+INFO 2025-02-25 02:39:46,514 consumers WebSocket connection accepted
+INFO 2025-02-25 02:39:46,514 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:39:46,586 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:39:46,587 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63085]
+INFO 2025-02-25 02:39:46,587 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:39:46,587 consumers Received start message
+INFO 2025-02-25 02:39:46,588 consumers WebSocket disconnected with code: 1000
+INFO 2025-02-25 02:39:49,595 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63090]
+INFO 2025-02-25 02:39:49,598 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:39:49,598 consumers WebSocket connection attempt
+INFO 2025-02-25 02:39:49,599 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63090]
+INFO 2025-02-25 02:39:49,599 consumers WebSocket connection accepted
+INFO 2025-02-25 02:39:49,599 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:39:49,686 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:39:49,689 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63090]
+INFO 2025-02-25 02:39:49,689 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:39:49,689 consumers Received start message
+INFO 2025-02-25 02:39:49,689 consumers WebSocket disconnected with code: 1000
+INFO 2025-02-25 02:39:52,696 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63092]
+INFO 2025-02-25 02:39:52,700 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:39:52,701 consumers WebSocket connection attempt
+INFO 2025-02-25 02:39:52,701 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63092]
+INFO 2025-02-25 02:39:52,701 consumers WebSocket connection accepted
+INFO 2025-02-25 02:39:52,701 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:39:52,810 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:39:52,811 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63092]
+INFO 2025-02-25 02:39:52,811 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:39:52,811 consumers Received start message
+INFO 2025-02-25 02:39:52,812 consumers WebSocket disconnected with code: 1000
+INFO 2025-02-25 02:39:55,816 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63095]
+INFO 2025-02-25 02:39:55,820 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:39:55,821 consumers WebSocket connection attempt
+INFO 2025-02-25 02:39:55,821 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63095]
+INFO 2025-02-25 02:39:55,821 consumers WebSocket connection accepted
+INFO 2025-02-25 02:39:55,821 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:39:55,969 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:39:55,972 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63095]
+INFO 2025-02-25 02:39:55,972 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:39:55,972 consumers Received start message
+INFO 2025-02-25 02:39:55,973 consumers WebSocket disconnected with code: 1000
+INFO 2025-02-25 02:39:58,978 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63097]
+INFO 2025-02-25 02:39:58,982 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:39:58,983 consumers WebSocket connection attempt
+INFO 2025-02-25 02:39:58,984 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63097]
+INFO 2025-02-25 02:39:58,984 consumers WebSocket connection accepted
+INFO 2025-02-25 02:39:58,984 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:39:59,137 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:39:59,138 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63097]
+INFO 2025-02-25 02:39:59,138 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:39:59,138 consumers Received start message
+INFO 2025-02-25 02:39:59,139 consumers WebSocket disconnected with code: 1000
+INFO 2025-02-25 02:40:02,144 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63099]
+INFO 2025-02-25 02:40:02,148 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:40:02,149 consumers WebSocket connection attempt
+INFO 2025-02-25 02:40:02,149 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63099]
+INFO 2025-02-25 02:40:02,149 consumers WebSocket connection accepted
+INFO 2025-02-25 02:40:02,149 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:40:02,244 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:40:02,246 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63099]
+INFO 2025-02-25 02:40:02,246 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:40:02,246 consumers Received start message
+INFO 2025-02-25 02:40:02,247 consumers WebSocket disconnected with code: 1000
+INFO 2025-02-25 02:40:05,255 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63101]
+INFO 2025-02-25 02:40:05,267 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:40:05,267 consumers WebSocket connection attempt
+INFO 2025-02-25 02:40:05,267 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63101]
+INFO 2025-02-25 02:40:05,267 consumers WebSocket connection accepted
+INFO 2025-02-25 02:40:05,267 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:40:05,407 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:40:05,409 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63101]
+INFO 2025-02-25 02:40:05,409 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:40:05,409 consumers Received start message
+INFO 2025-02-25 02:40:05,409 consumers WebSocket disconnected with code: 1000
+INFO 2025-02-25 02:40:08,414 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63103]
+INFO 2025-02-25 02:40:08,418 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:40:08,419 consumers WebSocket connection attempt
+INFO 2025-02-25 02:40:08,419 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63103]
+INFO 2025-02-25 02:40:08,420 consumers WebSocket connection accepted
+INFO 2025-02-25 02:40:08,420 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:40:08,564 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:40:08,565 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63103]
+INFO 2025-02-25 02:40:08,566 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:40:08,566 consumers Received start message
+INFO 2025-02-25 02:40:08,566 consumers WebSocket disconnected with code: 1000
+INFO 2025-02-25 02:40:11,573 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63105]
+INFO 2025-02-25 02:40:11,577 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:40:11,578 consumers WebSocket connection attempt
+INFO 2025-02-25 02:40:11,578 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63105]
+INFO 2025-02-25 02:40:11,578 consumers WebSocket connection accepted
+INFO 2025-02-25 02:40:11,578 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:40:11,711 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:40:11,715 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63105]
+INFO 2025-02-25 02:40:11,715 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:40:11,715 consumers Received start message
+INFO 2025-02-25 02:40:11,716 consumers WebSocket disconnected with code: 1000
+INFO 2025-02-25 02:40:14,723 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63108]
+INFO 2025-02-25 02:40:14,727 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:40:14,727 consumers WebSocket connection attempt
+INFO 2025-02-25 02:40:14,728 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63108]
+INFO 2025-02-25 02:40:14,728 consumers WebSocket connection accepted
+INFO 2025-02-25 02:40:14,728 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:40:15,165 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:40:15,175 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63108]
+INFO 2025-02-25 02:40:15,175 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:40:15,175 consumers Received start message
+INFO 2025-02-25 02:40:15,176 consumers WebSocket disconnected with code: 1000
+INFO 2025-02-25 02:40:18,181 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63110]
+INFO 2025-02-25 02:40:18,185 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:40:18,185 consumers WebSocket connection attempt
+INFO 2025-02-25 02:40:18,185 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63110]
+INFO 2025-02-25 02:40:18,186 consumers WebSocket connection accepted
+INFO 2025-02-25 02:40:18,186 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:40:18,579 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:40:18,582 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63110]
+INFO 2025-02-25 02:40:18,582 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:40:18,583 consumers Received start message
+INFO 2025-02-25 02:40:18,584 consumers WebSocket disconnected with code: 1000
+INFO 2025-02-25 02:40:21,590 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63112]
+INFO 2025-02-25 02:40:21,595 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:40:21,596 consumers WebSocket connection attempt
+INFO 2025-02-25 02:40:21,596 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63112]
+INFO 2025-02-25 02:40:21,596 consumers WebSocket connection accepted
+INFO 2025-02-25 02:40:21,597 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:40:22,020 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:40:22,024 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63112]
+INFO 2025-02-25 02:40:22,024 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:40:22,024 consumers Received start message
+INFO 2025-02-25 02:40:22,025 consumers WebSocket disconnected with code: 1000
+INFO 2025-02-25 02:40:25,033 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63114]
+INFO 2025-02-25 02:40:25,046 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:40:25,061 consumers WebSocket connection attempt
+INFO 2025-02-25 02:40:25,062 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63114]
+INFO 2025-02-25 02:40:25,079 consumers WebSocket connection accepted
+INFO 2025-02-25 02:40:25,080 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:40:25,501 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:40:25,502 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63114]
+INFO 2025-02-25 02:40:25,502 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:40:25,502 consumers Received start message
+INFO 2025-02-25 02:40:25,503 consumers WebSocket disconnected with code: 1000
+INFO 2025-02-25 02:40:28,512 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63116]
+INFO 2025-02-25 02:40:28,519 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:40:28,519 consumers WebSocket connection attempt
+INFO 2025-02-25 02:40:28,520 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63116]
+INFO 2025-02-25 02:40:28,520 consumers WebSocket connection accepted
+INFO 2025-02-25 02:40:28,521 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:40:28,823 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:40:28,825 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63116]
+INFO 2025-02-25 02:40:28,825 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:40:28,825 consumers Received start message
+INFO 2025-02-25 02:40:28,826 consumers WebSocket disconnected with code: 1000
+INFO 2025-02-25 02:40:31,835 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63118]
+INFO 2025-02-25 02:40:31,846 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:40:31,847 consumers WebSocket connection attempt
+INFO 2025-02-25 02:40:31,851 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63118]
+INFO 2025-02-25 02:40:31,851 consumers WebSocket connection accepted
+INFO 2025-02-25 02:40:31,851 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:40:32,662 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:40:32,664 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63118]
+INFO 2025-02-25 02:40:32,664 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:40:32,664 consumers Received start message
+INFO 2025-02-25 02:40:32,664 consumers WebSocket disconnected with code: 1000
+INFO 2025-02-25 02:40:35,675 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63124]
+INFO 2025-02-25 02:40:35,682 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:40:35,683 consumers WebSocket connection attempt
+INFO 2025-02-25 02:40:35,683 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63124]
+INFO 2025-02-25 02:40:35,683 consumers WebSocket connection accepted
+INFO 2025-02-25 02:40:35,683 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+INFO 2025-02-25 02:40:35,763 runserver [mHTTP POST /interview_behavioral/process_audio/ 200 [3.30, 127.0.0.1:63121][0m
+ERROR 2025-02-25 02:40:36,017 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:40:36,019 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63124]
+INFO 2025-02-25 02:40:36,019 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:40:36,020 consumers Received start message
+INFO 2025-02-25 02:40:36,020 consumers WebSocket disconnected with code: 1000
+INFO 2025-02-25 02:40:39,024 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63127]
+INFO 2025-02-25 02:40:39,027 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:40:39,028 consumers WebSocket connection attempt
+INFO 2025-02-25 02:40:39,029 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63127]
+INFO 2025-02-25 02:40:39,029 consumers WebSocket connection accepted
+INFO 2025-02-25 02:40:39,029 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:40:39,300 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:40:39,302 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63127]
+INFO 2025-02-25 02:40:39,303 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:40:39,303 consumers Received start message
+INFO 2025-02-25 02:40:39,303 consumers WebSocket disconnected with code: 1000
+INFO 2025-02-25 02:40:42,308 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63129]
+INFO 2025-02-25 02:40:42,312 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:40:42,312 consumers WebSocket connection attempt
+INFO 2025-02-25 02:40:42,313 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63129]
+INFO 2025-02-25 02:40:42,313 consumers WebSocket connection accepted
+INFO 2025-02-25 02:40:42,313 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:40:42,696 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:40:42,697 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:40:42,697 consumers Received start message
+INFO 2025-02-25 02:40:42,697 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63129]
+INFO 2025-02-25 02:40:45,702 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63131]
+INFO 2025-02-25 02:40:45,711 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:40:45,712 consumers WebSocket connection attempt
+INFO 2025-02-25 02:40:45,713 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63131]
+INFO 2025-02-25 02:40:45,713 consumers WebSocket connection accepted
+INFO 2025-02-25 02:40:45,713 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:40:46,146 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:40:46,149 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63131]
+INFO 2025-02-25 02:40:46,149 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:40:46,149 consumers Received start message
+INFO 2025-02-25 02:40:46,150 consumers WebSocket disconnected with code: 1000
+INFO 2025-02-25 02:40:49,156 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63136]
+INFO 2025-02-25 02:40:49,161 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:40:49,162 consumers WebSocket connection attempt
+INFO 2025-02-25 02:40:49,162 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63136]
+INFO 2025-02-25 02:40:49,162 consumers WebSocket connection accepted
+INFO 2025-02-25 02:40:49,163 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:40:49,282 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:40:49,283 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63136]
+INFO 2025-02-25 02:40:49,283 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:40:49,283 consumers Received start message
+INFO 2025-02-25 02:40:49,284 consumers WebSocket disconnected with code: 1000
+INFO 2025-02-25 02:40:49,746 runserver [mHTTP POST /interview_behavioral/get_response/ 200 [13.97, 127.0.0.1:63121][0m
+INFO 2025-02-25 02:40:51,128 runserver [mHTTP POST /interview_behavioral/synthesize_text/ 200 [1.37, 127.0.0.1:63121][0m
+INFO 2025-02-25 02:40:52,292 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63146]
+INFO 2025-02-25 02:40:52,298 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:40:52,299 consumers WebSocket connection attempt
+INFO 2025-02-25 02:40:52,300 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63146]
+INFO 2025-02-25 02:40:52,300 consumers WebSocket connection accepted
+INFO 2025-02-25 02:40:52,300 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:40:52,383 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:40:52,385 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63146]
+INFO 2025-02-25 02:40:52,386 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:40:52,386 consumers Received start message
+INFO 2025-02-25 02:40:52,387 consumers WebSocket disconnected with code: 1000
+INFO 2025-02-25 02:40:55,394 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63148]
+INFO 2025-02-25 02:40:55,397 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:40:55,398 consumers WebSocket connection attempt
+INFO 2025-02-25 02:40:55,398 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63148]
+INFO 2025-02-25 02:40:55,398 consumers WebSocket connection accepted
+INFO 2025-02-25 02:40:55,398 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:40:55,460 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:40:55,461 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:40:55,461 consumers Received start message
+INFO 2025-02-25 02:40:55,461 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63148]
+INFO 2025-02-25 02:40:58,469 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63150]
+INFO 2025-02-25 02:40:58,472 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:40:58,472 consumers WebSocket connection attempt
+INFO 2025-02-25 02:40:58,472 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63150]
+INFO 2025-02-25 02:40:58,472 consumers WebSocket connection accepted
+INFO 2025-02-25 02:40:58,473 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:40:58,516 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:40:58,517 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:40:58,517 consumers Received start message
+INFO 2025-02-25 02:40:58,517 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63150]
+INFO 2025-02-25 02:41:01,528 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63152]
+INFO 2025-02-25 02:41:01,532 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:41:01,533 consumers WebSocket connection attempt
+INFO 2025-02-25 02:41:01,533 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63152]
+INFO 2025-02-25 02:41:01,533 consumers WebSocket connection accepted
+INFO 2025-02-25 02:41:01,534 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:41:01,623 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:41:01,624 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63152]
+INFO 2025-02-25 02:41:01,625 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:41:01,625 consumers Received start message
+INFO 2025-02-25 02:41:01,625 consumers WebSocket disconnected with code: 1000
+INFO 2025-02-25 02:41:04,636 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63154]
+INFO 2025-02-25 02:41:04,642 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:41:04,642 consumers WebSocket connection attempt
+INFO 2025-02-25 02:41:04,643 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63154]
+INFO 2025-02-25 02:41:04,643 consumers WebSocket connection accepted
+INFO 2025-02-25 02:41:04,643 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:41:04,854 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:41:04,860 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63154]
+INFO 2025-02-25 02:41:04,860 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:41:04,860 consumers Received start message
+INFO 2025-02-25 02:41:04,861 consumers WebSocket disconnected with code: 1000
+INFO 2025-02-25 02:41:07,866 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63156]
+INFO 2025-02-25 02:41:07,870 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:41:07,870 consumers WebSocket connection attempt
+INFO 2025-02-25 02:41:07,871 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63156]
+INFO 2025-02-25 02:41:07,871 consumers WebSocket connection accepted
+INFO 2025-02-25 02:41:07,871 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:41:07,927 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:41:07,929 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63156]
+INFO 2025-02-25 02:41:07,929 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:41:07,929 consumers Received start message
+INFO 2025-02-25 02:41:07,929 consumers WebSocket disconnected with code: 1000
+INFO 2025-02-25 02:41:10,935 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63158]
+INFO 2025-02-25 02:41:10,939 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:41:10,940 consumers WebSocket connection attempt
+INFO 2025-02-25 02:41:10,940 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63158]
+INFO 2025-02-25 02:41:10,941 consumers WebSocket connection accepted
+INFO 2025-02-25 02:41:10,941 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:41:11,062 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:41:11,063 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63158]
+INFO 2025-02-25 02:41:11,064 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:41:11,064 consumers Received start message
+INFO 2025-02-25 02:41:11,064 consumers WebSocket disconnected with code: 1000
+INFO 2025-02-25 02:41:14,069 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63160]
+INFO 2025-02-25 02:41:14,071 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:41:14,071 consumers WebSocket connection attempt
+INFO 2025-02-25 02:41:14,071 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63160]
+INFO 2025-02-25 02:41:14,072 consumers WebSocket connection accepted
+INFO 2025-02-25 02:41:14,072 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:41:14,200 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:41:14,201 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63160]
+INFO 2025-02-25 02:41:14,201 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:41:14,201 consumers Received start message
+INFO 2025-02-25 02:41:14,201 consumers WebSocket disconnected with code: 1000
+INFO 2025-02-25 02:41:17,210 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63163]
+INFO 2025-02-25 02:41:17,215 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:41:17,216 consumers WebSocket connection attempt
+INFO 2025-02-25 02:41:17,216 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63163]
+INFO 2025-02-25 02:41:17,216 consumers WebSocket connection accepted
+INFO 2025-02-25 02:41:17,217 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:41:17,346 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:41:17,347 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:41:17,347 consumers Received start message
+INFO 2025-02-25 02:41:17,347 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63163]
+INFO 2025-02-25 02:41:20,352 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63165]
+INFO 2025-02-25 02:41:20,356 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:41:20,357 consumers WebSocket connection attempt
+INFO 2025-02-25 02:41:20,357 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63165]
+INFO 2025-02-25 02:41:20,357 consumers WebSocket connection accepted
+INFO 2025-02-25 02:41:20,357 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:41:20,896 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:41:20,898 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63165]
+INFO 2025-02-25 02:41:20,898 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:41:20,898 consumers Received start message
+INFO 2025-02-25 02:41:20,899 consumers WebSocket disconnected with code: 1000
+INFO 2025-02-25 02:41:22,096 runserver [mHTTP POST /interview_behavioral/process_audio/ 200 [0.73, 127.0.0.1:63167][0m
+INFO 2025-02-25 02:41:23,909 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63170]
+INFO 2025-02-25 02:41:23,915 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:41:23,916 consumers WebSocket connection attempt
+INFO 2025-02-25 02:41:23,917 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63170]
+INFO 2025-02-25 02:41:23,917 consumers WebSocket connection accepted
+INFO 2025-02-25 02:41:23,917 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:41:24,279 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:41:24,281 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63170]
+INFO 2025-02-25 02:41:24,281 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:41:24,281 consumers Received start message
+INFO 2025-02-25 02:41:24,282 consumers WebSocket disconnected with code: 1000
+INFO 2025-02-25 02:41:27,286 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63172]
+INFO 2025-02-25 02:41:27,291 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:41:27,292 consumers WebSocket connection attempt
+INFO 2025-02-25 02:41:27,292 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63172]
+INFO 2025-02-25 02:41:27,292 consumers WebSocket connection accepted
+INFO 2025-02-25 02:41:27,292 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:41:27,606 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:41:27,608 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63172]
+INFO 2025-02-25 02:41:27,608 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:41:27,608 consumers Received start message
+INFO 2025-02-25 02:41:27,609 consumers WebSocket disconnected with code: 1000
+INFO 2025-02-25 02:41:27,632 runserver [mHTTP POST /interview_behavioral/get_response/ 200 [5.53, 127.0.0.1:63167][0m
+INFO 2025-02-25 02:41:29,253 runserver [mHTTP POST /interview_behavioral/synthesize_text/ 200 [1.61, 127.0.0.1:63167][0m
+INFO 2025-02-25 02:41:30,614 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63181]
+INFO 2025-02-25 02:41:30,618 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:41:30,619 consumers WebSocket connection attempt
+INFO 2025-02-25 02:41:30,620 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63181]
+INFO 2025-02-25 02:41:30,620 consumers WebSocket connection accepted
+INFO 2025-02-25 02:41:30,620 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:41:31,060 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:41:31,063 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63181]
+INFO 2025-02-25 02:41:31,063 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:41:31,063 consumers Received start message
+INFO 2025-02-25 02:41:31,064 consumers WebSocket disconnected with code: 1000
+INFO 2025-02-25 02:41:34,068 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63183]
+INFO 2025-02-25 02:41:34,073 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:41:34,073 consumers WebSocket connection attempt
+INFO 2025-02-25 02:41:34,074 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63183]
+INFO 2025-02-25 02:41:34,074 consumers WebSocket connection accepted
+INFO 2025-02-25 02:41:34,074 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+ERROR 2025-02-25 02:41:34,366 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:41:34,369 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63183]
+INFO 2025-02-25 02:41:34,370 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:41:34,370 consumers Received start message
+INFO 2025-02-25 02:41:34,371 consumers WebSocket disconnected with code: 1000
+INFO 2025-02-25 02:41:35,649 runserver [mHTTP POST /assessments/save/ 200 [0.03, 127.0.0.1:63185][0m
+INFO 2025-02-25 02:41:37,650 runserver WebSocket HANDSHAKING /ws/transcribe/ [127.0.0.1:63186]
+INFO 2025-02-25 02:41:37,656 consumers TranscriptionConsumer initialized
+INFO 2025-02-25 02:41:37,658 consumers WebSocket connection attempt
+INFO 2025-02-25 02:41:37,658 runserver WebSocket CONNECT /ws/transcribe/ [127.0.0.1:63186]
+INFO 2025-02-25 02:41:37,658 consumers WebSocket connection accepted
+INFO 2025-02-25 02:41:37,658 consumers Connecting to Deepgram WebSocket at wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=48000
+INFO 2025-02-25 02:41:37,689 runserver [mHTTP GET /assessments/list/ 200 [0.04, 127.0.0.1:63185][0m
+INFO 2025-02-25 02:41:37,708 runserver WebSocket DISCONNECT /ws/transcribe/ [127.0.0.1:63186]
+INFO 2025-02-25 02:41:37,783 runserver [36mHTTP GET /static/assessments/css/conversation_popup.css 304 [0.01, 127.0.0.1:63185][0m
+INFO 2025-02-25 02:41:37,783 runserver [36mHTTP GET /static/users/css/style.css 304 [0.01, 127.0.0.1:63188][0m
+INFO 2025-02-25 02:41:37,786 runserver [36mHTTP GET /static/assessments/js/assessment.js 304 [0.00, 127.0.0.1:63189][0m
+ERROR 2025-02-25 02:41:37,803 consumers WebSocket connection error: server rejected WebSocket connection: HTTP 400
+INFO 2025-02-25 02:41:37,805 consumers Received text data: {"type":"start","message":"Connection test"}...
+INFO 2025-02-25 02:41:37,806 consumers Received start message
+INFO 2025-02-25 02:41:37,806 consumers WebSocket disconnected with code: 1001
+INFO 2025-02-25 02:42:31,543 autoreload /Users/shivamrawat/capstone_django/interview_behavioral/openai_client.py changed, reloading.
+INFO 2025-02-25 02:42:55,308 autoreload Watching for file changes with StatReloader
+INFO 2025-02-25 02:42:57,270 autoreload /Users/shivamrawat/capstone_django/interview_behavioral/services/deepgram_service.py changed, reloading.
+INFO 2025-02-25 02:44:37,670 autoreload Watching for file changes with StatReloader
+INFO 2025-02-25 02:44:42,311 autoreload /Users/shivamrawat/capstone_django/capstone_django/asgi.py changed, reloading.
+INFO 2025-02-25 02:45:15,534 autoreload Watching for file changes with StatReloader
+INFO 2025-02-25 02:45:23,284 autoreload /Users/shivamrawat/capstone_django/capstone_django/settings.py changed, reloading.
