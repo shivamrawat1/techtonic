@@ -98,7 +98,7 @@ body {
 
 /* Video Container */
 .video-container {
-    flex: 2;
+    flex: 1.2;
     background-color: #1a1a1a;
     border-radius: 12px;
     overflow: hidden;
@@ -119,8 +119,6 @@ body {
 /* Chat Interface */
 .chat-interface {
     flex: 1;
-    min-width: 300px;
-    max-width: 400px;
     height: 100%;
     background-color: var(--panel-bg);
     border-radius: 12px;
