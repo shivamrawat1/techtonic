@@ -37,11 +37,13 @@ def index(request):
         # Initialize OpenAI client with setup information
         openai_client.initialize_interview(question)
     
-    # Always pass duration to template, either from POST or session
+    # Always pass duration and question to template, either from POST or session
     context = {
-        'duration': request.session.get('interview_duration', 30)
+        'duration': request.session.get('interview_duration', 30),
+        'question': request.session.get('selected_question', '')
     }
     print(f"Technical Interview Duration: {context['duration']}")  # Debug print
+    print(f"Selected Question: {context['question']}")  # Debug print
     return render(request, 'interview_technical/index.html', context)
 
 @csrf_exempt

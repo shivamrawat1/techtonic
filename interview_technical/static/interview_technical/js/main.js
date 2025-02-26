@@ -1,126 +1,136 @@
 // interview_technical/static/js/main.js
 
+// Immediately log that the script is running
+console.log("main.js is running");
+
 // Initialize Monaco Editor
-require.config({ paths: { 'vs': 'https://cdn.jsdelivr.net/npm/monaco-editor@0.33.0/min/vs' } });
+require.config({ paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.43.0/min/vs' } });
 require(['vs/editor/editor.main'], function () {
-    var editor = monaco.editor.create(document.getElementById('editor'), {
-        value: '',
-        language: 'javascript',
-        theme: 'vs-dark'
-    });
+    console.log("Monaco editor module loaded");
+    try {
+        var editorElement = document.getElementById('editor');
+        console.log("Editor element found:", editorElement);
+
+        var editor = monaco.editor.create(editorElement, {
+            value: '// Write your code here\n',
+            language: 'javascript',
+            theme: 'vs-dark',
+            automaticLayout: true,
+            minimap: {
+                enabled: false
+            }
+        });
+
+        console.log("Monaco editor initialized successfully");
+
+        // Make editor accessible globally
+        window.monacoEditor = editor;
+    } catch (error) {
+        console.error("Error initializing Monaco editor:", error);
+    }
 });
 
-// Webcam setup
-var video = document.getElementById('videoElement');
-if (navigator.mediaDevices.getUserMedia) {
-    navigator.mediaDevices.getUserMedia({ video: true })
-        .then(function (stream) {
-            video.srcObject = stream;
-        })
-        .catch(function (error) {
-            console.log("Something went wrong!", error);
-        });
+// Initialize Webcam and Audio
+const video = document.getElementById('videoElement');
+const timerDisplay = document.getElementById('timer-display');
+const currentTimeDisplay = document.getElementById('current-time');
+const sendButton = document.getElementById('send-button');
+const userInput = document.getElementById('user-input');
+const chatMessages = document.getElementById('chat-messages');
+const leaveButton = document.getElementById('leave-button');
+const muteButton = document.getElementById('mute-button');
+let conversation = [];
+
+// Update current time
+function updateCurrentTime() {
+    const now = new Date();
+    const hours = now.getHours();
+    const minutes = now.getMinutes();
+    const seconds = now.getSeconds();
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    const formattedHours = hours % 12 || 12;
+
+    currentTimeDisplay.textContent = `${formattedHours}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')} ${ampm}`;
 }
 
-// Chat setup
-var sendButton = document.getElementById('send-button');
-var userInput = document.getElementById('user-input');
-var chatMessages = document.getElementById('chat-messages');
-var voiceButton = document.getElementById('voice-button');
-var leaveButton = document.getElementById('leave-button');  // Leave button
-var conversation = [];  // Store conversation for scoring and saving
-
-// Get CSRF token from cookie
-function getCookie(name) {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-        let cookies = document.cookie.split(';');
-        for (let i = 0; i < cookies.length; i++) {
-            let cookie = cookies[i].trim();
-            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
-            }
-        }
-    }
-    return cookieValue;
-}
-let csrftoken = getCookie('csrftoken');
+// Update time every second
+setInterval(updateCurrentTime, 1000);
+updateCurrentTime(); // Initial update
 
 // Voice Recording Variables
 let mediaRecorder;
 let audioChunks = [];
 let isRecording = false;
-let recordingStream = null;
+let isMuted = false;
 
-// Update the voice button click handler
-voiceButton.addEventListener('click', () => {
-    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-        alert('Your browser does not support audio recording.');
-        return;
-    }
-
-    if (isRecording) {
-        // Stop Recording
-        stopRecording();
-    } else {
-        // Start Recording
-        startRecording();
-    }
-});
-
-function startRecording() {
-    navigator.mediaDevices.getUserMedia({ audio: true })
-        .then((stream) => {
-            recordingStream = stream;
-            mediaRecorder = new MediaRecorder(stream);
-            audioChunks = [];
-
-            mediaRecorder.ondataavailable = (event) => {
-                audioChunks.push(event.data);
-            };
-
-            mediaRecorder.onstop = () => {
-                const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
-                processRecording(audioBlob);
-            };
-
-            mediaRecorder.start();
-            voiceButton.textContent = '⏹️'; // Change to pause icon instead of stop icon
-            isRecording = true;
-        })
-        .catch((error) => {
-            console.error("Error accessing microphone:", error);
-            alert('Could not access your microphone.');
-        });
-}
-
-function stopRecording() {
-    if (mediaRecorder && isRecording) {
-        mediaRecorder.stop();
-        recordingStream.getTracks().forEach(track => track.stop());
-        voiceButton.textContent = '🎤'; // Change back to mic icon
-        isRecording = false;
-    }
-}
-
-function processRecording(audioBlob) {
-    const formData = new FormData();
-    formData.append('audio', audioBlob, 'recording.wav');
-
-    fetch(processAudioUrl, {
-        method: 'POST',
-        headers: {
-            'X-CSRFToken': csrftoken,
-        },
-        body: formData,
+// Initialize video and audio stream
+let videoStream;
+navigator.mediaDevices
+    .getUserMedia({ video: true, audio: true })
+    .then((stream) => {
+        videoStream = stream;
+        video.srcObject = stream;
+        // Initialize media recorder for voice input
+        mediaRecorder = new MediaRecorder(stream);
+        setupMediaRecorder();
+        // Start recording by default when unmuted
+        if (!isMuted) {
+            startRecording();
+        }
     })
-        .then((response) => response.json())
-        .then((data) => {
+    .catch((error) => {
+        console.error("Error accessing webcam:", error);
+    });
+
+// Function to start recording
+function startRecording() {
+    if (mediaRecorder && mediaRecorder.state === 'inactive' && !isMuted) {
+        audioChunks = [];
+        mediaRecorder.start();
+        isRecording = true;
+        console.log('Recording started');
+    }
+}
+
+// Function to stop recording
+function stopRecording() {
+    if (mediaRecorder && mediaRecorder.state === 'recording') {
+        mediaRecorder.stop();
+        isRecording = false;
+        console.log('Recording stopped');
+    }
+}
+
+// Setup MediaRecorder event handlers
+function setupMediaRecorder() {
+    mediaRecorder.ondataavailable = (event) => {
+        audioChunks.push(event.data);
+    };
+
+    mediaRecorder.onstop = async () => {
+        if (audioChunks.length === 0) return;
+
+        const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+        audioChunks = [];
+
+        // Create form data and send to backend
+        const formData = new FormData();
+        formData.append('audio', audioBlob, 'recording.wav');
+
+        try {
+            const response = await fetch(processAudioUrl, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': csrftoken,
+                },
+                body: formData
+            });
+            const data = await response.json();
+
             if (data.recognized_text) {
-                appendMessage('You (Voice)', data.recognized_text);
-                // Send recognized text to the assistant
-                return fetch(getResponseUrl, {
+                appendMessage('You', data.recognized_text);
+                // Get AI response
+                const aiResponse = await fetch(getResponseUrl, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -129,26 +139,101 @@ function processRecording(audioBlob) {
                     body: JSON.stringify({
                         message: data.recognized_text,
                         assessment_type: 'technical'
-                    }),
+                    })
                 });
-            } else {
-                throw new Error(data.error || 'No transcription received');
+                const aiData = await aiResponse.json();
+                if (aiData.message) {
+                    appendMessage('Assistant', aiData.message);
+                    synthesizeSpeech(aiData.message);
+                }
             }
-        })
-        .then((response) => response.json())
-        .then((data) => {
-            if (data.message) {
-                appendMessage('Assistant', data.message);
-                synthesizeSpeech(data.message);
+
+            // Start a new recording if not muted
+            if (!isMuted) {
+                startRecording();
             }
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-            appendMessage('Error', error.message);
-        });
+        } catch (error) {
+            console.error('Error processing audio:', error);
+            // Attempt to restart recording even if there was an error
+            if (!isMuted) {
+                startRecording();
+            }
+        }
+    };
 }
 
-// Function to synthesize speech
+// Timer Functionality
+let startTime = Date.now();
+let timerInterval;
+const duration = parseInt(document.getElementById('interview-duration').value) || 30;
+let timeRemaining = duration * 60; // Convert to seconds
+
+function updateTimer() {
+    const minutes = Math.floor(timeRemaining / 60);
+    const seconds = timeRemaining % 60;
+    timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+    if (timeRemaining <= 0) {
+        clearInterval(timerInterval);
+        alert('Interview time is up!');
+        saveAssessment();
+    } else {
+        timeRemaining--;
+    }
+}
+
+// Start the timer immediately
+timerInterval = setInterval(updateTimer, 1000);
+
+// Helper: Get CSRF Token
+function getCookie(name) {
+    if (name === 'csrftoken') {
+        // First try to get from meta tag
+        const metaTag = document.querySelector('meta[name="csrf-token"]');
+        if (metaTag) {
+            const token = metaTag.getAttribute('content');
+            console.log('CSRF token found in meta tag');
+            return token;
+        }
+        console.log('CSRF token not found in meta tag, trying cookies');
+    }
+
+    // Try cookies as fallback
+    const cookies = document.cookie.split(';');
+    for (let cookie of cookies) {
+        const trimmed = cookie.trim();
+        if (trimmed.startsWith(name + '=')) {
+            const token = decodeURIComponent(trimmed.substring(name.length + 1));
+            console.log('CSRF token found in cookies');
+            return token;
+        }
+    }
+
+    console.error('CSRF token not found in meta tag or cookies');
+    return null;
+}
+
+// Initialize CSRF token with more detailed logging
+const csrftoken = getCookie('csrftoken');
+if (!csrftoken) {
+    console.error('CSRF token initialization failed. Form submissions will fail.');
+    console.error('Meta tag status:', document.querySelector('meta[name="csrf-token"]') ? 'present' : 'missing');
+    console.error('Cookie status:', document.cookie.includes('csrftoken') ? 'present' : 'missing');
+} else {
+    console.log('CSRF token successfully initialized');
+}
+
+// Append a Message to the Chat
+function appendMessage(sender, message) {
+    const messageElement = document.createElement('div');
+    messageElement.className = 'chat-message';
+    messageElement.innerHTML = `<strong>${sender}:</strong> ${message}`;
+    chatMessages.appendChild(messageElement);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+    conversation.push({ sender, message });
+}
+
+// Synthesize Speech
 function synthesizeSpeech(text) {
     fetch(synthesizeTextUrl, {
         method: 'POST',
@@ -158,80 +243,90 @@ function synthesizeSpeech(text) {
         },
         body: new URLSearchParams({ text }),
     })
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error('Synthesis failed');
-            }
-            return response.blob();
-        })
+        .then((response) => response.blob())
         .then((blob) => {
-            const audioUrl = URL.createObjectURL(blob);
-            const audio = new Audio(audioUrl);
+            const audio = new Audio(URL.createObjectURL(blob));
             audio.play();
         })
-        .catch((error) => console.error('Synthesis Error:', error));
+        .catch((error) => console.error('Speech synthesis error:', error));
 }
 
-// Handle sending message
-sendButton.addEventListener('click', function () {
-    var message = userInput.value;
-    if (message.trim() === '') return;
+// Send a Text Message
+async function sendMessage() {
+    const message = userInput.value.trim();
+    if (message === '') return;
+
     appendMessage('You', message);
     userInput.value = '';
+    userInput.style.height = 'auto';
 
-    // Send message to server and handle response
-    fetch('/interview/get_response/', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRFToken': csrftoken,
-        },
-        body: JSON.stringify({
-            message: message,
-            assessment_type: 'technical' // Include assessment_type
-        })
-    })
-        .then(response => response.json())
-        .then(data => {
+    try {
+        const response = await fetch(getResponseUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrftoken,
+            },
+            body: JSON.stringify({
+                message,
+                assessment_type: 'technical'
+            }),
+        });
+        const data = await response.json();
+
+        if (data.message) {
             appendMessage('Assistant', data.message);
-        });
-});
-
-// Handle speech synthesis using ElevenLabs
-function speak(text) {
-    fetch('/interview/synthesize_text/', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'X-CSRFToken': csrftoken,
-        },
-        body: new URLSearchParams({ text: text })
-    })
-        .then(response => response.blob())
-        .then(blob => {
-            const audioUrl = URL.createObjectURL(blob);
-            const audio = new Audio(audioUrl);
-            audio.play();
-        })
-        .catch(error => {
-            console.error('Error synthesizing speech:', error);
-        });
-}
-
-// Append message and use ElevenLabs Speech Synthesis for Assistant's response
-function appendMessage(sender, message) {
-    var messageElement = document.createElement('div');
-    messageElement.innerHTML = '<strong>' + sender + ':</strong> ' + message;
-    chatMessages.appendChild(messageElement);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-
-    // Add to conversation array for saving
-    conversation.push({ sender: sender, message: message });
-
-    if (sender === 'Assistant') {
-        speak(message);
+            synthesizeSpeech(data.message);
+        } else if (data.error) {
+            appendMessage('Error', data.error);
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        appendMessage('Error', 'Failed to get response from the assistant.');
     }
 }
+
+// Event Listeners
+sendButton.addEventListener('click', sendMessage);
+
+// Handle text input
+userInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        sendMessage();
+    }
+});
+
+// Auto-resize text area
+userInput.addEventListener('input', function () {
+    this.style.height = 'auto';
+    this.style.height = (this.scrollHeight) + 'px';
+});
+
+// Handle Mute Button Click
+muteButton.addEventListener('click', () => {
+    isMuted = !isMuted;
+
+    // Toggle video mute
+    video.muted = isMuted;
+
+    // Handle audio recording
+    if (isMuted) {
+        stopRecording();
+    } else {
+        startRecording();
+    }
+
+    // Toggle audio tracks
+    if (videoStream) {
+        videoStream.getAudioTracks().forEach(track => {
+            track.enabled = !isMuted;
+        });
+    }
+
+    // Update button appearance
+    muteButton.classList.toggle('active', isMuted);
+});
 
 // Function to Save Assessment
 function saveAssessment() {
@@ -249,70 +344,34 @@ function saveAssessment() {
         body: JSON.stringify({
             conversation: conversation,
             assessment_type: 'technical'
-        })
+        }),
     })
-        .then(response => response.json())
-        .then(data => {
+        .then((response) => response.json())
+        .then((data) => {
             if (data.message) {
                 alert(data.message);
                 window.location.href = '/assessments/list/';
-            } else {
-                console.error('Error:', data.error);
-                alert('Error saving conversation');
+            } else if (data.error) {
+                alert(`Error: ${data.error}`);
             }
         })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Error saving conversation');
-        });
+        .catch((error) => console.error('Save Assessment Error:', error));
 }
 
 // Handle Leave Button Click
-leaveButton.addEventListener('click', function () {
-    // Save the assessment
+leaveButton.addEventListener('click', () => {
+    clearInterval(timerInterval);
+
+    // Stop recording if active
+    if (isRecording) {
+        mediaRecorder.stop();
+        isRecording = false;
+    }
+
+    // Stop all tracks
+    if (videoStream) {
+        videoStream.getTracks().forEach(track => track.stop());
+    }
+
     saveAssessment();
-});
-
-// Timer setup
-let timeLeft;
-let timerInterval;
-
-function startTimer(duration) {
-    const timerDisplay = document.getElementById('timer-display');
-    if (!timerDisplay) {
-        console.error('Timer display element not found');
-        return;
-    }
-
-    timeLeft = duration * 60; // Convert to seconds
-    updateTimerDisplay(timerDisplay);
-
-    timerInterval = setInterval(() => {
-        timeLeft--;
-        updateTimerDisplay(timerDisplay);
-
-        if (timeLeft <= 0) {
-            clearInterval(timerInterval);
-            alert('Time is up!');
-            saveAssessment();
-        }
-    }, 1000);
-}
-
-function updateTimerDisplay(timerDisplay) {
-    const minutes = Math.floor(timeLeft / 60);
-    const seconds = timeLeft % 60;
-    timerDisplay.textContent = `Time Remaining: ${minutes}:${seconds.toString().padStart(2, '0')}`;
-}
-
-// Initialize timer when page loads
-window.addEventListener('load', () => {
-    const durationInput = document.getElementById('interview-duration');
-    if (!durationInput) {
-        console.error('Duration input element not found');
-        return;
-    }
-
-    const duration = parseInt(durationInput.value) || 30;
-    startTimer(duration);
 });

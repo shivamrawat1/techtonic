@@ -4,71 +4,544 @@
 <head>
     <meta charset="UTF-8">
     <title>Technical Interview</title>
-    <link rel="stylesheet" href="{% static 'interview_technical/css/styles.css' %}">
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    {% csrf_token %}
+    <!-- Internal CSS (moved from external file) -->
+    <style>
+        /* Reset and Variables */
+        :root {
+            --dark-bg: #000000;
+            --panel-bg: #ffffff;
+            --text-primary: #000000;
+            --text-secondary: rgba(0, 0, 0, 0.7);
+            --accent-blue: #007AFF;
+            --recording-red: #FF3B30;
+            --button-hover: rgba(0, 0, 0, 0.1);
+            --header-height: 64px;
+            --footer-height: 80px;
+            --editor-bg: #1e1e1e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.5;
+        }
+
+        /* App Container */
+        .app-container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            background-color: var(--dark-bg);
+            width: 100%;
+            overflow: hidden;
+        }
+
+        /* Header Styles */
+        .app-header {
+            height: var(--header-height);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+            background-color: var(--panel-bg);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 10;
+            width: 100%;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .header-left h1 {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .user-name {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            position: relative;
+            height: calc(100vh - var(--header-height) - var(--footer-height));
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        /* Editor Container */
+        .editor-container {
+            flex: 2;
+            background-color: var(--editor-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            height: 100%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            min-width: 60%;
+            max-width: 70%;
+        }
+
+        #editor {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Right Section */
+        .right-section {
+            flex: 1;
+            width: 30%;
+            min-width: 300px;
+            max-width: 400px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        /* Video Container */
+        .video-container {
+            height: 250px;
+            background-color: #1a1a1a;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #videoElement {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            background-color: #1a1a1a;
+        }
+
+        /* Chat Interface */
+        .chat-interface {
+            flex: 1;
+            background-color: var(--panel-bg);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            min-height: 300px;
+        }
+
+        .chat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            background-color: var(--panel-bg);
+        }
+
+        .chat-header h2 {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .close-button {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            background-color: var(--panel-bg);
+            min-height: 150px;
+        }
+
+        /* Recording Timer */
+        .recording-timer {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            color: white;
+            font-size: 0.9rem;
+            z-index: 10;
+        }
+
+        .recording-timer .dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--recording-red);
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Chat Message Styling */
+        .chat-message {
+            padding: 0.5rem;
+            border-radius: 8px;
+            background-color: rgba(0, 0, 0, 0.05);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Chat Controls Update */
+        .chat-controls {
+            padding: 1rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            background-color: var(--panel-bg);
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            min-height: 80px;
+        }
+
+        #user-input {
+            flex: 1;
+            background-color: rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            color: var(--text-primary);
+            padding: 0.8rem;
+            resize: vertical;
+            min-height: 40px;
+            max-height: 120px;
+            font-size: 0.9rem;
+            margin-bottom: 0;
+            font-family: inherit;
+        }
+
+        #user-input:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            background-color: white;
+        }
+
+        .send-button {
+            background-color: var(--accent-blue);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 0.8rem 1.5rem;
+            cursor: pointer;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .send-button:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        .send-button:active {
+            transform: translateY(0);
+        }
+
+        /* Footer Controls */
+        .app-footer {
+            height: var(--footer-height);
+            padding: 1rem;
+            background-color: transparent;
+            position: flex;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            width: 100%;
+        }
+
+        .current-time {
+            position: absolute;
+            left: 2rem;
+            bottom: 2rem;
+            color: white;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .footer-controls {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 0.5rem 2rem;
+            border-radius: 30px;
+            margin-bottom: 1rem;
+        }
+
+        .control-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .button-label {
+            color: white;
+            font-size: 0.8rem;
+            opacity: 0.8;
+            text-transform: capitalize;
+        }
+
+        /* Control Buttons */
+        .control-button {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            padding: 0;
+        }
+
+        .control-button svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .control-button.leave {
+            background-color: var(--recording-red);
+        }
+
+        .control-button.mute {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Microphone Icons */
+        .control-button.mute .mic-off {
+            display: none;
+        }
+
+        .control-button.mute.active {
+            background-color: var(--recording-red);
+        }
+
+        .control-button.mute.active .mic-on {
+            display: none;
+        }
+
+        .control-button.mute.active .mic-off {
+            display: block;
+        }
+
+        .control-button:hover {
+            transform: scale(1.1);
+        }
+
+        .control-button.leave:hover {
+            background-color: #ff6666;
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        /* Media Queries for Responsive Layout */
+        @media (max-width: 1200px) {
+            .main-content {
+                flex-direction: column;
+                overflow-y: auto;
+                height: auto;
+            }
+
+            .editor-container {
+                height: 400px;
+                min-width: 100%;
+                max-width: 100%;
+            }
+
+            .right-section {
+                max-width: 100%;
+                min-width: 100%;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .app-header {
+                padding: 0 1rem;
+            }
+
+            .main-content {
+                padding: 0.5rem;
+            }
+
+            .editor-container {
+                height: 300px;
+            }
+
+            .video-container {
+                height: 200px;
+            }
+        }
+    </style>
     <!-- Monaco Editor CSS -->
     <link rel="stylesheet" data-name="vs/editor/editor.main"
           href="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.43.0/min/vs/editor/editor.main.css">
-    <!-- Split.js Library -->
-    <script src="https://cdn.jsdelivr.net/npm/split.js/dist/split.min.js"></script>
 </head>
 <body>
-    <!-- Include CSRF token to set the CSRF cookie -->
-    {% csrf_token %}
-    <div id="container">
-        <div id="editor-pane">
-            <div id="editor" style="width: 100%; height: 100%;"></div>
-        </div>
-        <div id="right-pane">
-            <div id="video-feed">
-                <video id="videoElement" autoplay muted style="width:100%; height:100%;"></video>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-left">
+                <h1>Techtonic</h1>
+                <span class="user-name">Technical Interview</span>
             </div>
-            <div id="chat">
-                <div id="chat-messages"></div>
-                <div id="chat-input">
-                    <textarea id="user-input" rows="2" placeholder="Type a message"></textarea>
-                    <div class="button-group">
-                        <button id="send-button">Send</button>
-                        <button id="voice-button">🎤</button>
-                        <button id="leave-button">Leave</button>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Editor Section -->
+            <div class="editor-container">
+                <div id="editor"></div>
+            </div>
+
+            <!-- Right Section -->
+            <div class="right-section">
+                <!-- Video Feed -->
+                <div class="video-container">
+                    <video id="videoElement" autoplay muted></video>
+                    <div class="recording-timer">
+                        <div class="dot"></div>
+                        <span id="timer-display">00:00</span>
+                    </div>
+                </div>
+
+                <!-- Chat Interface -->
+                <div class="chat-interface">
+                    <div class="chat-header">
+                        <h2>Live Transcript</h2>
+                        <button class="close-button">×</button>
+                    </div>
+                    <div id="chat-messages" class="chat-messages"></div>
+                    <div class="chat-controls">
+                        <textarea id="user-input" placeholder="Type a message"></textarea>
+                        <button id="send-button" class="send-button">Send</button>
                     </div>
                 </div>
             </div>
-        </div>
+        </main>
+
+        <!-- Footer Controls -->
+        <footer class="app-footer">
+            <div class="current-time" id="current-time">5:52:09 PM</div>
+            <div class="footer-controls">
+                <div class="control-wrapper">
+                    <button id="leave-button" class="control-button leave">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                    <span class="button-label">Leave</span>
+                </div>
+                <div class="control-wrapper">
+                    <button id="mute-button" class="control-button mute">
+                        <!-- Microphone On Icon -->
+                        <svg class="mic-on" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 15c1.66 0 2.99-1.34 2.99-3L15 5c0-1.66-1.34-3-3-3S9 3.34 9 5v7c0 1.66 1.34 3 3 3z" fill="currentColor"/>
+                            <path d="M11 18.92h2V22h-2z" fill="currentColor"/>
+                            <path d="M7 12H5c0 1.93 0.78 3.68 2.05 4.95l1.41-1.41C7.56 14.63 7 13.38 7 12z" fill="currentColor"/>
+                            <path d="M19 12h-2c0 1.38-0.56 2.63-1.46 3.54l1.41 1.41C18.22 15.68 19 13.93 19 12z" fill="currentColor"/>
+                        </svg>
+                        <!-- Microphone Off Icon -->
+                        <svg class="mic-off" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 11h-1.7c0 .74-.16 1.43-.43 2.05l1.23 1.23c.56-.98.9-2.09.9-3.28zm-4.02.17c0-.06.02-.11.02-.17V5c0-1.66-1.34-3-3-3S9 3.34 9 5v.18l5.98 5.99zM4.27 3L3 4.27l6.01 6.01V11c0 1.66 1.33 3 2.99 3 .22 0 .44-.03.65-.08l1.66 1.66c-.71.33-1.5.52-2.31.52-2.76 0-5.3-2.1-5.3-5.1H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c.91-.13 1.77-.45 2.54-.9L19.73 21 21 19.73 4.27 3z" fill="currentColor"/>
+                        </svg>
+                    </button>
+                    <span class="button-label">Mute</span>
+                </div>
+            </div>
+        </footer>
     </div>
-
-    <!-- Update Monaco Editor loading -->
-    <script>
-        // Configure AMD loader for Monaco
-        require.config({
-            paths: {
-                'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.43.0/min/vs'
-            }
-        });
-
-        // Load Monaco editor
-        require(['vs/editor/editor.main'], function() {
-            // Create Monaco editor instance
-            window.editor = monaco.editor.create(document.getElementById('editor'), {
-                value: '// Write your code here\n',
-                language: 'javascript',
-                theme: 'vs-dark',
-                automaticLayout: true,
-                minimap: {
-                    enabled: false
-                }
-            });
-        });
-    </script>
-
+    
+    <!-- Hidden input for interview duration -->
+    <input type="hidden" id="interview-duration" value="{{ duration }}">
+    <input type="hidden" id="selected-question" value="{{ question }}">
+    
     <!-- Monaco Editor Loader -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.43.0/min/vs/loader.js"></script>
+    
     <!-- Define the URL for AJAX requests -->
     <script type="text/javascript">
         var getResponseUrl = "{% url 'interview_technical:get_response' %}";
         var processAudioUrl = "{% url 'interview_technical:process_audio' %}";
         var synthesizeTextUrl = "{% url 'interview_technical:synthesize_text' %}";
     </script>
-    <!-- Load the separated JavaScript file -->
+    
+    <!-- Load the main script -->
     <script src="{% static 'interview_technical/js/main.js' %}"></script>
 </body>
 </html>
