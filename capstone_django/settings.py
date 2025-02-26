@@ -56,6 +56,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# Add cache control middleware in development mode
+if DEBUG:
+    MIDDLEWARE.append('capstone_django.middleware.DisableBrowserCachingMiddleware')
+
 ROOT_URLCONF = 'capstone_django.urls'
 
 TEMPLATES = [
@@ -69,6 +73,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'capstone_django.context_processors.static_version',
             ],
         },
     },
@@ -132,6 +137,20 @@ if DEBUG:
         os.path.join(BASE_DIR, 'assessments', 'static'),
         os.path.join(BASE_DIR, 'users', 'static'),
     ]
+    
+    # Add cache control middleware to prevent caching in development
+    MIDDLEWARE.append('django.middleware.cache.FetchFromCacheMiddleware')
+    
+    # Cache settings for development - disable caching
+    CACHES = {
+        'default': {
+            'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+        }
+    }
+    
+    # Add cache control headers for static files
+    STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+    
 else:
     # In production, use collectstatic
     STATICFILES_DIRS = []
