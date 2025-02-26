@@ -14,6 +14,144 @@ const leaveButton = document.getElementById('leave-button');
 const muteButton = document.getElementById('mute-button');
 let conversation = [];
 
+// WebSocket for real-time transcription
+let transcriptionSocket = null;
+let isTranscribing = false;
+const transcriptionDisplay = document.createElement('div');
+transcriptionDisplay.className = 'transcription-display';
+transcriptionDisplay.innerHTML = '<div class="transcription-status">Waiting to start...</div><div class="transcription-text"></div>';
+document.querySelector('.chat-interface').insertBefore(transcriptionDisplay, chatMessages);
+
+// Initialize WebSocket connection
+function initWebSocket() {
+    // Get the protocol (ws or wss)
+    const protocol = window.location.protocol === 'https:' ? 'wss://' : 'ws://';
+    // Create WebSocket connection
+    transcriptionSocket = new WebSocket(`${protocol}${window.location.host}/ws/interview/transcribe/`);
+
+    // Connection opened
+    transcriptionSocket.addEventListener('open', (event) => {
+        console.log('WebSocket connection established');
+        updateTranscriptionStatus('Connected');
+
+        // Send start command
+        transcriptionSocket.send(JSON.stringify({
+            command: 'start'
+        }));
+    });
+
+    // Listen for messages
+    transcriptionSocket.addEventListener('message', (event) => {
+        const data = JSON.parse(event.data);
+        console.log('WebSocket message received:', data);
+
+        if (data.type === 'transcript') {
+            // Update the transcription display
+            const transcriptionText = document.querySelector('.transcription-text');
+            transcriptionText.textContent = data.transcript;
+
+            // If this is a final result, add it to the chat
+            if (data.is_final && data.transcript.trim()) {
+                // Only add to chat if it's not empty
+                appendMessage('You', data.transcript);
+
+                // Get AI response
+                getAIResponse(data.transcript);
+            }
+        } else if (data.type === 'status') {
+            updateTranscriptionStatus(data.message);
+        } else if (data.type === 'error') {
+            console.error('WebSocket error:', data.message);
+            updateTranscriptionStatus(`Error: ${data.message}`);
+        }
+    });
+
+    // Connection closed
+    transcriptionSocket.addEventListener('close', (event) => {
+        console.log('WebSocket connection closed');
+        updateTranscriptionStatus('Disconnected');
+
+        // Try to reconnect after a delay
+        setTimeout(() => {
+            if (!transcriptionSocket || transcriptionSocket.readyState === WebSocket.CLOSED) {
+                initWebSocket();
+            }
+        }, 3000);
+    });
+
+    // Connection error
+    transcriptionSocket.addEventListener('error', (event) => {
+        console.error('WebSocket error:', event);
+        updateTranscriptionStatus('Connection error');
+    });
+}
+
+// Update the transcription status display
+function updateTranscriptionStatus(status) {
+    const statusElement = document.querySelector('.transcription-status');
+    if (statusElement) {
+        statusElement.textContent = `Status: ${status}`;
+    }
+}
+
+// Start transcription
+function startTranscription() {
+    if (transcriptionSocket && transcriptionSocket.readyState === WebSocket.OPEN) {
+        isTranscribing = true;
+        updateTranscriptionStatus('Listening...');
+
+        // Start sending audio data
+        if (mediaRecorder && mediaRecorder.state === 'inactive') {
+            startStreamingAudio();
+        }
+    } else {
+        console.error('WebSocket not connected');
+        updateTranscriptionStatus('Not connected');
+
+        // Try to reconnect
+        initWebSocket();
+    }
+}
+
+// Stop transcription
+function stopTranscription() {
+    isTranscribing = false;
+    updateTranscriptionStatus('Stopped');
+
+    if (transcriptionSocket && transcriptionSocket.readyState === WebSocket.OPEN) {
+        transcriptionSocket.send(JSON.stringify({
+            command: 'stop'
+        }));
+    }
+
+    // Stop streaming audio
+    if (mediaRecorder && mediaRecorder.state === 'recording') {
+        mediaRecorder.stop();
+    }
+}
+
+// Get AI response for a transcript
+async function getAIResponse(transcript) {
+    try {
+        const response = await fetch('/interview_behavioral/get_response/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrftoken,
+            },
+            body: JSON.stringify({ message: transcript })
+        });
+        const data = await response.json();
+
+        if (data.message) {
+            appendMessage('Assistant', data.message);
+            synthesizeSpeech(data.message);
+        }
+    } catch (error) {
+        console.error('Error getting AI response:', error);
+    }
+}
+
 // Update current time
 function updateCurrentTime() {
     const now = new Date();
@@ -44,92 +182,109 @@ navigator.mediaDevices
         videoStream = stream;
         video.srcObject = stream;
         // Initialize media recorder for voice input
-        mediaRecorder = new MediaRecorder(stream);
-        setupMediaRecorder();
-        // Start recording by default when unmuted
+        setupMediaRecorder(stream);
+        // Start WebSocket connection
+        initWebSocket();
+        // Start transcription by default when unmuted
         if (!isMuted) {
-            startRecording();
+            startTranscription();
         }
     })
     .catch((error) => {
         console.error("Error accessing webcam:", error);
     });
 
-// Function to start recording
-function startRecording() {
+// Setup MediaRecorder for streaming audio
+function setupMediaRecorder(stream) {
+    // Create a new MediaRecorder with the stream
+    mediaRecorder = new MediaRecorder(stream, {
+        mimeType: 'audio/webm;codecs=opus',
+        audioBitsPerSecond: 16000
+    });
+
+    // Set up event handlers
+    mediaRecorder.ondataavailable = handleAudioData;
+    mediaRecorder.onstop = handleRecordingStopped;
+
+    console.log('MediaRecorder initialized');
+}
+
+// Start streaming audio in small chunks
+function startStreamingAudio() {
     if (mediaRecorder && mediaRecorder.state === 'inactive' && !isMuted) {
         audioChunks = [];
-        mediaRecorder.start();
+        // Start recording with small time slices (250ms)
+        mediaRecorder.start(250);
         isRecording = true;
-        console.log('Recording started');
+        console.log('Streaming audio started');
     }
 }
 
-// Function to stop recording
-function stopRecording() {
-    if (mediaRecorder && mediaRecorder.state === 'recording') {
-        mediaRecorder.stop();
-        isRecording = false;
-        console.log('Recording stopped');
-    }
-}
-
-// Setup MediaRecorder event handlers
-function setupMediaRecorder() {
-    mediaRecorder.ondataavailable = (event) => {
-        audioChunks.push(event.data);
-    };
-
-    mediaRecorder.onstop = async () => {
-        if (audioChunks.length === 0) return;
-
-        const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
-        audioChunks = [];
-
-        // Create form data and send to backend
-        const formData = new FormData();
-        formData.append('audio', audioBlob, 'recording.wav');
-
-        try {
-            const response = await fetch('/interview_behavioral/process_audio/', {
-                method: 'POST',
-                headers: {
-                    'X-CSRFToken': csrftoken,
-                },
-                body: formData
-            });
-            const data = await response.json();
-
-            if (data.recognized_text) {
-                appendMessage('You', data.recognized_text);
-                // Get AI response
-                const aiResponse = await fetch('/interview_behavioral/get_response/', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRFToken': csrftoken,
-                    },
-                    body: JSON.stringify({ message: data.recognized_text })
-                });
-                const aiData = await aiResponse.json();
-                if (aiData.message) {
-                    appendMessage('Assistant', aiData.message);
-                    synthesizeSpeech(aiData.message);
-                }
-            }
-
-            // Start a new recording if not muted
-            if (!isMuted) {
-                startRecording();
-            }
-        } catch (error) {
-            console.error('Error processing audio:', error);
-            // Attempt to restart recording even if there was an error
-            if (!isMuted) {
-                startRecording();
-            }
+// Handle audio data from MediaRecorder
+function handleAudioData(event) {
+    if (event.data.size > 0 && isTranscribing) {
+        // If WebSocket is connected, send the audio chunk
+        if (transcriptionSocket && transcriptionSocket.readyState === WebSocket.OPEN) {
+            // Convert to the format expected by Deepgram
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                const arrayBuffer = reader.result;
+                transcriptionSocket.send(arrayBuffer);
+            };
+            reader.readAsArrayBuffer(event.data);
+        } else {
+            // Store chunks for later processing if WebSocket is not available
+            audioChunks.push(event.data);
         }
-    };
+    }
+}
+
+// Handle recording stopped event
+function handleRecordingStopped() {
+    isRecording = false;
+    console.log('Recording stopped');
+
+    // If we have accumulated chunks and WebSocket is not available,
+    // we can process them using the traditional HTTP endpoint
+    if (audioChunks.length > 0 && (!transcriptionSocket || transcriptionSocket.readyState !== WebSocket.OPEN)) {
+        processAudioChunks();
+    }
+
+    // Restart streaming if transcription is still active
+    if (isTranscribing && !isMuted) {
+        startStreamingAudio();
+    }
+}
+
+// Process accumulated audio chunks using HTTP endpoint
+async function processAudioChunks() {
+    if (audioChunks.length === 0) return;
+
+    const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+    audioChunks = [];
+
+    // Create form data and send to backend
+    const formData = new FormData();
+    formData.append('audio', audioBlob, 'recording.webm');
+
+    try {
+        const response = await fetch('/interview_behavioral/process_audio/', {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': csrftoken,
+            },
+            body: formData
+        });
+        const data = await response.json();
+
+        if (data.recognized_text) {
+            appendMessage('You', data.recognized_text);
+            // Get AI response
+            getAIResponse(data.recognized_text);
+        }
+    } catch (error) {
+        console.error('Error processing audio:', error);
+    }
 }
 
 // Timer Functionality
@@ -279,9 +434,9 @@ muteButton.addEventListener('click', () => {
 
     // Handle audio recording
     if (isMuted) {
-        stopRecording();
+        stopTranscription();
     } else {
-        startRecording();
+        startTranscription();
     }
 
     // Toggle audio tracks
@@ -329,10 +484,12 @@ function saveAssessment() {
 leaveButton.addEventListener('click', () => {
     clearInterval(timerInterval);
 
-    // Stop recording if active
-    if (isRecording) {
-        mediaRecorder.stop();
-        isRecording = false;
+    // Stop transcription
+    stopTranscription();
+
+    // Close WebSocket connection
+    if (transcriptionSocket) {
+        transcriptionSocket.close();
     }
 
     // Stop all tracks

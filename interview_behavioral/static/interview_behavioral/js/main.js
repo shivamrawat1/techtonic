@@ -35,6 +35,13 @@ let mediaRecorder;
 let audioChunks = [];
 let isRecording = false;
 let isMuted = false;
+let silenceTimer = null;
+let audioContext = null;
+let audioAnalyser = null;
+let isUserSpeaking = false;
+let isBotSpeaking = false;
+let audioElement = null;
+let endpointingTimeout = 500; // 500ms of silence to consider speech ended
 
 // Initialize video and audio stream
 let videoStream;
@@ -43,17 +50,98 @@ navigator.mediaDevices
     .then((stream) => {
         videoStream = stream;
         video.srcObject = stream;
+
+        // Set up audio context for speech detection
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const source = audioContext.createMediaStreamSource(stream);
+        audioAnalyser = audioContext.createAnalyser();
+        audioAnalyser.fftSize = 256;
+        source.connect(audioAnalyser);
+
         // Initialize media recorder for voice input
         mediaRecorder = new MediaRecorder(stream);
         setupMediaRecorder();
-        // Start recording by default when unmuted
-        if (!isMuted) {
-            startRecording();
-        }
+
+        // Start monitoring audio levels for speech detection
+        startSpeechDetection();
     })
     .catch((error) => {
         console.error("Error accessing webcam:", error);
     });
+
+// Function to detect speech based on audio levels
+function startSpeechDetection() {
+    const bufferLength = audioAnalyser.frequencyBinCount;
+    const dataArray = new Uint8Array(bufferLength);
+
+    function checkAudioLevel() {
+        if (isMuted) {
+            requestAnimationFrame(checkAudioLevel);
+            return;
+        }
+
+        audioAnalyser.getByteFrequencyData(dataArray);
+        let sum = 0;
+        for (let i = 0; i < bufferLength; i++) {
+            sum += dataArray[i];
+        }
+        const average = sum / bufferLength;
+
+        // Threshold for speech detection
+        const threshold = 15;
+
+        if (average > threshold) {
+            // User is speaking
+            if (!isUserSpeaking) {
+                userStartedSpeaking();
+            }
+
+            // Reset silence timer
+            if (silenceTimer) {
+                clearTimeout(silenceTimer);
+            }
+
+            // Set a new silence timer
+            silenceTimer = setTimeout(() => {
+                userStoppedSpeaking();
+            }, endpointingTimeout);
+        }
+
+        requestAnimationFrame(checkAudioLevel);
+    }
+
+    checkAudioLevel();
+}
+
+// Function when user starts speaking
+function userStartedSpeaking() {
+    console.log('User started speaking');
+    isUserSpeaking = true;
+
+    // If bot is speaking, stop it (barge-in functionality)
+    if (isBotSpeaking && audioElement) {
+        console.log('Interrupting bot speech (barge-in)');
+        audioElement.pause();
+        audioElement.currentTime = 0;
+        isBotSpeaking = false;
+    }
+
+    // Start recording if not already recording
+    if (!isRecording) {
+        startRecording();
+    }
+}
+
+// Function when user stops speaking
+function userStoppedSpeaking() {
+    console.log('User stopped speaking');
+    isUserSpeaking = false;
+
+    // Stop recording and process the audio
+    if (isRecording) {
+        stopRecording();
+    }
+}
 
 // Function to start recording
 function startRecording() {
@@ -114,22 +202,27 @@ function setupMediaRecorder() {
                 const aiData = await aiResponse.json();
                 if (aiData.message) {
                     appendMessage('Assistant', aiData.message);
-                    synthesizeSpeech(aiData.message);
+                    botStartedSpeaking();
+                    await synthesizeSpeech(aiData.message);
+                    botStoppedSpeaking();
                 }
-            }
-
-            // Start a new recording if not muted
-            if (!isMuted) {
-                startRecording();
             }
         } catch (error) {
             console.error('Error processing audio:', error);
-            // Attempt to restart recording even if there was an error
-            if (!isMuted) {
-                startRecording();
-            }
         }
     };
+}
+
+// Function when bot starts speaking
+function botStartedSpeaking() {
+    console.log('Bot started speaking');
+    isBotSpeaking = true;
+}
+
+// Function when bot stops speaking
+function botStoppedSpeaking() {
+    console.log('Bot stopped speaking');
+    isBotSpeaking = false;
 }
 
 // Timer Functionality
@@ -204,21 +297,43 @@ function appendMessage(sender, message) {
 }
 
 // Synthesize Speech
-function synthesizeSpeech(text) {
-    fetch('/interview_behavioral/synthesize_text/', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'X-CSRFToken': csrftoken,
-        },
-        body: new URLSearchParams({ text }),
-    })
-        .then((response) => response.blob())
-        .then((blob) => {
-            const audio = new Audio(URL.createObjectURL(blob));
-            audio.play();
-        })
-        .catch((error) => console.error('Speech synthesis error:', error));
+async function synthesizeSpeech(text) {
+    try {
+        const response = await fetch('/interview_behavioral/synthesize_text/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'X-CSRFToken': csrftoken,
+            },
+            body: new URLSearchParams({ text }),
+        });
+
+        const blob = await response.blob();
+
+        // Create and play audio
+        if (audioElement) {
+            // If there's an existing audio element, clean it up
+            audioElement.pause();
+            audioElement.remove();
+        }
+
+        audioElement = new Audio(URL.createObjectURL(blob));
+
+        // Add event listener for when audio ends
+        audioElement.addEventListener('ended', () => {
+            botStoppedSpeaking();
+        });
+
+        // Play the audio
+        await audioElement.play();
+
+        return new Promise((resolve) => {
+            audioElement.onended = resolve;
+        });
+    } catch (error) {
+        console.error('Speech synthesis error:', error);
+        botStoppedSpeaking();
+    }
 }
 
 // Send a Text Message
@@ -243,7 +358,9 @@ async function sendMessage() {
 
         if (data.message) {
             appendMessage('Assistant', data.message);
-            synthesizeSpeech(data.message);
+            botStartedSpeaking();
+            await synthesizeSpeech(data.message);
+            botStoppedSpeaking();
         } else if (data.error) {
             appendMessage('Error', data.error);
         }
@@ -279,9 +396,9 @@ muteButton.addEventListener('click', () => {
 
     // Handle audio recording
     if (isMuted) {
-        stopRecording();
-    } else {
-        startRecording();
+        if (isRecording) {
+            stopRecording();
+        }
     }
 
     // Toggle audio tracks

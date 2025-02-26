@@ -98,7 +98,7 @@ body {
 
 /* Video Container */
 .video-container {
-    flex: 2;
+    flex: 1.2;
     background-color: #1a1a1a;
     border-radius: 12px;
     overflow: hidden;
@@ -119,8 +119,6 @@ body {
 /* Chat Interface */
 .chat-interface {
     flex: 1;
-    min-width: 300px;
-    max-width: 400px;
     height: 100%;
     background-color: var(--panel-bg);
     border-radius: 12px;
@@ -382,4 +380,76 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
     background: rgba(255, 255, 255, 0.4);
+}
+
+/* Real-time transcription styles */
+.transcription-display {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.transcription-status {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.transcription-status::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 8px;
+    background-color: #ccc;
+    animation: pulse 1.5s infinite;
+}
+
+.transcription-text {
+    min-height: 24px;
+    font-size: 16px;
+    color: #333;
+    line-height: 1.4;
+    font-style: italic;
+    transition: opacity 0.2s ease;
+}
+
+/* Pulse animation for the status indicator */
+@keyframes pulse {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(66, 133, 244, 0.7);
+    }
+
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 6px rgba(66, 133, 244, 0);
+    }
+
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(66, 133, 244, 0);
+    }
+}
+
+/* Status colors */
+.transcription-status[data-status="connected"]::before,
+.transcription-status[data-status="listening"]::before {
+    background-color: #4CAF50;
+}
+
+.transcription-status[data-status="disconnected"]::before,
+.transcription-status[data-status="error"]::before {
+    background-color: #F44336;
+    animation: none;
+}
+
+.transcription-status[data-status="connecting"]::before {
+    background-color: #FFC107;
 }
