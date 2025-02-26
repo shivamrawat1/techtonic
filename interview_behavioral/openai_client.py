@@ -10,6 +10,7 @@ class OpenAIClient:
         self.assistant = None
         self.resume = None
         self.job_description = None
+        self.thread = None  # Store the thread ID for the entire interview session
 
     def create_assistant(self):
         """Create an assistant for conducting behavioral interviews."""
@@ -22,7 +23,7 @@ class OpenAIClient:
             assistant = self.client.beta.assistants.create(
                 name="Behavioral Interview Assistant",
                 instructions=(
-                    f"You are an expert behavioral interviewer conducting an interview with {context}. Your task is to ask behavioral questions that are highly relevant to the candidate’s resume and the job description. Ask one question at a time, ensuring a logical flow between questions based on the candidate’s responses. If their answer is vague or lacks depth, ask follow-up or clarifying questions to encourage them to provide more detail or concrete examples. Do not simply move to the next question; instead, build on their responses to create a structured and engaging interview. The goal is to make the conversation feel seamless and insightful, rather than a disconnected series of questions. Begin by asking a strong behavioral question that aligns with their experience and the job role, then guide the conversation naturally based on their responses."
+                    f"You are an expert behavioral interviewer conducting an interview with {context}. Your task is to ask behavioral questions that are highly relevant to the candidate's resume and the job description. Ask one question at a time, ensuring a logical flow between questions based on the candidate's responses. If their answer is vague or lacks depth, ask follow-up or clarifying questions to encourage them to provide more detail or concrete examples. Do not simply move to the next question; instead, build on their responses to create a structured and engaging interview. The goal is to make the conversation feel seamless and insightful, rather than a disconnected series of questions. Begin by asking a strong behavioral question that aligns with their experience and the job role, then guide the conversation naturally based on their responses."
                 ),
                 model="gpt-4o",
             )
@@ -37,19 +38,40 @@ class OpenAIClient:
         self.resume = resume
         self.job_description = job_description
         self.assistant = self.create_assistant()
+        
+        # Create a new thread for the entire interview session
+        try:
+            self.thread = self.client.beta.threads.create()
+            print(f"New interview thread created with ID: {self.thread.id}")
+            
+            # Add an initial system message to start the interview
+            self.client.beta.threads.messages.create(
+                thread_id=self.thread.id,
+                role="user",
+                content="Hello, I'm ready to start the behavioral interview. Please ask me your first question."
+            )
+        except Exception as e:
+            print(f"Error creating thread: {e}")
 
     def get_response(self, user_message):
         """Get a response from the assistant based on the user's message."""
         try:
-            # Create a new thread with the user's message
-            thread = self.client.beta.threads.create(
-                messages=[{"role": "user", "content": user_message}]
+            if not self.thread:
+                # If thread doesn't exist for some reason, create one
+                self.thread = self.client.beta.threads.create()
+                print(f"Created new thread with ID: {self.thread.id} because no thread existed")
+            
+            # Add the user message to the existing thread
+            self.client.beta.threads.messages.create(
+                thread_id=self.thread.id,
+                role="user",
+                content=user_message
             )
-            print(f"Thread created with ID: {thread.id}")
+            print(f"Added user message to thread {self.thread.id}")
 
             # Run the assistant on the thread
             run = self.client.beta.threads.runs.create(
-                thread_id=thread.id,
+                thread_id=self.thread.id,
                 assistant_id=self.assistant.id
             )
             print(f"Run started with ID: {run.id}")
@@ -59,19 +81,19 @@ class OpenAIClient:
             retries = 0
             while run.status not in ['completed', 'failed', 'cancelled', 'incomplete'] and retries < max_retries:
                 time.sleep(1)
-                run = self.client.beta.threads.runs.retrieve(thread_id=thread.id, run_id=run.id)
+                run = self.client.beta.threads.runs.retrieve(thread_id=self.thread.id, run_id=run.id)
                 print(f"Polling run status: {run.status}")
                 retries += 1
 
             if run.status == 'completed':
                 # Retrieve the assistant's reply
-                messages = self.client.beta.threads.messages.list(thread_id=thread.id)
+                messages = self.client.beta.threads.messages.list(thread_id=self.thread.id)
                 print(f"Messages retrieved: {messages.data}")
 
                 # Find the assistant's messages
                 assistant_messages = [msg for msg in messages.data if msg.role == 'assistant']
                 if assistant_messages:
-                    assistant_reply = assistant_messages[-1]  # Get the last assistant message
+                    assistant_reply = assistant_messages[0]  # Get the most recent assistant message
                     # Extract the text content from the message
                     assistant_message = ''.join(
                         content_item.text.value for content_item in assistant_reply.content if content_item.type == 'text'

@@ -15,11 +15,13 @@ from interview_behavioral.services.controller import SpeechController
 from interview_behavioral.services.gtts_service import GTTSService
 
 # Initialize services
-openai_client = OpenAIClient()
 deepgram_service = DeepgramService()
 recognition_service = SpeechRecognitionService(deepgram_service)
 gtts_service = GTTSService()
 controller = SpeechController(recognition_service, gtts_service)
+
+# We'll use a dictionary to store OpenAI clients for each user session
+openai_clients = {}
 
 @login_required
 def setup(request):
@@ -38,8 +40,17 @@ def index(request):
         request.session['job_description'] = job_description
         request.session['interview_duration'] = duration
         
-        # Initialize OpenAI client with setup information
-        openai_client.initialize_interview(resume, job_description)
+        # Create a new OpenAI client for this session
+        session_key = request.session.session_key
+        if not session_key:
+            request.session.save()
+            session_key = request.session.session_key
+            
+        openai_clients[session_key] = OpenAIClient()
+        openai_clients[session_key].initialize_interview(resume, job_description)
+        
+        # Store the session key in the session for reference
+        request.session['openai_client_key'] = session_key
     
     # Always pass duration to template, either from POST or session
     context = {
@@ -57,7 +68,27 @@ def get_response(request):
             if not user_message:
                 return JsonResponse({'error': 'Message is required.'}, status=400)
             
-            assistant_message = openai_client.get_response(user_message)
+            # Get the OpenAI client for this session
+            session_key = request.session.get('openai_client_key')
+            if not session_key or session_key not in openai_clients:
+                # If no client exists, create a new one
+                session_key = request.session.session_key
+                if not session_key:
+                    request.session.save()
+                    session_key = request.session.session_key
+                
+                # Initialize with any stored resume/job description
+                resume = request.session.get('resume', '')
+                job_description = request.session.get('job_description', '')
+                
+                openai_clients[session_key] = OpenAIClient()
+                openai_clients[session_key].initialize_interview(resume, job_description)
+                request.session['openai_client_key'] = session_key
+                
+                print(f"Created new OpenAI client for session {session_key}")
+            
+            # Get response using the session's OpenAI client
+            assistant_message = openai_clients[session_key].get_response(user_message)
             return JsonResponse({'message': assistant_message})
         except json.JSONDecodeError:
             return JsonResponse({'error': 'Invalid JSON.'}, status=400)
