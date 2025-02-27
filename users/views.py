@@ -193,7 +193,7 @@ def verify_email(request):
             
             login(request, user)
             messages.success(request, 'Email verified successfully!')
-            return redirect('landingpage')
+            return redirect('login')
         else:
             messages.error(request, 'Invalid verification code. Please try again.')
     

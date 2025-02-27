@@ -1,137 +1,172 @@
-{% extends 'users/base.html' %}
-
-{% block title %}Verify Email{% endblock %}
-
-{% block content %}
-<div class="auth-container">
-    <div class="auth-box">
-        <h1>Verify Your Email</h1>
-        <p class="verification-message">We've sent a verification code to your email address. Please enter it below to verify your account.</p>
-        
-        <form method="post" class="auth-form">
-            {% csrf_token %}
-            <div class="form-group">
-                <label for="code">Verification Code</label>
-                <input type="text" id="code" name="code" required maxlength="6" pattern="\d{6}" 
-                       title="Please enter the 6-digit code" autocomplete="off">
-            </div>
-            {% if messages %}
-            <div class="messages">
-                {% for message in messages %}
-                <p class="{% if message.tags %}{{ message.tags }}-message{% endif %}">{{ message }}</p>
-                {% endfor %}
-            </div>
-            {% endif %}
-            <button type="submit" class="btn btn-primary">Verify Email</button>
-        </form>
-        
-        <form method="post" action="{% url 'resend_code' %}" class="resend-form">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-secondary">Resend Code</button>
-        </form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Email - Techtonic</title>
+    {% load static %}
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-box">
+            <h1>Verify Your Email</h1>
+            <p class="verification-message">We've sent a verification code to your email address. Please enter it below to verify your account.</p>
+            
+            <form method="post" class="auth-form">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="code">Verification Code</label>
+                    <input type="text" id="code" name="code" required maxlength="6" pattern="\d{6}" 
+                           title="Please enter the 6-digit code" autocomplete="off">
+                </div>
+                {% if messages %}
+                <div class="messages">
+                    {% for message in messages %}
+                    <p class="{% if message.tags %}{{ message.tags }}-message{% endif %}">{{ message }}</p>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                <button type="submit" class="btn btn-primary">Verify Email</button>
+            </form>
+            
+            <form method="post" action="{% url 'resend_code' %}" class="resend-form">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-secondary">Resend Code</button>
+            </form>
+        </div>
     </div>
-</div>
 
-<style>
-.auth-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 2rem;
-    background-color: #f3f4f6;
-}
+    <style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Inter', sans-serif;
+        background-color: #f3f4f6;
+    }
 
-.auth-box {
-    background: white;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-}
+    .auth-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 2rem;
+        background-color: #f3f4f6;
+    }
 
-.auth-box h1 {
-    margin-bottom: 1rem;
-    text-align: center;
-    color: #374151;
-}
+    .auth-box {
+        background: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+    }
 
-.verification-message {
-    text-align: center;
-    color: #6b7280;
-    margin-bottom: 2rem;
-}
+    .auth-box h1 {
+        margin-bottom: 1rem;
+        text-align: center;
+        color: #374151;
+        font-size: 24px;
+        font-weight: 600;
+    }
 
-.auth-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
+    .verification-message {
+        text-align: center;
+        color: #6b7280;
+        margin-bottom: 2rem;
+        font-size: 14px;
+    }
 
-.form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
+    .auth-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
 
-.form-group label {
-    font-weight: 500;
-    color: #374151;
-}
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
 
-.form-group input {
-    padding: 0.75rem;
-    border: 1px solid #d1d5db;
-    border-radius: 4px;
-    font-size: 1rem;
-    text-align: center;
-    letter-spacing: 0.25em;
-}
+    .form-group label {
+        font-weight: 500;
+        color: #374151;
+        font-size: 14px;
+    }
 
-.error-message {
-    color: #dc2626;
-    font-size: 0.875rem;
-    margin-top: 0.25rem;
-}
+    .form-group input {
+        padding: 0.75rem;
+        border: 1px solid #d1d5db;
+        border-radius: 4px;
+        font-size: 1rem;
+        text-align: center;
+        letter-spacing: 0.25em;
+        background-color: white;
+        transition: border-color 0.2s, box-shadow 0.2s;
+    }
 
-.success-message {
-    color: #059669;
-    font-size: 0.875rem;
-    margin-top: 0.25rem;
-}
+    .form-group input:focus {
+        outline: none;
+        border-color: #6366f1;
+        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    }
 
-.btn {
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 4px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    width: 100%;
-}
+    .form-group input:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0 30px white inset !important;
+    }
 
-.btn-primary {
-    background-color: #6366f1;
-    color: white;
-}
+    .error-message {
+        color: #dc2626;
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+    }
 
-.btn-primary:hover {
-    background-color: #4f46e5;
-}
+    .success-message {
+        color: #059669;
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+    }
 
-.btn-secondary {
-    background-color: #9ca3af;
-    color: white;
-    margin-top: 1rem;
-}
+    .btn {
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 4px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        width: 100%;
+        font-size: 14px;
+    }
 
-.btn-secondary:hover {
-    background-color: #6b7280;
-}
+    .btn-primary {
+        background-color: #6366f1;
+        color: white;
+    }
 
-.resend-form {
-    margin-top: 1rem;
-}
-</style>
-{% endblock %} 
+    .btn-primary:hover {
+        background-color: #4f46e5;
+    }
+
+    .btn-secondary {
+        background-color: #9ca3af;
+        color: white;
+        margin-top: 1rem;
+    }
+
+    .btn-secondary:hover {
+        background-color: #6b7280;
+    }
+
+    .resend-form {
+        margin-top: 1rem;
+    }
+
+    .messages {
+        margin-bottom: 1rem;
+    }
+    </style>
+</body>
+</html> 
