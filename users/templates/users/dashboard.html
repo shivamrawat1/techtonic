@@ -6,7 +6,570 @@
 {% block header_description %}Your central hub for tracking progress, updates, and activities.{% endblock %}
 
 {% block content %}
-<div class="dashboard-welcome">
-    <h1>Welcome!!, {{ user.username }}!</h1>
+<div class="dashboard-container">
+    <div class="dashboard-welcome mb-4">
+        <h1>Welcome, {{ user.username }}!</h1>
+        <p class="text-muted">Track your interview practice progress and performance</p>
+    </div>
+
+    <div class="dashboard-grid">
+        <!-- Assessment Statistics -->
+        <div class="dashboard-card stats-card">
+            <div class="card-header">
+                <h5><i class="fas fa-chart-pie me-2"></i>Assessment Statistics</h5>
+            </div>
+            <div class="card-body">
+                {% if assessment_stats %}
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-value">{{ assessment_stats.total }}</div>
+                            <div class="stat-label">Total</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">{{ assessment_stats.technical }}</div>
+                            <div class="stat-label">Technical</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">{{ assessment_stats.behavioral }}</div>
+                            <div class="stat-label">Behavioral</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Weekly Interview Bar Chart -->
+                    <div class="weekly-chart-container">
+                        <h6 class="chart-title">Interviews (Last 7 Days)</h6>
+                        <div class="weekly-chart">
+                            <!-- Y-axis -->
+                            <div class="chart-y-axis">
+                                {% if max_count > 0 %}
+                                    {% for i in y_axis_values %}
+                                    <div class="y-axis-label">{{ i }}</div>
+                                    {% endfor %}
+                                {% else %}
+                                    <div class="y-axis-label">0</div>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="chart-content">
+                                <div class="chart-bars">
+                                    {% for day in weekly_data %}
+                                    <div class="chart-bar-group">
+                                        <div class="bar-pair">
+                                            <div class="chart-bar technical" style="height: {{ day.technical_height }}%;" title="{{ day.technical }} technical interviews"></div>
+                                            <div class="chart-bar behavioral" style="height: {{ day.behavioral_height }}%;" title="{{ day.behavioral }} behavioral interviews"></div>
+                                        </div>
+                                        <div class="chart-label">{{ day.label }}</div>
+                                    </div>
+                                    {% empty %}
+                                    <div class="empty-chart">
+                                        <p>No interviews in the last 7 days</p>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                
+                                <!-- X-axis line -->
+                                <div class="chart-x-axis"></div>
+                                
+                                <div class="chart-legend">
+                                    <div class="legend-item">
+                                        <span class="legend-color technical"></span>
+                                        <span class="legend-text">Technical</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <span class="legend-color behavioral"></span>
+                                        <span class="legend-text">Behavioral</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="empty-state">
+                        <i class="fas fa-chart-bar"></i>
+                        <p>No assessments completed yet</p>
+                        <div class="empty-actions">
+                            <a href="{% url 'interview_technical:setup' %}" class="btn-primary">
+                                <i class="fas fa-code me-2"></i>Technical Interview
+                            </a>
+                            <a href="{% url 'interview_behavioral:setup' %}" class="btn-primary">
+                                <i class="fas fa-comments me-2"></i>Behavioral Interview
+                            </a>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Technical Skills Breakdown -->
+        <div class="dashboard-card skills-card">
+            <div class="card-header">
+                <h5><i class="fas fa-code me-2"></i>Technical Skills</h5>
+            </div>
+            <div class="card-body">
+                {% if tech_skills %}
+                    {% for skill, score in tech_skills.items %}
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">{{ skill }}</span>
+                            <span class="skill-score {% if score >= 70 %}high{% elif score >= 40 %}medium{% else %}low{% endif %}">{{ score }}%</span>
+                        </div>
+                        <div class="skill-bar-container">
+                            <div class="skill-bar technical" style="width: {{ score }}%;"></div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="empty-state">
+                        <i class="fas fa-laptop-code"></i>
+                        <p>Complete technical assessments to see your skills breakdown</p>
+                        <a href="{% url 'interview_technical:setup' %}" class="btn-secondary">
+                            <i class="fas fa-code me-2"></i>Start Technical Interview
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        
+        <!-- Behavioral Skills -->
+        <div class="dashboard-card skills-card">
+            <div class="card-header">
+                <h5><i class="fas fa-comments me-2"></i>Behavioral Skills</h5>
+            </div>
+            <div class="card-body">
+                {% if behavioral_skills %}
+                    {% for component, data in behavioral_skills.items %}
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">{{ component|title }}</span>
+                            <span class="skill-score {% if data.score >= 70 %}high{% elif data.score >= 40 %}medium{% else %}low{% endif %}">{{ data.score }}%</span>
+                        </div>
+                        <div class="skill-bar-container">
+                            <div class="skill-bar behavioral" style="width: {{ data.score }}%;"></div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="empty-state">
+                        <i class="fas fa-user-tie"></i>
+                        <p>Complete behavioral assessments to see your skills breakdown</p>
+                        <a href="{% url 'interview_behavioral:setup' %}" class="btn-secondary">
+                            <i class="fas fa-comments me-2"></i>Start Behavioral Interview
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
 </div>
+
+<style>
+/* Dashboard Layout */
+.dashboard-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.dashboard-welcome {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.dashboard-welcome h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Cards */
+.dashboard-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+.card-header h5 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+    display: flex;
+    align-items: center;
+}
+
+.card-header h5 i {
+    margin-right: 0.5rem;
+    color: #4e73df;
+}
+
+.card-body {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Stats Card */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 0.75rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    transition: transform 0.2s;
+}
+
+.stat-item:hover {
+    transform: translateY(-3px);
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+}
+
+.stat-item:nth-child(1) .stat-value {
+    color: #4e73df;
+}
+
+.stat-item:nth-child(2) .stat-value {
+    color: #36b9cc;
+}
+
+.stat-item:nth-child(3) .stat-value {
+    color: #1cc88a;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: #858796;
+    font-weight: 600;
+}
+
+/* Weekly Chart */
+.weekly-chart-container {
+    margin-top: 1.5rem;
+    border: 1px solid #e3e6f0;
+    border-radius: 8px;
+    padding: 1.5rem;
+    background-color: white;
+}
+
+.chart-title {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    color: #5a5c69;
+}
+
+.weekly-chart {
+    display: flex;
+    height: 250px;
+}
+
+.chart-y-axis {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-right: 10px;
+    width: 30px;
+    height: 200px;
+    position: relative;
+}
+
+.y-axis-label {
+    font-size: 0.7rem;
+    color: #858796;
+    text-align: right;
+    height: 20px;
+    line-height: 0;
+    position: relative;
+    top: -10px;
+}
+
+.chart-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.chart-bars {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 200px;
+    position: relative;
+    z-index: 2;
+}
+
+.chart-x-axis {
+    height: 1px;
+    background-color: #e3e6f0;
+    width: 100%;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.chart-bar-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+}
+
+.bar-pair {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    width: 100%;
+    height: 200px;
+    align-items: flex-end;
+}
+
+.chart-bar {
+    width: 20px;
+    border-radius: 4px 4px 0 0;
+    transition: height 0.3s;
+}
+
+.chart-bar.technical {
+    background-color: #4e73df;
+}
+
+.chart-bar.behavioral {
+    background-color: #1cc88a;
+}
+
+.chart-label {
+    font-size: 0.7rem;
+    color: #858796;
+    margin-top: 0.5rem;
+    text-align: center;
+}
+
+.chart-legend {
+    display: flex;
+    justify-content: center;
+    margin-top: 0.5rem;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin: 0 0.75rem;
+}
+
+.legend-color {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+    margin-right: 0.5rem;
+}
+
+.legend-color.technical {
+    background-color: #4e73df;
+}
+
+.legend-color.behavioral {
+    background-color: #1cc88a;
+}
+
+.legend-text {
+    font-size: 0.75rem;
+    color: #5a5c69;
+}
+
+.empty-chart {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.empty-chart p {
+    color: #858796;
+    font-size: 0.9rem;
+}
+
+/* Skills */
+.skill-item {
+    margin-bottom: 1.25rem;
+}
+
+.skill-item:last-child {
+    margin-bottom: 0;
+}
+
+.skill-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.skill-name {
+    font-weight: 600;
+    color: #5a5c69;
+}
+
+.skill-score {
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+.skill-score.high {
+    color: #1cc88a;
+}
+
+.skill-score.medium {
+    color: #f6c23e;
+}
+
+.skill-score.low {
+    color: #e74a3b;
+}
+
+.skill-bar-container {
+    height: 8px;
+    background-color: #eaecf4;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.skill-bar {
+    height: 100%;
+    border-radius: 4px;
+}
+
+.skill-bar.technical {
+    background-color: #4e73df;
+}
+
+.skill-bar.behavioral {
+    background-color: #1cc88a;
+}
+
+/* Buttons */
+.btn-primary, .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.btn-primary {
+    background-color: #4e73df;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #2e59d9;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: #f8f9fa;
+    color: #5a5c69;
+    border: 1px solid #ddd;
+}
+
+.btn-secondary:hover {
+    background-color: #e2e6ea;
+    transform: translateY(-2px);
+}
+
+/* Empty States */
+.empty-state {
+    text-align: center;
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.empty-state i {
+    font-size: 2.5rem;
+    color: #d1d3e2;
+    margin-bottom: 1rem;
+}
+
+.empty-state p {
+    color: #858796;
+    margin-bottom: 1.5rem;
+}
+
+.empty-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .chart-bar {
+        width: 15px;
+    }
+    
+    .bar-pair {
+        gap: 2px;
+    }
+    
+    .y-axis-label {
+        font-size: 0.65rem;
+    }
+}
+</style>
 {% endblock %} 

@@ -269,4 +269,165 @@ def delete_account(request):
 
 @login_required
 def dashboard_view(request):
-    return render(request, 'users/dashboard.html')
+    # Import Assessment model from assessments app
+    from assessments.models import Assessment
+    from django.db.models import Avg, Count, Q
+    import json
+    from datetime import datetime, timedelta
+    
+    # Get user's assessments
+    user_assessments = Assessment.objects.filter(user=request.user)
+    
+    # Assessment statistics
+    assessment_stats = {
+        'total': user_assessments.count(),
+        'technical': user_assessments.filter(assessment_type='technical').count(),
+        'behavioral': user_assessments.filter(assessment_type='behavioral').count(),
+    }
+    
+    # Calculate weekly data for the bar chart (last 7 days)
+    weekly_data = []
+    today = timezone.now().date()
+    
+    # Get the date 7 days ago
+    seven_days_ago = today - timedelta(days=6)
+    
+    # Create a list of the last 7 days
+    date_list = [(seven_days_ago + timedelta(days=i)) for i in range(7)]
+    
+    # Maximum count to normalize heights
+    max_count = 1  # Start with 1 to avoid division by zero
+    
+    # First pass: collect counts and find maximum
+    temp_data = []
+    for day_date in date_list:
+        # Count assessments for this day
+        day_start = timezone.make_aware(datetime.combine(day_date, datetime.min.time()))
+        day_end = timezone.make_aware(datetime.combine(day_date, datetime.max.time()))
+        
+        technical_count = user_assessments.filter(
+            assessment_type='technical',
+            created_at__gte=day_start,
+            created_at__lte=day_end
+        ).count()
+        
+        behavioral_count = user_assessments.filter(
+            assessment_type='behavioral',
+            created_at__gte=day_start,
+            created_at__lte=day_end
+        ).count()
+        
+        # Update max count if needed
+        day_max = max(technical_count, behavioral_count)
+        if day_max > max_count:
+            max_count = day_max
+        
+        temp_data.append({
+            'date': day_date,
+            'technical': technical_count,
+            'behavioral': behavioral_count,
+        })
+    
+    # Generate y-axis values (0 to max_count)
+    y_axis_values = []
+    if max_count <= 5:
+        # If max count is small, show all integers
+        y_axis_values = list(range(max_count, -1, -1))
+    else:
+        # Otherwise, show approximately 5 values
+        step = max(1, round(max_count / 4))
+        current = max_count
+        while current >= 0:
+            y_axis_values.append(current)
+            current -= step
+        if current + step > 0:
+            y_axis_values.append(0)
+    
+    # Second pass: calculate heights as percentages
+    for day_data in temp_data:
+        # Calculate height percentages (0-100)
+        technical_height = (day_data['technical'] / max_count) * 100 if max_count > 0 else 0
+        behavioral_height = (day_data['behavioral'] / max_count) * 100 if max_count > 0 else 0
+        
+        # Format the day label
+        if day_data['date'] == today:
+            day_label = 'Today'
+        elif day_data['date'] == today - timedelta(days=1):
+            day_label = 'Yesterday'
+        else:
+            day_label = day_data['date'].strftime('%a')
+        
+        weekly_data.append({
+            'label': day_label,
+            'technical': day_data['technical'],
+            'behavioral': day_data['behavioral'],
+            'technical_height': technical_height,
+            'behavioral_height': behavioral_height,
+        })
+    
+    # Technical skills breakdown
+    tech_skills = {}
+    tech_assessments = user_assessments.filter(assessment_type='technical').exclude(analysis__isnull=True)
+    
+    if tech_assessments.exists():
+        # UMPIRE components for technical interviews
+        components = ['understanding', 'match', 'plan', 'implement', 'review', 'evaluate']
+        component_scores = {comp: [] for comp in components}
+        
+        for assessment in tech_assessments:
+            try:
+                analysis = assessment.analysis
+                if isinstance(analysis, str):
+                    analysis = json.loads(analysis)
+                
+                if 'components' in analysis:
+                    for comp in components:
+                        if comp in analysis['components'] and 'score' in analysis['components'][comp]:
+                            component_scores[comp].append(float(analysis['components'][comp]['score']))
+            except (json.JSONDecodeError, TypeError, KeyError):
+                continue
+        
+        # Calculate average scores for each component
+        for comp in components:
+            if component_scores[comp]:
+                tech_skills[comp.capitalize()] = round(sum(component_scores[comp]) / len(component_scores[comp]))
+    
+    # Behavioral skills breakdown
+    behavioral_skills = {}
+    behavioral_assessments = user_assessments.filter(assessment_type='behavioral').exclude(analysis__isnull=True)
+    
+    if behavioral_assessments.exists():
+        # STAR components for behavioral interviews
+        components = ['situation', 'task', 'action', 'result']
+        component_scores = {comp: [] for comp in components}
+        
+        for assessment in behavioral_assessments:
+            try:
+                analysis = assessment.analysis
+                if isinstance(analysis, str):
+                    analysis = json.loads(analysis)
+                
+                if 'components' in analysis:
+                    for comp in components:
+                        if comp in analysis['components'] and 'score' in analysis['components'][comp]:
+                            component_scores[comp].append(float(analysis['components'][comp]['score']))
+            except (json.JSONDecodeError, TypeError, KeyError):
+                continue
+        
+        # Calculate average scores for each component
+        for comp in components:
+            if component_scores[comp]:
+                behavioral_skills[comp] = {
+                    'score': round(sum(component_scores[comp]) / len(component_scores[comp])),
+                }
+    
+    context = {
+        'assessment_stats': assessment_stats,
+        'weekly_data': weekly_data,
+        'tech_skills': tech_skills,
+        'behavioral_skills': behavioral_skills,
+        'max_count': max_count,
+        'y_axis_values': y_axis_values,
+    }
+    
+    return render(request, 'users/dashboard.html', context)
