@@ -12,6 +12,11 @@
 
 {% block content %}
 <div class="setup-container">
+    <div class="setup-header">
+        <h1>Technical Interview Setup</h1>
+        <p class="setup-description">Configure your technical interview settings below to get started.</p>
+    </div>
+    
     <div class="setup-card">
         <form action="{% url 'interview_technical:index' %}" method="POST" class="setup-form">
             {% csrf_token %}
@@ -36,7 +41,7 @@
             </div>
 
             <div class="setup-actions">
-                <button type="submit" class="btn btn-primary">Start Interview</button>
+                <button type="submit" class="btn-primary">Start Interview</button>
             </div>
         </form>
     </div>
