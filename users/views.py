@@ -11,6 +11,14 @@ from django.utils import timezone
 from datetime import timedelta
 from .services import EmailService
 from django.views.decorators.csrf import ensure_csrf_cookie
+from django.contrib.auth.tokens import default_token_generator
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.utils.encoding import force_bytes, force_str
+from django.template.loader import render_to_string
+from django.core.mail import send_mail, BadHeaderError
+from django.http import HttpResponse
+from django.contrib.auth.forms import PasswordResetForm, SetPasswordForm
+from django.urls import reverse
 
 def landingpage(request):
     """Render the home page with options based on authentication status."""
@@ -431,3 +439,88 @@ def dashboard_view(request):
     }
     
     return render(request, 'users/dashboard.html', context)
+
+def password_reset_request(request):
+    """Handle password reset request."""
+    if request.method == 'POST':
+        email = request.POST.get('email', '')
+        
+        # Check if email exists
+        try:
+            user_profile = UserProfile.objects.get(email=email)
+            user = user_profile.user
+            
+            # Generate token and UID
+            token = default_token_generator.make_token(user)
+            uid = urlsafe_base64_encode(force_bytes(user.pk))
+            
+            # Build reset URL using reverse to get the correct URL pattern
+            reset_path = reverse('password_reset_confirm', kwargs={'uidb64': uid, 'token': token})
+            reset_url = request.build_absolute_uri(reset_path)
+            
+            # Send email
+            subject = "Password Reset Request"
+            email_template_name = "users/password_reset_email.html"
+            context = {
+                "user": user,
+                "reset_url": reset_url,
+                "site_name": 'Techtonic',
+            }
+            email_content = render_to_string(email_template_name, context)
+            
+            try:
+                send_mail(subject, email_content, 'noreply@techtonic.com', [email], html_message=email_content)
+                return redirect('password_reset_done')
+            except BadHeaderError:
+                return HttpResponse('Invalid header found.')
+                
+        except UserProfile.DoesNotExist:
+            # Still redirect to done page for security (don't reveal if email exists)
+            messages.error(request, "If an account with this email exists, a password reset link has been sent.")
+            return redirect('password_reset_done')
+    
+    return render(request, 'users/password_reset.html')
+
+def password_reset_done(request):
+    """Show password reset email sent confirmation page."""
+    return render(request, 'users/password_reset_done.html')
+
+def password_reset_confirm(request, uidb64, token):
+    """Handle password reset confirmation."""
+    try:
+        # Decode the user ID
+        uid = force_str(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+        
+        # Check if token is valid
+        if not default_token_generator.check_token(user, token):
+            messages.error(request, "The password reset link is invalid or has expired.")
+            return redirect('login')
+        
+        if request.method == 'POST':
+            password1 = request.POST.get('password1')
+            password2 = request.POST.get('password2')
+            
+            if password1 != password2:
+                messages.error(request, "Passwords don't match.")
+                return render(request, 'users/password_reset_confirm.html')
+            
+            if len(password1) < 8:
+                messages.error(request, "Password must be at least 8 characters long.")
+                return render(request, 'users/password_reset_confirm.html')
+            
+            # Set the new password
+            user.set_password(password1)
+            user.save()
+            
+            return redirect('password_reset_complete')
+        
+        return render(request, 'users/password_reset_confirm.html')
+    
+    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+        messages.error(request, "The password reset link is invalid or has expired.")
+        return redirect('login')
+
+def password_reset_complete(request):
+    """Show password reset complete confirmation page."""
+    return render(request, 'users/password_reset_complete.html')
