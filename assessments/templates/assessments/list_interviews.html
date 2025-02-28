@@ -2,51 +2,71 @@
 {% extends 'users/base.html' %}
 {% load static %}
 
-{% block header_title %}Your Assessments{% endblock %}
-{% block header_description %}View and manage your interview assessments and results.{% endblock %}
+{% block header_title %}Assessments{% endblock %}
+
 
 {% block content %}
-<link rel="stylesheet" href="{% static 'assessments/css/list_interviews.css' %}">
+<link rel="stylesheet" href="{% static 'assessments/css/list_interviews.css' %}?v={{ STATIC_VERSION }}">
 
-<div class="content-container">
-    {% if assessments %}
-        <table class="assessment-table">
-            <thead>
-                <tr>
-                    <th>Type</th>
-                    <th>Results</th>
-                    <th>Date/Time</th>
-                    <th>Conversation</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for assessment in assessments %}
-                <tr id="assessment-{{ assessment.id }}">
-                    <td>{{ assessment.get_assessment_type_display }}</td>
-                    <td><a href="{% url 'view_analysis' assessment.id %}">View Results</a></td>
-                    <td>{{ assessment.created_at }}</td>
-                    <td>
-                        <button 
-                            class="view-conversation-btn"
-                            onclick='AssessmentManager.showConversation("{{ assessment.id }}", JSON.parse(`{{ assessment.conversation|escapejs }}`))'
-                        >
-                            View Conversation
-                        </button>
-                    </td>
-                    <td>
-                        <button 
-                            class="delete-btn" 
-                            onclick="AssessmentManager.deleteAssessment({{ assessment.id }})"
-                            title="Delete assessment"
-                        >✖</button>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    {% else %}
-        <p>You have no assessments yet.</p>
-    {% endif %}
+<div class="assessments-container">
+    <div class="assessments-welcome mb-4">
+        <h1>Your Assessments</h1>
+        <p class="text-muted">View and manage your interview assessments and results.</p>
+    </div>
+
+    <div class="assessments-card">
+        <div class="card-body">
+            {% if assessments %}
+                <table class="assessment-table">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Results</th>
+                            <th>Date/Time</th>
+                            <th>Conversation</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for assessment in assessments %}
+                        <tr id="assessment-{{ assessment.id }}">
+                            <td>{{ assessment.get_assessment_type_display }}</td>
+                            <td><a href="{% url 'view_analysis' assessment.id %}">View Results</a></td>
+                            <td>{{ assessment.created_at }}</td>
+                            <td>
+                                <button 
+                                    class="view-conversation-btn"
+                                    onclick='AssessmentManager.showConversation("{{ assessment.id }}", JSON.parse(`{{ assessment.conversation|escapejs }}`))'
+                                >
+                                    View Conversation
+                                </button>
+                            </td>
+                            <td>
+                                <button 
+                                    class="delete-btn" 
+                                    onclick="AssessmentManager.deleteAssessment({{ assessment.id }})"
+                                    title="Delete assessment"
+                                >✖</button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <div class="empty-state">
+                    <i class="fas fa-clipboard-check"></i>
+                    <p>You have no assessments yet.</p>
+                    <div class="empty-actions">
+                        <a href="{% url 'interview_technical:setup' %}" class="btn-primary">
+                            <i class="fas fa-code me-2"></i>Technical Interview
+                        </a>
+                        <a href="{% url 'interview_behavioral:setup' %}" class="btn-primary">
+                            <i class="fas fa-comments me-2"></i>Behavioral Interview
+                        </a>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
 </div>
 {% endblock %}
