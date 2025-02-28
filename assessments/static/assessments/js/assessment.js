@@ -37,8 +37,11 @@ window.AssessmentManager = {
                 container.appendChild(messageDiv);
             });
 
-            // Show the popup
+            // Show the popup with animation
             popup.style.display = 'flex';
+            if (typeof animatePopupOpen === 'function') {
+                animatePopupOpen();
+            }
         } catch (error) {
             console.error('Error displaying conversation:', error);
             alert('Error displaying conversation. Please try again.');
@@ -48,7 +51,19 @@ window.AssessmentManager = {
     closeConversationPopup: function () {
         const popup = document.getElementById('conversationPopup');
         if (popup) {
-            popup.style.display = 'none';
+            const content = popup.querySelector('.popup-content');
+            if (content) {
+                // Add fade-out animation
+                content.style.animation = 'modalSlideOut 0.3s ease-out';
+                // Hide popup after animation completes
+                setTimeout(() => {
+                    popup.style.display = 'none';
+                    // Reset animation for next time
+                    content.style.animation = '';
+                }, 300);
+            } else {
+                popup.style.display = 'none';
+            }
         }
     },
 

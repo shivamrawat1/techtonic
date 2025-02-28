@@ -1,15 +1,26 @@
 <!-- assessments/templates/assessments/conversation_popup.html -->
 {% load static %}
-<link rel="stylesheet" href="{% static 'assessments/css/conversation_popup.css' %}">
+<link rel="stylesheet" href="{% static 'assessments/css/conversation_popup.css' %}?v={{ STATIC_VERSION }}">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <div class="conversation-popup" id="conversationPopup">
     <div class="popup-content">
         <div class="popup-header">
-            <h2>Interview Conversation</h2>
-            <button class="close-btn" onclick="closeConversationPopup()">&times;</button>
+            <h2><i class="material-icons">chat</i>Interview Conversation</h2>
+            <button class="close-btn" onclick="AssessmentManager.closeConversationPopup()">&times;</button>
         </div>
         <div class="conversation-container">
             <!-- Messages will be dynamically inserted here -->
         </div>
     </div>
 </div>
+
+<script>
+    // Add animation when opening the popup
+    function animatePopupOpen() {
+        const popup = document.getElementById('conversationPopup');
+        popup.style.display = 'flex';
+        const content = popup.querySelector('.popup-content');
+        content.style.animation = 'modalSlideIn 0.3s ease-out';
+    }
+</script>

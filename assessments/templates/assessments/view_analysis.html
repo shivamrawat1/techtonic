@@ -1,208 +1,216 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interview Analysis</title>
+{% extends 'users/base.html' %}
+{% load static %}
+
+{% block title %}Interview Analysis{% endblock %}
+
+{% block header_title %}Interview Analysis{% endblock %}
+{% block header_description %}Detailed performance breakdown and feedback for your interview.{% endblock %}
+
+{% block extra_css %}
+<div id="extra_css_block">
     {% load static %}
-    <link rel="stylesheet" href="{% static 'assessments/css/view_analysis.css' %}">
+    <link rel="stylesheet" href="{% static 'assessments/css/view_analysis.css' %}?v={{ STATIC_VERSION }}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
-<body>
-    <div class="analysis-page">
-        <div class="analysis-header">
-            <a href="{% url 'list_interviews' %}" class="back-link">
-                <span class="material-icons">arrow_back</span>
-                Back to List
-            </a>
-        </div>
-        
-        <div class="analysis-container">
-            {% if error %}
-                <div class="error-card">
-                    <span class="material-icons error-icon">error_outline</span>
-                    <h2>Error</h2>
-                    <p>{{ error }}</p>
-                    <p>Please try again later or contact support if the problem persists.</p>
-                </div>
-            {% else %}
-                <div class="score-card">
-                    <div class="performance-grid">
-                        <div class="score-section">
-                            <div class="score-circle">
-                                <span class="score-value">{{ analysis.overall_score }}%</span>
-                            </div>
-                            <h2>Overall Performance</h2>
-                            <p class="summary">{{ analysis.summary }}</p>
-                        </div>
-                        <div class="chart-section">
-                            {% if assessment.get_assessment_type_display == 'Technical' %}
-                                <canvas id="technicalChart"></canvas>
-                            {% else %}
-                                <canvas id="behavioralChart"></canvas>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
+</div>
+{% endblock %}
 
-                <div class="components-grid">
-                    {% for component, data in analysis.components.items %}
-                    <div class="component-card">
-                        <div class="component-header">
-                            <h3>{{ component|title }}</h3>
-                            <span class="component-score">{{ data.score }}%</span>
-                        </div>
-                        
-                        <div class="component-content">
-                            <div class="feedback-section">
-                                <h4><span class="material-icons">feedback</span> Feedback</h4>
-                                <p>{{ data.feedback }}</p>
-                            </div>
-                            
-                            <div class="observations-section">
-                                <h4><span class="material-icons">lightbulb</span> Key Observations</h4>
-                                <ul>
-                                    {% for observation in data.observations %}
-                                    <li>{{ observation }}</li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-            {% endif %}
-        </div>
+{% block content %}
+<div class="analysis-container">
+    <div class="analysis-welcome mb-4">
+        <h1>Interview Analysis</h1>
+        <p class="text-muted">Detailed performance breakdown and feedback for your interview.</p>
+        <a href="{% url 'list_interviews' %}" class="back-link">
+            <span class="material-icons">arrow_back</span>
+            Back to Assessments
+        </a>
     </div>
+    
+    {% if error %}
+        <div class="error-card">
+            <span class="material-icons error-icon">error_outline</span>
+            <h2>Error</h2>
+            <p>{{ error }}</p>
+            <p>Please try again later or contact support if the problem persists.</p>
+        </div>
+    {% else %}
+        <div class="dashboard-card score-card">
+            <div class="card-header">
+                <h5><i class="material-icons">analytics</i>Overall Performance</h5>
+            </div>
+            <div class="card-body">
+                <div class="performance-grid">
+                    <div class="score-section">
+                        <div class="score-circle">
+                            <span class="score-value">{{ analysis.overall_score }}%</span>
+                        </div>
+                        <p class="summary">{{ analysis.summary }}</p>
+                    </div>
+                    <div class="chart-section">
+                        {% if assessment.get_assessment_type_display == 'Technical' %}
+                            <canvas id="technicalChart"></canvas>
+                        {% else %}
+                            <canvas id="behavioralChart"></canvas>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('Analysis data:', {
-                type: '{{ assessment.get_assessment_type_display }}',
-                components: {{ analysis.components|safe }},
-            });
+        <div class="components-grid">
+            {% for component, data in analysis.components.items %}
+            <div class="dashboard-card component-card">
+                <div class="card-header">
+                    <h5>{{ component|title }}</h5>
+                    <span class="component-score {% if data.score >= 70 %}high{% elif data.score >= 40 %}medium{% else %}low{% endif %}">{{ data.score }}%</span>
+                </div>
+                <div class="card-body">
+                    <div class="feedback-section">
+                        <h4><span class="material-icons">feedback</span> Feedback</h4>
+                        <p>{{ data.feedback }}</p>
+                    </div>
+                    
+                    <div class="observations-section">
+                        <h4><span class="material-icons">lightbulb</span> Key Observations</h4>
+                        <ul>
+                            {% for observation in data.observations %}
+                            <li>{{ observation }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
 
-            // Check which type of interview we're dealing with
-            const interviewType = '{{ assessment.get_assessment_type_display }}';
-            let chartData;
-            
-            if (interviewType === 'Technical') {
-                console.log('Rendering technical chart');
-                const scores = [
-                    {{ analysis.components.understanding.score|default:0 }},
-                    {{ analysis.components.match.score|default:0 }},
-                    {{ analysis.components.plan.score|default:0 }},
-                    {{ analysis.components.implement.score|default:0 }},
-                    {{ analysis.components.review.score|default:0 }},
-                    {{ analysis.components.evaluate.score|default:0 }}
-                ];
-                console.log('Technical scores:', scores);
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('Analysis data:', {
+            type: '{{ assessment.get_assessment_type_display }}',
+            components: {{ analysis.components|safe }},
+        });
 
-                chartData = {
-                    labels: ['Understanding', 'Match', 'Plan', 'Implement', 'Review', 'Evaluate'],
-                    datasets: [{
-                        label: 'Technical Skills',
-                        data: scores,
-                        fill: true,
-                        backgroundColor: 'rgba(59, 89, 152, 0.2)',
-                        borderColor: '#3b5998',
-                        pointBackgroundColor: '#3b5998',
-                        pointBorderColor: '#fff',
-                        pointHoverBackgroundColor: '#fff',
-                        pointHoverBorderColor: '#3b5998'
-                    }]
-                };
-            } else {
-                console.log('Rendering behavioral chart');
-                const scores = [
-                    {{ analysis.components.situation.score|default:0 }},
-                    {{ analysis.components.task.score|default:0 }},
-                    {{ analysis.components.action.score|default:0 }},
-                    {{ analysis.components.result.score|default:0 }}
-                ];
-                console.log('Behavioral scores:', scores);
+        // Check which type of interview we're dealing with
+        const interviewType = '{{ assessment.get_assessment_type_display }}';
+        let chartData;
+        
+        if (interviewType === 'Technical') {
+            console.log('Rendering technical chart');
+            const scores = [
+                {{ analysis.components.understanding.score|default:0 }},
+                {{ analysis.components.match.score|default:0 }},
+                {{ analysis.components.plan.score|default:0 }},
+                {{ analysis.components.implement.score|default:0 }},
+                {{ analysis.components.review.score|default:0 }},
+                {{ analysis.components.evaluate.score|default:0 }}
+            ];
+            console.log('Technical scores:', scores);
 
-                chartData = {
-                    labels: ['Situation', 'Task', 'Action', 'Result'],
-                    datasets: [{
-                        label: 'Behavioral Skills',
-                        data: scores,
-                        fill: true,
-                        backgroundColor: 'rgba(59, 89, 152, 0.2)',
-                        borderColor: '#3b5998',
-                        pointBackgroundColor: '#3b5998',
-                        pointBorderColor: '#fff',
-                        pointHoverBackgroundColor: '#fff',
-                        pointHoverBorderColor: '#3b5998'
-                    }]
-                };
-            }
+            chartData = {
+                labels: ['Understanding', 'Match', 'Plan', 'Implement', 'Review', 'Evaluate'],
+                datasets: [{
+                    label: 'Technical Skills',
+                    data: scores,
+                    fill: true,
+                    backgroundColor: 'rgba(79, 70, 229, 0.2)',
+                    borderColor: '#4F46E5',
+                    pointBackgroundColor: '#4F46E5',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: '#4F46E5'
+                }]
+            };
+        } else {
+            console.log('Rendering behavioral chart');
+            const scores = [
+                {{ analysis.components.situation.score|default:0 }},
+                {{ analysis.components.task.score|default:0 }},
+                {{ analysis.components.action.score|default:0 }},
+                {{ analysis.components.result.score|default:0 }}
+            ];
+            console.log('Behavioral scores:', scores);
 
-            console.log('Chart data:', chartData);
+            chartData = {
+                labels: ['Situation', 'Task', 'Action', 'Result'],
+                datasets: [{
+                    label: 'Behavioral Skills',
+                    data: scores,
+                    fill: true,
+                    backgroundColor: 'rgba(79, 70, 229, 0.2)',
+                    borderColor: '#4F46E5',
+                    pointBackgroundColor: '#4F46E5',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: '#4F46E5'
+                }]
+            };
+        }
 
-            if (chartData) {
-                const chartConfig = {
-                    type: 'radar',
-                    data: chartData,
-                    options: {
-                        elements: {
-                            line: {
-                                borderWidth: 3
-                            }
-                        },
-                        scales: {
-                            r: {
-                                angleLines: {
-                                    color: 'rgba(44, 62, 80, 0.1)'
-                                },
-                                grid: {
-                                    color: 'rgba(44, 62, 80, 0.1)'
-                                },
-                                pointLabels: {
-                                    color: '#2c3e50',
-                                    font: {
-                                        size: 12,
-                                        family: "'Segoe UI', sans-serif",
-                                        weight: 500
-                                    }
-                                },
-                                suggestedMin: 0,
-                                suggestedMax: 100,
-                                ticks: {
-                                    stepSize: 20,
-                                    color: '#666',
-                                    font: {
-                                        size: 10
-                                    }
+        console.log('Chart data:', chartData);
+
+        if (chartData) {
+            const chartConfig = {
+                type: 'radar',
+                data: chartData,
+                options: {
+                    elements: {
+                        line: {
+                            borderWidth: 3
+                        }
+                    },
+                    scales: {
+                        r: {
+                            angleLines: {
+                                color: 'rgba(90, 92, 105, 0.1)'
+                            },
+                            grid: {
+                                color: 'rgba(90, 92, 105, 0.1)'
+                            },
+                            pointLabels: {
+                                color: '#5a5c69',
+                                font: {
+                                    size: 12,
+                                    family: "'Segoe UI', sans-serif",
+                                    weight: 500
+                                }
+                            },
+                            suggestedMin: 0,
+                            suggestedMax: 100,
+                            ticks: {
+                                stepSize: 20,
+                                color: '#858796',
+                                font: {
+                                    size: 10
                                 }
                             }
-                        },
-                        plugins: {
-                            legend: {
-                                display: false
-                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
                         }
                     }
-                };
+                }
+            };
 
-                const chartElement = document.getElementById(interviewType === 'Technical' ? 'technicalChart' : 'behavioralChart');
-                console.log('Chart element:', chartElement);
-                
-                if (chartElement) {
-                    try {
-                        new Chart(chartElement, chartConfig);
-                        console.log('Chart created successfully');
-                    } catch (error) {
-                        console.error('Error creating chart:', error);
-                    }
-                } else {
-                    console.error('Chart element not found');
+            const chartElement = document.getElementById(interviewType === 'Technical' ? 'technicalChart' : 'behavioralChart');
+            console.log('Chart element:', chartElement);
+            
+            if (chartElement) {
+                try {
+                    new Chart(chartElement, chartConfig);
+                    console.log('Chart created successfully');
+                } catch (error) {
+                    console.error('Error creating chart:', error);
                 }
             } else {
-                console.error('No chart data available');
+                console.error('Chart element not found');
             }
-        });
-    </script>
-</body>
-</html> 
+        } else {
+            console.error('No chart data available');
+        }
+    });
+</script>
+{% endblock %} 
