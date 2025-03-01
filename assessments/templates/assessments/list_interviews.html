@@ -214,11 +214,13 @@
         max-width: 500px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         animation: modalSlideIn 0.3s ease-out;
+        overflow: hidden; /* Prevent content from overflowing */
     }
 
     .modal-header {
         padding: 20px 24px;
         border-bottom: 1px solid #E5E7EB;
+        text-align: center; /* Center the header text */
     }
 
     .modal-header h2 {
@@ -229,36 +231,44 @@
     }
 
     .modal-body {
-        padding: 24px;
+        padding: 32px 24px;
         text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
 
     .warning-icon {
         font-size: 48px;
-        margin-bottom: 16px;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: center;
     }
 
     .modal-body p {
-        margin: 0 0 8px;
+        margin: 0 0 12px;
         color: #374151;
         font-size: 16px;
+        max-width: 400px; /* Limit text width for better readability */
     }
 
     .warning-text {
         color: #DC2626;
         font-size: 14px;
+        font-weight: 500;
     }
 
     .modal-footer {
         padding: 16px 24px;
         border-top: 1px solid #E5E7EB;
         display: flex;
-        justify-content: flex-end;
-        gap: 12px;
+        justify-content: center; /* Center the buttons */
+        gap: 16px; /* Increase spacing between buttons */
     }
 
     .btn-cancel {
-        padding: 8px 16px;
+        padding: 10px 20px;
         border: 1px solid #D1D5DB;
         background-color: white;
         color: #374151;
@@ -266,6 +276,7 @@
         font-weight: 500;
         cursor: pointer;
         transition: all 0.2s;
+        min-width: 120px; /* Ensure consistent button width */
     }
 
     .btn-cancel:hover {
@@ -273,7 +284,7 @@
     }
 
     .btn-confirm-delete {
-        padding: 8px 16px;
+        padding: 10px 20px;
         background-color: #DC2626;
         color: white;
         border: none;
@@ -281,6 +292,7 @@
         font-weight: 500;
         cursor: pointer;
         transition: background-color 0.2s;
+        min-width: 120px; /* Ensure consistent button width */
     }
 
     .btn-confirm-delete:hover {
