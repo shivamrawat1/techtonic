@@ -69,6 +69,26 @@ function initResizeHandle() {
     let isResizing = false;
     let startX, startWidth;
 
+    // Set initial grid template on page load to ensure proper layout
+    function setInitialLayout() {
+        const totalWidth = mainContent.getBoundingClientRect().width;
+        // Use exactly 33.33% for right section, but convert to pixels
+        const rightSectionWidth = Math.floor(totalWidth * 0.3333);
+        // Account for the resize handle (10px) and the margin between editor and right section (10px)
+        const availableWidth = totalWidth - rightSectionWidth - 10 - 10;
+        // Split the available width equally between question and editor
+        const questionWidth = Math.floor(availableWidth * 0.5);
+        const editorWidth = availableWidth - questionWidth;
+
+        // Apply the initial grid template
+        mainContent.style.gridTemplateColumns = `${questionWidth}px 10px ${editorWidth}px ${rightSectionWidth}px`;
+    }
+
+    // Call on initialization
+    if (window.innerWidth > 1200) {
+        setInitialLayout();
+    }
+
     resizeHandle.addEventListener('mousedown', (e) => {
         isResizing = true;
         startX = e.clientX;
@@ -88,16 +108,23 @@ function initResizeHandle() {
         const newWidth = startWidth + deltaX;
         const totalWidth = mainContent.getBoundingClientRect().width;
 
-        // Keep right section at 1/3 of the total width
-        const rightSectionWidth = totalWidth / 3;
+        // Calculate the right section width (exactly 33.33% of total width)
+        const rightSectionWidth = Math.floor(totalWidth * 0.3333);
 
-        // Remaining width for question and editor containers (minus resize handle)
-        const remainingWidth = totalWidth - rightSectionWidth - 10; // 10px for resize handle
+        // Available width for question and editor (accounting for resize handle and margin)
+        const availableWidth = totalWidth - rightSectionWidth - 10 - 10; // 10px for resize handle, 10px for margin
 
-        // Ensure minimum widths
-        if (newWidth > 100 && (remainingWidth - newWidth) > 100) {
-            // Set the width of question container and editor container
-            mainContent.style.gridTemplateColumns = `${newWidth}px 10px ${remainingWidth - newWidth}px ${rightSectionWidth}px`;
+        // Ensure minimum widths and prevent overflow
+        if (newWidth > 100 && (availableWidth - newWidth) > 100 && newWidth < availableWidth) {
+            // Calculate editor width based on available space
+            const editorWidth = availableWidth - newWidth;
+
+            // Apply the new grid template with fixed pixel values
+            mainContent.style.gridTemplateColumns = `${newWidth}px 10px ${editorWidth}px ${rightSectionWidth}px`;
+
+            // Log for debugging
+            console.log(`Grid template: ${newWidth}px 10px ${editorWidth}px ${rightSectionWidth}px`);
+            console.log(`Total width: ${totalWidth}, Sum: ${newWidth + 10 + editorWidth + rightSectionWidth}`);
         }
     });
 
@@ -111,6 +138,8 @@ function initResizeHandle() {
         // Reset custom grid template if window is resized
         if (window.innerWidth <= 1200) {
             mainContent.style.gridTemplateColumns = '';
+        } else {
+            setInitialLayout();
         }
     });
 }
@@ -323,8 +352,17 @@ function appendMessage(sender, message) {
     messageElement.className = 'chat-message';
     messageElement.innerHTML = `<strong>${sender}:</strong> ${message}`;
     chatMessages.appendChild(messageElement);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
+
+    // Ensure scroll to bottom after adding new message
+    setTimeout(() => {
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }, 10);
+
+    // Add to conversation history
     conversation.push({ sender, message });
+
+    // Log for debugging
+    console.log('Message added, chat height:', chatMessages.scrollHeight);
 }
 
 // Synthesize Speech
