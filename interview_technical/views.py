@@ -44,7 +44,9 @@ def load_questions_data():
 
 @login_required
 def setup(request):
-    return render(request, 'interview_technical/setup.html')
+    # Load questions data to pass to the template
+    questions_data = load_questions_data()
+    return render(request, 'interview_technical/setup.html', {'questions_data': questions_data})
 
 @login_required
 @ensure_csrf_cookie

@@ -24,8 +24,9 @@
                 <label for="question">Select Coding Question</label>
                 <select name="question" id="question" required>
                     <option value="" disabled selected>Choose a question...</option>
-                    <option value="two_sum">Two Sum</option>
-                    <option value="rotten_oranges">Rotten Oranges</option>
+                    {% for question_key, question_data in questions_data.items %}
+                        <option value="{{ question_key }}">{{ question_data.title }} ({{ question_data.difficulty }})</option>
+                    {% endfor %}
                 </select>
                 <div class="form-help">Choose the coding problem you'd like to solve during the interview.</div>
             </div>
