@@ -1,10 +1,13 @@
 import json
+import os
+import logging
 from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse
 from django.views.decorators.csrf import ensure_csrf_cookie, csrf_exempt
 from django.utils.decorators import method_decorator
 from django.views import View
 from django.contrib.auth.decorators import login_required
+from django.conf import settings
 
 from interview_technical.openai_client import OpenAIClient
 from interview_technical.services.deepgram_service import DeepgramService
@@ -18,6 +21,26 @@ deepgram_service = DeepgramService()
 recognition_service = SpeechRecognitionService(deepgram_service)
 gtts_service = GTTSService()
 controller = SpeechController(recognition_service, gtts_service)
+
+# Set up logging
+logger = logging.getLogger(__name__)
+
+def load_questions_data():
+    """Load questions data from the JSON file."""
+    try:
+        questions_file_path = os.path.join(
+            settings.BASE_DIR, 
+            'interview_technical', 
+            'static', 
+            'interview_technical', 
+            'questions', 
+            'questions.json'
+        )
+        with open(questions_file_path, 'r') as file:
+            return json.load(file)
+    except Exception as e:
+        logger.error(f"Error loading questions data: {str(e)}")
+        return {}
 
 @login_required
 def setup(request):
@@ -38,12 +61,21 @@ def index(request):
         openai_client.initialize_interview(question)
     
     # Always pass duration and question to template, either from POST or session
+    selected_question = request.session.get('selected_question', '')
+    
+    # Load question data from JSON file
+    questions_data = load_questions_data()
+    question_data = questions_data.get(selected_question, {})
+    
     context = {
         'duration': request.session.get('interview_duration', 30),
-        'question': request.session.get('selected_question', '')
+        'question': selected_question,
+        'question_data': question_data
     }
-    print(f"Technical Interview Duration: {context['duration']}")  # Debug print
-    print(f"Selected Question: {context['question']}")  # Debug print
+    
+    logger.info(f"Technical Interview Duration: {context['duration']}")
+    logger.info(f"Selected Question: {context['question']}")
+    
     return render(request, 'interview_technical/index.html', context)
 
 @csrf_exempt

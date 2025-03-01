@@ -1,0 +1,60 @@
+{
+    "two_sum": {
+        "title": "Two Sum",
+        "difficulty": "Easy",
+        "description": "Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target. You may assume that each input would have exactly one solution, and you may not use the same element twice.",
+        "examples": [
+            {
+                "input": "nums = [2,7,11,15], target = 9",
+                "output": "[0,1]",
+                "explanation": "Because nums[0] + nums[1] == 9, we return [0, 1]."
+            },
+            {
+                "input": "nums = [3,2,4], target = 6",
+                "output": "[1,2]",
+                "explanation": "Because nums[1] + nums[2] == 6, we return [1, 2]."
+            },
+            {
+                "input": "nums = [3,3], target = 6",
+                "output": "[0,1]",
+                "explanation": "Because nums[0] + nums[1] == 6, we return [0, 1]."
+            }
+        ],
+        "constraints": [
+            "2 <= nums.length <= 10^4",
+            "-10^9 <= nums[i] <= 10^9",
+            "-10^9 <= target <= 10^9",
+            "Only one valid answer exists."
+        ],
+        "function_signature": "def two_sum(nums, target):"
+    },
+    "rotten_oranges": {
+        "title": "Rotten Oranges",
+        "difficulty": "Medium",
+        "description": "You are given an m x n grid where each cell can have one of three values: 0 representing an empty cell, 1 representing a fresh orange, or 2 representing a rotten orange. Every minute, any fresh orange that is 4-directionally adjacent to a rotten orange becomes rotten. Return the minimum number of minutes that must elapse until no cell has a fresh orange. If this is impossible, return -1.",
+        "examples": [
+            {
+                "input": "grid = [[2,1,1],[1,1,0],[0,1,1]]",
+                "output": "4",
+                "explanation": "After 4 minutes, all oranges are rotten."
+            },
+            {
+                "input": "grid = [[2,1,1],[0,1,1],[1,0,1]]",
+                "output": "-1",
+                "explanation": "The orange in the bottom left corner (row 2, column 0) is never rotten, because rotting only happens 4-directionally."
+            },
+            {
+                "input": "grid = [[0,2]]",
+                "output": "0",
+                "explanation": "Since there are already no fresh oranges at minute 0, the answer is just 0."
+            }
+        ],
+        "constraints": [
+            "m == grid.length",
+            "n == grid[i].length",
+            "1 <= m, n <= 10",
+            "grid[i][j] is 0, 1, or 2."
+        ],
+        "function_signature": "def oranges_rotting(grid):"
+    }
+}

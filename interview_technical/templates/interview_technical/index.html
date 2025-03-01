@@ -24,6 +24,37 @@
 
         <!-- Main Content -->
         <main class="main-content">
+            <!-- Question Description Section -->
+            <div class="question-container">
+                <div class="question-header">
+                    <h2 id="question-title">{{ question_data.title }}</h2>
+                    <span class="question-difficulty {{ question_data.difficulty|lower }}">{{ question_data.difficulty }}</span>
+                </div>
+                <div class="question-description">
+                    <p id="question-description-text">{{ question_data.description }}</p>
+                    
+                    <h3>Examples:</h3>
+                    <div class="examples-container">
+                        {% for example in question_data.examples %}
+                        <div class="example">
+                            <div class="example-input"><strong>Input:</strong> {{ example.input }}</div>
+                            <div class="example-output"><strong>Output:</strong> {{ example.output }}</div>
+                            {% if example.explanation %}
+                            <div class="example-explanation"><strong>Explanation:</strong> {{ example.explanation }}</div>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    
+                    <h3>Constraints:</h3>
+                    <ul class="constraints-list">
+                        {% for constraint in question_data.constraints %}
+                        <li>{{ constraint }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
             <!-- Editor Section -->
             <div class="editor-container">
                 <div id="editor"></div>
@@ -90,6 +121,7 @@
     <!-- Hidden input for interview duration -->
     <input type="hidden" id="interview-duration" value="{{ duration }}">
     <input type="hidden" id="selected-question" value="{{ question }}">
+    <input type="hidden" id="function-signature" value="{{ question_data.function_signature }}">
     
     <!-- Monaco Editor Loader -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.43.0/min/vs/loader.js"></script>

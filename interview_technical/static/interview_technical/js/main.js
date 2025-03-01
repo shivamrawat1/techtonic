@@ -11,9 +11,25 @@ require(['vs/editor/editor.main'], function () {
         var editorElement = document.getElementById('editor');
         console.log("Editor element found:", editorElement);
 
+        // Get the selected question and function signature
+        const selectedQuestion = document.getElementById('selected-question').value;
+        let initialCode = '# Write your solution here\n\n';
+
+        // Get function signature from the hidden input if available
+        const functionSignatureElement = document.getElementById('function-signature');
+        if (functionSignatureElement && functionSignatureElement.value) {
+            initialCode = functionSignatureElement.value + '\n    # Your code here\n    pass\n';
+        }
+
+        // Determine language based on function signature
+        let language = 'python';  // Default to Python
+        if (initialCode.includes('function') && initialCode.includes('{')) {
+            language = 'javascript';
+        }
+
         var editor = monaco.editor.create(editorElement, {
-            value: '// Write your code here\n',
-            language: 'javascript',
+            value: initialCode,
+            language: language,
             theme: 'vs-dark',
             automaticLayout: true,
             minimap: {
