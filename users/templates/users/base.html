@@ -27,8 +27,8 @@
                         <span class="material-icons">dashboard</span>
                         Dashboard
                     </a>
-                    <div class="nav-group">
-                        <button class="nav-group-header" onclick="toggleGroup(this)">
+                    <div class="nav-group {% if active_page == 'technical' or active_page == 'behavioral' %}expanded{% endif %}">
+                        <button class="nav-group-header {% if active_page == 'technical' or active_page == 'behavioral' %}active{% endif %}" onclick="toggleGroup(this)">
                             <span class="material-icons">person</span>
                             AI Interview Buddy
                             <span class="material-icons arrow">expand_more</span>
@@ -118,6 +118,32 @@
     {% include 'assessments/conversation_popup.html' %}
 
     <script>
+    // Store the active menu state in sessionStorage
+    document.addEventListener('DOMContentLoaded', function() {
+        // Check if we need to expand the menu based on sessionStorage
+        const expandInterviewMenu = sessionStorage.getItem('expandInterviewMenu');
+        if (expandInterviewMenu === 'true') {
+            const navGroup = document.querySelector('.nav-group');
+            if (navGroup) {
+                navGroup.classList.add('expanded');
+                const groupHeader = navGroup.querySelector('.nav-group-header');
+                if (groupHeader) {
+                    groupHeader.classList.add('active');
+                }
+            }
+        }
+        
+        // Add click handlers for the interview links to save state before navigation
+        const interviewLinks = document.querySelectorAll('.nav-group-items .nav-item');
+        interviewLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                // Set flag to keep menu expanded after page reload
+                sessionStorage.setItem('expandInterviewMenu', 'true');
+                // Allow normal navigation
+            });
+        });
+    });
+
     // Initialize the afterLoadContentCallbacks array to hold functions to run after content is loaded
     window.afterLoadContentCallbacks = [];
     
@@ -254,6 +280,13 @@
         const group = button.parentElement;
         group.classList.toggle('expanded');
         
+        // Store the state of this group
+        if (group.classList.contains('expanded')) {
+            sessionStorage.setItem('expandInterviewMenu', 'true');
+        } else {
+            sessionStorage.setItem('expandInterviewMenu', 'false');
+        }
+        
         // If group has an active item, make the header active too
         const hasActiveItem = group.querySelector('.nav-item.active');
         if (hasActiveItem) {
@@ -313,7 +346,6 @@
     }
     </script>
     <style>
-
     /* Main content layout */
     .main-content {
         flex: 1;
@@ -322,7 +354,37 @@
         height: 100vh;
         overflow: hidden;
         padding: 0;
-        background-color: #ffffff;
+        background-color: #f8f9fa;
+    }
+
+    /* Add styles for the navigating state */
+    .sidebar .nav-group.navigating {
+        /* Ensure the dropdown stays expanded during navigation */
+        background-color: rgba(79, 70, 229, 0.08);
+    }
+
+    .sidebar .nav-group.navigating .nav-group-items {
+        /* Make sure the items are visible */
+        display: block !important;
+    }
+
+    /* Make sure the nav-group-items are visible when expanded */
+    .sidebar .nav-group.expanded .nav-group-items {
+        display: block;
+    }
+
+    /* Hide nav-group-items by default */
+    .sidebar .nav-group:not(.expanded) .nav-group-items {
+        display: none;
+    }
+
+    /* Style the arrow icon for expanded state */
+    .sidebar .nav-group.expanded .arrow {
+        transform: rotate(180deg);
+    }
+
+    .sidebar .nav-group-header .arrow {
+        transition: transform 0.2s ease;
     }
 
     .auth-main {
@@ -346,6 +408,7 @@
         background-color: #ffffff;
         border-bottom: 1px solid rgba(0, 0, 0, 0.08);
         padding: 24px 32px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     }
 
     .header-content {
@@ -377,7 +440,7 @@
         width: 32px;
         height: 32px;
         border-radius: 50%;
-        background-color: #6366f1;
+        background: linear-gradient(135deg, #4F46E5, #7C3AED);
         color: white;
         display: flex;
         align-items: center;
@@ -407,6 +470,7 @@
         border-right: 1px solid rgba(0, 0, 0, 0.08);
         background-color: #ffffff;
         z-index: 20;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     }
 
     /* Base styles for navigation */
@@ -430,7 +494,8 @@
     .sidebar-header h1 {
         padding: 0;
         margin: 0;
-        color: #2867B2;  /* LinkedIn blue */
+        color: #4F46E5;  /* Updated to match dashboard gradient */
+        font-weight: 700;
     }
 
     /* Divider styling */
@@ -444,12 +509,12 @@
     /* Dropdown group styling */
     .sidebar .nav-group {
         margin: 4px 0;
-        border-radius: 4px;
+        border-radius: 8px;
         transition: all 0.2s ease;
     }
 
     .sidebar .nav-group.expanded {
-        background-color: rgba(40, 103, 178, 0.04);  /* Very light LinkedIn blue */
+        background-color: rgba(79, 70, 229, 0.04);  /* Very light purple from dashboard */
     }
 
     .sidebar .nav-group-header {
@@ -463,14 +528,14 @@
         cursor: pointer;
         font-size: inherit;
         gap: 0.5rem;
-        border-radius: 4px;
+        border-radius: 8px;
         transition: all 0.2s ease;
     }
 
     /* Normal hover state with background */
     .sidebar .nav-group-header:hover {
-        background-color: rgba(40, 103, 178, 0.08);
-        color: #2867B2;
+        background-color: rgba(79, 70, 229, 0.08);
+        color: #4F46E5;
     }
 
     /* Remove background highlight when expanded */
@@ -479,7 +544,7 @@
     }
 
     .sidebar .nav-group-header:hover .material-icons {
-        color: #2867B2;
+        color: #4F46E5;
     }
 
     /* Active and hover states for all nav items */
@@ -491,38 +556,38 @@
         text-decoration: none;
         color: #666666;
         transition: all 0.2s ease;
-        border-radius: 4px;
+        border-radius: 8px;
         font-weight: normal;
     }
 
     .sidebar .nav-item:hover {
-        background-color: rgba(40, 103, 178, 0.08);
-        color: #2867B2;
+        background-color: rgba(79, 70, 229, 0.08);
+        color: #4F46E5;
     }
 
     .sidebar .nav-item:hover .material-icons {
-        color: #2867B2;
+        color: #4F46E5;
     }
 
     .sidebar .nav-item.active {
-        background-color: rgba(40, 103, 178, 0.12);
-        color: #2867B2;
+        background-color: rgba(79, 70, 229, 0.12);
+        color: #4F46E5;
         font-weight: 600;
     }
 
-    /* Make the icon also blue when active */
+    /* Make the icon also purple when active */
     .sidebar .nav-item.active .material-icons {
-        color: #2867B2;
+        color: #4F46E5;
     }
 
     /* Also apply active styles to the group header when its section is active */
     .sidebar .nav-group-header.active {
-        color: #2867B2;
+        color: #4F46E5;
         font-weight: 600;
     }
 
     .sidebar .nav-group-header.active .material-icons {
-        color: #2867B2;
+        color: #4F46E5;
     }
 
     /* Material icons default color */
@@ -554,17 +619,17 @@
         padding: 0.75rem 1rem;
         color: #666666;
         font-size: inherit;
-        border-radius: 4px;
+        border-radius: 8px;
         transition: all 0.2s ease;
     }
 
     .sidebar .logout-btn:hover {
-        background-color: rgba(40, 103, 178, 0.08);
-        color: #2867B2;
+        background-color: rgba(79, 70, 229, 0.08);
+        color: #4F46E5;
     }
 
     .sidebar .logout-btn:hover .material-icons {
-        color: #2867B2;
+        color: #4F46E5;
     }
 
     /* Modal Styles */
@@ -586,7 +651,7 @@
         border-radius: 12px;
         width: 90%;
         max-width: 500px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
         animation: modalSlideIn 0.3s ease-out;
     }
 
@@ -648,7 +713,7 @@
 
     .btn-confirm-logout {
         padding: 8px 16px;
-        background-color: #2867B2;  /* LinkedIn blue */
+        background: linear-gradient(135deg, #4F46E5, #7C3AED);
         color: white;
         border: none;
         border-radius: 6px;
@@ -658,7 +723,7 @@
     }
 
     .btn-confirm-logout:hover {
-        background-color: #1e4b82;  /* Darker LinkedIn blue */
+        background: linear-gradient(135deg, #4338CA, #6D28D9);
     }
 
     @keyframes modalSlideIn {
