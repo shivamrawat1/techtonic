@@ -184,7 +184,10 @@ updateCurrentTime(); // Initial update
 let mediaRecorder;
 let audioChunks = [];
 let isRecording = false;
-let isMuted = false;
+let isMuted = true; // Start with microphone muted by default
+let isProcessing = false; // Flag to track if audio is being processed
+let audioElement = null;
+let isBotSpeaking = false;
 
 // Initialize video and audio stream
 let videoStream;
@@ -193,25 +196,85 @@ navigator.mediaDevices
     .then((stream) => {
         videoStream = stream;
         video.srcObject = stream;
+
         // Initialize media recorder for voice input
         mediaRecorder = new MediaRecorder(stream);
         setupMediaRecorder();
-        // Start recording by default when unmuted
-        if (!isMuted) {
-            startRecording();
-        }
+
+        // Mute audio tracks by default
+        videoStream.getAudioTracks().forEach(track => {
+            track.enabled = !isMuted;
+        });
+
+        // Update button appearance to show initial muted state
+        updateMuteButtonState();
+
+        // Get initial welcome message from the AI
+        getWelcomeMessage();
     })
     .catch((error) => {
         console.error("Error accessing webcam:", error);
+        appendMessage('System', 'Error accessing camera or microphone. Please check permissions.');
     });
+
+// Function to get welcome message from the AI
+async function getWelcomeMessage() {
+    try {
+        // Show loading indicator
+        showLoadingIndicator('welcome');
+
+        // Set processing state to disable microphone button during welcome message loading
+        isProcessing = true;
+        updateMuteButtonState();
+
+        const response = await fetch(getResponseUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrftoken,
+            },
+            body: JSON.stringify({
+                message: "Hello, I'm ready for my technical interview.",
+                assessment_type: 'technical'
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        // Remove loading indicator
+        removeLoadingIndicator();
+
+        if (data.message) {
+            appendMessage('Assistant', data.message);
+            botStartedSpeaking();
+            await synthesizeSpeech(data.message);
+            botStoppedSpeaking();
+        }
+    } catch (error) {
+        console.error('Error getting welcome message:', error);
+        removeLoadingIndicator();
+        appendMessage('Assistant', 'Welcome to your technical interview. When you\'re ready to respond, click the microphone button to begin speaking.');
+    } finally {
+        // Reset processing state after welcome message is complete
+        isProcessing = false;
+        updateMuteButtonState();
+    }
+}
 
 // Function to start recording
 function startRecording() {
-    if (mediaRecorder && mediaRecorder.state === 'inactive' && !isMuted) {
+    if (mediaRecorder && mediaRecorder.state === 'inactive' && !isMuted && !isProcessing) {
         audioChunks = [];
         mediaRecorder.start();
         isRecording = true;
         console.log('Recording started');
+
+        // Visual feedback that recording is active
+        muteButton.classList.add('recording');
     }
 }
 
@@ -221,6 +284,13 @@ function stopRecording() {
         mediaRecorder.stop();
         isRecording = false;
         console.log('Recording stopped');
+
+        // Visual feedback that recording has stopped
+        muteButton.classList.remove('recording');
+
+        // Set processing state
+        isProcessing = true;
+        updateMuteButtonState();
     }
 }
 
@@ -231,16 +301,23 @@ function setupMediaRecorder() {
     };
 
     mediaRecorder.onstop = async () => {
-        if (audioChunks.length === 0) return;
-
-        const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
-        audioChunks = [];
-
-        // Create form data and send to backend
-        const formData = new FormData();
-        formData.append('audio', audioBlob, 'recording.wav');
+        if (audioChunks.length === 0) {
+            isProcessing = false;
+            updateMuteButtonState();
+            return;
+        }
 
         try {
+            // Show loading indicator for transcription
+            showLoadingIndicator('transcribing');
+
+            const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+            audioChunks = [];
+
+            // Create form data and send to backend
+            const formData = new FormData();
+            formData.append('audio', audioBlob, 'recording.wav');
+
             const response = await fetch(processAudioUrl, {
                 method: 'POST',
                 headers: {
@@ -248,10 +325,22 @@ function setupMediaRecorder() {
                 },
                 body: formData
             });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
             const data = await response.json();
 
             if (data.recognized_text) {
+                // Remove the loading indicator
+                removeLoadingIndicator();
+
                 appendMessage('You', data.recognized_text);
+
+                // Show loading indicator for AI response
+                showLoadingIndicator('generating');
+
                 // Get AI response
                 const aiResponse = await fetch(getResponseUrl, {
                     method: 'POST',
@@ -264,25 +353,102 @@ function setupMediaRecorder() {
                         assessment_type: 'technical'
                     })
                 });
+
+                if (!aiResponse.ok) {
+                    throw new Error(`HTTP error! status: ${aiResponse.status}`);
+                }
+
                 const aiData = await aiResponse.json();
+
+                // Remove loading indicator
+                removeLoadingIndicator();
+
                 if (aiData.message) {
                     appendMessage('Assistant', aiData.message);
-                    synthesizeSpeech(aiData.message);
+                    botStartedSpeaking();
+                    await synthesizeSpeech(aiData.message);
+                    botStoppedSpeaking();
                 }
-            }
-
-            // Start a new recording if not muted
-            if (!isMuted) {
-                startRecording();
+            } else {
+                removeLoadingIndicator();
+                appendMessage('System', 'No speech detected. Please try again.');
             }
         } catch (error) {
             console.error('Error processing audio:', error);
-            // Attempt to restart recording even if there was an error
-            if (!isMuted) {
-                startRecording();
-            }
+            removeLoadingIndicator();
+            appendMessage('System', `Error: ${error.message}. Please try again.`);
+        } finally {
+            // Reset processing state
+            isProcessing = false;
+            updateMuteButtonState();
         }
     };
+}
+
+// Function to show loading indicator
+function showLoadingIndicator(type = 'default') {
+    const loadingElement = document.createElement('div');
+    loadingElement.className = 'loading-indicator';
+
+    let loadingText = '';
+    switch (type) {
+        case 'transcribing':
+            loadingText = 'Transcribing audio...';
+            break;
+        case 'generating':
+            loadingText = 'Generating response...';
+            break;
+        case 'welcome':
+            loadingText = 'Loading interview...';
+            break;
+        default:
+            loadingText = 'Processing...';
+    }
+
+    loadingElement.innerHTML = `
+        <div class="loading-circle"></div>
+        <div class="loading-text">${loadingText}</div>
+    `;
+    loadingElement.id = 'loading-indicator';
+    chatMessages.appendChild(loadingElement);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+// Function to remove loading indicator
+function removeLoadingIndicator() {
+    const loadingElement = document.getElementById('loading-indicator');
+    if (loadingElement) {
+        loadingElement.remove();
+    }
+}
+
+// Function when bot starts speaking
+function botStartedSpeaking() {
+    console.log('Bot started speaking');
+    isBotSpeaking = true;
+    updateMuteButtonState();
+}
+
+// Function when bot stops speaking
+function botStoppedSpeaking() {
+    console.log('Bot stopped speaking');
+    isBotSpeaking = false;
+    updateMuteButtonState();
+}
+
+// Update mute button state based on current status
+function updateMuteButtonState() {
+    // Update button appearance
+    muteButton.classList.toggle('active', isMuted);
+
+    // Disable button during processing
+    if (isProcessing || isBotSpeaking) {
+        muteButton.disabled = true;
+        muteButton.classList.add('disabled');
+    } else {
+        muteButton.disabled = false;
+        muteButton.classList.remove('disabled');
+    }
 }
 
 // Timer Functionality
@@ -352,45 +518,71 @@ function appendMessage(sender, message) {
     messageElement.className = 'chat-message';
     messageElement.innerHTML = `<strong>${sender}:</strong> ${message}`;
     chatMessages.appendChild(messageElement);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
 
-    // Ensure scroll to bottom after adding new message
-    setTimeout(() => {
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-    }, 10);
-
-    // Add to conversation history
-    conversation.push({ sender, message });
-
-    // Log for debugging
-    console.log('Message added, chat height:', chatMessages.scrollHeight);
+    // Only add user and assistant messages to the conversation history
+    if (sender === 'You' || sender === 'Assistant') {
+        conversation.push({ sender, message });
+    }
 }
 
 // Synthesize Speech
-function synthesizeSpeech(text) {
-    fetch(synthesizeTextUrl, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'X-CSRFToken': csrftoken,
-        },
-        body: new URLSearchParams({ text }),
-    })
-        .then((response) => response.blob())
-        .then((blob) => {
-            const audio = new Audio(URL.createObjectURL(blob));
-            audio.play();
-        })
-        .catch((error) => console.error('Speech synthesis error:', error));
+async function synthesizeSpeech(text) {
+    try {
+        const response = await fetch(synthesizeTextUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'X-CSRFToken': csrftoken,
+            },
+            body: new URLSearchParams({ text }),
+        });
+
+        const blob = await response.blob();
+
+        // Create and play audio
+        if (audioElement) {
+            // If there's an existing audio element, clean it up
+            audioElement.pause();
+            audioElement.remove();
+        }
+
+        audioElement = new Audio(URL.createObjectURL(blob));
+
+        // Add event listener for when audio ends
+        audioElement.addEventListener('ended', () => {
+            botStoppedSpeaking();
+            updateMuteButtonState();
+        });
+
+        // Play the audio
+        await audioElement.play();
+
+        return new Promise((resolve) => {
+            audioElement.onended = resolve;
+        });
+    } catch (error) {
+        console.error('Speech synthesis error:', error);
+        botStoppedSpeaking();
+        updateMuteButtonState();
+    }
 }
 
 // Send a Text Message
 async function sendMessage() {
     const message = userInput.value.trim();
-    if (message === '') return;
+    if (message === '' || isProcessing) return;
 
     appendMessage('You', message);
     userInput.value = '';
     userInput.style.height = 'auto';
+
+    // Set processing state
+    isProcessing = true;
+    updateMuteButtonState();
+
+    // Show loading indicator
+    showLoadingIndicator('generating');
 
     try {
         const response = await fetch(getResponseUrl, {
@@ -404,18 +596,110 @@ async function sendMessage() {
                 assessment_type: 'technical'
             }),
         });
+
+        // Remove loading indicator
+        removeLoadingIndicator();
+
         const data = await response.json();
 
         if (data.message) {
             appendMessage('Assistant', data.message);
-            synthesizeSpeech(data.message);
+            botStartedSpeaking();
+            await synthesizeSpeech(data.message);
+            botStoppedSpeaking();
         } else if (data.error) {
             appendMessage('Error', data.error);
         }
     } catch (error) {
         console.error('Error:', error);
+        removeLoadingIndicator();
         appendMessage('Error', 'Failed to get response from the assistant.');
+    } finally {
+        // Reset processing state
+        isProcessing = false;
+        updateMuteButtonState();
     }
+}
+
+// Function to show leave confirmation modal
+function showLeaveConfirmation() {
+    // Create modal if it doesn't exist
+    if (!document.getElementById('leaveModal')) {
+        const modalHTML = `
+        <div id="leaveModal" class="modal">
+            <div class="modal-content" onclick="event.stopPropagation()">
+                <div class="modal-header">
+                    <h2>Leave Interview</h2>
+                </div>
+                <div class="modal-body">
+                    <div class="warning-icon">⚠️</div>
+                    <p>Are you sure you want to leave this interview?</p>
+                    <p class="warning-text">Your progress will be saved, but the interview will end.</p>
+                </div>
+                <div class="modal-footer">
+                    <button id="cancelLeaveBtn" class="btn-cancel">Cancel</button>
+                    <button id="confirmLeaveBtn" class="btn-confirm-delete">Leave Interview</button>
+                </div>
+            </div>
+        </div>
+        `;
+
+        // Append modal to body
+        document.body.insertAdjacentHTML('beforeend', modalHTML);
+
+        // Set up event listeners for the modal
+        const leaveModal = document.getElementById('leaveModal');
+        const cancelLeaveBtn = document.getElementById('cancelLeaveBtn');
+        const confirmLeaveBtn = document.getElementById('confirmLeaveBtn');
+
+        // Close modal when clicking outside
+        leaveModal.addEventListener('click', function (event) {
+            if (event.target === leaveModal) {
+                hideLeaveConfirmation();
+            }
+        });
+
+        // Close modal when clicking cancel
+        cancelLeaveBtn.addEventListener('click', hideLeaveConfirmation);
+
+        // Confirm leave when clicking confirm
+        confirmLeaveBtn.addEventListener('click', function () {
+            hideLeaveConfirmation();
+            endInterview();
+        });
+    }
+
+    // Show the modal
+    const leaveModal = document.getElementById('leaveModal');
+    leaveModal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+}
+
+// Function to hide leave confirmation modal
+function hideLeaveConfirmation() {
+    const leaveModal = document.getElementById('leaveModal');
+    if (leaveModal) {
+        leaveModal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+}
+
+// Function to end the interview and save assessment
+function endInterview() {
+    clearInterval(timerInterval);
+
+    // Stop recording if active
+    if (isRecording) {
+        mediaRecorder.stop();
+        isRecording = false;
+    }
+
+    // Stop all tracks
+    if (videoStream) {
+        videoStream.getTracks().forEach(track => track.stop());
+    }
+
+    saveAssessment();
 }
 
 // Event Listeners
@@ -437,6 +721,11 @@ userInput.addEventListener('input', function () {
 
 // Handle Mute Button Click
 muteButton.addEventListener('click', () => {
+    // Don't allow changes during processing
+    if (isProcessing || isBotSpeaking) {
+        return;
+    }
+
     isMuted = !isMuted;
 
     // Toggle video mute
@@ -444,8 +733,11 @@ muteButton.addEventListener('click', () => {
 
     // Handle audio recording
     if (isMuted) {
-        stopRecording();
+        if (isRecording) {
+            stopRecording();
+        }
     } else {
+        // Start recording when unmuted
         startRecording();
     }
 
@@ -457,13 +749,13 @@ muteButton.addEventListener('click', () => {
     }
 
     // Update button appearance
-    muteButton.classList.toggle('active', isMuted);
+    updateMuteButtonState();
 });
 
 // Function to Save Assessment
 function saveAssessment() {
     if (conversation.length === 0) {
-        alert('No conversation to save.');
+        showNotificationPopup('No conversation to save.', 'error');
         return;
     }
 
@@ -481,29 +773,67 @@ function saveAssessment() {
         .then((response) => response.json())
         .then((data) => {
             if (data.message) {
-                alert(data.message);
+                // Create a success popup that will be shown on the assessments list page
+                localStorage.setItem('assessment_saved', 'true');
+                localStorage.setItem('assessment_message', data.message);
+
+                // Redirect to assessments list page
                 window.location.href = '/assessments/list/';
             } else if (data.error) {
-                alert(`Error: ${data.error}`);
+                showNotificationPopup(`Error: ${data.error}`, 'error');
             }
         })
-        .catch((error) => console.error('Save Assessment Error:', error));
+        .catch((error) => {
+            console.error('Save Assessment Error:', error);
+            showNotificationPopup('Error saving assessment. Please try again.', 'error');
+        });
 }
 
-// Handle Leave Button Click
-leaveButton.addEventListener('click', () => {
-    clearInterval(timerInterval);
+// Function to show notification popup
+function showNotificationPopup(message, type = 'success') {
+    // Create popup if it doesn't exist
+    if (!document.getElementById('notificationPopup')) {
+        const popupHTML = `
+        <div id="notificationPopup" class="success-popup ${type === 'error' ? 'error-popup' : ''}">
+            <div class="success-content">
+                <span class="success-icon">${type === 'error' ? '✕' : '✓'}</span>
+                <p id="notificationMessage"></p>
+            </div>
+        </div>
+        `;
 
-    // Stop recording if active
-    if (isRecording) {
-        mediaRecorder.stop();
-        isRecording = false;
+        // Append popup to body
+        document.body.insertAdjacentHTML('beforeend', popupHTML);
     }
 
-    // Stop all tracks
-    if (videoStream) {
-        videoStream.getTracks().forEach(track => track.stop());
-    }
+    // Update popup message and show it
+    const popup = document.getElementById('notificationPopup');
+    const messageElement = document.getElementById('notificationMessage');
 
-    saveAssessment();
+    // Update class based on type
+    popup.className = `success-popup ${type === 'error' ? 'error-popup' : ''}`;
+
+    // Set message
+    messageElement.textContent = message;
+
+    // Show popup
+    popup.style.display = 'block';
+
+    // Hide popup after 3 seconds
+    setTimeout(function () {
+        popup.style.animation = 'slideOut 0.3s ease-out';
+        setTimeout(function () {
+            popup.style.display = 'none';
+            popup.style.animation = 'slideIn 0.3s ease-out';
+        }, 300);
+    }, 3000);
+}
+
+// Handle Leave Button Click - Show confirmation instead of immediate action
+leaveButton.addEventListener('click', showLeaveConfirmation);
+
+// Initialize the UI with proper button state
+window.addEventListener('DOMContentLoaded', () => {
+    // Set initial mute button state
+    updateMuteButtonState();
 });

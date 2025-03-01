@@ -13,6 +13,7 @@
     --easy-color: #00AF9B;
     --medium-color: #FFB800;
     --hard-color: #FF2D55;
+    --disabled-gray: #999999;
 }
 
 * {
@@ -696,4 +697,234 @@ body.resizing .editor-container {
     .footer-controls {
         justify-content: center;
     }
+}
+
+/* Loading Indicator */
+.loading-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    gap: 12px;
+}
+
+.loading-circle {
+    width: 24px;
+    height: 24px;
+    border: 3px solid rgba(0, 122, 255, 0.2);
+    border-top: 3px solid var(--accent-blue);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    flex-shrink: 0;
+}
+
+.loading-text {
+    color: var(--accent-blue);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Modal Styles for Leave Confirmation */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: white;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+.modal-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid #E5E7EB;
+}
+
+.modal-header h2 {
+    margin: 0;
+    color: #111827;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.modal-body {
+    padding: 24px;
+    text-align: center;
+}
+
+.warning-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+}
+
+.modal-body p {
+    margin: 0 0 8px;
+    color: #374151;
+    font-size: 16px;
+}
+
+.warning-text {
+    color: #DC2626;
+    font-size: 14px;
+}
+
+.modal-footer {
+    padding: 16px 24px;
+    border-top: 1px solid #E5E7EB;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.btn-cancel {
+    padding: 8px 16px;
+    border: 1px solid #D1D5DB;
+    background-color: white;
+    color: #374151;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-cancel:hover {
+    background-color: #F3F4F6;
+}
+
+.btn-confirm-delete {
+    padding: 8px 16px;
+    background-color: #DC2626;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-confirm-delete:hover {
+    background-color: #B91C1C;
+}
+
+@keyframes modalSlideIn {
+    from {
+        transform: translateY(-10%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Success/Error Popup Styles */
+.success-popup {
+    display: none;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #10B981;
+    color: white;
+    padding: 16px 24px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    animation: slideIn 0.3s ease-out;
+}
+
+.error-popup {
+    background-color: #DC2626;
+}
+
+.success-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.success-icon {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+/* Recording state - pulsing effect */
+.control-button.mute.recording {
+    background-color: rgba(255, 59, 48, 0.6);
+    animation: recording-pulse 2s infinite;
+}
+
+@keyframes recording-pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 59, 48, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(255, 59, 48, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 59, 48, 0);
+    }
+}
+
+/* Disabled state */
+.control-button.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: var(--disabled-gray);
+}
+
+/* Disabled button shouldn't change on hover */
+.control-button.disabled:hover {
+    background-color: var(--disabled-gray);
 }
