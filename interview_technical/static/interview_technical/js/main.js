@@ -55,7 +55,85 @@ const userInput = document.getElementById('user-input');
 const chatMessages = document.getElementById('chat-messages');
 const leaveButton = document.getElementById('leave-button');
 const muteButton = document.getElementById('mute-button');
+const toggleVideoBtn = document.getElementById('toggle-video');
+const videoContainer = document.querySelector('.video-container');
+const resizeHandle = document.getElementById('question-editor-resize');
 let conversation = [];
+
+// Initialize resize functionality
+function initResizeHandle() {
+    const mainContent = document.querySelector('.main-content');
+    const questionContainer = document.querySelector('.question-container');
+    const editorContainer = document.querySelector('.editor-container');
+    const rightSection = document.querySelector('.right-section');
+    let isResizing = false;
+    let startX, startWidth;
+
+    resizeHandle.addEventListener('mousedown', (e) => {
+        isResizing = true;
+        startX = e.clientX;
+        startWidth = questionContainer.getBoundingClientRect().width;
+
+        // Add a class to indicate resizing is in progress
+        document.body.classList.add('resizing');
+
+        // Prevent text selection during resize
+        e.preventDefault();
+    });
+
+    document.addEventListener('mousemove', (e) => {
+        if (!isResizing) return;
+
+        const deltaX = e.clientX - startX;
+        const newWidth = startWidth + deltaX;
+        const totalWidth = mainContent.getBoundingClientRect().width;
+
+        // Keep right section at 1/3 of the total width
+        const rightSectionWidth = totalWidth / 3;
+
+        // Remaining width for question and editor containers (minus resize handle)
+        const remainingWidth = totalWidth - rightSectionWidth - 10; // 10px for resize handle
+
+        // Ensure minimum widths
+        if (newWidth > 100 && (remainingWidth - newWidth) > 100) {
+            // Set the width of question container and editor container
+            mainContent.style.gridTemplateColumns = `${newWidth}px 10px ${remainingWidth - newWidth}px ${rightSectionWidth}px`;
+        }
+    });
+
+    document.addEventListener('mouseup', () => {
+        isResizing = false;
+        document.body.classList.remove('resizing');
+    });
+
+    // Handle window resize
+    window.addEventListener('resize', () => {
+        // Reset custom grid template if window is resized
+        if (window.innerWidth <= 1200) {
+            mainContent.style.gridTemplateColumns = '';
+        }
+    });
+}
+
+// Initialize video toggle functionality
+function initVideoToggle() {
+    toggleVideoBtn.addEventListener('click', () => {
+        videoContainer.classList.toggle('collapsed');
+
+        // Update the toggle button icon (handled by CSS rotation)
+
+        // Ensure Monaco editor layout is updated
+        if (window.monacoEditor) {
+            window.monacoEditor.layout();
+        }
+    });
+}
+
+// Initialize UI components after DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    initResizeHandle();
+    initVideoToggle();
+});
 
 // Update current time
 function updateCurrentTime() {
