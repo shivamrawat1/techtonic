@@ -84,7 +84,7 @@ class InterviewAnalyzer:
         response = self.client.chat.completions.create(
             model="gpt-4-turbo",
             messages=messages,
-            temperature=0.7,
+            temperature=0.2,
         )
 
         return json.loads(response.choices[0].message.content) 

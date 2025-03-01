@@ -34,14 +34,10 @@ updateCurrentTime(); // Initial update
 let mediaRecorder;
 let audioChunks = [];
 let isRecording = false;
-let isMuted = false;
-let silenceTimer = null;
-let audioContext = null;
-let audioAnalyser = null;
-let isUserSpeaking = false;
-let isBotSpeaking = false;
+let isMuted = true; // Start with microphone muted by default
+let isProcessing = false; // Flag to track if audio is being processed
 let audioElement = null;
-let endpointingTimeout = 500; // 500ms of silence to consider speech ended
+let isBotSpeaking = false;
 
 // Initialize video and audio stream
 let videoStream;
@@ -51,105 +47,81 @@ navigator.mediaDevices
         videoStream = stream;
         video.srcObject = stream;
 
-        // Set up audio context for speech detection
-        audioContext = new (window.AudioContext || window.webkitAudioContext)();
-        const source = audioContext.createMediaStreamSource(stream);
-        audioAnalyser = audioContext.createAnalyser();
-        audioAnalyser.fftSize = 256;
-        source.connect(audioAnalyser);
-
         // Initialize media recorder for voice input
         mediaRecorder = new MediaRecorder(stream);
         setupMediaRecorder();
 
-        // Start monitoring audio levels for speech detection
-        startSpeechDetection();
+        // Mute audio tracks by default
+        videoStream.getAudioTracks().forEach(track => {
+            track.enabled = !isMuted;
+        });
+
+        // Update button appearance to show initial muted state
+        updateMuteButtonState();
+
+        // Get initial welcome message from the AI
+        getWelcomeMessage();
     })
     .catch((error) => {
         console.error("Error accessing webcam:", error);
+        appendMessage('System', 'Error accessing camera or microphone. Please check permissions.');
     });
 
-// Function to detect speech based on audio levels
-function startSpeechDetection() {
-    const bufferLength = audioAnalyser.frequencyBinCount;
-    const dataArray = new Uint8Array(bufferLength);
+// Function to get welcome message from the AI
+async function getWelcomeMessage() {
+    try {
+        // Show loading indicator
+        showLoadingIndicator('welcome');
 
-    function checkAudioLevel() {
-        if (isMuted) {
-            requestAnimationFrame(checkAudioLevel);
-            return;
+        // Set processing state to disable microphone button during welcome message loading
+        isProcessing = true;
+        updateMuteButtonState();
+
+        const response = await fetch('/interview_behavioral/get_response/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrftoken,
+            },
+            body: JSON.stringify({ message: "Hello, I'm ready for my behavioral interview." })
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
 
-        audioAnalyser.getByteFrequencyData(dataArray);
-        let sum = 0;
-        for (let i = 0; i < bufferLength; i++) {
-            sum += dataArray[i];
+        const data = await response.json();
+
+        // Remove loading indicator
+        removeLoadingIndicator();
+
+        if (data.message) {
+            appendMessage('Assistant', data.message);
+            botStartedSpeaking();
+            await synthesizeSpeech(data.message);
+            botStoppedSpeaking();
         }
-        const average = sum / bufferLength;
-
-        // Threshold for speech detection
-        const threshold = 15;
-
-        if (average > threshold) {
-            // User is speaking
-            if (!isUserSpeaking) {
-                userStartedSpeaking();
-            }
-
-            // Reset silence timer
-            if (silenceTimer) {
-                clearTimeout(silenceTimer);
-            }
-
-            // Set a new silence timer
-            silenceTimer = setTimeout(() => {
-                userStoppedSpeaking();
-            }, endpointingTimeout);
-        }
-
-        requestAnimationFrame(checkAudioLevel);
-    }
-
-    checkAudioLevel();
-}
-
-// Function when user starts speaking
-function userStartedSpeaking() {
-    console.log('User started speaking');
-    isUserSpeaking = true;
-
-    // If bot is speaking, stop it (barge-in functionality)
-    if (isBotSpeaking && audioElement) {
-        console.log('Interrupting bot speech (barge-in)');
-        audioElement.pause();
-        audioElement.currentTime = 0;
-        isBotSpeaking = false;
-    }
-
-    // Start recording if not already recording
-    if (!isRecording) {
-        startRecording();
-    }
-}
-
-// Function when user stops speaking
-function userStoppedSpeaking() {
-    console.log('User stopped speaking');
-    isUserSpeaking = false;
-
-    // Stop recording and process the audio
-    if (isRecording) {
-        stopRecording();
+    } catch (error) {
+        console.error('Error getting welcome message:', error);
+        removeLoadingIndicator();
+        appendMessage('Assistant', 'Welcome to your behavioral interview. When you\'re ready to respond, click the microphone button to begin speaking.');
+    } finally {
+        // Reset processing state after welcome message is complete
+        isProcessing = false;
+        updateMuteButtonState();
     }
 }
 
 // Function to start recording
 function startRecording() {
-    if (mediaRecorder && mediaRecorder.state === 'inactive' && !isMuted) {
+    if (mediaRecorder && mediaRecorder.state === 'inactive' && !isMuted && !isProcessing) {
         audioChunks = [];
         mediaRecorder.start();
         isRecording = true;
         console.log('Recording started');
+
+        // Visual feedback that recording is active
+        muteButton.classList.add('recording');
     }
 }
 
@@ -159,6 +131,13 @@ function stopRecording() {
         mediaRecorder.stop();
         isRecording = false;
         console.log('Recording stopped');
+
+        // Visual feedback that recording has stopped
+        muteButton.classList.remove('recording');
+
+        // Set processing state
+        isProcessing = true;
+        updateMuteButtonState();
     }
 }
 
@@ -169,16 +148,23 @@ function setupMediaRecorder() {
     };
 
     mediaRecorder.onstop = async () => {
-        if (audioChunks.length === 0) return;
-
-        const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
-        audioChunks = [];
-
-        // Create form data and send to backend
-        const formData = new FormData();
-        formData.append('audio', audioBlob, 'recording.wav');
+        if (audioChunks.length === 0) {
+            isProcessing = false;
+            updateMuteButtonState();
+            return;
+        }
 
         try {
+            // Show loading indicator for transcription
+            showLoadingIndicator('transcribing');
+
+            const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+            audioChunks = [];
+
+            // Create form data and send to backend
+            const formData = new FormData();
+            formData.append('audio', audioBlob, 'recording.wav');
+
             const response = await fetch('/interview_behavioral/process_audio/', {
                 method: 'POST',
                 headers: {
@@ -186,10 +172,22 @@ function setupMediaRecorder() {
                 },
                 body: formData
             });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
             const data = await response.json();
 
             if (data.recognized_text) {
+                // Remove the loading indicator
+                removeLoadingIndicator();
+
                 appendMessage('You', data.recognized_text);
+
+                // Show loading indicator for AI response
+                showLoadingIndicator('generating');
+
                 // Get AI response
                 const aiResponse = await fetch('/interview_behavioral/get_response/', {
                     method: 'POST',
@@ -199,18 +197,73 @@ function setupMediaRecorder() {
                     },
                     body: JSON.stringify({ message: data.recognized_text })
                 });
+
+                if (!aiResponse.ok) {
+                    throw new Error(`HTTP error! status: ${aiResponse.status}`);
+                }
+
                 const aiData = await aiResponse.json();
+
+                // Remove loading indicator
+                removeLoadingIndicator();
+
                 if (aiData.message) {
                     appendMessage('Assistant', aiData.message);
                     botStartedSpeaking();
                     await synthesizeSpeech(aiData.message);
                     botStoppedSpeaking();
                 }
+            } else {
+                removeLoadingIndicator();
+                appendMessage('System', 'No speech detected. Please try again.');
             }
         } catch (error) {
             console.error('Error processing audio:', error);
+            removeLoadingIndicator();
+            appendMessage('System', `Error: ${error.message}. Please try again.`);
+        } finally {
+            // Reset processing state
+            isProcessing = false;
+            updateMuteButtonState();
         }
     };
+}
+
+// Function to show loading indicator
+function showLoadingIndicator(type = 'default') {
+    const loadingElement = document.createElement('div');
+    loadingElement.className = 'loading-indicator';
+
+    let loadingText = '';
+    switch (type) {
+        case 'transcribing':
+            loadingText = 'Transcribing audio...';
+            break;
+        case 'generating':
+            loadingText = 'Generating response...';
+            break;
+        case 'welcome':
+            loadingText = 'Loading interview...';
+            break;
+        default:
+            loadingText = 'Processing...';
+    }
+
+    loadingElement.innerHTML = `
+        <div class="loading-circle"></div>
+        <div class="loading-text">${loadingText}</div>
+    `;
+    loadingElement.id = 'loading-indicator';
+    chatMessages.appendChild(loadingElement);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+// Function to remove loading indicator
+function removeLoadingIndicator() {
+    const loadingElement = document.getElementById('loading-indicator');
+    if (loadingElement) {
+        loadingElement.remove();
+    }
 }
 
 // Function when bot starts speaking
@@ -223,6 +276,21 @@ function botStartedSpeaking() {
 function botStoppedSpeaking() {
     console.log('Bot stopped speaking');
     isBotSpeaking = false;
+}
+
+// Update mute button state based on current status
+function updateMuteButtonState() {
+    // Update button appearance
+    muteButton.classList.toggle('active', isMuted);
+
+    // Disable button during processing
+    if (isProcessing || isBotSpeaking) {
+        muteButton.disabled = true;
+        muteButton.classList.add('disabled');
+    } else {
+        muteButton.disabled = false;
+        muteButton.classList.remove('disabled');
+    }
 }
 
 // Timer Functionality
@@ -293,7 +361,11 @@ function appendMessage(sender, message) {
     messageElement.innerHTML = `<strong>${sender}:</strong> ${message}`;
     chatMessages.appendChild(messageElement);
     chatMessages.scrollTop = chatMessages.scrollHeight;
-    conversation.push({ sender, message });
+
+    // Only add user and assistant messages to the conversation history
+    if (sender === 'You' || sender === 'Assistant') {
+        conversation.push({ sender, message });
+    }
 }
 
 // Synthesize Speech
@@ -322,6 +394,7 @@ async function synthesizeSpeech(text) {
         // Add event listener for when audio ends
         audioElement.addEventListener('ended', () => {
             botStoppedSpeaking();
+            updateMuteButtonState();
         });
 
         // Play the audio
@@ -333,17 +406,25 @@ async function synthesizeSpeech(text) {
     } catch (error) {
         console.error('Speech synthesis error:', error);
         botStoppedSpeaking();
+        updateMuteButtonState();
     }
 }
 
 // Send a Text Message
 async function sendMessage() {
     const message = userInput.value.trim();
-    if (message === '') return;
+    if (message === '' || isProcessing) return;
 
     appendMessage('You', message);
     userInput.value = '';
     userInput.style.height = 'auto';
+
+    // Set processing state
+    isProcessing = true;
+    updateMuteButtonState();
+
+    // Show loading indicator
+    showLoadingIndicator('generating');
 
     try {
         const response = await fetch('/interview_behavioral/get_response/', {
@@ -354,6 +435,10 @@ async function sendMessage() {
             },
             body: JSON.stringify({ message }),
         });
+
+        // Remove loading indicator
+        removeLoadingIndicator();
+
         const data = await response.json();
 
         if (data.message) {
@@ -366,8 +451,94 @@ async function sendMessage() {
         }
     } catch (error) {
         console.error('Error:', error);
+        removeLoadingIndicator();
         appendMessage('Error', 'Failed to get response from the assistant.');
+    } finally {
+        // Reset processing state
+        isProcessing = false;
+        updateMuteButtonState();
     }
+}
+
+// Function to show leave confirmation modal
+function showLeaveConfirmation() {
+    // Create modal if it doesn't exist
+    if (!document.getElementById('leaveModal')) {
+        const modalHTML = `
+        <div id="leaveModal" class="modal">
+            <div class="modal-content" onclick="event.stopPropagation()">
+                <div class="modal-header">
+                    <h2>Leave Interview</h2>
+                </div>
+                <div class="modal-body">
+                    <div class="warning-icon">⚠️</div>
+                    <p>Are you sure you want to leave this interview?</p>
+                    <p class="warning-text">Your progress will be saved, but the interview will end.</p>
+                </div>
+                <div class="modal-footer">
+                    <button id="cancelLeaveBtn" class="btn-cancel">Cancel</button>
+                    <button id="confirmLeaveBtn" class="btn-confirm-delete">Leave Interview</button>
+                </div>
+            </div>
+        </div>
+        `;
+
+        // Append modal to body
+        document.body.insertAdjacentHTML('beforeend', modalHTML);
+
+        // Set up event listeners for the modal
+        const leaveModal = document.getElementById('leaveModal');
+        const cancelLeaveBtn = document.getElementById('cancelLeaveBtn');
+        const confirmLeaveBtn = document.getElementById('confirmLeaveBtn');
+
+        // Close modal when clicking outside
+        leaveModal.addEventListener('click', function (event) {
+            if (event.target === leaveModal) {
+                hideLeaveConfirmation();
+            }
+        });
+
+        // Close modal when clicking cancel
+        cancelLeaveBtn.addEventListener('click', hideLeaveConfirmation);
+
+        // Confirm leave when clicking confirm
+        confirmLeaveBtn.addEventListener('click', function () {
+            hideLeaveConfirmation();
+            endInterview();
+        });
+    }
+
+    // Show the modal
+    const leaveModal = document.getElementById('leaveModal');
+    leaveModal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+}
+
+// Function to hide leave confirmation modal
+function hideLeaveConfirmation() {
+    const leaveModal = document.getElementById('leaveModal');
+    if (leaveModal) {
+        leaveModal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+}
+
+// Function to end the interview and save assessment
+function endInterview() {
+    clearInterval(timerInterval);
+
+    // Stop recording if active
+    if (isRecording) {
+        mediaRecorder.stop();
+        isRecording = false;
+    }
+
+    // Stop all tracks
+    if (videoStream) {
+        videoStream.getTracks().forEach(track => track.stop());
+    }
+
+    saveAssessment();
 }
 
 // Event Listeners
@@ -389,6 +560,11 @@ userInput.addEventListener('input', function () {
 
 // Handle Mute Button Click
 muteButton.addEventListener('click', () => {
+    // Don't allow changes during processing
+    if (isProcessing || isBotSpeaking) {
+        return;
+    }
+
     isMuted = !isMuted;
 
     // Toggle video mute
@@ -399,6 +575,9 @@ muteButton.addEventListener('click', () => {
         if (isRecording) {
             stopRecording();
         }
+    } else {
+        // Start recording when unmuted
+        startRecording();
     }
 
     // Toggle audio tracks
@@ -409,13 +588,13 @@ muteButton.addEventListener('click', () => {
     }
 
     // Update button appearance
-    muteButton.classList.toggle('active', isMuted);
+    updateMuteButtonState();
 });
 
 // Function to Save Assessment
 function saveAssessment() {
     if (conversation.length === 0) {
-        alert('No conversation to save.');
+        showNotificationPopup('No conversation to save.', 'error');
         return;
     }
 
@@ -433,74 +612,69 @@ function saveAssessment() {
         .then((response) => response.json())
         .then((data) => {
             if (data.message) {
-                alert(data.message);
+                // Create a success popup that will be shown on the assessments list page
+                localStorage.setItem('assessment_saved', 'true');
+                localStorage.setItem('assessment_message', data.message);
+
+                // Redirect to assessments list page
                 window.location.href = '/assessments/list/';
             } else if (data.error) {
-                alert(`Error: ${data.error}`);
+                showNotificationPopup(`Error: ${data.error}`, 'error');
             }
         })
-        .catch((error) => console.error('Save Assessment Error:', error));
+        .catch((error) => {
+            console.error('Save Assessment Error:', error);
+            showNotificationPopup('Error saving assessment. Please try again.', 'error');
+        });
 }
 
-// Handle Leave Button Click
-leaveButton.addEventListener('click', () => {
-    clearInterval(timerInterval);
+// Function to show notification popup
+function showNotificationPopup(message, type = 'success') {
+    // Create popup if it doesn't exist
+    if (!document.getElementById('notificationPopup')) {
+        const popupHTML = `
+        <div id="notificationPopup" class="success-popup ${type === 'error' ? 'error-popup' : ''}">
+            <div class="success-content">
+                <span class="success-icon">${type === 'error' ? '✕' : '✓'}</span>
+                <p id="notificationMessage"></p>
+            </div>
+        </div>
+        `;
 
-    // Stop recording if active
-    if (isRecording) {
-        mediaRecorder.stop();
-        isRecording = false;
+        // Append popup to body
+        document.body.insertAdjacentHTML('beforeend', popupHTML);
     }
 
-    // Stop all tracks
-    if (videoStream) {
-        videoStream.getTracks().forEach(track => track.stop());
-    }
+    // Update popup message and show it
+    const popup = document.getElementById('notificationPopup');
+    const messageElement = document.getElementById('notificationMessage');
 
-    saveAssessment();
+    // Update class based on type
+    popup.className = `success-popup ${type === 'error' ? 'error-popup' : ''}`;
+
+    // Set message
+    messageElement.textContent = message;
+
+    // Show popup
+    popup.style.display = 'block';
+
+    // Hide popup after 3 seconds
+    setTimeout(function () {
+        popup.style.animation = 'slideOut 0.3s ease-out';
+        setTimeout(function () {
+            popup.style.display = 'none';
+            popup.style.animation = 'slideIn 0.3s ease-out';
+        }, 300);
+    }, 3000);
+}
+
+// Handle Leave Button Click - Show confirmation instead of immediate action
+leaveButton.addEventListener('click', showLeaveConfirmation);
+
+// Initialize the UI with proper button state
+window.addEventListener('DOMContentLoaded', () => {
+    // Set initial mute button state
+    updateMuteButtonState();
+
+    // Remove the initial system message - we'll rely on the AI welcome message instead
 });
-
-// Immediately execute when script loads
-(function () {
-    console.log("Immediate execution started");
-
-    // Get the elements
-    const timerDisplay = document.getElementById('timer-display');
-    const durationInput = document.getElementById('interview-duration');
-
-    // Verify elements exist
-    if (!timerDisplay || !durationInput) {
-        console.error("Timer elements not found");
-        return;
-    }
-
-    // Get duration value
-    const duration = parseInt(durationInput.value) || 30;
-    let seconds = duration * 60;
-
-    // Update timer display
-    function updateTimer() {
-        const minutes = Math.floor(seconds / 60);
-        const remainingSeconds = seconds % 60;
-        timerDisplay.textContent = `Time Remaining: ${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
-
-        if (seconds === 0) {
-            clearInterval(countdownInterval);
-            timerDisplay.style.backgroundColor = 'rgba(255,0,0,0.7)';
-            alert('Time is up!');
-            if (typeof saveAssessment === 'function') {
-                saveAssessment();
-            }
-        } else {
-            seconds--;
-        }
-    }
-
-    // Initial display
-    updateTimer();
-
-    // Start countdown
-    const countdownInterval = setInterval(updateTimer, 1000);
-
-    console.log("Timer initialized with duration:", duration, "minutes");
-})();

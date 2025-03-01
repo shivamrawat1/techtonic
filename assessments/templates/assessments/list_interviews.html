@@ -107,6 +107,36 @@
     </div>
 </div>
 
+<!-- Check for assessment saved message -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Check if we have a saved assessment message in localStorage
+        if (localStorage.getItem('assessment_saved') === 'true') {
+            const message = localStorage.getItem('assessment_message') || 'Assessment saved successfully!';
+            
+            // Update success message
+            document.getElementById('successMessage').textContent = message;
+            
+            // Show success popup
+            const popup = document.getElementById('successPopup');
+            popup.style.display = 'block';
+            
+            // Hide popup after 3 seconds
+            setTimeout(function() {
+                popup.style.animation = 'slideOut 0.3s ease-out';
+                setTimeout(function() {
+                    popup.style.display = 'none';
+                    popup.style.animation = 'slideIn 0.3s ease-out';
+                }, 300);
+            }, 3000);
+            
+            // Clear localStorage
+            localStorage.removeItem('assessment_saved');
+            localStorage.removeItem('assessment_message');
+        }
+    });
+</script>
+
 <style>
     /* Message Popup Styles */
     .message-popup {

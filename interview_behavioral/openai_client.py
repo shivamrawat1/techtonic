@@ -25,7 +25,8 @@ class OpenAIClient:
                 instructions=(
                     f"You are an expert behavioral interviewer conducting an interview with {context}. Your task is to ask behavioral questions that are highly relevant to the candidate's resume and the job description. Ask one question at a time, ensuring a logical flow between questions based on the candidate's responses. If their answer is vague or lacks depth, ask follow-up or clarifying questions to encourage them to provide more detail or concrete examples. Do not simply move to the next question; instead, build on their responses to create a structured and engaging interview. The goal is to make the conversation feel seamless and insightful, rather than a disconnected series of questions. Begin by asking a strong behavioral question that aligns with their experience and the job role, then guide the conversation naturally based on their responses."
                 ),
-                model="gpt-4o-mini",
+                model="gpt-4o",
+                temperature=0.1,
             )
             print(f"Assistant created with ID: {assistant.id}")
             return assistant
@@ -48,7 +49,7 @@ class OpenAIClient:
             self.client.beta.threads.messages.create(
                 thread_id=self.thread.id,
                 role="user",
-                content="Hello, I'm ready to start the behavioral interview. Please ask me your first question."
+                content="Welcome me to the interview and ask me your first question."
             )
         except Exception as e:
             print(f"Error creating thread: {e}")
