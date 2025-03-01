@@ -66,12 +66,15 @@
             <h3>Delete account</h3>
             <p>Permanently delete the account and all data from the platform.</p>
         </div>
-        <button class="btn-delete" onclick="showDeleteConfirmation()">Delete Account</button>
+        <!-- Direct href with hard-coded onclick attribute to avoid relying on external JS functions -->
+        <a href="#" 
+           onclick="var modal = document.getElementById('deleteModal'); if(modal) { modal.style.display = 'flex'; document.body.style.overflow = 'hidden'; } return false;" 
+           class="btn-delete">Delete Account</a>
     </div>
 
     <!-- Delete Confirmation Modal -->
     <div id="deleteModal" class="modal">
-        <div class="modal-content">
+        <div class="modal-content" onclick="event.stopPropagation()">
             <div class="modal-header">
                 <h2>Delete Account</h2>
             </div>
@@ -81,65 +84,104 @@
                 <p class="warning-text">This action cannot be undone. All your data will be permanently deleted.</p>
             </div>
             <div class="modal-footer">
-                <button class="btn-cancel" onclick="hideDeleteConfirmation()">Cancel</button>
-                <button class="btn-confirm-delete" onclick="deleteAccount()">Delete Account</button>
+                <button onclick="var modal = document.getElementById('deleteModal'); if(modal) { modal.style.display = 'none'; document.body.style.overflow = 'auto'; }" class="btn-cancel">Cancel</button>
+                <a href="{% url 'delete_account' %}" class="btn-confirm-delete">Delete Account</a>
             </div>
         </div>
     </div>
 </div>
 
 <script>
-function showDeleteConfirmation() {
-    const modal = document.getElementById('deleteModal');
-    modal.style.display = 'flex';
-    // Prevent scrolling of the background
-    document.body.style.overflow = 'hidden';
-}
-
-function hideDeleteConfirmation() {
-    const modal = document.getElementById('deleteModal');
-    modal.style.display = 'none';
-    // Restore scrolling
-    document.body.style.overflow = 'auto';
-}
-
-function deleteAccount() {
-    window.location.href = "{% url 'delete_account' %}";
-}
-
-// Close modal if user clicks outside of it
-window.onclick = function(event) {
-    const modal = document.getElementById('deleteModal');
-    if (event.target === modal) {
-        hideDeleteConfirmation();
-    }
-}
-
-function showSuccessMessage() {
-    const popup = document.getElementById('successPopup');
-    popup.style.display = 'block';
+// Make this script self-executing and handle its own initialization
+(function() {
+    // Define variables to track if the script has executed
+    var accountScriptExecuted = false;
     
-    // Hide the popup after 3 seconds
-    setTimeout(() => {
-        popup.style.animation = 'slideOut 0.3s ease-out';
-        setTimeout(() => {
-            popup.style.display = 'none';
-            popup.style.animation = 'slideIn 0.3s ease-out';
-        }, 300);
-    }, 3000);
-}
-
-// Check if there's a success message in the URL
-if (window.location.href.includes('?success=true')) {
-    showSuccessMessage();
-    // Remove the success parameter from URL without refreshing
-    window.history.replaceState({}, document.title, window.location.pathname);
-}
+    function initializeAccountPage() {
+        // Prevent duplicate execution
+        if (accountScriptExecuted) {
+            console.log('Account page script already executed');
+            return;
+        }
+        
+        console.log('Initializing account page script...');
+        
+        // Functions for handling modal
+        window.showDeleteConfirmation = function() {
+            var modal = document.getElementById('deleteModal');
+            if (modal) {
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+                console.log('Modal displayed');
+            }
+        };
+        
+        window.hideDeleteConfirmation = function() {
+            var modal = document.getElementById('deleteModal');
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                console.log('Modal hidden');
+            }
+        };
+        
+        // Setup modal click handler
+        var deleteModal = document.getElementById('deleteModal');
+        if (deleteModal) {
+            deleteModal.onclick = function(event) {
+                if (event.target === deleteModal) {
+                    hideDeleteConfirmation();
+                }
+            };
+            console.log('Modal background click handler set up');
+        }
+        
+        // Check for success message in URL
+        if (window.location.href.includes('?success=true')) {
+            var popup = document.getElementById('successPopup');
+            if (popup) {
+                popup.style.display = 'block';
+                
+                // Hide the popup after 3 seconds
+                setTimeout(function() {
+                    popup.style.animation = 'slideOut 0.3s ease-out';
+                    setTimeout(function() {
+                        popup.style.display = 'none';
+                        popup.style.animation = 'slideIn 0.3s ease-out';
+                    }, 300);
+                }, 3000);
+                console.log('Success message shown');
+            }
+            
+            // Remove the success parameter from URL without refreshing
+            if (window.history && window.history.replaceState) {
+                window.history.replaceState({}, document.title, window.location.pathname);
+            }
+        }
+        
+        // Mark as executed
+        accountScriptExecuted = true;
+        console.log('Account page initialization complete');
+    }
+    
+    // Run now
+    initializeAccountPage();
+    
+    // Also attach as a callback to be executed after loadContent (for AJAX loads)
+    if (typeof window.afterLoadContentCallbacks !== 'object') {
+        window.afterLoadContentCallbacks = [];
+    }
+    window.afterLoadContentCallbacks.push(initializeAccountPage);
+    
+    // For extra safety, run on DOMContentLoaded and load events too
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initializeAccountPage);
+    }
+    window.addEventListener('load', initializeAccountPage);
+})();
 </script>
 
 <style>
-
-
 /* Profile Header Styles */
 .profile-header {
     background: linear-gradient(135deg, #4F46E5, #7C3AED);
@@ -292,10 +334,29 @@ if (window.location.href.includes('?success=true')) {
     font-weight: 500;
     cursor: pointer;
     transition: all 0.2s;
+    text-decoration: none;
+    display: inline-block;
 }
 
 .btn-delete:hover {
     background-color: #FEE2E2;
+}
+
+.btn-confirm-delete {
+    padding: 8px 16px;
+    background-color: #DC2626;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-confirm-delete:hover {
+    background-color: #B91C1C;
 }
 
 .form-actions {
@@ -428,21 +489,6 @@ if (window.location.href.includes('?success=true')) {
 
 .btn-cancel:hover {
     background-color: #F3F4F6;
-}
-
-.btn-confirm-delete {
-    padding: 8px 16px;
-    background-color: #DC2626;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-.btn-confirm-delete:hover {
-    background-color: #B91C1C;
 }
 
 @keyframes modalSlideIn {

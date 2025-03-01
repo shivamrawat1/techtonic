@@ -119,6 +119,9 @@
     {% include 'assessments/conversation_popup.html' %}
 
     <script>
+    // Initialize the afterLoadContentCallbacks array to hold functions to run after content is loaded
+    window.afterLoadContentCallbacks = [];
+    
     function loadContent(event, url) {
         event.preventDefault();
         
@@ -140,6 +143,9 @@
             const groupHeader = parentGroup.querySelector('.nav-group-header');
             groupHeader.classList.add('active');
         }
+        
+        // Show loading indicator or something here if desired
+        console.log('Loading content from:', url);
         
         fetch(url)
             .then(response => response.text())
@@ -185,7 +191,49 @@
                               doc.querySelector('.content-container');
                 
                 if (content) {
+                    // Update the content
                     document.querySelector('.main-content-body').innerHTML = content.innerHTML;
+                    
+                    // Extract and execute scripts
+                    const scripts = content.querySelectorAll('script');
+                    if (scripts.length > 0) {
+                        console.log('Found', scripts.length, 'scripts to execute');
+                        scripts.forEach((script, index) => {
+                            try {
+                                // Create a new script element
+                                const newScript = document.createElement('script');
+                                
+                                // Copy attributes from the original script
+                                Array.from(script.attributes).forEach(attr => {
+                                    newScript.setAttribute(attr.name, attr.value);
+                                });
+                                
+                                // Copy the content
+                                newScript.textContent = script.textContent;
+                                
+                                // Replace the original script with the new one to execute it
+                                const mainContent = document.querySelector('.main-content-body');
+                                mainContent.appendChild(newScript);
+                                console.log('Executed script', index + 1);
+                            } catch (error) {
+                                console.error('Error executing script:', error);
+                            }
+                        });
+                    }
+                    
+                    // Run any callbacks registered for after content loads
+                    if (Array.isArray(window.afterLoadContentCallbacks)) {
+                        console.log('Running', window.afterLoadContentCallbacks.length, 'registered callbacks');
+                        window.afterLoadContentCallbacks.forEach(callback => {
+                            try {
+                                if (typeof callback === 'function') {
+                                    callback();
+                                }
+                            } catch (error) {
+                                console.error('Error in afterLoadContentCallback:', error);
+                            }
+                        });
+                    }
                 } else {
                     console.error('No content found in the response');
                 }
@@ -195,6 +243,8 @@
                 if (newTitle) {
                     document.title = newTitle;
                 }
+                
+                console.log('Content loaded successfully');
             })
             .catch(error => {
                 console.error('Error loading content:', error);

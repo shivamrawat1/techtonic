@@ -67,26 +67,65 @@ window.AssessmentManager = {
         }
     },
 
-    deleteAssessment: function (id) {
-        if (confirm('Are you sure you want to delete this assessment?')) {
-            fetch(`/assessments/delete/${id}/`, {
-                method: 'POST',
-                headers: {
-                    'X-CSRFToken': this.getCookie('csrftoken')
+    // Add getCookie function to retrieve CSRF token
+    getCookie: function (name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
                 }
-            })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.message) {
-                        document.getElementById(`assessment-${id}`).remove();
-                    } else {
-                        alert('Error deleting assessment');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('Error deleting assessment');
-                });
+            }
+        }
+        return cookieValue;
+    },
+
+    deleteAssessment: function (id) {
+        console.log(`Attempting to delete assessment with ID: ${id}`);
+
+        // Ensure id is a number
+        id = parseInt(id, 10);
+        if (isNaN(id)) {
+            console.error('Invalid assessment ID:', id);
+            alert('Invalid assessment ID. Please try again.');
+            return;
+        }
+
+        if (confirm('Are you sure you want to delete this assessment?')) {
+            try {
+                console.log(`Sending delete request for assessment ID: ${id}`);
+
+                // Create and submit a form directly
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = `/assessments/delete/${id}/`;
+
+                // Add CSRF token
+                const csrfToken = this.getCookie('csrftoken');
+                if (csrfToken) {
+                    const csrfInput = document.createElement('input');
+                    csrfInput.type = 'hidden';
+                    csrfInput.name = 'csrfmiddlewaretoken';
+                    csrfInput.value = csrfToken;
+                    form.appendChild(csrfInput);
+                }
+
+                // Append form to body and submit
+                document.body.appendChild(form);
+                console.log('Submitting form for deletion');
+                form.submit();
+
+            } catch (error) {
+                console.error('Exception in deleteAssessment:', error);
+                alert('An unexpected error occurred. Please try again or refresh the page.');
+
+                // Fallback: reload the page
+                window.location.href = '/assessments/list/';
+            }
         }
     },
 

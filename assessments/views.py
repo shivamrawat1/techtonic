@@ -3,9 +3,10 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Assessment
 from .interview_analyzer import InterviewAnalyzer
+from django.contrib import messages
 
 
 # assessments/views.py
@@ -89,8 +90,32 @@ def view_analysis(request, assessment_id):
 
 @login_required
 def delete_assessment(request, assessment_id):
+    import traceback
+    from django.contrib import messages
+    
+    print(f"Delete assessment request received for ID: {assessment_id}")
+    print(f"Request method: {request.method}")
+    
     if request.method == 'POST':
-        assessment = get_object_or_404(Assessment, id=assessment_id, user=request.user)
-        assessment.delete()
-        return JsonResponse({'message': 'Assessment deleted successfully'})
-    return JsonResponse({'error': 'Invalid request method'}, status=400)
+        try:
+            print(f"Looking for assessment with ID: {assessment_id} for user: {request.user}")
+            assessment = get_object_or_404(Assessment, id=assessment_id, user=request.user)
+            print(f"Assessment found with ID: {assessment.id}")
+            
+            # Delete the assessment
+            assessment.delete()
+            print(f"Assessment with ID: {assessment_id} deleted successfully")
+            
+            # Add success message
+            messages.success(request, "Assessment deleted successfully.")
+            
+        except Exception as e:
+            # Log the error
+            print(f"Error deleting assessment: {str(e)}")
+            print(traceback.format_exc())
+            
+            # Add error message
+            messages.error(request, f"Error deleting assessment: {str(e)}")
+    
+    # Always redirect back to the list page
+    return redirect('list_interviews')
