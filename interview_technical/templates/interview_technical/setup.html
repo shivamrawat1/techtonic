@@ -6,6 +6,163 @@
 <div id="extra_css_block">
     {% load static %}
     <link rel="stylesheet" href="{% static 'users/css/setup.css' %}?v={{ STATIC_VERSION }}">
+    <style>
+        /* Interview Info Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+            width: 90%;
+            max-width: 650px;
+            max-height: 90vh; /* Limit height to 90% of viewport height */
+            display: flex;
+            flex-direction: column;
+            animation: modalFadeIn 0.3s ease-out;
+            overflow: hidden;
+        }
+        
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .modal-header {
+            padding: 16px;
+            background: linear-gradient(135deg, #4F46E5, #7C3AED);
+            flex-shrink: 0; /* Prevent header from shrinking */
+        }
+        
+        .modal-header h2 {
+            margin: 0;
+            color: #ffffff !important; /* Ensure white color with !important */
+            font-size: 1.6rem;
+            font-weight: 700;
+            text-align: center;
+        }
+        
+        .modal-body {
+            flex: 1; /* Take up available space */
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            grid-gap: 12px;
+            padding: 16px;
+            overflow-y: auto; /* Allow scrolling if content is too tall */
+        }
+        
+        .modal-section {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden; /* Prevent content from overflowing */
+        }
+        
+        .modal-section h3 {
+            margin: 0 0 6px 0;
+            color: #2d3748;
+            font-size: 1.05rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-section p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.85rem;
+            line-height: 1.3;
+        }
+        
+        .modal-section ul {
+            margin: 0;
+            padding-left: 0;
+            list-style-type: none;
+            overflow-y: auto; /* Allow scrolling if list is too long */
+        }
+        
+        .modal-section li {
+            margin-bottom: 3px;
+            color: #4a5568;
+            font-size: 0.85rem;
+            line-height: 1.3;
+        }
+        
+        .modal-footer {
+            padding: 16px 24px;
+            border-top: 1px solid #eaeaea;
+            text-align: right;
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0; /* Prevent footer from shrinking */
+        }
+        
+        .btn-modal {
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            font-size: 1rem;
+            min-width: 120px;
+            white-space: nowrap;
+        }
+        
+        .btn-secondary {
+            background-color: #e2e8f0;
+            color: #4a5568;
+            margin-right: 0;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #cbd5e0;
+        }
+        
+        .btn-primary {
+            background-color: #4e73df;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #2e59d9;
+            transform: translateY(-2px);
+        }
+        
+        #begin-interview {
+            background: linear-gradient(135deg, #4F46E5, #7C3AED);
+        }
+        
+        #begin-interview:hover {
+            background: linear-gradient(135deg, #4338CA, #6D28D9);
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+        }
+        
+        .emoji-icon {
+            margin-right: 6px;
+            font-size: 1.1rem;
+            align-items: center;
+        }
+    </style>
 </div>
 {% endblock %}
 
@@ -17,7 +174,7 @@
     </div>
     
     <div class="setup-card">
-        <form action="{% url 'interview_technical:index' %}" method="POST" class="setup-form">
+        <form id="interview-form" action="{% url 'interview_technical:index' %}" method="POST" class="setup-form">
             {% csrf_token %}
             
             <div class="form-group">
@@ -41,9 +198,115 @@
             </div>
 
             <div class="setup-actions">
-                <button type="submit" class="btn-primary">Start Interview</button>
+                <button type="button" id="show-interview-info" class="btn-primary">Start Interview</button>
             </div>
         </form>
     </div>
 </div>
+
+<!-- Interview Info Modal -->
+<div id="interviewInfoModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Ready for Your Technical Interview!</h2>
+        </div>
+        <div class="modal-body">
+            <div class="modal-section">
+                <span class="emoji-icon">⏱️</span>
+                <h3>Time Management</h3>
+                <ul>
+                    <li>You'll have the duration you specified to solve the problem</li>
+                    <li>Plan your approach before coding</li>
+                    <li>A timer will be visible throughout</li>
+                </ul>
+            </div>
+            
+            <div class="modal-section">
+                <span class="emoji-icon">💻</span>
+                <h3>Coding Environment</h3>
+                <ul>
+                    <li>Use the provided code editor</li>
+                    <li>Test your solution with sample inputs</li>
+                    <li>You can run your code multiple times</li>
+                </ul>
+            </div>
+            
+            <div class="modal-section">
+                <span class="emoji-icon">🧠</span>
+                <h3>Problem Solving Tips</h3>
+                <ul>
+                    <li>Think out loud as you work</li>
+                    <li>Consider edge cases</li>
+                    <li>Optimize your solution if time permits</li>
+                </ul>
+            </div>
+            
+            <div class="modal-section">
+                <span class="emoji-icon">✅</span>
+                <h3>Ready?</h3>
+                <ul>
+                    <li>Your selected problem will appear</li>
+                    <li>Timer starts immediately</li>
+                    <li>Submit when you're satisfied with your solution</li>
+                </ul>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button id="cancel-interview" class="btn-modal btn-secondary">Cancel</button>
+            <button id="begin-interview" class="btn-modal btn-primary">Begin Interview</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('DOM fully loaded');
+        
+        const showInfoButton = document.getElementById('show-interview-info');
+        const modal = document.getElementById('interviewInfoModal');
+        const cancelButton = document.getElementById('cancel-interview');
+        const beginButton = document.getElementById('begin-interview');
+        const interviewForm = document.getElementById('interview-form');
+        
+        // Show modal when Start Interview button is clicked
+        if (showInfoButton) {
+            showInfoButton.addEventListener('click', function() {
+                // First validate the form
+                if (interviewForm && interviewForm.checkValidity()) {
+                    modal.style.display = 'flex';
+                } else {
+                    // Trigger HTML5 validation
+                    if (interviewForm) {
+                        interviewForm.reportValidity();
+                    }
+                }
+            });
+        }
+        
+        // Hide modal when Cancel button is clicked
+        if (cancelButton) {
+            cancelButton.addEventListener('click', function() {
+                modal.style.display = 'none';
+            });
+        }
+        
+        // Submit form when Begin Interview button is clicked
+        if (beginButton) {
+            beginButton.addEventListener('click', function() {
+                if (interviewForm) {
+                    interviewForm.submit();
+                }
+            });
+        }
+        
+        // Close modal if user clicks outside of it
+        if (modal) {
+            window.addEventListener('click', function(event) {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        }
+    });
+</script>
 {% endblock %}
