@@ -1,127 +1,128 @@
-<!-- users/templates/users/home.html -->
+<!-- users/templates/users/landingpage.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Landing Page</title>
+    <title>Techtonic - Master Your Technical Interview Skills</title>
     {% load static %}
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'users/css/landingpage.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'users/css/landingpage.css' %}?v={{ STATIC_VERSION }}">
 </head>
 <body>
     <nav class="top-nav">
         <div class="logo">
-            <img src="{% static 'users/images/techtonic-logo.svg' %}" alt="Techtonic Logo" style="height: 40px;">
+            <span class="logo-text">Techtonic</span>
         </div>
         <div class="nav-links">
             <a href="#about">About Us</a>
-            <a href="#pricing">Pricing</a>
-            <a href="#contact">Contact Us</a>
-            <a href="{% url 'register' %}" class="register-btn">Register</a>
+            <a href="#features">Features</a>
+            <a href="#testimonials">Testimonials</a>
+            <a href="#contact">Contact</a>
+            <div class="auth-buttons">
+                <a href="{% url 'login' %}" class="login-btn">Login</a>
+                <a href="{% url 'register' %}" class="register-btn">Register</a>
+            </div>
         </div>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
     </nav>
 
     <main>
         <section id="hero" class="hero">
             <div class="hero-content">
-                <h1>Master Your <span class="highlight">Technical</span><br>Interview <span class="highlight">Skills</span></h1>
-                <p>Transform your technical interview preparation by focusing on solving coding problems and structuring thought processes through proven frameworks like UMPIRE.</p>
-                <div class="hero-buttons">
-                    <a href="{% url 'login' %}" class="primary-btn">Get Started</a>
-                    <a href="#how-it-works" class="secondary-btn">Learn More</a>
+                <h1 class="fade-in">Master Your <span class="highlight">Interview</span><br><span class="highlight">Skills</span></h1>
+                <p class="fade-in">Elevate your interview preparation with AI-powered mock interviews for both <span class="highlight-text">technical</span> and <span class="highlight-text">behavioral</span> questions. Learn proven frameworks like UMPIRE and STAR to structure your responses effectively.</p>
+                <div class="hero-buttons slide-up">
+                    <a href="{% url 'login' %}" class="primary-btn pulse">Get Started</a>
+                    <a href="#features" class="secondary-btn">Learn More</a>
+                </div>
+            </div>
+            <div class="hero-image slide-in-right">
+                <img src="{% static 'users/images/hero.jpg' %}" alt="Master Your Interview Skills" class="feature-img">
+            </div>
+        </section>
+
+        <section id="about" class="about-section">
+            <div class="section-header fade-in">
+                <h2>About <span class="highlight">Us</span></h2>
+                <p>Helping you ace both technical and behavioral interviews</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text slide-in-right">
+                    <p>Techtonic is a comprehensive platform designed to prepare you for all aspects of the interview process through AI-powered mock interviews and structured feedback.</p>
+                    <p>Our platform helps you practice both technical problem-solving using the <span class="highlight-text">UMPIRE framework</span> (Understand, Match, Plan, Implement, Review, Evaluate) and behavioral questions using the <span class="highlight-text">STAR method</span> (Situation, Task, Action, Result).</p>
+                    <a href="#features" class="text-link">Explore our features <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </section>
 
-        <section id="demo" class="demo-section">
-            <h2>See How It Works</h2>
-            <p class="demo-description">Watch our quick demo to see how our platform helps you prepare for technical interviews.</p>
-            <div class="video-container">
-                <iframe 
-                    class="demo-video"
-                    src="https://www.youtube.com/embed/7Z2cGemTM9k?rel=0&modestbranding=1" 
-                    title="Demo Video"
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                </iframe>
+        <section id="features" class="features-section">
+            <div class="section-header fade-in">
+                <h2>Our <span class="highlight">Features</span></h2>
+                <p>Comprehensive tools designed to help you succeed in all interview formats</p>
             </div>
-        </section>
-
-        <section id="how-it-works" class="how-it-works">
-            <h2>How <span class="highlight">Platform</span> Works</h2>
-            <div class="steps-container">
-                <div class="step-card">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h3>Select your Question</h3>
-                        <p>Based on our library of 100+ questions</p>
-                        <div class="step-icon">
-                            <!-- Sample SVG 1 -->
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                <circle cx="12" cy="12" r="10"/>
-                                <path d="M12 8v8M8 12h8"/>
-                            </svg>
+            <div class="features-container">
+                <!-- Feature 1: Image Left, Text Right -->
+                <div class="feature-row" style="display: flex; flex-direction: row;">
+                    <div class="feature-image slide-in-left" style="order: 1;">
+                        <img src="{% static 'users/images/technical.png' %}" alt="Technical Interview Feature" class="feature-img">
+                        <div class="gradient-overlay"></div>
+                    </div>
+                    <div class="feature-content slide-in-right" style="order: 2;">
+                        <div class="feature-icon">
+                            <i class="fas fa-code"></i>
                         </div>
+                        <h3>Technical Interviews</h3>
+                        <p>Practice solving coding problems using the UMPIRE framework with our AI-powered technical interview simulator. Get real-time feedback on your approach and implementation.</p>
                     </div>
                 </div>
-                <div class="step-card">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h3>Mock with AI</h3>
-                        <p>Practice as if you're in a real technical interview</p>
-                        <div class="step-icon">
-                            <!-- Sample SVG 2 -->
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                <rect x="3" y="3" width="18" height="18" rx="2"/>
-                                <path d="M12 8v8M8 12h8"/>
-                            </svg>
+                
+                <!-- Feature 2: Image Right, Text Left -->
+                <div class="feature-row" style="display: flex; flex-direction: row;">
+                    <div class="feature-content slide-in-left" style="order: 1;">
+                        <div class="feature-icon">
+                            <i class="fas fa-comments"></i>
                         </div>
+                        <h3>Behavioral Interviews</h3>
+                        <p>Master behavioral questions using the STAR method with our AI interviewer. Learn how to structure compelling stories that showcase your experiences and skills.</p>
+                    </div>
+                    <div class="feature-image slide-in-right" style="order: 2;">
+                        <img src="{% static 'users/images/behavioral.png' %}" alt="Behavioral Interview Feature" class="feature-img">
+                        <div class="gradient-overlay" style="background: linear-gradient(to left, rgba(79, 70, 229, 0.7), rgba(124, 58, 237, 0.4));"></div>
                     </div>
                 </div>
-                <div class="step-card">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h3>Actionable Feedback</h3>
-                        <p>Get detailed feedback based on UMPIRE Framework</p>
-                        <div class="step-icon">
-                            <!-- Sample SVG 3 -->
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                <path d="M20 6L9 17l-5-5"/>
-                            </svg>
-                        </div>
+                
+                <!-- Feature 3: Image Left, Text Right -->
+                <div class="feature-row" style="display: flex; flex-direction: row;">
+                    <div class="feature-image slide-in-left" style="order: 1;">
+                        <img src="{% static 'users/images/assessment.png' %}" alt="Performance Analytics Feature" class="feature-img">
+                        <div class="gradient-overlay"></div>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="trusted-by" class="trusted-by">
-            <h2>Trusted by 1000+ job applicants from</h2>
-            <div class="company-logos">
-                <div class="logo-container">
-                    <img src="{% static 'users/images/netflix-logo.svg' %}" alt="Meta" class="company-logo">
-                </div>
-                <div class="logo-container">
-                    <img src="{% static 'users/images/google-logo.svg' %}" alt="Google" class="company-logo">
-                </div>
-                <div class="logo-container">
-                    <img src="{% static 'users/images/amazon-logo.svg' %}" alt="Amazon" class="company-logo">
-                </div>
-                <div class="logo-container">
-                    <img src="{% static 'users/images/linkedin-logo.svg' %}" alt="LinkedIn" class="company-logo">
+                    <div class="feature-content slide-in-right" style="order: 2;">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Performance Analytics</h3>
+                        <p>Track your progress over time across both technical and behavioral skills. Identify areas for improvement with our detailed performance analytics dashboard.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section id="testimonials" class="testimonials">
-            <h2>What Our Users Say</h2>
-            <div class="testimonials-container">
+            <div class="section-header fade-in">
+                <h2>What Our <span class="highlight">Users</span> Say</h2>
+                <p>Success stories from users who landed their dream jobs</p>
+            </div>
+            <div class="testimonials-container slide-up">
                 <button class="testimonial-nav prev" aria-label="Previous testimonial">❮</button>
                 <div class="testimonial-slider">
                     <div class="testimonial-card">
                         <div class="testimonial-content">
-                            <p>"This platform helped me structure my thoughts better. I got an offer from Google!"</p>
+                            <p>"The UMPIRE framework for technical interviews helped me structure my problem-solving approach. I received an offer from Google!"</p>
                             <div class="testimonial-author">
                                 <div class="author-avatar"></div>
                                 <div class="author-info">
@@ -133,19 +134,19 @@
                     </div>
                     <div class="testimonial-card">
                         <div class="testimonial-content">
-                            <p>"The UMPIRE framework really helped me communicate my problem-solving approach clearly."</p>
+                            <p>"Practicing behavioral questions with the STAR method really improved my storytelling. The feedback was invaluable for my Meta interview."</p>
                             <div class="testimonial-author">
                                 <div class="author-avatar"></div>
                                 <div class="author-info">
                                     <h4>Jane Smith</h4>
-                                    <p>Software Engineer @ Meta</p>
+                                    <p>Product Manager @ Meta</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="testimonial-card">
                         <div class="testimonial-content">
-                            <p>"Practice with AI interviews gave me confidence for my Amazon interview."</p>
+                            <p>"Being able to practice both technical and behavioral interviews on one platform made my preparation complete. Amazon loved my approach!"</p>
                             <div class="testimonial-author">
                                 <div class="author-avatar"></div>
                                 <div class="author-info">
@@ -160,20 +161,67 @@
             </div>
         </section>
 
+        <section id="contact" class="contact-section">
+            <div class="section-header fade-in">
+                <h2>Contact <span class="highlight">Us</span></h2>
+                <p>Have questions? We're here to help</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info slide-in-left">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <p>support@techtonic.com</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <p>+1 (555) 123-4567</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>123 Tech Lane, San Francisco, CA</p>
+                    </div>
+                </div>
+                <div class="contact-form slide-in-right">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" placeholder="Your name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="Your email">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" placeholder="Your message"></textarea>
+                    </div>
+                    <button type="submit" class="primary-btn">Send Message</button>
+                </div>
+            </div>
+        </section>
+
         <footer>
             <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-text">Techtonic</span>
+                </div>
                 <div class="footer-links">
                     <a href="#about">About</a>
+                    <a href="#features">Features</a>
+                    <a href="#testimonials">Testimonials</a>
                     <a href="#privacy">Privacy</a>
                     <a href="#terms">Terms</a>
-                    <a href="#contact">Contact</a>
                 </div>
-                <p class="copyright">© 2024 Your Platform Name. All rights reserved.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                </div>
+                <p class="copyright">© 2024 Techtonic. All rights reserved.</p>
             </div>
         </footer>
     </main>
 
     <script src="{% static 'users/js/landingpage.js' %}"></script>
-
 </body>
 </html> 
