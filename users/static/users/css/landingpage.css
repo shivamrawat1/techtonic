@@ -338,23 +338,27 @@ body {
 /* About Section */
 .about-section {
     padding: 5rem 5%;
-    max-width: 1200px;
     margin: 0 auto;
+    background-color: #1e293b;
+    color: #fff;
+    width: 100%;
 }
 
 .about-content {
     display: flex;
     justify-content: center;
     gap: 3rem;
+    color: #fff;
 }
 
 .about-text {
     max-width: 800px;
+    color: #fff;
 }
 
 .about-text p {
     margin-bottom: 1.5rem;
-    color: #555;
+    color: #fff;
 }
 
 .text-link {
