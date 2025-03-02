@@ -9,6 +9,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{% static 'users/css/landingpage.css' %}?v={{ STATIC_VERSION }}">
+    <style>
+        .hero-content h1 {
+            font-size: 2.2rem; /* Reduced heading size */
+            line-height: 1.3;
+        }
+        @media (min-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.8rem; /* Slightly larger on bigger screens but still reduced */
+            }
+        }
+    </style>
 </head>
 <body>
     <nav class="top-nav">
@@ -33,8 +44,8 @@
     <main>
         <section id="hero" class="hero">
             <div class="hero-content">
-                <h1 class="fade-in">Master Your <span class="highlight">Interview</span><br><span class="highlight">Skills</span></h1>
-                <p class="fade-in">Elevate your interview preparation with AI-powered mock interviews for both <span class="highlight-text">technical</span> and <span class="highlight-text">behavioral</span> questions. Learn proven frameworks like UMPIRE and STAR to structure your responses effectively.</p>
+                <h1 class="fade-in">Turn <span class="highlight">Coding</span> into Clarity,<br>and <span class="highlight">Clarity</span> into Your Dream Career</h1>
+                <p class="fade-in">TechTonic transforms technical interview preparation by focusing not just on solving coding problems but on structuring thought processes for clear, logical communication. Through AI-driven, structured feedback based on proven frameworks like UMPIRE, we help you identify and improve weaknesses, enhance problem-solving skills, and build confidence for high-pressure interview scenarios, all at an affordable cost.</p>
                 <div class="hero-buttons slide-up">
                     <a href="{% url 'login' %}" class="primary-btn pulse">Get Started</a>
                     <a href="#features" class="secondary-btn">Learn More</a>
