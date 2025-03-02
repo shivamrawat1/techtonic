@@ -50,7 +50,7 @@ class OpenAIClient:
                     f"and space complexity. Ask whether their approach is optimal and explore alternative strategies.\n\n"
                     f"Maintain a natural, engaging conversation where each question builds on the candidate's responses. Ensure that the "
                     f"interview remains structured and logical, allowing the candidate to showcase their problem-solving skills while thinking "
-                    f"critically at every stage. MAKE SURE TO NOT GIVE ANY HINTS OR SOLUTIONS. YOU ARE ONLY SUPPOSED TO ASK QUESTIONS. ALSO DO NOT REITEATE WHAT THE CANDIDATE SAID."
+                    f"critically at every stage. MAKE SURE TO NOT GIVE ANY HINTS OR SOLUTIONS. YOU ARE ONLY SUPPOSED TO ASK QUESTIONS. ALSO DO NOT REITEATE WHAT THE CANDIDATE SAID. The responses should not be more than 60 words."
                 ),
                 model="gpt-4o",
                 temperature=0.1,
@@ -75,7 +75,7 @@ class OpenAIClient:
             self.client.beta.threads.messages.create(
                 thread_id=self.thread.id,
                 role="user",
-                content="Welcome me to the interview and ask if I am ready to start the interview."
+                content="Welcome me to the interview and then start."
             )
         except Exception as e:
             self.logger.error(f"Error initializing interview: {e}")

@@ -191,15 +191,18 @@ let isBotSpeaking = false;
 
 // Initialize video and audio stream
 let videoStream;
+let audioStream; // Separate audio stream for recording
 navigator.mediaDevices
     .getUserMedia({ video: true, audio: true })
     .then((stream) => {
         videoStream = stream;
         video.srcObject = stream;
 
-        // Initialize media recorder for voice input
-        mediaRecorder = new MediaRecorder(stream);
-        setupMediaRecorder();
+        // Always keep video element muted to prevent echo
+        video.muted = true;
+
+        // Create a separate audio context for recording only
+        setupAudioRecording(stream);
 
         // Mute audio tracks by default
         videoStream.getAudioTracks().forEach(track => {
@@ -216,6 +219,20 @@ navigator.mediaDevices
         console.error("Error accessing webcam:", error);
         appendMessage('System', 'Error accessing camera or microphone. Please check permissions.');
     });
+
+// Setup audio recording separately from video playback
+function setupAudioRecording(stream) {
+    try {
+        // Initialize media recorder for voice input
+        mediaRecorder = new MediaRecorder(stream);
+        setupMediaRecorder();
+
+        console.log("Audio recording setup complete");
+    } catch (error) {
+        console.error("Error setting up audio recording:", error);
+        appendMessage('System', 'Error setting up audio recording. Please try again.');
+    }
+}
 
 // Function to get welcome message from the AI
 async function getWelcomeMessage() {
@@ -728,8 +745,8 @@ muteButton.addEventListener('click', () => {
 
     isMuted = !isMuted;
 
-    // Toggle video mute
-    video.muted = isMuted;
+    // Keep video element muted regardless of microphone state to prevent echo
+    video.muted = true;
 
     // Handle audio recording
     if (isMuted) {
