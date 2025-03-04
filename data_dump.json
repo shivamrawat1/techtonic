@@ -1,0 +1,1832 @@
+[
+{
+    "model": "assessments.assessment",
+    "pk": 7,
+    "fields": {
+        "user": 2,
+        "conversation": "[{\"sender\": \"You\", \"message\": \"hi\"}, {\"sender\": \"Assistant\", \"message\": \"Hello! Welcome to your technical interview practice session. Let's start by having you select a LeetCode question that you would like to work on. Remember, you will be structuring your responses using the UMPIRE method. Which problem would you like to solve today?\"}]",
+        "assessment_type": "technical",
+        "created_at": "2024-12-09T07:54:09.404Z",
+        "analysis": null
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 8,
+    "fields": {
+        "user": 2,
+        "conversation": "[{\"sender\": \"You\", \"message\": \"hi\"}, {\"sender\": \"Assistant\", \"message\": \"Hello! Welcome to the interview. Could you please tell me which LeetCode problem you would like to work on today?\"}, {\"sender\": \"You\", \"message\": \"rotten oranges\"}, {\"sender\": \"Assistant\", \"message\": \"Great choice! The problem of 'Rotten Oranges' is a classic one involving Breadth-First Search (BFS). The UMPIRE method is a fantastic approach we can use to tackle this problem effectively. For the uninitiated, the UMPIRE method consists of:\\n\\nU: Understand the Problem\\nM: Match the Problem to potential solutions\\nP: Plan a solution\\nI: Implement the solution\\nR: Review the solution\\nE: Evaluate its effectiveness\\n\\nLet's start with U: Understand the Problem.\\n\\n1: **U: Understand the Problem**\\n\\nThe problem is defined as:\\n    Given an m x n grid of cells, each element in the grid is:\\n        0: Empty cell\\n        1: Fresh orange\\n        2: Rotten orange\\n        \\nEvery minute, any fresh orange that is adjacent (up, down, left, or right) to a rotten orange becomes rotten. The task is to determine the minimum number of minutes until no cell has a fresh orange. If it is impossible to make all the oranges rotten, return -1.\\n\\nSo, can you now summarize the problem in your own words to confirm your understanding?\\n\\n[Allow the interviewee to summarize the problem]\\n\\nThen, let's move on to M: Matching the Problem to Potential Solutions. In this stage, we analyze and consider which algorithms or data structures might be useful based on the problem description. Could you provide your thoughts on this?\\n\\n[Guide the interviewee to talk about BFS and queue usage]\\n\\nAfter, we'll proceed with P: Plan a solution. In this stage, we go into a deeper discussion about how the algorithm or data structure should be applied, what should be the conditions, etc. Can you outline your approach using BFS?\\n\\n[Guide the interviewee to plan the solution]\\n\\nNext, we'll follow I: Implement the solution. Would you like to go ahead and write the code?\\n\\n[Guide the interviewee to implement the plan]\\n\\nMoving to R: Review the solution. In this stage, we confirm if the solution is correct and efficient. Can you confirm if your code and logic are correct?\\n\\n[Guide the interviewee to review their code]\\n\\nFinally, we have E: Evaluate its effectiveness. Let's assess the time and space complexity of your solution, and discuss potential optimizations, if any.\\n\\n[Guide the interviewee to evaluate their solution's effectiveness]\"}]",
+        "assessment_type": "technical",
+        "created_at": "2024-12-09T07:57:01.253Z",
+        "analysis": null
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 16,
+    "fields": {
+        "user": 4,
+        "conversation": "[{\"sender\": \"You\", \"message\": \"hi\"}, {\"sender\": \"Assistant\", \"message\": \"Hello! Welcome to your technical interview. Could you please let me know which Leetcode problem you would like to work on today?\"}]",
+        "assessment_type": "technical",
+        "created_at": "2024-12-11T13:26:19.325Z",
+        "analysis": null
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 17,
+    "fields": {
+        "user": 4,
+        "conversation": "[{\"sender\": \"You (Voice)\", \"message\": \"Hey, what's up?\"}, {\"sender\": \"Assistant\", \"message\": \"Hello! I'm here to help you practice for behavioral interviews. Do you have a specific question you'd like to prepare for?\"}]",
+        "assessment_type": "behavioral",
+        "created_at": "2024-12-13T00:15:47.889Z",
+        "analysis": null
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 18,
+    "fields": {
+        "user": 4,
+        "conversation": "[{\"sender\": \"You\", \"message\": \"hi\"}, {\"sender\": \"Assistant\", \"message\": \"Hello. Thank you for taking the time to interview for the Software Engineer Intern position at Schneider Electric. I will be asking you a series of questions based on your work experience and the job description today. Let's get started!\\n\\nLooking at your variety of experiences, from HP Tech Ventures to Freie Universit\\u00e4t Berlin, you've demonstrated solid skills in data analysis and Machine learning. One of the main tasks for this internship is to develop tools and innovative solutions that can extend the Triconex software portfolio, and requires strong mathematical, reasoning, and problem-solving skills. \\n\\nCould you please tell me about a time when you had to apply your mathematical and problem-solving abilities in a practical software development project? Please structure your reply using the STAR format:\\n\\n- Situation (set the context)\\n- Task (describe the challenge)\\n- Action (explain what you did)\\n- Result (share the outcome)\"}]",
+        "assessment_type": "behavioral",
+        "created_at": "2024-12-13T04:18:47.889Z",
+        "analysis": {
+            "components": {
+                "situation": {
+                    "score": 0,
+                    "feedback": "The interviewee did not provide any information about the situation, which is an important part of the STAR method.",
+                    "observations": [
+                        "No information given"
+                    ]
+                },
+                "task": {
+                    "score": 0,
+                    "feedback": "The interviewee did not provide any information about the task, which is a key component of the STAR method.",
+                    "observations": [
+                        "No information given"
+                    ]
+                },
+                "action": {
+                    "score": 0,
+                    "feedback": "The interviewee did not provide any information about the actions taken, which is a crucial part of the STAR method.",
+                    "observations": [
+                        "No information given"
+                    ]
+                },
+                "result": {
+                    "score": 0,
+                    "feedback": "The interviewee did not provide any information about the result, which is an essential part of the STAR method.",
+                    "observations": [
+                        "No information given"
+                    ]
+                }
+            },
+            "overall_score": 0,
+            "summary": "The interviewee did not provide any response to the question. Therefore, there is no data to assess using the STAR method. It's recommended for the interviewee to respond to the question using the STAR format to provide a complete picture of their experience, which includes the situation, task, action, and result."
+        }
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 19,
+    "fields": {
+        "user": 4,
+        "conversation": "[{\"sender\": \"You\", \"message\": \"hi\"}, {\"sender\": \"Assistant\", \"message\": \"Hello Shivam, I'm really impressed with your resume and your experience in developing full-stack applications using various technologies. In particular, your work on Image segmentation using Mask R-CNN, and PointRend to distinguish honeybees in high-resolution imagery at Freie Universit\\u00e4t Berlin, and your involvement in the challenging AI program at Minerva University caught my attention. Now, I'd like to discuss some of the experiences in detail.\\n\\nFirst, I'm going to ask you a few questions about your time as an AI Lab Intern at Minerva University:\\n1. Can you describe a particular challenge you faced while developing the test prep and analytics app for the Indian education system, and how did you overcome that? \\n2. Working in teams often presents a lot of challenges: miscommunication, disagreements, different work ethics and styles. Tell me a time that you had to manage conflicts or difficulties among the team members when you worked on this AI-based project.\\n\\nNext, during your assignment at Laplace Technologies as an AI Project Intern:\\n3. Describe a situation when you had to explain complex concepts or achievable feed backs to a non-technical audience? How did that go?\\n4. Tell me about a time when you had to lead a research initiative. What was the biggest challenge you faced as a leader and how did you handle it?\\n\\nIn general:\\n5. Could you please share an instance where you had to learn a new technology swiftly to deliver on a project? What steps did you take to learn, and how successful was the implementation?\\n\\nRemember to use the STAR (Situation, Task, Action, Result) method to structure your responses. I'm looking forward to hearing about your experiences!\"}, {\"sender\": \"You\", \"message\": \"While working on the AI-powered test prep and analytics app, one of the biggest challenges I faced was designing a system that could cater to the diverse learning styles and education levels across India. The task was to ensure the app delivered personalized feedback and adaptive learning paths while remaining scalable and user-friendly. To tackle this, I conducted thorough research on evidence-based learning strategies and collaborated with educators to incorporate their insights. We implemented a recommendation engine using collaborative filtering to personalize learning experiences and optimized the backend with Flask and MongoDB for dynamic data handling. The result was an app that significantly improved student engagement and test scores during early trials and received commendations from educators for its actionable analytics and scalability.\"}, {\"sender\": \"Assistant\", \"message\": \"That's an excellent example! It shows how you effectively used your problem-solving, technical and collaboration skills to meet a challenge and create a successful outcome. As a follow-up question, can you tell me about a time when you faced a significant challenge while working on a team project? Remember to use the same STAR method in your response.\"}]",
+        "assessment_type": "behavioral",
+        "created_at": "2024-12-13T07:20:54.860Z",
+        "analysis": {
+            "components": {
+                "situation": {
+                    "score": 90,
+                    "feedback": "You clearly described the context of the challenge you faced with the AI-powered app, encompassing the diversity of learning styles and education levels across India. However, a bit more detail about the project's scale, timeline, and your specific role could have further enriched the situation description.",
+                    "observations": [
+                        "Clear context",
+                        "Could use more details about the project and role"
+                    ]
+                },
+                "task": {
+                    "score": 85,
+                    "feedback": "You clearly defined the task of ensuring the app delivered personalized feedback and adaptive learning paths while remaining scalable and user-friendly. However, it was not mentioned what the stakes were if you failed to accomplish this task.",
+                    "observations": [
+                        "Clear task",
+                        "Could use more details about the potential consequences of failure"
+                    ]
+                },
+                "action": {
+                    "score": 95,
+                    "feedback": "Your actions to overcome the challenge were well-described, including conducting research, collaborating with educators, implementing a recommendation engine, and optimizing the backend. The steps you took were specific and showed a thorough approach to problem-solving.",
+                    "observations": [
+                        "Clear actions",
+                        "Specific steps",
+                        "Shows problem-solving"
+                    ]
+                },
+                "result": {
+                    "score": 90,
+                    "feedback": "The results you described were impressive, with the app improving student engagement and test scores and receiving commendations from educators. However, quantitative data or specific examples could have made the results even more impactful.",
+                    "observations": [
+                        "Clear results",
+                        "Could use quantitative data or specific examples"
+                    ]
+                }
+            },
+            "overall_score": 90,
+            "summary": "The candidate provided a strong response, clearly describing the situation, task, and actions taken, and presenting the results effectively. They could have included a bit more detail about the project's scale, timeline, and their specific role, the stakes if they failed to accomplish the task, and quantitative data or specific examples to make the results more impactful."
+        }
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 20,
+    "fields": {
+        "user": 4,
+        "conversation": "[{\"sender\": \"You\", \"message\": \"hi\"}, {\"sender\": \"Assistant\", \"message\": \"Hello, in today's session, we're going to be solving a popular problem known as \\\"Two Sum\\\". Let's get started using the UMPIRE method. First, let's try and understand the problem. Could you read the problem and paraphrase what you understand about it?\"}, {\"sender\": \"You\", \"message\": \"Sure. The twos problem asked\"}, {\"sender\": \"Assistant\", \"message\": \"Alright, great. Let's start with the UMPIRE method.\\n\\nU - Understand the Problem:\\nCan you explain to me what the problem is asking you to do in your own words?\"}, {\"sender\": \"You\", \"message\": \"\\nSure! The \\\"Two Sum\\\" problem asks us to find two numbers in a given list that add up to a specific target. We need to return the indices of these two numbers. The same number can't be used twice, and there is always exactly one solution.\"}, {\"sender\": \"Assistant\", \"message\": \"Great, you've done a good job identifying the key aspects of the problem in the first step of the UMPIRE process, which is to Understand the problem.\\n\\nNow, let's match the problem constraints. The problem constraints ensure that you understand the limitations and rules surrounding the \\\"Two Sum\\\" problem. According to the problem, you are given an array of integers numbers and an integer target. Are there any assumptions, conditions or constraints you can identify from the problem statement?\"}, {\"sender\": \"You\", \"message\": \"Unique Solution: There is exactly one pair of indices in the array that adds up to the target.\\nSingle Use: Each number in the array can be used only once.\\nInput Validity: The input array contains at least two integers.\\nOutput: We need to return the indices of the two numbers, not the numbers themselves.\\nOrder Irrelevant: The order of indices in the output doesn\\u2019t matter as long as the correct indices are returned.\\n\"}, {\"sender\": \"Assistant\", \"message\": \"Great start, but remember to guide through the UMPIRE method. Let's proceed with the next step.\\n\\nCan you match the problem constraints to existing techniques you've learned? Basically, you need to find an approach to solve the problem within the given constraints.\"}, {\"sender\": \"You\", \"message\": \"Brute Force:\\n\\nLoop through each pair of numbers in the array and check if their sum equals the target.\\nThis approach works but has a time complexity of \\n\\ud835\\udc42\\n(\\n\\ud835\\udc5b\\n2\\n)\\nO(n \\n2\\n ), which might not be optimal for large arrays.\\nHash Map/Dictionary:\\n\\nUse a hash map to store numbers and their indices as we iterate through the array.\\nFor each number, check if the complement (i.e., target - current number) exists in the hash map.\\nThis approach ensures we find the solution in \\n\\ud835\\udc42\\n(\\n\\ud835\\udc5b\\n)\\nO(n) time, which is efficient.\"}, {\"sender\": \"Assistant\", \"message\": \"Great summary. Now let's move through the UMPIRE approach.\\n\\nFirstly, understand the problem. In short, you're given an array of integers and a target number. Your task is to find two numbers in the array such that they add up to this target number, and return the indices of these two numbers. Only one valid answer exists, and you may assume that you may not use the same element twice.\\n\\nSecondly, match the constraints. Notice that it is not stated that the input array is sorted. So we can't apply binary search here directly. Also, the problem emphasized that there is exactly one solution. That means once we found a pair, we can return their indices immediately.\\n\\nLet's continue to the next stage: plan the approach. We are going to implement the second approach you mentioned.\\n\\nWe will iterate over each element in the array. At each iteration, we will check if we've seen the complement of the current element before. If we have, that means we have found a pair that sums to the target, and we can return their indices. If we haven't, we record the current element and its index in our hash map and move on to the next iteration.\\n\\nThe fourth stage is the implementation. Do you need any assistance with writing this code?\\n\\nAfter finishing the implementation, we will review the solution to make sure the code aligns with our planned approach and performs correctly on test cases.\\n\\nFinally, we evaluate the complexity: This approach requires O(n) time as we make one pass through the array, and O(n) space as there could be up to n elements stored in the hash map, where n is the number of elements in the array.\"}]",
+        "assessment_type": "technical",
+        "created_at": "2024-12-13T07:35:18.764Z",
+        "analysis": {
+            "components": {
+                "understanding": {
+                    "score": 100,
+                    "feedback": "The candidate demonstrated a clear understanding of the problem. They were able to paraphrase the problem accurately and identify the key requirements.",
+                    "observations": [
+                        "Candidate understood the requirement to return indices, not numbers.",
+                        "Candidate recognized that the same number can't be used twice.",
+                        "Candidate noted the guarantee of a unique solution."
+                    ]
+                },
+                "match": {
+                    "score": 90,
+                    "feedback": "The candidate was able to match the problem to known patterns and identify relevant data structures. They suggested two potential approaches, demonstrating an understanding of trade-offs between time and space complexity.",
+                    "observations": [
+                        "Candidate identified a brute force approach.",
+                        "Candidate also identified a more efficient approach using a hash map."
+                    ]
+                },
+                "plan": {
+                    "score": 90,
+                    "feedback": "The candidate articulated a clear plan to solve the problem, opting for the efficient hash map approach. They provided a step-by-step walkthrough of their strategy.",
+                    "observations": [
+                        "Candidate outlined a plan to iterate over each element in the array, using a hash map to store numbers and indices.",
+                        "Candidate described checking for the complement of the current number in the hash map."
+                    ]
+                },
+                "implement": {
+                    "score": 0,
+                    "feedback": "The candidate did not provide a solution for the problem, thus implementation could not be assessed.",
+                    "observations": [
+                        "No code was written during this interview."
+                    ]
+                },
+                "review": {
+                    "score": 0,
+                    "feedback": "The candidate did not write any code to solve the problem, so there was no opportunity to review their work.",
+                    "observations": [
+                        "No code was written, so no review could be performed."
+                    ]
+                },
+                "evaluate": {
+                    "score": 80,
+                    "feedback": "The candidate correctly evaluated the time and space complexity of their planned solution, but did not implement or test their solution to confirm this.",
+                    "observations": [
+                        "Candidate correctly identified the O(n) time and space complexity of their planned solution."
+                    ]
+                }
+            },
+            "overall_score": 60,
+            "summary": "The candidate displayed a thorough understanding of the problem and was able to identify efficient strategies for solving it. They effectively planned their solution and accurately evaluated its time and space complexity. However, they did not implement or review any code during the interview, so their ability to execute their plan is unconfirmed."
+        }
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 25,
+    "fields": {
+        "user": 3,
+        "conversation": "[{\"sender\": \"You (Voice)\", \"message\": \"Hello?\"}, {\"sender\": \"Assistant\", \"message\": \"Hi there. Let's start with the first step of the UMPIRE method: Understanding the problem. The problem we're dealing with today is the LeetCode two_sum question.\\n\\nHere is the problem: \\n\\n\\\"You are given an array of integers and a target value. Your job is to find if there are any two numbers in the array that when added together, give the target value. \\n\\nYou have to return the indices of the two numbers in the array. You can assume that each input would have exactly one solution, and you may not use the same element twice.\\\"\\n\\nCan you explain to me your understanding of this problem?\"}]",
+        "assessment_type": "technical",
+        "created_at": "2025-02-10T00:46:48.155Z",
+        "analysis": {
+            "components": {
+                "understanding": {
+                    "score": 85,
+                    "feedback": "The candidate demonstrated a clear understanding of the problem. They accurately summarized the problem and discussed the constraints. However, there was no discussion about edge cases or potential pitfalls.",
+                    "observations": [
+                        "The candidate correctly summarized the problem",
+                        "The constraints of the problem were clearly understood",
+                        "No discussion of edge cases or potential pitfalls"
+                    ]
+                },
+                "match": {
+                    "score": 70,
+                    "feedback": "The candidate was able to identify that this problem is a variant of the common two-sum problem. However, they did not make explicit reference to similar problems or discuss how solutions to those problems could be adapted.",
+                    "observations": [
+                        "Identified the problem as a variant of the two-sum problem",
+                        "Did not make explicit reference to similar problems or discuss possible adaptations of solutions"
+                    ]
+                },
+                "plan": {
+                    "score": 60,
+                    "feedback": "The candidate outlined a basic approach to solving the problem, but did not go into detail or consider alternatives. They did not discuss the time and space complexity of their proposed solution.",
+                    "observations": [
+                        "Candidate outlined a basic approach",
+                        "Did not go into detail or discuss alternatives",
+                        "Did not discuss time and space complexity"
+                    ]
+                },
+                "implement": {
+                    "score": 60,
+                    "feedback": "The candidate implemented their solution in a clear and organized manner, but there were a few minor errors. They did not test their code or handle potential edge cases.",
+                    "observations": [
+                        "Candidate implemented the solution clearly and organized",
+                        "There were a few minor errors",
+                        "Did not test the code or handle potential edge cases"
+                    ]
+                },
+                "review": {
+                    "score": 40,
+                    "feedback": "The candidate did not thoroughly review their solution. They did not discuss potential improvements or optimizations, and they did not test their solution against a variety of test cases.",
+                    "observations": [
+                        "Candidate did not thoroughly review their solution",
+                        "Did not discuss potential improvements or optimizations",
+                        "Did not test their solution against a variety of test cases"
+                    ]
+                },
+                "evaluate": {
+                    "score": 50,
+                    "feedback": "The candidate did not evaluate the time and space complexity of their solution. They did not discuss potential optimizations or the implications of their solution on larger inputs.",
+                    "observations": [
+                        "Did not evaluate time and space complexity",
+                        "Did not discuss potential optimizations or implications on larger inputs"
+                    ]
+                }
+            },
+            "overall_score": 61,
+            "summary": "The candidate demonstrated a basic understanding of the problem and was able to implement a solution, but there were areas for improvement. They did not thoroughly review or evaluate their solution, and did not consider edge cases or potential optimizations."
+        }
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 27,
+    "fields": {
+        "user": 3,
+        "conversation": "[{\"sender\": \"You\", \"message\": \"hi\"}, {\"sender\": \"Assistant\", \"message\": \"Hello! It looks like there's a slight error in the information provided. Could you please repost the candidate's resume and job description for us to continue? I'm here to help with behavioural interviewing based on these specific profiles.\"}]",
+        "assessment_type": "behavioral",
+        "created_at": "2025-02-10T02:57:01.229Z",
+        "analysis": {
+            "components": {
+                "situation": {
+                    "score": 0,
+                    "feedback": "The situation was not described as the interaction provided does not contain any relevant context or details about a specific situation.",
+                    "observations": [
+                        "The response from the assistant requests additional information, indicating that the necessary context to evaluate the situation is missing."
+                    ]
+                },
+                "task": {
+                    "score": 0,
+                    "feedback": "No specific task or challenge was mentioned in the interaction provided.",
+                    "observations": [
+                        "The assistant's response is focused on clarifying the requirements for the interview process rather than discussing a specific task."
+                    ]
+                },
+                "action": {
+                    "score": 0,
+                    "feedback": "There were no actions described related to a behavioral scenario.",
+                    "observations": [
+                        "The conversation appears to be in a preliminary stage where the assistant is gathering information rather than discussing actions taken in a specific scenario."
+                    ]
+                },
+                "result": {
+                    "score": 0,
+                    "feedback": "No results or outcomes were mentioned as the discussion did not progress to describing any specific scenario or actions.",
+                    "observations": [
+                        "The assistant's response does not provide any information on outcomes or results, which is essential for a complete STAR analysis."
+                    ]
+                }
+            },
+            "overall_score": 0,
+            "summary": "The interaction provided does not contain any elements of a behavioral interview scenario using the STAR method. It seems to be an initial communication where the assistant is requesting more information to proceed with the interview process. Therefore, no evaluation of the situation, task, action, or result can be conducted based on the given text."
+        }
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 31,
+    "fields": {
+        "user": 3,
+        "conversation": "[{\"sender\": \"You\", \"message\": \"ih\"}, {\"sender\": \"Assistant\", \"message\": \"I'm sorry but the information you've provided is too limited. Could you please provide more context so I can offer my assistance?\"}, {\"sender\": \"You\", \"message\": \"Yeah. Sure. I will be able to do it. Hello?\"}, {\"sender\": \"Assistant\", \"message\": \"Hello! I'm afraid we currently have a placeholder for the candidate's resume and job description. Could you please provide specific inputs such as roles, responsibilities, qualifications, etc., for both categories? This way, I can create a more suitable mock interview experience for you.\"}, {\"sender\": \"You\", \"message\": \"Hello. How are you doing?\"}]",
+        "assessment_type": "behavioral",
+        "created_at": "2025-02-11T01:43:48.303Z",
+        "analysis": {
+            "components": {
+                "situation": {
+                    "score": 0,
+                    "feedback": "The context or situation was not described at all.",
+                    "observations": [
+                        "There was no clear situation provided for analysis."
+                    ]
+                },
+                "task": {
+                    "score": 0,
+                    "feedback": "There was no task or challenge mentioned for analysis.",
+                    "observations": [
+                        "The interviewee did not provide any specific tasks or challenges they faced."
+                    ]
+                },
+                "action": {
+                    "score": 0,
+                    "feedback": "There was no description of actions taken to address a situation or task.",
+                    "observations": [
+                        "The interviewee did not mention any actions they took."
+                    ]
+                },
+                "result": {
+                    "score": 0,
+                    "feedback": "There were no results or outcomes presented.",
+                    "observations": [
+                        "The interviewee did not share any results or outcomes from their actions."
+                    ]
+                }
+            },
+            "overall_score": 0,
+            "summary": "This interview cannot be evaluated using the STAR method as none of the components of the STAR method were provided in the interview."
+        }
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 36,
+    "fields": {
+        "user": 3,
+        "conversation": "[{\"sender\": \"You\", \"message\": \"I like you.\"}, {\"sender\": \"Assistant\", \"message\": \"That's very kind of you, thank you! However, to better proceed with the interview, could you please provide me with a more detailed background of your professional experience and discuss a situation where you used your skills to impact a project or situation successfully? Please remember to include:\\n\\u2022 The Situation and context of the event\\n\\u2022 The Task or challenge you were faced with\\n\\u2022 The Action you took \\n\\u2022 The Result of your action.\"}]",
+        "assessment_type": "behavioral",
+        "created_at": "2025-02-12T20:47:40.016Z",
+        "analysis": null
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 38,
+    "fields": {
+        "user": 3,
+        "conversation": "[{\"sender\": \"You\", \"message\": \"hi\"}, {\"sender\": \"Assistant\", \"message\": \"Hello Shivam, it's a pleasure to meet you. I hope you are doing well. \\n\\nLooking at your resume, I see you have a diverse range of experiences in AI and machine learning, and you've participated in some impactful projects. This is a good foundation for our discussion today as we talk about the role at Resonate AI. \\n\\nI would like to start off with your experience at Freie Universit\\u00e4t Berlin where you were a Machine Learning Intern. In your work there, you researched and implemented models to distinguish honeybees from the comb in high-resolution imagery. Can you walk me through the process you followed when implementing these models, especially any challenges you faced and how you overcame them?\"}, {\"sender\": \"You\", \"message\": \"At Freie Universit\\u00e4t Berlin, I worked on distinguishing honeybees from the comb in high-resolution imagery using deep learning. I preprocessed images by applying contrast adjustments and augmentation to enhance model robustness. I experimented with CNN architectures like ResNet and EfficientNet, fine-tuning them on annotated datasets. A key challenge was handling class imbalance, which I mitigated using focal loss and data augmentation. Another issue was differentiating occluded bees, addressed by incorporating attention mechanisms. I optimized performance through hyperparameter tuning and model pruning, achieving high accuracy while maintaining efficiency for deployment in ecological research.\"}, {\"sender\": \"Assistant\", \"message\": \"That's an impressive accomplishment, Shivam. I am curious about your learning process as well as your problem-solving approach. With this project at Freie Universit\\u00e4t Berlin, could you recall a particular technical hurdle that was really challenging to overcome? How did you eventually go about resolving it?\"}, {\"sender\": \"You\", \"message\": \"One major challenge was accurately detecting bees in cluttered backgrounds, especially when they overlapped. Traditional CNNs struggled with fine-grained differentiation, leading to false positives. To address this, I integrated an attention-based mechanism (SE blocks) to help the model focus on key features. Additionally, I experimented with segmentation models like U-Net to enhance localization. By refining annotations and augmenting data with synthetic occlusions, I improved model generalization. A combination of these strategies significantly boosted precision, reducing misclassification and making the model more reliable for ecological studies.\"}, {\"sender\": \"Assistant\", \"message\": \"That's very insightful. How did these experiences with model performance influence your approach towards problem-solving, particularly when it comes to building out new AI-driven platforms, such as the one required by Resonate AI?\"}, {\"sender\": \"You\", \"message\": \"My experience optimizing deep learning models for high accuracy and efficiency has shaped my problem-solving approach in AI-driven platforms like Resonate AI. I prioritize modular design, rapid iteration, and leveraging cutting-edge architectures to balance performance and scalability. At Freie Universit\\u00e4t Berlin, I learned to navigate complex AI workflows, refining model outputs through attention mechanisms and advanced tuning. This directly translates to building robust conversational AI\\u2014ensuring reliable, real-time responses while optimizing for speed and accuracy. I thrive in high-stakes environments, embracing challenges that push technical limits while delivering AI solutions that drive tangible business impact.\"}, {\"sender\": \"Assistant\", \"message\": \"That's a great introduction, Shivam. Let's delve deeper into your experience.\\n\\n1. Can you tell me more about the dataset you worked on and the challenges you faced in labeling and annotating 250+ high-resolution time-series images while at Freie Universit\\u00e4t Berlin? How did you overcome these?\\n\\n2. You worked on a full-stack test prep and analytics app at Minerva University x Nippon Foundation. Can you share a time when you had to resolve a technically complex problem in this project?\\n\\n3. You provided 1-1 application support to 80+ applicants during your outreach internship at Minerva University. How did you handle a situation when there was a misunderstanding or discrepancy?\\n\\n4. It is inspiring to see that you led a research initiative addressing the biases in AI at Laplace Technologies. Can you explain a time where you faced resistance or pushback to your ideas and how you handled it?\\n\\n5. In Resonate AI, you'll be required to architect, build, and deploy the product. Can you share an example from your past experience where you led a similar end-to-end development process?\\n\\n6. The role at Resonate AI demands an obsession for growth and a desire to master your craft. Can you describe a learning experience where you had to quickly master a new technology to implement it in your project or work?\\n\\n7. Working in a startup environment often means juggling various tasks and being proactive. Can you provide an instance from your past work experience where you took the initiative or acted proactively to solve an issue or make a positive impact?\\n\\n8. The job description mentioned that a previous founder experience is a bonus point. Can you talk about a time when you took ownership of a project or an assignment and saw it through to completion?\\n\\n9. As you worked on PitchMyCode and developed an assessment system, can you share how you handled the feedback process and incorporated it to improve the platform? \\n\\n10. Part of the role requires dealing with customers. Do you have any experience interacting directly with clients or end-users in your past roles or projects?\"}]",
+        "assessment_type": "behavioral",
+        "created_at": "2025-02-13T00:53:08.689Z",
+        "analysis": {
+            "components": {
+                "situation": {
+                    "score": 90,
+                    "feedback": "The situation was explained clearly. The candidate provided context about their role at Freie Universität Berlin and the project they were working on. However, more details about the specific challenges or problems faced initially would have been beneficial.",
+                    "observations": [
+                        "Clear context",
+                        "Could use more details about initial challenges"
+                    ]
+                },
+                "task": {
+                    "score": 90,
+                    "feedback": "The candidate defined the tasks clearly - distinguishing honeybees from the comb in high-resolution imagery using deep learning. They identified the key challenges - handling class imbalance and differentiating occluded bees. However, they could have elaborated more on their specific responsibilities and objectives.",
+                    "observations": [
+                        "Clear description of task",
+                        "Could have elaborated more on specific responsibilities"
+                    ]
+                },
+                "action": {
+                    "score": 95,
+                    "feedback": "The actions taken were described in detail. The candidate shared the specific techniques and strategies they used to overcome the challenges. This includes using focal loss and data augmentation for class imbalance, incorporating attention mechanisms for occluded bees, and optimizing performance through hyperparameter tuning and model pruning.",
+                    "observations": [
+                        "Detailed action description",
+                        "Specific strategies mentioned"
+                    ]
+                },
+                "result": {
+                    "score": 90,
+                    "feedback": "The result was explained clearly - achieving high accuracy while maintaining efficiency for deployment in ecological research. However, the candidate could have provided more quantifiable results or metrics to better illustrate the impact of their work.",
+                    "observations": [
+                        "Clear result description",
+                        "Could use more quantifiable results"
+                    ]
+                }
+            },
+            "overall_score": 91.25,
+            "summary": "The candidate provided clear and detailed responses about their experience at Freie Universität Berlin, the tasks they were responsible for, the actions they took to overcome challenges, and the results they achieved. They could improve by providing more details about initial challenges, their specific responsibilities, and quantifiable results."
+        }
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 40,
+    "fields": {
+        "user": 3,
+        "conversation": "[{\"sender\": \"You\", \"message\": \"hi\"}, {\"sender\": \"Assistant\", \"message\": \"Hello! Let's dive into the interview. To start, can you tell me about a time when you had to architect and build a system or platform from the ground up? What was your approach, and what were the outcomes? This will help us understand how your experience aligns with building the AI-powered platform at Resonate AI.\"}, {\"sender\": \"You\", \"message\": \"At CauseCanvas, I designed and built an AI-driven web platform that enabled users to generate and customize designs on clothing for sustainability campaigns. I developed a scalable Flask backend to handle AI model inference using fine-tuned models from Replicate and Hugging Face, integrated a React front-end for a smooth user experience, and optimized cloud storage for efficient image processing. My approach prioritized modularity, real-time performance, and usability, leading to a functional MVP that NGOs and activists could use for advocacy campaigns with AI-generated visuals.\"}, {\"sender\": \"Assistant\", \"message\": \"Thank you for sharing your experience with CauseCanvas. That sounds like a fascinating and impactful project. At Resonate AI, one of our core responsibilities for the founding engineers is to take full ownership of building great conversational AI experiences from the ground up. Can you tell me about a time during the CauseCanvas project where you had to quickly troubleshoot and solve an unexpected challenge, particularly related to building or deploying the platform? What steps did you take to address the issue, and what was the outcome?\"}, {\"sender\": \"You\", \"message\": \"During CauseCanvas, we encountered a major issue when deploying our AI model for real-time image generation\\u2014latency spiked to over 10 seconds per request, making the platform unusable. After debugging, I found that the issue stemmed from inefficient model loading and processing in our Flask backend. To fix this, I optimized the inference pipeline by loading the model once at startup, implementing asynchronous request handling with FastAPI, and leveraging GPU acceleration via Replicate\\u2019s API. These changes reduced latency to under 2 seconds, significantly improving the user experience and making real-time design customization seamless.\"}, {\"sender\": \"Assistant\", \"message\": \"Thank you for sharing that experience with me. It appears you have strong problem-solving skills and experience with optimizing AI models for real-time applications. Could you describe a time when you had to take full ownership of a project or feature from start to finish, similar to what is required at Resonate AI, and detail what you learned from that experience?\"}, {\"sender\": \"You\", \"message\": \"One project where I took full ownership was building LeetMode, an AI-powered coding interview prep web app. I designed and implemented the entire system, from architecting the backend (MongoDB, Flask) and front-end (React, Clerk for authentication) to integrating voice-to-text APIs for AI-driven interview coaching. I also developed a RAG-based LLM model to provide structured feedback using the UMPIRE interview method. Throughout the process, I managed feature prioritization, optimized system performance, and ensured a smooth user experience. This experience taught me how to balance speed and scalability, make critical design decisions, and build an AI-driven platform end-to-end, skills that align well with Resonate AI's needs.\"}, {\"sender\": \"Assistant\", \"message\": \"Thank you for sharing your experience with LeetMode. It sounds like you took on a significant amount of responsibility and made substantial contributions to the project. Could you walk me through a specific challenge you encountered while building LeetMode and how you addressed it? I'm particularly interested in how you balanced speed and scalability or any critical design decisions you had to make.\"}, {\"sender\": \"You\", \"message\": \"One major challenge I faced while building LeetMode was designing a real-time AI interview feedback system that balanced speed and scalability. Initially, the LLM-based feedback generation was slow, causing delays in user responses. To address this, I restructured the system by implementing a caching mechanism for common feedback patterns, optimizing API calls with batched requests, and fine-tuning the model for faster inference. Additionally, I chose MongoDB with indexed queries to efficiently handle user sessions and feedback storage. These optimizations reduced response time by 60%, making the platform both scalable for multiple users and responsive for real-time coaching.\"}, {\"sender\": \"Assistant\", \"message\": \"Thank you for sharing that detailed experience. It's impressive how you approached and resolved the challenge. Based on this experience, can you tell me about a time when you had to balance the speed of delivering a feature with the need to ensure it's scalable and reliable, particularly in an environment that required a tight deadline? How did you prioritize tasks and ensure the solution met both immediate and long-term goals?\"}, {\"sender\": \"You\", \"message\": \"While developing LeetMode, I had to implement a real-time voice-to-text feature under a tight deadline to enable AI-driven interview coaching. The challenge was ensuring fast transcription while keeping the system scalable for multiple concurrent users. Initially, I considered a self-hosted ASR model, but due to time constraints, I prioritized integrating Deepgram's API for real-time transcription. To balance speed and scalability, I optimized API calls with batch processing, implemented WebSockets for streaming responses, and designed a modular architecture to later swap in a custom model for cost efficiency. This approach allowed us to meet the deadline while ensuring the system remained flexible for future improvements.\"}, {\"sender\": \"Assistant\", \"message\": \"Thank you for sharing that experience. It seems like you faced quite a challenge with implementing the real-time voice-to-text feature under a tight deadline. Can you tell me about a time when you were part of a project where you had to lead a team, especially when it came to making critical technical decisions? How did you ensure that the team stayed aligned and motivated, and what was the outcome of that project?\"}]",
+        "assessment_type": "behavioral",
+        "created_at": "2025-02-13T01:40:52.469Z",
+        "analysis": {
+            "components": {
+                "situation": {
+                    "score": 90,
+                    "feedback": "The interviewee provided clear and concise descriptions of the situations they were in. However, they could have given more context about the team size, the stakeholders involved, and the broader business impact.",
+                    "observations": [
+                        "Detailed description of the projects and their objectives",
+                        "Could include more details about the team and stakeholders involved"
+                    ]
+                },
+                "task": {
+                    "score": 95,
+                    "feedback": "The tasks were well-defined and the interviewee explained the challenges they faced in detail. They could improve by providing more context about how these tasks fit into the broader project goals.",
+                    "observations": [
+                        "Clear explanation of the challenges faced",
+                        "Could provide more information about how the tasks tied to larger project goals"
+                    ]
+                },
+                "action": {
+                    "score": 100,
+                    "feedback": "The actions taken were clearly described and detailed, demonstrating the interviewee's problem-solving skills and technical abilities.",
+                    "observations": [
+                        "Clearly articulated the steps taken to solve challenges",
+                        "Demonstrated problem-solving skills and technical expertise"
+                    ]
+                },
+                "result": {
+                    "score": 95,
+                    "feedback": "The outcomes were effectively presented, with clear links to the actions taken. However, the interviewee could have provided more detail about how these results impacted the broader project or organization.",
+                    "observations": [
+                        "Clear link between actions taken and the results",
+                        "Could provide more context about the broader impact of the results"
+                    ]
+                }
+            },
+            "overall_score": 95,
+            "summary": "Overall, the interviewee provided clear and detailed responses, demonstrating their technical abilities and problem-solving skills. They could improve by providing more context about the broader project goals and impact, and more details about the team and stakeholders involved."
+        }
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 41,
+    "fields": {
+        "user": 3,
+        "conversation": "[{\"sender\": \"You\", \"message\": \"hi\"}, {\"sender\": \"Assistant\", \"message\": \"Hello! I'm glad you're here for the interview. To get started, could you tell me about a time when you took full ownership of a project, particularly in building and deploying a new product or feature? How did you approach this responsibility and what were the outcomes?\"}, {\"sender\": \"You\", \"message\": \"During my time as an AI Lab Intern at Minerva University x Nippon Foundation, I took full ownership of developing an AI-powered test prep and analytics app tailored for the Indian education system. The goal was to integrate the science of learning into an adaptive platform that could enhance student preparation. I led the end-to-end development, from designing the system architecture to implementing key features using Flask for the backend and React for the frontend. I also fine-tuned AI models to generate personalized learning recommendations. To ensure scalability, I optimized database queries and implemented efficient API calls. Throughout the process, I collaborated with stakeholders to refine the user experience and incorporated feedback iteratively. The project resulted in a functional prototype that demonstrated improved engagement and comprehension for test-takers, highlighting the potential of AI in personalized education.\"}, {\"sender\": \"Assistant\", \"message\": \"That sounds like a highly relevant and significant experience. Could you share a specific instance during this project when you encountered a major technical challenge, and walk me through how you approached solving it? Be sure to include the steps you took, any obstacles you faced, and the final outcome.\"}, {\"sender\": \"You\", \"message\": \"One major challenge was optimizing real-time feedback generation, as high latency from inefficient API calls and redundant database queries slowed the system. To fix this, I restructured the database schema, implemented batch processing, and introduced caching with Redis to reduce redundant requests. I also fine-tuned the AI model and used Celery for asynchronous task execution. These optimizations cut response time by over 50%, ensuring seamless, real-time adaptive learning for students.\"}, {\"sender\": \"Assistant\", \"message\": \"Thank you for sharing that experience. It sounds like you tackled a significant challenge effectively. Given the importance of building reliable AI systems in your previous roles, could you share a specific instance where you encountered a complex AI workflow issue, perhaps while working on something like the Argentinian Accent Classification and Speaker Diarization project? How did you approach solving it, and what was the outcome?\"}, {\"sender\": \"You\", \"message\": \"While working on the Argentinian Accent Classification and Speaker Diarization project, one major challenge was handling overlapping speech and noisy recordings, which affected the accuracy of speaker segmentation. The existing diarization pipeline struggled to differentiate between speakers in group conversations, leading to misattributions.\\n\\nTo address this, I first analyzed failure cases and identified that the model struggled with certain phonetic patterns and cross-talk. I improved feature extraction by incorporating MFCCs with additional spectral features to enhance speaker distinction. Additionally, I fine-tuned a pre-trained wav2vec2 model on an Argentinian-accented dataset, improving its robustness to regional variations.\\n\\nTo handle overlapping speech, I implemented a spectral clustering approach with embeddings from a fine-tuned X-vector model, which significantly improved segmentation accuracy. I also optimized the post-processing step by applying a VAD (Voice Activity Detection) filter, reducing false positives in silent regions.\\n\\nAs a result, the diarization accuracy improved by over 20%, making the system more reliable for real-world applications like call center analytics and linguistic studies.\"}, {\"sender\": \"Assistant\", \"message\": \"That sounds like a complex and rewarding project. In our role as a founding engineer at Resonate AI, creating seamless conversational AI experiences involves dealing with similarly complex AI workflows. Could you share an example of a time when you took the initiative to address a technical challenge in a project, possibly involving both back-end and front-end work? How did you approach the problem, what steps did you take to resolve it, and what was the outcome?\"}]",
+        "assessment_type": "behavioral",
+        "created_at": "2025-02-13T01:46:28.575Z",
+        "analysis": {
+            "components": {
+                "situation": {
+                    "score": 85,
+                    "feedback": "The candidate provided a thorough context by mentioning the role, organization, and overarching goal of the project. The description of the project's aim to integrate the science of learning into an adaptive platform was particularly useful in setting the stage.",
+                    "observations": [
+                        "Mentioned role and organization clearly.",
+                        "Effectively set the project's educational and technological scope."
+                    ]
+                },
+                "task": {
+                    "score": 80,
+                    "feedback": "The task was clearly outlined as taking full ownership of developing an AI-powered educational app. However, more details on specific responsibilities or challenges faced initially could enhance clarity.",
+                    "observations": [
+                        "Clearly identified the main task of full project ownership.",
+                        "Could elaborate on initial challenges or specific project deliverables."
+                    ]
+                },
+                "action": {
+                    "score": 90,
+                    "feedback": "The actions were detailed and well-articulated, showing a comprehensive approach to project management, from system design to stakeholder collaboration. The mention of specific technologies used adds credibility and depth to the response.",
+                    "observations": [
+                        "Detailed use of technologies and methodologies like Flask, React, and AI model tuning.",
+                        "Emphasized collaborative and iterative feedback incorporation."
+                    ]
+                },
+                "result": {
+                    "score": 88,
+                    "feedback": "The result was effectively communicated, highlighting the successful creation of a functional prototype and its impact on student engagement and comprehension. Quantitative metrics could further strengthen this section.",
+                    "observations": [
+                        "Discussed the impact on user engagement and educational outcomes.",
+                        "Lack of quantitative success metrics or user feedback."
+                    ]
+                }
+            },
+            "overall_score": 86,
+            "summary": "The candidate effectively used the STAR method to describe a significant project experience. The situation and task were set up succinctly, with comprehensive details on actions involving technical and managerial aspects. The results were positive, demonstrating project success and impact, though inclusion of more quantitative metrics could enhance the response. Overall, the candidate appears highly capable in project management and technical execution."
+        }
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 42,
+    "fields": {
+        "user": 3,
+        "conversation": "[{\"sender\": \"You\", \"message\": \"Hello.\"}, {\"sender\": \"Assistant\", \"message\": \"Hello! Thank you for joining the interview. To start off, could you tell me about a time when you had to lead the end-to-end development of a project, specifically focusing on how you approached the architecture and implementation phases? This is particularly interesting given the core responsibilities of the role you're applying for at Enrich Labs.\"}, {\"sender\": \"You\", \"message\": \"example is when I led the development of LeetMode, an AI-powered coding interview prep web app. Given the need for scalability and real-time interactions, I architected the system using React for the front end, Flask for the backend, and MongoDB for storing user progress.\\n\\nFor architecture, I designed a modular microservices-based approach, ensuring separation of concerns\\u2014LLM-based interview coaching, speech-to-text processing, and performance analytics each operated as independent services. I also leveraged WebSockets for real-time feedback and integrated a RAG-based LLM model for personalized coaching.\\n\\nDuring implementation, I focused on efficient API design, optimized database indexing for query performance, and ensured secure authentication with Clerk. I led code reviews, implemented CI/CD pipelines for deployment, and conducted user testing to refine features.\"}, {\"sender\": \"Assistant\", \"message\": \"Thank you for sharing that example. It's evident that you have significant experience in developing scalable systems with a focus on real-time interactions. Let's delve deeper into this project. Can you describe a specific challenge you faced while leading the development of LeetMode, particularly related to ensuring real-time performance or scalability, and how you addressed it?\"}, {\"sender\": \"You\", \"message\": \"I. No.\"}, {\"sender\": \"Assistant\", \"message\": \"Can you describe a challenging technical decision you had to make in one of your projects or during your internship? How did you approach the decision-making process, and what was the outcome? This could be related to your work on developing AI models or building applications, as mentioned in your experiences with Minerva University or your other projects.\"}]",
+        "assessment_type": "behavioral",
+        "created_at": "2025-02-13T05:07:52.148Z",
+        "analysis": {
+            "components": {
+                "situation": {
+                    "score": 85,
+                    "feedback": "The context of leading the development of an AI-powered coding interview prep web app was well described, providing a clear understanding of the project's scope and its relevance to real-time user interactions and scalability.",
+                    "observations": [
+                        "Mentioned the project name, LeetMode, which helps in identifying and referring back to the project.",
+                        "Described the technical stack and the need for scalability, which frames the situation effectively for the listener."
+                    ]
+                },
+                "task": {
+                    "score": 70,
+                    "feedback": "The task was explained in terms of the architecture and implementation requirements, but could benefit from more specific details about the challenges these requirements posed.",
+                    "observations": [
+                        "Outlined the architectural strategy, mentioning the use of a microservices-based approach, which directly ties to the task of managing different functionalities of the app.",
+                        "Lacked detail on specific challenges expected to be faced in architecture and implementation which would have made the task explanation more compelling."
+                    ]
+                },
+                "action": {
+                    "score": 90,
+                    "feedback": "Actions taken during the project were detailed and well-articulated, from the technical decisions to the management practices.",
+                    "observations": [
+                        "Discussed various actions like designing API, optimizing database indexing, and implementing CI/CD pipelines, which clearly illustrates the candidate’s involvement and leadership.",
+                        "Mentioned the use of specific tools and technologies, which adds credibility and depth to the actions described."
+                    ]
+                },
+                "result": {
+                    "score": 60,
+                    "feedback": "The results were implied through the description of the project's completion and features but lacked quantitative measures or specific outcomes that demonstrated the success of the actions taken.",
+                    "observations": [
+                        "No explicit mention of the impact or metrics post-implementation which could demonstrate the effectiveness of the solutions.",
+                        "The result phase would benefit from details such as user feedback, performance metrics, or scalability achievements."
+                    ]
+                }
+            },
+            "overall_score": 76,
+            "summary": "The interviewee effectively described the situation and the actions taken during the project with considerable detail, demonstrating technical capability and leadership. However, there's room for improvement in articulating specific challenges related to the task and providing measurable outcomes in the results section to fully round out the STAR method."
+        }
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 43,
+    "fields": {
+        "user": 3,
+        "conversation": "[{\"sender\": \"You\", \"message\": \"hi\"}, {\"sender\": \"Assistant\", \"message\": \"Hello! Thank you for joining the interview today. To start off, could you describe a time when you had to lead the end-to-end development of a project, particularly focusing on both the user-facing features and backend infrastructure? I'm interested in understanding how you handled the architecture, implementation, and any challenges that arose during the process.\"}, {\"sender\": \"You\", \"message\": \"Certainly! I led the end-to-end development of LeetMode, an AI-powered coding interview prep web app. For the user-facing features, I built an interactive React-based frontend with real-time feedback, integrating speech-to-text for structured responses. The UI prioritized clarity and responsiveness to enhance user engagement.\\n\\nOn the backend, I designed a Flask-based microservices architecture, separating LLM-based interview coaching, speech processing, and analytics for scalability. MongoDB handled user progress storage, and I optimized database indexing for fast queries. WebSockets enabled real-time feedback, while Clerk ensured secure authentication.\\n\\nKey challenges included optimizing LLM response times and ensuring seamless frontend-backend communication, which I solved through efficient API design, caching strategies, and async processing. The result was a scalable, responsive platform that aligned user experience with robust infrastructure.\"}, {\"sender\": \"Assistant\", \"message\": \"Thank you for sharing that comprehensive example. Given your experience with LeetMode, I'd like to delve deeper into your problem-solving approach. Could you describe a specific instance during this project when you faced an unexpected challenge or setback? How did you handle it, and what was the outcome?\"}, {\"sender\": \"You\", \"message\": \"Yeah. Early. Okay. Yeah. Sir. The last time, I work on my project, stop breaking up at in a minute. Grow, and then went my best friend, chad p and dave all answers. Yes. I was it to their delivery.\"}, {\"sender\": \"Assistant\", \"message\": \"It seems like there might have been some confusion or a mistake with your message. Could you please clarify or maybe provide more context? I'm here to help with any questions or topics you'd like to discuss regarding your experiences or the job you're interested in.\"}]",
+        "assessment_type": "behavioral",
+        "created_at": "2025-02-13T05:19:19.332Z",
+        "analysis": {
+            "components": {
+                "situation": {
+                    "score": 85,
+                    "feedback": "The context of leading the end-to-end development of the 'LeetMode' web app was well described, providing a good understanding of the scope and environment of the project.",
+                    "observations": [
+                        "Provided a clear project name and the goal of the project.",
+                        "Mentioned the technologies used which helps in understanding the technical environment."
+                    ]
+                },
+                "task": {
+                    "score": 90,
+                    "feedback": "The challenge was clearly stated as being responsible for both the user-facing features and the backend infrastructure. The explanation included specific technical details which made the task understanding very clear.",
+                    "observations": [
+                        "Mentioned specific user-facing features and backend technologies.",
+                        "Outlined the main objectives of the platform which includes enhancing user engagement and ensuring scalability."
+                    ]
+                },
+                "action": {
+                    "score": 85,
+                    "feedback": "Actions were described in a detailed manner, listing the technologies used and the specific steps taken to integrate and optimize the project components.",
+                    "observations": [
+                        "Detailed description of using React, Flask, MongoDB, WebSockets, and Clerk.",
+                        "Explained how challenges with LLM response times and frontend-backend communication were addressed."
+                    ]
+                },
+                "result": {
+                    "score": 80,
+                    "feedback": "The outcomes were described effectively, focusing on the scalability and responsiveness of the platform. However, more specific metrics or feedback from user testing could have provided a stronger impact.",
+                    "observations": [
+                        "Mentioned the platform was scalable and responsive.",
+                        "Lacked quantitative results or user feedback which could enhance the impact of the results shared."
+                    ]
+                }
+            },
+            "overall_score": 85,
+            "summary": "The candidate provided a comprehensive response detailing their role in leading the development of the LeetMode project. The situation and task were well articulated, giving a clear picture of the project scope and objectives. Actions taken were thoroughly explained, showcasing technical proficiency and problem-solving skills. The results were good but could be enhanced with more specific success metrics or user feedback to fully illustrate the project's impact."
+        }
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 44,
+    "fields": {
+        "user": 3,
+        "conversation": "[{\"sender\": \"You\", \"message\": \"hi\"}, {\"sender\": \"Assistant\", \"message\": \"Hello! How are you today? Are you ready to get started with the interview?\"}, {\"sender\": \"You\", \"message\": \"yes\"}, {\"sender\": \"Assistant\", \"message\": \"Based on your resume and the job description, I'd like to start by discussing your experience with real-time data processing and scalable infrastructure, especially in a health or AI context. Could you describe a project where you had to design or optimize a data pipeline for real-time data ingestion? Specifically, what challenges did you face and how did you address them?\"}, {\"sender\": \"You\", \"message\": \"In one project, I built a real-time audio transcription pipeline using Kafka and the Deepgram API. The goal was to ingest live audio streams from video calls, transcribe them in near real-time, and then pass the results for further NLP analysis in our AI-driven application. One of the biggest challenges was handling variable data loads while maintaining low latency. I addressed this by partitioning Kafka topics to distribute the workload across consumer groups, which allowed for parallel processing and auto-scaling of the ingestion layer. Additionally, I implemented robust error handling and latency monitoring to quickly adapt to changing load conditions, ensuring the pipeline stayed reliable and efficient under peak usage.\"}, {\"sender\": \"Assistant\", \"message\": \"Thank you for sharing that experience. It's impressive how you handled the challenges of processing variable data loads while maintaining low latency. Could you describe a specific situation or challenge during this project where you had to collaborate with your team or stakeholders, and how you navigated that interaction to ensure the project stayed on track?\"}]",
+        "assessment_type": "behavioral",
+        "created_at": "2025-02-14T05:22:32.150Z",
+        "analysis": {
+            "error": "Analysis failed: Error code: 404 - {'error': {'message': 'The model `gpt-4-turbo` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+            "overall_score": 0,
+            "summary": "Unable to complete analysis due to an error."
+        }
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 47,
+    "fields": {
+        "user": 3,
+        "conversation": "[{\"sender\": \"You\", \"message\": \"Hello. How are you doing? Hello. How are you doing?\"}, {\"sender\": \"Assistant\", \"message\": \"Hello! I'm doing well, thank you. Let's get started with the interview. Based on your resume, I see you have experience in [specific field/role]. Could you tell me about a time when you had to overcome a significant challenge in that role? What was the situation, and how did you handle it?\"}]",
+        "assessment_type": "behavioral",
+        "created_at": "2025-02-25T03:03:46.059Z",
+        "analysis": {
+            "components": {
+                "situation": {
+                    "score": 0,
+                    "feedback": "The provided text does not include a response from the interviewee describing a specific situation, only a question from the interviewer asking for such a description.",
+                    "observations": [
+                        "No information about the situation was provided by the interviewee."
+                    ]
+                },
+                "task": {
+                    "score": 0,
+                    "feedback": "The text lacks any description of a specific task or challenge as it only includes the interviewer's question and not the interviewee's response.",
+                    "observations": [
+                        "No details about the task were provided by the interviewee."
+                    ]
+                },
+                "action": {
+                    "score": 0,
+                    "feedback": "There is no description of actions taken as the interviewee did not respond to the interviewer's question in the provided text.",
+                    "observations": [
+                        "No actions described by the interviewee."
+                    ]
+                },
+                "result": {
+                    "score": 0,
+                    "feedback": "The text does not include any results or outcomes since it only contains the introduction and question from the interviewer without any subsequent response.",
+                    "observations": [
+                        "No results or outcomes mentioned by the interviewee."
+                    ]
+                }
+            },
+            "overall_score": 0,
+            "summary": "The interview analysis cannot be completed as the provided text does not contain a response from the interviewee. The text only includes an introductory question from the interviewer asking about a significant challenge the interviewee faced. To conduct a meaningful analysis using the STAR method, the interviewee's detailed response describing the Situation, Task, Action, and Result is necessary."
+        }
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 48,
+    "fields": {
+        "user": 3,
+        "conversation": "[{\"sender\": \"You\", \"message\": \"ih\"}, {\"sender\": \"Assistant\", \"message\": \"Hello! Let's start with a question focused on collaboration and teamwork, which is very important for the roles you're targeting at Adobe. Can you tell me about a time when you collaborated with a team to complete a project? What was your role, and how did you contribute to the team's success?\"}, {\"sender\": \"You\", \"message\": \"Sure! I collaborated with a team of three to develop LeetMode, an AI-powered coding interview prep web app. My role focused on backend development and AI integration, optimizing our RAG-based LLM model and speech-to-text APIs for real-time feedback.\\n\\nI worked closely with the front-end developer to ensure seamless interactions and improved system efficiency by optimizing MongoDB queries and Flask APIs. Through regular stand-ups and code reviews, we tackled challenges proactively, ensuring a successful launch.\"}, {\"sender\": \"Assistant\", \"message\": \"Thank you for sharing that experience. It sounds like you had a significant impact on the project's success. You mentioned regular stand-ups and code reviews as part of the process. Could you elaborate on a specific challenge you faced with your team during this project and how you addressed it? What was the outcome?\"}, {\"sender\": \"You\", \"message\": \"One major challenge was reducing response latency in our AI feedback system. Initially, the RAG-based LLM model had slow query times due to inefficient MongoDB indexing and API bottlenecks, which impacted real-time user interactions.\\n\\nTo address this, I optimized database indexing, implemented caching, and streamlined Flask API calls, reducing response time by over 40%. I also worked closely with the front-end developer to improve client-server communication.\\n\\nAs a result, the system became significantly faster, improving the user experience and engagement. This experience reinforced my ability to troubleshoot performance issues collaboratively under\"}, {\"sender\": \"Assistant\", \"message\": \"That's a great example of problem-solving and collaboration. It sounds like your efforts not only improved the application's performance but also the overall user experience, which is crucial for any software product. Reflecting on this experience, what lessons or skills did you gain that you believe will be valuable for the role at Adobe, particularly when working on high-performance, reliable, and maintainable code?\"}, {\"sender\": \"You\", \"message\": \"This experience taught me three key lessons that are highly relevant to Adobe\\u2019s focus on high-performance, reliable, and maintainable code:\\n\\nOptimizing for Performance \\u2013 I learned the importance of efficient database queries, caching, and API design to reduce latency, which is critical when building scalable applications.\\nCross-Team Collaboration \\u2013 Working closely with front-end developers and aligning on API optimizations reinforced my ability to communicate effectively across functions to solve technical challenges.\"}, {\"sender\": \"Assistant\", \"message\": \"Those are indeed valuable skills and insights that align well with the role at Adobe. Given the emphasis on cross-team collaboration and effective communication, can you provide an example of how you have used your communication skills to resolve a misunderstanding or conflict within a team? What steps did you take, and what was the resolution?\"}, {\"sender\": \"You\", \"message\": \"Sure! While developing LeetMode, there was a misunderstanding between me and the front-end developer regarding API response formats\\u2014they expected structured JSON, but my backend initially returned unformatted data, causing integration issues.\\n\\nTo resolve this, I initiated a quick sync meeting, clarified expectations, and proposed a standardized API contract with clear documentation. We agreed on response structures, added Postman tests, and established a feedback loop to catch issues early.\\n\\nThis not only resolved the conflict but also improved collaboration and streamlined future development. It reinforced the importance of proactive communication and clear documentation in cross-team projects.\"}, {\"sender\": \"Assistant\", \"message\": \"It's great to hear how you handled that situation by addressing the issue directly and establishing a clear line of communication and documentation. Proactive measures like these are essential in preventing future misunderstandings. Thinking about this experience and the role at Adobe, how do you ensure that you consistently maintain effective communication and collaboration with team members across different projects, especially in a fast-paced environment?\"}]",
+        "assessment_type": "behavioral",
+        "created_at": "2025-02-26T08:46:45.064Z",
+        "analysis": {
+            "components": {
+                "situation": {
+                    "score": 85,
+                    "feedback": "You provided a clear and detailed context, describing the project and your specific role within the team. This helped set the stage for understanding the collaborative environment and the technical scope of your work.",
+                    "observations": [
+                        "Mentioned the project name and its purpose.",
+                        "Outlined your role and the technologies involved."
+                    ]
+                },
+                "task": {
+                    "score": 78,
+                    "feedback": "The task was clearly outlined as improving the AI feedback system's response time, which is crucial for user interaction. However, a bit more detail on how this task was identified as critical or its impact on the overall project could provide deeper insight into the task's significance.",
+                    "observations": [
+                        "Identified the main challenge.",
+                        "Linked the task to user experience."
+                    ]
+                },
+                "action": {
+                    "score": 90,
+                    "feedback": "You excellently detailed the specific actions taken to address the challenge, including technical solutions like database indexing and API optimizations. The collaboration with the front-end developer to enhance client-server communication was also well-highlighted.",
+                    "observations": [
+                        "Described technical solutions implemented.",
+                        "Highlighted teamwork in solving the issue."
+                    ]
+                },
+                "result": {
+                    "score": 85,
+                    "feedback": "You effectively presented the outcomes, showing a significant improvement in system performance and user engagement. Mentioning specific metrics (40% reduction in response time) was excellent. However, expanding on broader impacts or feedback from users could further enhance this section.",
+                    "observations": [
+                        "Quantified the improvement in performance.",
+                        "Linked the results to enhanced user experience."
+                    ]
+                }
+            },
+            "overall_score": 85,
+            "summary": "Your response using the STAR method effectively communicated a clear situation and task, described detailed actions, and presented significant results. While all components were strong, providing more context on the broader impact of the task and additional user feedback in the result could make your answer even more compelling."
+        }
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 49,
+    "fields": {
+        "user": 3,
+        "conversation": "[{\"sender\": \"You\", \"message\": \"How are you doing?\"}, {\"sender\": \"Assistant\", \"message\": \"I'm doing well, thank you for asking! Let's get started with the interview. Based on your resume and the job description, I'd like to know about a time when you had to adapt quickly to a significant change at work. Can you walk me through the situation, how you handled it, and the outcome?\"}, {\"sender\": \"You\", \"message\": \"Yes. Sure. So while I was running the blah blah blah and\"}, {\"sender\": \"Assistant\", \"message\": \"It sounds like you started telling me about a project or situation where you had to adapt. Could you provide more details about the specific change you encountered? What was the situation, and what steps did you take to adapt to this change?\"}, {\"sender\": \"You\", \"message\": \"Hello. Hello. Hello.\"}, {\"sender\": \"Assistant\", \"message\": \"Hi there! If you could share more details about the situation where you had to adapt quickly to a significant change at work, it would be helpful. Specifically, I'd like to understand the context, the challenges you faced, and how you approached the situation to ensure a successful outcome.\"}, {\"sender\": \"You\", \"message\": \"So this is how we welcome This help.\"}, {\"sender\": \"Assistant\", \"message\": \"I'm here to assist you with the interview process. My goal is to help you showcase your experiences effectively. Could you tell me about a time when you encountered a significant change at work and how you managed it? This will help us understand your adaptability and problem-solving skills better.\"}, {\"sender\": \"You\", \"message\": \"Hello. How are you doing?\"}, {\"sender\": \"Assistant\", \"message\": \"I'm doing well, thank you! Let's continue with the interview. Can you describe a time when you faced a significant challenge at work that required you to adapt your approach? What was the challenge, what actions did you take, and what was the result?\"}, {\"sender\": \"You\", \"message\": \"hi\"}, {\"sender\": \"Assistant\", \"message\": \"Hi! If you're ready, let's dive into the interview. Could you share an example of a significant challenge you faced at work and how you adapted to overcome it? I'd like to hear about the situation, the steps you took, and the outcome you achieved.\"}, {\"sender\": \"You\", \"message\": \"hi\"}, {\"sender\": \"Assistant\", \"message\": \"Hello again! Let's proceed with the interview. Could you tell me about a time when you had to quickly adjust to a major change at work? I'm interested in the circumstances, how you handled the situation, and what the results were.\"}, {\"sender\": \"You\", \"message\": \"hi\"}, {\"sender\": \"Assistant\", \"message\": \"Hello! If you're ready to continue, could you share a specific example of a time when you successfully handled a significant change or challenge at work? Understanding how you navigated that situation will be valuable.\"}, {\"sender\": \"You\", \"message\": \"Sir\"}]",
+        "assessment_type": "behavioral",
+        "created_at": "2025-02-26T21:10:57.109Z",
+        "analysis": null
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 50,
+    "fields": {
+        "user": 3,
+        "conversation": "[{\"sender\": \"You\", \"message\": \"hi\"}, {\"sender\": \"Assistant\", \"message\": \"Hello! Today we are going to work through a LeetCode problem together, and I'll guide you through the problem-solving process using the UMPIRE method. Are you familiar with it? \\n\\nThe problem we are going to work on is called Two Sum: Given an array of integers, return the indices of the two numbers such that they add up to a specific target value.\\n\\nFirst, let's start with understanding the problem. Could you explain to me in your own words what you think the problem is asking for?\"}, {\"sender\": \"You\", \"message\": \"yea sure we just need to find two numbers from the array whose sum will equal the target\"}, {\"sender\": \"Assistant\", \"message\": \"Great, let's start by thoroughly understanding the problem. It's always good to clarify any assumptions or constraints before jumping straight into solution. \\n\\nHere's the problem: Given an array of integers, return indices of the two numbers such that they add up to a target number. You can assume that each input would have exactly one solution and you may not use the same element twice.\\n\\nAre you clear on these instructions? Do you have any questions about this problem?\"}, {\"sender\": \"You\", \"message\": \"Nope, I am clear\"}, {\"sender\": \"Assistant\", \"message\": \"Okay, let's begin. \\n\\nFirst and foremost, I would like you to Understand the problem. Can you please let me know what do you understand by the given problem? Please explain in your own words.\"}]",
+        "assessment_type": "technical",
+        "created_at": "2025-02-27T22:46:25.106Z",
+        "analysis": {
+            "components": {
+                "understanding": {
+                    "score": 90,
+                    "feedback": "You demonstrated a good understanding of the problem by correctly paraphrasing it. You recognized the need to find two numbers in the array whose sum equals the target value.",
+                    "observations": [
+                        "You correctly restated the main objective of the problem.",
+                        "You understood the constraints and the goal without any confusion."
+                    ]
+                },
+                "match": {
+                    "score": 0,
+                    "feedback": "There was no attempt to identify similar patterns or previously solved problems that could relate to the current problem.",
+                    "observations": [
+                        "Matching similar problems could provide insights or established methods to solve the problem efficiently."
+                    ]
+                },
+                "plan": {
+                    "score": 0,
+                    "feedback": "There was no discussion or development of a plan to address the problem.",
+                    "observations": [
+                        "Planning how to approach a problem is crucial for structuring code and thinking through potential solutions or edge cases."
+                    ]
+                },
+                "implement": {
+                    "score": 0,
+                    "feedback": "Implementation did not occur in this interaction.",
+                    "observations": [
+                        "Without implementation, it's difficult to assess the practical understanding and application of the problem-solving skills."
+                    ]
+                },
+                "review": {
+                    "score": 0,
+                    "feedback": "There was no review of a solution since implementation did not occur.",
+                    "observations": [
+                        "Reviewing the solution is important for catching errors and ensuring the solution meets all problem requirements."
+                    ]
+                },
+                "evaluate": {
+                    "score": 0,
+                    "feedback": "There was no evaluation of the solution in terms of complexity or potential optimizations.",
+                    "observations": [
+                        "Evaluating the solution helps in understanding the efficiency and scalability of the approach."
+                    ]
+                }
+            },
+            "overall_score": 15,
+            "summary": "The interview demonstrated a good initial understanding of the problem but lacked progression into the subsequent stages of problem solving such as matching with similar problems, planning an approach, implementing a solution, reviewing the solution, and evaluating its complexity and efficiency. Future interviews should ensure the complete cycle of the UMPIRE method is covered to adequately assess problem-solving skills."
+        }
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 51,
+    "fields": {
+        "user": 3,
+        "conversation": "[{\"sender\": \"You\", \"message\": \"hi\"}, {\"sender\": \"Assistant\", \"message\": \"Hello! Let's get started with the interview. \\n\\nCan you tell me about a time when you faced a significant challenge at work? How did you approach it, and what was the outcome?\"}, {\"sender\": \"You\", \"message\": \"yea sure I work very hard everyday.\"}, {\"sender\": \"Assistant\", \"message\": \"I appreciate your dedication. Can you provide a specific example of a challenge you faced and how you addressed it? This could be a project that didn't go as planned, a difficult team dynamic, or any other situation where you had to think critically or adapt.\"}]",
+        "assessment_type": "behavioral",
+        "created_at": "2025-02-27T22:47:16.862Z",
+        "analysis": {
+            "components": {
+                "situation": {
+                    "score": 10,
+                    "feedback": "The candidate did not provide a specific context or background for the situation, making it difficult to understand the specifics of the challenge faced.",
+                    "observations": [
+                        "Lack of specific details about the work environment or project.",
+                        "No mention of team, timeline, or specific circumstances leading to the challenge."
+                    ]
+                },
+                "task": {
+                    "score": 10,
+                    "feedback": "The candidate failed to identify a clear challenge or task that needed addressing, which is crucial for understanding the complexity and scope of the problem.",
+                    "observations": [
+                        "No specific task or challenge was mentioned.",
+                        "The response was generic and did not specify what needed to be accomplished."
+                    ]
+                },
+                "action": {
+                    "score": 10,
+                    "feedback": "There was no description of actions taken to address the challenge. Specific steps, strategies, or decisions made in response to the challenge are necessary to evaluate problem-solving skills.",
+                    "observations": [
+                        "The candidate did not describe any specific actions taken to overcome the challenge.",
+                        "Lack of detail about approaches or methods used in the situation."
+                    ]
+                },
+                "result": {
+                    "score": 10,
+                    "feedback": "The candidate did not mention any outcomes or results from their actions, which is key to understanding the effectiveness of their problem-solving skills.",
+                    "observations": [
+                        "No results or conclusions were shared to assess the impact of the candidate's actions.",
+                        "The response did not provide evidence of learning or improvement."
+                    ]
+                }
+            },
+            "overall_score": 10,
+            "summary": "The candidate provided a highly insufficient response across all components of the STAR method. There was a lack of specific context, clear challenge, detailed actions, and measurable outcomes, which are essential to evaluate their experience and problem-solving abilities effectively. It is recommended to encourage the candidate to provide more detailed and relevant examples in future responses."
+        }
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 52,
+    "fields": {
+        "user": 3,
+        "conversation": "[{\"sender\": \"You\", \"message\": \"Hi\"}, {\"sender\": \"Assistant\", \"message\": \"An error occurred: Connection error.\"}, {\"sender\": \"You\", \"message\": \"hi\"}, {\"sender\": \"Assistant\", \"message\": \"An error occurred: Connection error.\"}]",
+        "assessment_type": "technical",
+        "created_at": "2025-02-28T01:59:45.066Z",
+        "analysis": {
+            "components": {
+                "understanding": {
+                    "score": 40,
+                    "feedback": "The interviewer attempted to understand the problem but seemed to struggle with the underlying technical reasons for the errors.",
+                    "observations": [
+                        "The candidate recognized the errors but did not inquire further into potential causes or specifics of the 'Connection error.'",
+                        "Lack of detailed questions about the error implies a superficial understanding."
+                    ]
+                },
+                "match": {
+                    "score": 20,
+                    "feedback": "The candidate did not relate the issue to any known problems or common patterns in network connectivity or error handling.",
+                    "observations": [
+                        "No comparison to standard network troubleshooting practices.",
+                        "Failed to link the error message to possible network configuration or server issues."
+                    ]
+                },
+                "plan": {
+                    "score": 30,
+                    "feedback": "There was no clear plan formulated to address the connection errors systematically.",
+                    "observations": [
+                        "No steps were laid out to diagnose or isolate the problem.",
+                        "Lack of a structured approach to testing different hypotheses about the cause of the error."
+                    ]
+                },
+                "implement": {
+                    "score": 10,
+                    "feedback": "Implementation did not occur due to a lack of planning and understanding.",
+                    "observations": [
+                        "No practical steps were taken to resolve the issue.",
+                        "The response was repetitive with no progression towards solving the problem."
+                    ]
+                },
+                "review": {
+                    "score": 15,
+                    "feedback": "There was no review of actions taken or any assessment of the situation after repeated errors.",
+                    "observations": [
+                        "No reflection on the repeated failures to connect.",
+                        "Failed to consider alternative methods or solutions after initial unsuccessful attempts."
+                    ]
+                },
+                "evaluate": {
+                    "score": 10,
+                    "feedback": "The candidate did not evaluate the technical complexity or look for optimization in handling such errors.",
+                    "observations": [
+                        "No analysis on the impact of the error or how frequently it occurs.",
+                        "No consideration of implementing a more robust error handling or retry mechanism."
+                    ]
+                }
+            },
+            "overall_score": 20,
+            "summary": "The candidate repeatedly faced 'Connection error' messages and displayed a lack of depth in understanding and addressing the issue. There was no evidence of strategic thinking or problem-solving skills typically required for debugging such issues. Improvement is needed in technical understanding, planning, and systematic troubleshooting."
+        }
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 53,
+    "fields": {
+        "user": 3,
+        "conversation": "[{\"sender\": \"You\", \"message\": \"Hi\"}, {\"sender\": \"Assistant\", \"message\": \"An error occurred: Connection error.\"}]",
+        "assessment_type": "behavioral",
+        "created_at": "2025-02-28T02:00:22.147Z",
+        "analysis": {
+            "components": {
+                "situation": {
+                    "score": 0,
+                    "feedback": "The situation was not described at all, the interaction only contains a greeting and an error message.",
+                    "observations": [
+                        "No context provided",
+                        "Lacks detail on the scenario or setting"
+                    ]
+                },
+                "task": {
+                    "score": 0,
+                    "feedback": "The task or challenge was not explained, leaving the listener without any understanding of the problem needing resolution.",
+                    "observations": [
+                        "No clear problem stated",
+                        "No indication of a specific task"
+                    ]
+                },
+                "action": {
+                    "score": 0,
+                    "feedback": "No actions were described in the interaction. The response only indicates an error, with no mention of steps taken to address it.",
+                    "observations": [
+                        "No actions mentioned",
+                        "Lacks description of any problem-solving steps"
+                    ]
+                },
+                "result": {
+                    "score": 0,
+                    "feedback": "The result of any actions taken was not shared, leaving the outcome unknown.",
+                    "observations": [
+                        "No outcome provided",
+                        "No indication of resolution or ongoing issue"
+                    ]
+                }
+            },
+            "overall_score": 0,
+            "summary": "This interview response fails to effectively utilize the STAR method as it lacks any substantive content across all four components. There is no context or detail provided about a situation, no defined task, no actions described, and no results mentioned. This makes it impossible to assess or understand any aspect of the candidate's experience or approach to a specific challenge."
+        }
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 54,
+    "fields": {
+        "user": 3,
+        "conversation": "[{\"sender\": \"You\", \"message\": \"Add more login receipt. Hi.\"}]",
+        "assessment_type": "technical",
+        "created_at": "2025-02-28T02:03:11.758Z",
+        "analysis": {
+            "components": {
+                "understanding": {
+                    "score": 20,
+                    "feedback": "The candidate's understanding of the problem is minimal and somewhat unclear.",
+                    "observations": [
+                        "The problem statement was too vague, 'Add more login receipt. Hi.' lacks context and clarity.",
+                        "The candidate did not ask clarifying questions which could have helped in better understanding."
+                    ]
+                },
+                "match": {
+                    "score": 10,
+                    "feedback": "There was no clear identification of similar patterns or problems due to the lack of understanding.",
+                    "observations": [
+                        "The candidate did not reference any known algorithms, patterns, or prior problems that might align with the task."
+                    ]
+                },
+                "plan": {
+                    "score": 15,
+                    "feedback": "The candidate did not formulate a clear plan to approach the problem.",
+                    "observations": [
+                        "No structured approach or strategy was discussed or outlined."
+                    ]
+                },
+                "implement": {
+                    "score": 0,
+                    "feedback": "No implementation was provided.",
+                    "observations": [
+                        "There was no code or pseudo-code written.",
+                        "It's unclear whether the candidate has the capability to implement a solution."
+                    ]
+                },
+                "review": {
+                    "score": 0,
+                    "feedback": "There was no review of the solution as there was no implementation.",
+                    "observations": [
+                        "The candidate did not spend time checking or validating any proposed solution."
+                    ]
+                },
+                "evaluate": {
+                    "score": 5,
+                    "feedback": "Minimal evaluation of complexity or optimization due to lack of any proposed solution.",
+                    "observations": [
+                        "The candidate did not discuss time or space complexity."
+                    ]
+                }
+            },
+            "overall_score": 8,
+            "summary": "The candidate's response was highly insufficient for any technical interview. There was a profound lack of understanding, no clear planning or matching to similar problems, no implementation, and no review or evaluation. It is crucial in technical interviews to ask for clarifications when the problem statement is not clear, and to at least attempt to outline a possible approach."
+        }
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 55,
+    "fields": {
+        "user": 3,
+        "conversation": "[{\"sender\": \"You\", \"message\": \"Hi\"}, {\"sender\": \"Assistant\", \"message\": \"Great! Let\\u2019s dive in. Can you describe a time when you faced a significant challenge at work? What was the situation, and how did you approach it?\"}, {\"sender\": \"You\", \"message\": \"In walking with.\"}, {\"sender\": \"Assistant\", \"message\": \"It sounds like you might be describing an experience where teamwork was involved. Could you elaborate on what specific challenge you faced while working with others, and what role you played in resolving that challenge?\"}]",
+        "assessment_type": "behavioral",
+        "created_at": "2025-02-28T02:11:26.238Z",
+        "analysis": null
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 56,
+    "fields": {
+        "user": 3,
+        "conversation": "[{\"sender\": \"You\", \"message\": \"Hello, Sawadee Khan.\"}, {\"sender\": \"Assistant\", \"message\": \"Sawadee Khap! Let's get started with the interview. To begin, could you tell me about a time when you had to tailor your approach to meet the needs of a specific client? What challenges did you face, and how did you overcome them?\"}, {\"sender\": \"You\", \"message\": \"That's processing. So that's at slow.\"}, {\"sender\": \"You\", \"message\": \"And, like,\"}, {\"sender\": \"Assistant\", \"message\": \"An error occurred: Error code: 400 - {'error': {'message': \\\"Can't add messages to thread_9FXTQVc3dhmZhS1X4IsU7PYb while a run run_YxSdxmWAYkB56VT96ziMZl8E is active.\\\", 'type': 'invalid_request_error', 'param': None, 'code': None}}\"}, {\"sender\": \"Assistant\", \"message\": \"I understand; take your time to think it over. When you're ready, feel free to share your experience about tailoring your approach for a specific client. Remember, I'm looking for any challenges you faced and how you addressed them. This will help me understand your problem-solving and interpersonal skills better. If you're ready, go ahead!\"}, {\"sender\": \"You\", \"message\": \"Yeah. Could you tell me if you had to tailor\"}, {\"sender\": \"Assistant\", \"message\": \"Absolutely! Tailoring my approach to meet client needs is a crucial skill. Let me reframe the question: Can you share an experience where you had to adapt your content or approach for a specific client? What were their requirements, and how did you ensure your work met their expectations?\"}, {\"sender\": \"You\", \"message\": \"Yeah. So us and OnlyFans creator.\"}, {\"sender\": \"Assistant\", \"message\": \"That\\u2019s great! Working with an OnlyFans creator sounds like a unique experience. Can you describe a specific instance where their requirements were different from what you typically encountered? What strategies did you use to customize your content for them, and what was the outcome?\"}, {\"sender\": \"You\", \"message\": \"So as an OnlyFans creator, I have\"}, {\"sender\": \"You\", \"message\": \"Personalize multiple\"}, {\"sender\": \"Assistant\", \"message\": \"An error occurred: Error code: 400 - {'error': {'message': \\\"Can't add messages to thread_9FXTQVc3dhmZhS1X4IsU7PYb while a run run_TpRwXfOgqyiOQmLpE2an2zs8 is active.\\\", 'type': 'invalid_request_error', 'param': None, 'code': None}}\"}, {\"sender\": \"Assistant\", \"message\": \"It sounds like you have valuable experience! Could you elaborate on what kind of content you created for the OnlyFans creator? Were there specific themes or preferences that you needed to consider? Additionally, how did you ensure that your content resonated with their audience?\"}, {\"sender\": \"You\", \"message\": \"Yeah. So as an only fans creator, I basically do things upon request. And whatever the client wants, I'd be able to\"}, {\"sender\": \"Assistant\", \"message\": \"That makes sense! Working on requests gives you the flexibility to be creative. Can you share a specific request from a client that you found particularly challenging or interesting? How did you approach it, and what was the final result?\"}, {\"sender\": \"You\", \"message\": \"Adapt to it. So let's just say if they want my used sock, I'll be able to do that as well. And this basically really\"}, {\"sender\": \"Assistant\", \"message\": \"Thank you for sharing that example! It sounds like you have a diverse range of requests. Adapting to unique client preferences is key in your line of work. Can you tell me about a time when you had to handle a request that pushed your boundaries or comfort zone? How did you navigate that situation while still maintaining professionalism?\"}, {\"sender\": \"You\", \"message\": \"This really showcases my, ability to be comfortable with different, logistic lines across The United States Of America.\"}, {\"sender\": \"Assistant\", \"message\": \"It sounds like you are quite adaptable and willing to navigate various client needs, which is a valuable trait. Can you give a concrete example of how your comfort with logistics allowed you to successfully fulfill a challenging request from a client? What steps did you take to ensure everything ran smoothly?\"}, {\"sender\": \"You\", \"message\": \"So if you, like, overlaps with when it's being in stocks. Mean\"}, {\"sender\": \"You\", \"message\": \"That thing from the queue. Mhmm.\"}, {\"sender\": \"Assistant\", \"message\": \"An error occurred: Error code: 400 - {'error': {'message': \\\"Can't add messages to thread_9FXTQVc3dhmZhS1X4IsU7PYb while a run run_KObCfSM8TybvaiDoU0J4vW2D is active.\\\", 'type': 'invalid_request_error', 'param': None, 'code': None}}\"}, {\"sender\": \"Assistant\", \"message\": \"I see, you\\u2019re referring to the logistics of fulfilling orders and managing requests related to physical items, like socks. Could you elaborate on how you handled the logistics of fulfilling such requests? For instance, how did you ensure timely delivery or manage inventory for special requests? What challenges did you encounter, and how did you overcome them?\"}, {\"sender\": \"You\", \"message\": \"But I want a five one.\"}, {\"sender\": \"You\", \"message\": \"Has to be done.\"}, {\"sender\": \"Assistant\", \"message\": \"An error occurred: Error code: 400 - {'error': {'message': \\\"Can't add messages to thread_9FXTQVc3dhmZhS1X4IsU7PYb while a run run_VoVpxYn3NnaME99jwqc74bc1 is active.\\\", 'type': 'invalid_request_error', 'param': None, 'code': None}}\"}, {\"sender\": \"Assistant\", \"message\": \"I understand that you might be asking for a concise response. Let's try to streamline it. Could you briefly describe a specific instance where you successfully managed the logistics of a unique client request, such as fulfilling an order for a specific item? What steps did you take to ensure everything went smoothly?\"}]",
+        "assessment_type": "behavioral",
+        "created_at": "2025-02-28T02:17:58.425Z",
+        "analysis": {
+            "components": {
+                "situation": {
+                    "score": 40,
+                    "feedback": "The situation was described in a fragmented and somewhat unclear manner. The context of working with an OnlyFans creator and adapting to unique requests was mentioned but not thoroughly explained.",
+                    "observations": [
+                        "Mention of working with an OnlyFans creator provides some context.",
+                        "Lacks details about the specific situation or environment."
+                    ]
+                },
+                "task": {
+                    "score": 30,
+                    "feedback": "The task was implied but not explicitly defined. It is somewhat understandable that the challenge involved personalizing content, but there were no specific goals or problems clearly stated.",
+                    "observations": [
+                        "Implies the challenge of adapting to client requests.",
+                        "Does not clearly outline what the specific task or objective was."
+                    ]
+                },
+                "action": {
+                    "score": 25,
+                    "feedback": "The actions taken were very poorly described. There were hints at adapting to requests and handling logistics, but no concrete steps or strategies were articulated.",
+                    "observations": [
+                        "Mentions adapting to requests but lacks details on how actions were implemented.",
+                        "No clear description of strategies or methods used."
+                    ]
+                },
+                "result": {
+                    "score": 20,
+                    "feedback": "The result was vague and did not effectively convey the outcome of the actions taken. There was a brief mention of showcasing adaptability and comfort with logistics, but no tangible results or impacts were discussed.",
+                    "observations": [
+                        "Brief mention of showcasing adaptability.",
+                        "Lacks tangible outcomes or how the results impacted the business or client satisfaction."
+                    ]
+                }
+            },
+            "overall_score": 29,
+            "summary": "The interview response was fragmented and lacked clarity across all components of the STAR method. The situation and task were not sufficiently set, actions were vaguely described, and the results were not effectively communicated. More detailed and structured responses would significantly enhance the effectiveness of the interview."
+        }
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 57,
+    "fields": {
+        "user": 3,
+        "conversation": "[{\"sender\": \"You\", \"message\": \"hi\"}, {\"sender\": \"Assistant\", \"message\": \"Great to see your enthusiasm! Let\\u2019s dive right in. Can you share an experience where you faced a significant challenge in a previous job or project? What was the situation, how did you approach it, and what was the outcome?\"}, {\"sender\": \"You\", \"message\": \"Yes. Sure. So in my previous job, I was, like, completely horrible. I sent the news to the entire\"}, {\"sender\": \"Assistant\", \"message\": \"It sounds like you encountered a tough situation. Can you tell me more about what led to that mistake? Specifically, how did you handle the situation after realizing what had happened, and what steps did you take to rectify it?\"}]",
+        "assessment_type": "behavioral",
+        "created_at": "2025-02-28T02:20:31.451Z",
+        "analysis": null
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 58,
+    "fields": {
+        "user": 3,
+        "conversation": "[{\"sender\": \"You\", \"message\": \"hi\"}, {\"sender\": \"Assistant\", \"message\": \"Hello! \\n\\nToday, we are going to go through a problem-solving protocol called UMPIRE that is commonly used to address complex problems like the ones on LeetCode. \\n\\nThe problem we will be focusing on in this session is: two_sum. \\n\\nFirst, let's begin with the \\\"Understand the problem\\\" phase. Can you explain to me the problem in your own words and anything specific you would like clarified?\"}]",
+        "assessment_type": "technical",
+        "created_at": "2025-02-28T02:27:22.079Z",
+        "analysis": null
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 59,
+    "fields": {
+        "user": 3,
+        "conversation": "[{\"sender\": \"You\", \"message\": \"How are you doing?\"}, {\"sender\": \"Assistant\", \"message\": \"I'm doing well, thank you! Let's dive into the interview. \\n\\nCan you start by describing a time when you had to overcome a significant challenge at work? What was the situation, and what steps did you take to address it?\"}, {\"sender\": \"You\", \"message\": \"Right.\"}, {\"sender\": \"Assistant\", \"message\": \"Great! Please go ahead and share your experience about that challenge you faced at work.\"}, {\"sender\": \"You\", \"message\": \"Sure. So while I was working\"}, {\"sender\": \"You\", \"message\": \"Two.\"}, {\"sender\": \"Assistant\", \"message\": \"An error occurred: Error code: 400 - {'error': {'message': \\\"Can't add messages to thread_5ght3wo8Gt2C6fsP7PGU8mQG while a run run_QiUeRLc4dySaFLNdrOXfO8yF is active.\\\", 'type': 'invalid_request_error', 'param': None, 'code': None}}\"}, {\"sender\": \"Assistant\", \"message\": \"It seems like you were about to share an experience. Could you please continue? What specific challenge did you face while you were working, and what actions did you take to overcome it?\"}]",
+        "assessment_type": "behavioral",
+        "created_at": "2025-02-28T02:45:57.063Z",
+        "analysis": null
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 60,
+    "fields": {
+        "user": 3,
+        "conversation": "[{\"sender\": \"You\", \"message\": \"How are you doing?\"}, {\"sender\": \"Assistant\", \"message\": \"I'm doing well, thank you for asking! I'd like to start our interview with a question about your experience. \\n\\nCan you tell me about a specific project or experience where you had to work as part of a team to achieve a goal? What was your role in that team, and what challenges did you face along the way?\"}, {\"sender\": \"You\", \"message\": \"Sure. So while I was working on a\"}, {\"sender\": \"Assistant\", \"message\": \"It seems like your response got cut off. Could you please continue and tell me about the project you were referring to? What was your role in the team, and what challenges did you face during that experience?\"}, {\"sender\": \"You\", \"message\": \"Yeah. Sure. So while I was working on the on the first recruiting team of the of course challenge that had\"}, {\"sender\": \"Assistant\", \"message\": \"It sounds like you were part of a significant project related to recruiting for a course challenge. Could you provide a bit more detail? Specifically, what was your role on that team, and what were some of the challenges you encountered in that process? How did you address those challenges?\"}, {\"sender\": \"You\", \"message\": \"So while I'm working on the project, it seems like there was a significant part that didn't come through.\"}]",
+        "assessment_type": "behavioral",
+        "created_at": "2025-03-01T03:38:14.110Z",
+        "analysis": null
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 61,
+    "fields": {
+        "user": 3,
+        "conversation": "[{\"sender\": \"You\", \"message\": \"How are you doing?\"}, {\"sender\": \"Assistant\", \"message\": \"I'm doing well, thank you! Let's dive into your experiences. Can you tell me about a time when you faced a significant challenge while working on a project, and how you overcame it? Please provide specific details about the situation, your approach, and the outcome.\"}, {\"sender\": \"You\", \"message\": \"Hello. Go ahead.\"}, {\"sender\": \"Assistant\", \"message\": \"Thank you! To get started, could you share a time when you faced a significant challenge while working on one of your projects, perhaps during your internship or while developing one of the applications you've listed on your resume? Please describe the situation, your role in it, the actions you took to address the challenge, and what the outcome was.\"}, {\"sender\": \"You\", \"message\": \"Sure. So while I was working on this study in my last year of high school,\"}, {\"sender\": \"You\", \"message\": \"Time, and I'm just not able to\"}, {\"sender\": \"Assistant\", \"message\": \"An error occurred: Error code: 400 - {'error': {'message': \\\"Can't add messages to thread_6aytecPWyNwEWynXB2nfyv0I while a run run_A3vGXzlpJLwLEhkVHDBnTXFx is active.\\\", 'type': 'invalid_request_error', 'param': None, 'code': None}}\"}, {\"sender\": \"Assistant\", \"message\": \"That's interesting! It sounds like you had an impactful experience in high school. Could you clarify which specific study or project you're referring to? Also, mention what the main challenge was during that project, how you personally contributed to addressing it, and what result came from your efforts.\"}]",
+        "assessment_type": "behavioral",
+        "created_at": "2025-03-01T04:55:44.946Z",
+        "analysis": {
+            "error": "Analysis failed: Error code: 404 - {'error': {'message': 'The model `gpt-4-turbo` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+            "overall_score": 0,
+            "summary": "Unable to complete analysis due to an error."
+        }
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 62,
+    "fields": {
+        "user": 3,
+        "conversation": "[{\"sender\": \"You\", \"message\": \"How are you doing?\"}, {\"sender\": \"Assistant\", \"message\": \"I'm doing well, thank you! Let's get started. \\n\\nI see you have extensive experience with machine learning and data processing projects. Can you tell me about a time when you encountered a significant technical challenge while working on one of your projects? How did you approach the problem, and what was the outcome?\"}, {\"sender\": \"You\", \"message\": \"Sure. So while I was working on one of the projects that I did in the past, there I found a very big problem.\"}, {\"sender\": \"Assistant\", \"message\": \"It sounds like you faced a significant issue\\u2014could you share more details about the specific challenge you encountered? What was the nature of the problem, and what steps did you take to address it? Additionally, what impact did your solution have on the project?\"}]",
+        "assessment_type": "behavioral",
+        "created_at": "2025-03-01T05:00:46.878Z",
+        "analysis": {
+            "components": {
+                "situation": {
+                    "score": 40,
+                    "feedback": "The description of the situation was somewhat vague and lacked specific details about the project, its goals, or the broader context in which the challenge occurred.",
+                    "observations": [
+                        "Mention of a 'past project' was too general.",
+                        "No details provided about the project's scope, timeline, or stakeholders involved."
+                    ]
+                },
+                "task": {
+                    "score": 30,
+                    "feedback": "The task was described as a 'very big problem,' but this description is too ambiguous and does not specify the nature of the challenge or its significance to the project.",
+                    "observations": [
+                        "Lack of specificity about the technical challenge or the aspects of the project it affected.",
+                        "No clear indication of what made the problem significant or urgent."
+                    ]
+                },
+                "action": {
+                    "score": 0,
+                    "feedback": "No actions were described in the response. It's crucial to outline the specific steps taken to address the challenge to evaluate problem-solving skills and effectiveness.",
+                    "observations": [
+                        "The interviewee failed to describe any actions, strategies, or specific technologies used to tackle the problem."
+                    ]
+                },
+                "result": {
+                    "score": 0,
+                    "feedback": "The result of the actions taken was not mentioned. It is important to describe the outcomes to understand the impact and efficacy of the solution implemented.",
+                    "observations": [
+                        "There was no mention of the project's outcome, how the solution benefited the project, or any metrics of success."
+                    ]
+                }
+            },
+            "overall_score": 18,
+            "summary": "The candidate's response to the behavioral question was lacking in detail across all components of the STAR method. While a challenging situation was acknowledged, the lack of specificity in describing the task, complete absence of action taken, and no mention of the results make it difficult to gauge the candidate's problem-solving ability and impact on the project. More detailed examples and a clearer outline of actions and outcomes are needed to provide a comprehensive view of the candidate's capabilities."
+        }
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 64,
+    "fields": {
+        "user": 3,
+        "conversation": "[{\"sender\": \"You\", \"message\": \"Hello. How are you? Alright.\"}, {\"sender\": \"Assistant\", \"message\": \"I'm doing well, thank you! Let's get started. \\n\\nTo begin, can you tell me about a time when you faced a significant challenge during one of your internships, perhaps at Freie Universit\\u00e4t Berlin or during your role at Laplace Technologies? How did you approach the challenge, and what was the outcome?\"}, {\"sender\": \"You\", \"message\": \"It's safe.\"}, {\"sender\": \"Assistant\", \"message\": \"It sounds like you might be referring to a situation where the challenges felt manageable. Could you share a specific example that illustrates a challenge you encountered and what steps you took to overcome it? I'm particularly interested in one of your projects or experiences that involved problem-solving or overcoming obstacles.\"}, {\"sender\": \"You\", \"message\": \"Sure. Well, I was working on a project with my dad's company. It didn't go really well.\"}, {\"sender\": \"Assistant\", \"message\": \"Thank you for sharing that. It seems like that experience may have been a learning opportunity. Could you elaborate on what specific challenges you faced during that project with your dad's company? What actions did you take to address those challenges, and what lessons did you learn from that experience that you can apply to future projects, especially in a role like the Software Engineering Intern at Preffect?\"}, {\"sender\": \"You\", \"message\": \"So it's working. It's like\"}, {\"sender\": \"You\", \"message\": \"The best, but\"}, {\"sender\": \"Assistant\", \"message\": \"An error occurred: Error code: 400 - {'error': {'message': \\\"Can't add messages to thread_wgpJsx5DPKdOP8PgVbJAvZXj while a run run_zOrqc7ROzNn5AphYEIjbcN2Y is active.\\\", 'type': 'invalid_request_error', 'param': None, 'code': None}}\"}, {\"sender\": \"Assistant\", \"message\": \"I appreciate your response! It seems like you might be thinking about how to express that experience. Let\\u2019s break it down a bit more. \\n\\nCould you share a specific example of what was not working well in the project? What steps did you take to try to resolve those issues, and what did you learn from the entire situation? This way, I can understand the context of the challenges you faced and how you handled them.\"}]",
+        "assessment_type": "behavioral",
+        "created_at": "2025-03-01T05:12:41.608Z",
+        "analysis": {
+            "error": "Analysis failed: Expecting value: line 1 column 1 (char 0)",
+            "overall_score": 0,
+            "summary": "Unable to complete analysis due to an error."
+        }
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 66,
+    "fields": {
+        "user": 3,
+        "conversation": "[{\"sender\": \"You\", \"message\": \"Hello.\"}, {\"sender\": \"Assistant\", \"message\": \"Great! Thank you for being here today. Let's jump right into it. \\n\\nCan you describe a time when you faced a significant challenge at work? What was the situation, and how did you approach solving the problem?\"}, {\"sender\": \"You\", \"message\": \"One significant challenge I faced was during the Agent 2.0 Hackathon at Cloudflare HQ, where my team built Sapiento AI, a plugin that fact-checks claims in real time. We struggled with integrating multiple AI models (MultiOn, Groq, Omi AI) due to compatibility issues and API rate limits.\\n\\nTo solve this, I quickly identified bottlenecks, optimized API calls, and refactored our architecture to balance performance and reliability. Despite last-minute debugging, we delivered a working demo and won first place in the \\\"Based Hardware\\\" category. This experience reinforced my ability to problem-solve under pressure and iterate rapidly.\"}, {\"sender\": \"Assistant\", \"message\": \"That's an impressive example! It sounds like you were under a lot of pressure to deliver a high-quality product in a short timeframe. \\n\\nCan you tell me more about the specific steps you took to identify those bottlenecks and optimize the API calls? What was your thought process during that time, and how did you prioritize the tasks that needed to be accomplished?\"}]",
+        "assessment_type": "behavioral",
+        "created_at": "2025-03-01T09:20:59.633Z",
+        "analysis": {
+            "error": "Analysis failed: Expecting value: line 1 column 1 (char 0)",
+            "overall_score": 0,
+            "summary": "Unable to complete analysis due to an error."
+        }
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 76,
+    "fields": {
+        "user": 3,
+        "conversation": "[{\"sender\": \"Assistant\", \"message\": \"Welcome! I\\u2019m glad to have you here today. Let\\u2019s start by diving into some of your past experiences. \\n\\nCan you tell me about a time when you faced a significant challenge in a previous role? How did you approach it, and what was the outcome?\"}, {\"sender\": \"You\", \"message\": \"Sure! One significant challenge I faced was during the Agent 2.0 Hackathon at Cloudflare HQ, where my team built Sapiento AI, a real-time fact-checking plugin using AI agents. We encountered a major issue with latency and accuracy in detecting logical fallacies due to API constraints. To solve this, I optimized our data pipeline, adjusted the agent retrieval strategy, and implemented parallel processing to speed up response times. Despite some last-minute bugs, our pitch was compelling, and we won first place in the Based Hardware subcategory. This experience reinforced my ability to troubleshoot under pressure and deliver impactful solutions.\"}, {\"sender\": \"Assistant\", \"message\": \"That sounds like an impressive achievement! It\\u2019s great to hear how you tackled the challenges with latency and accuracy. \\n\\nCan you elaborate on the specific steps you took to optimize the data pipeline and adjust the agent retrieval strategy? What methods or tools did you use, and how did you determine what changes would be most effective?\"}, {\"sender\": \"You\", \"message\": \"To optimize the data pipeline, I implemented async I/O, multi-threading, and batch processing to reduce API call overhead and improve response time. Using Redis caching, I minimized redundant queries. For the agent retrieval strategy, I integrated FAISS for vector similarity search, prioritized high-confidence sources, and added a fallback mechanism for unverifiable claims. Tools like FastAPI, Groq, and OpenAI API were used, with profiling and A/B testing guiding improvements. These optimizations cut latency by 40% and enhanced accuracy, contributing to our first-place win at the hackathon.\"}, {\"sender\": \"Assistant\", \"message\": \"That's quite a detailed approach! It\\u2019s clear that you not only understood the technical complexities but also took strategic steps to implement your solutions effectively. \\n\\nNow, can you share how you worked with your team during this project? Were there any disagreements or differing opinions on the approach, and how did you navigate those situations to ensure everyone was aligned and focused on the common goal?\"}, {\"sender\": \"You\", \"message\": \"Collaboration was key to our success. Our team had diverse skill sets, with some focusing on AI models, while others handled UI/UX and backend integration. Early on, we disagreed on whether to prioritize speed or accuracy\\u2014some favored a simpler rule-based approach, while I advocated for retrieval-augmented generation (RAG) with FAISS. To align everyone, I proposed a quick prototype comparison, demonstrating that RAG maintained accuracy while improving response time. This data-driven approach helped us reach consensus. Throughout, we used agile sprints, quick stand-ups, and pair programming to stay efficient. Open communication and iterative testing ensured that everyone\\u2019s expertise was leveraged, leading to our winning solution.\"}, {\"sender\": \"Assistant\", \"message\": \"It\\u2019s fantastic to hear how you facilitated collaboration and used a data-driven approach to resolve disagreements. It sounds like you really harnessed your team\\u2019s strengths and maintained open lines of communication throughout the process.\\n\\nMoving forward, can you describe a situation where you had to manage a tight deadline? How did you prioritize tasks and ensure that your team controlled the workflow to meet that deadline? What was the outcome?\"}, {\"sender\": \"You\", \"message\": \"During the Agent 2.0 Hackathon, we had just 24 hours to build and pitch Sapiento AI. With such a tight deadline, I focused on prioritization and workflow efficiency. First, I broke the project into core vs. nice-to-have features, ensuring we focused on the MVP: fact-checking accuracy, real-time response, and UI integration. We used Kanban boards (Trello) to assign tasks based on strengths\\u2014one teammate handled AI logic, another worked on frontend/UI, while I optimized the backend pipeline and API integration. Regular 30-minute check-ins helped troubleshoot issues quickly. When debugging delayed us, we strategically cut non-critical features to maintain quality. As a result, we finished on time, delivered a working prototype, and won first place in our category.\"}, {\"sender\": \"Assistant\", \"message\": \"You clearly handled the pressure of a tight deadline exceptionally well! Prioritizing the MVP and employing effective task management through Kanban boards and team check-ins is an excellent strategy.\\n\\nCan you reflect on how this experience has influenced your approach to project management in subsequent roles? Have you integrated any specific practices or learned any lessons that you continue to apply when working under time constraints?\"}]",
+        "assessment_type": "behavioral",
+        "created_at": "2025-03-01T11:20:57.912Z",
+        "analysis": {
+            "error": "Analysis failed: Error code: 404 - {'error': {'message': 'The model `gpt-4-turbo` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}",
+            "overall_score": 0,
+            "summary": "Unable to complete analysis due to an error."
+        }
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 79,
+    "fields": {
+        "user": 3,
+        "conversation": "[{\"sender\": \"Assistant\", \"message\": \"Hello, thank you for joining me today. I'm excited to learn more about your experiences and how they align with the roles you've applied for.\\n\\nLet's start with a bit about your previous job roles. Could you share an example of a challenging project you worked on in your last job? What specific role did you play, and what was the outcome?\"}, {\"sender\": \"You\", \"message\": \"Certainly! In my last role, I worked on developing an AI-powered test preparation and analytics platform tailored for the Indian education system, integrating science-backed learning methodologies to enhance student performance. One of the biggest challenges was designing an adaptive learning engine that could personalize study plans based on a student's strengths and weaknesses while ensuring scalability for a large user base. My role involved leading the backend development, implementing machine learning models for personalized recommendations, and optimizing the system for efficiency. To tackle scalability, I restructured the data pipeline using MongoDB and incorporated caching strategies to improve response times. Additionally, I collaborated closely with front-end developers to ensure a seamless user experience and implemented analytics dashboards for educators to track student progress. As a result, the platform successfully improved student engagement and performance, receiving positive feedback from both learners and educators, and was recognized for its innovative approach to AI in education.\"}, {\"sender\": \"Assistant\", \"message\": \"That sounds like a significant and impactful project. Given the complexity and scale of the task, could you describe a specific instance where you encountered a major obstacle in the backend development or implementation of the machine learning models? How did you address this challenge, and what was the learning outcome from that situation?\"}, {\"sender\": \"You\", \"message\": \"One major obstacle I encountered during the backend development was optimizing the adaptive learning engine\\u2019s response time while handling a large volume of student queries in real-time. Initially, the recommendation system, which used a machine learning model to personalize study plans, suffered from high latency, especially when processing multiple requests simultaneously. This issue arose due to inefficient database queries and the computational overhead of generating personalized recommendations on the fly.\\n\\nTo address this, I took a multi-faceted approach. First, I optimized database interactions by restructuring queries and introducing indexing in MongoDB, which significantly reduced query execution time. Next, I implemented a caching mechanism using Redis to store frequently accessed recommendations, which cut down redundant computations. Additionally, I decoupled the recommendation generation process by shifting it to an asynchronous task queue using Celery, ensuring that user requests were not blocked while the system computed personalized suggestions in the background.\\n\\nThrough these optimizations, we reduced the average response time from several seconds to under 500 milliseconds, greatly enhancing the user experience. The key learning from this challenge was the importance of profiling performance bottlenecks early and leveraging architectural patterns like caching and asynchronous processing to optimize large-scale AI-driven applications. It reinforced my understanding of designing scalable and efficient backend systems, a skill I continue to apply in my current projects.\"}, {\"sender\": \"Assistant\", \"message\": \"That\\u2019s an excellent example of problem-solving and technical adaptation. Considering that your role involved both technical improvements and cross-functional collaborations, could you share how you ensured that communication with the front-end team and other stakeholders was effective despite the technical complexities involved? What strategies did you use to keep everyone aligned with the changes and developments you were implementing at the backend?\"}]",
+        "assessment_type": "behavioral",
+        "created_at": "2025-03-01T11:31:10.629Z",
+        "analysis": null
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 82,
+    "fields": {
+        "user": 3,
+        "conversation": "[{\"sender\": \"Assistant\", \"message\": \"Hello, and welcome to the interview! I'm glad to have you here today. Let's dive right in. \\n\\nBased on your resume, it seems you have experience in [specific role or project from resume]. Can you tell me about a time when you faced a significant challenge in that role and how you overcame it? What was the outcome?\"}, {\"sender\": \"You\", \"message\": \"During my internship at Freie Universit\\u00e4t Berlin, I encountered a significant technical challenge while implementing segmentation models like Mask R-CNN and SOLOv2 to distinguish honeybees from the comb in high-resolution imagery. The dataset consisted of complex, overlapping structures, making it difficult for traditional models to achieve precise segmentation. To address this, I experimented with PointRend for improved boundary refinement and fine-tuned hyperparameters to enhance model accuracy. Additionally, I optimized data augmentation techniques to improve generalization and manually annotated 250+ images to enhance the training dataset. These efforts led to a substantial improvement in segmentation accuracy, enabling the creation of detailed time-lapse visualizations of honeycomb formation. This experience deepened my expertise in computer vision and reinforced the importance of iterative experimentation and data preprocessing in improving model performance.\"}, {\"sender\": \"Assistant\", \"message\": \"Welcome to the interview! Thank you for sharing your experience with implementing segmentation models during your internship at Freie Universit\\u00e4t Berlin. It sounds like you faced a challenging yet rewarding project. \\n\\nTo start, could you describe a specific instance during this project where you had to make a critical decision that significantly impacted the outcome? What was the decision, and how did you approach making it?\"}, {\"sender\": \"You\", \"message\": \"In a fast-paced startup environment like Clinivise, where resources are limited and timelines are tight, my approach to solving complex problems would involve prioritization, leveraging existing tools, and focusing on iterative development. I would first break down the problem into smaller, manageable components, identify bottlenecks early, and rapidly prototype a minimum viable solution to test feasibility before committing extensive resources. Additionally, I would leverage open-source frameworks, pre-trained models, and cloud-based tools to accelerate development while maintaining efficiency.\\n\\nA strong example of working under similar constraints was my experience developing PitchMyCode, a Django-based mock interview platform integrating real-time voice recognition and AI-driven interview assessments. With a limited timeframe, I prioritized essential features\\u2014automated scoring, real-time transcription, and structured feedback\\u2014while postponing non-critical enhancements. I optimized backend efficiency using Django ORM and integrated OpenAI\\u2019s API to provide rapid AI-driven feedback. By continuously testing and iterating based on early user feedback, I successfully deployed a functional prototype within weeks. This experience reinforced my ability to balance speed and quality, ensuring impactful solutions despite constraints\\u2014an approach I would bring to Clinivise.\"}, {\"sender\": \"Assistant\", \"message\": \"Welcome to the interview! Thank you for sharing your approach and experience with us. It sounds like you have a solid strategy for handling complex problems in a resource-constrained environment. Let's dive deeper into your experience with PitchMyCode.\\n\\nCan you describe a specific challenge you faced while developing PitchMyCode, particularly one that required you to adapt your initial plan or approach? How did you handle it, and what was the outcome?\"}, {\"sender\": \"You\", \"message\": \"In a fast-paced startup environment like Clinivise, where resources are limited and timelines are tight, my approach to solving complex problems would involve prioritization, leveraging existing tools, and focusing on iterative development. I would first break down the problem into smaller, manageable components, identify bottlenecks early, and rapidly prototype a minimum viable solution to test feasibility before committing extensive resources. Additionally, I would leverage open-source frameworks, pre-trained models, and cloud-based tools to accelerate development while maintaining efficiency. A strong example of working under similar constraints was my experience developing PitchMyCode, a Django-based mock interview platform integrating real-time voice recognition and AI-driven interview assessments. With a limited timeframe, I prioritized essential features\\u2014automated scoring, real-time transcription, and structured feedback\\u2014while postponing non-critical enhancements. I optimized backend efficiency using Django ORM and integrated OpenAI\\u2019s API to provide rapid AI-driven feedback. By continuously testing and iterating based on early user feedback, I successfully deployed a functional prototype within weeks. This experience reinforced my ability to balance speed and quality, ensuring impactful solutions despite constraints\\u2014an approach I would bring to Clinivise.\"}, {\"sender\": \"Assistant\", \"message\": \"Thank you for reiterating your approach and experience. It sounds like you have a well-thought-out strategy for managing projects under tight constraints. Let's focus on a specific challenge you encountered during the development of PitchMyCode.\\n\\nCan you share an instance where you faced a significant obstacle or unexpected issue during the development process? How did you address this challenge, and what did you learn from the experience that you could apply to future projects at Clinivise?\"}]",
+        "assessment_type": "behavioral",
+        "created_at": "2025-03-01T11:58:07.471Z",
+        "analysis": {
+            "components": {
+                "situation": {
+                    "score": 85,
+                    "feedback": "The candidate effectively set the context by describing the internship at Freie Universität Berlin and the project involving segmentation models. The description of the dataset and its complexities provided a clear backdrop.",
+                    "observations": [
+                        "Mentioned the specific internship location and project.",
+                        "Described the dataset and its challenges."
+                    ]
+                },
+                "task": {
+                    "score": 80,
+                    "feedback": "The task was clearly outlined as improving the segmentation accuracy of models to distinguish honeybees from the comb. However, more details on the initial benchmarks or specific targets to be achieved could enhance clarity.",
+                    "observations": [
+                        "Identified the main challenge of achieving precise segmentation.",
+                        "Could improve by specifying quantitative goals or benchmarks."
+                    ]
+                },
+                "action": {
+                    "score": 90,
+                    "feedback": "The actions were detailed and well-articulated, showcasing the candidate's technical approach and problem-solving skills. The mention of specific techniques like PointRend, hyperparameter tuning, and data augmentation clearly demonstrates proactive and knowledgeable handling of the task.",
+                    "observations": [
+                        "Described multiple technical actions taken to address the problem.",
+                        "Showed a comprehensive approach to problem-solving."
+                    ]
+                },
+                "result": {
+                    "score": 85,
+                    "feedback": "The results were effectively communicated, highlighting a substantial improvement in segmentation accuracy and the creation of time-lapse visualizations. Mentioning specific outcomes like enhanced model performance would be more impactful if supported by quantitative data.",
+                    "observations": [
+                        "Outlined the positive impact on the project.",
+                        "Could be enhanced by including specific performance metrics."
+                    ]
+                }
+            },
+            "overall_score": 85,
+            "summary": "The candidate provided a strong response using the STAR method, effectively describing the situation, task, actions, and results. The response was technically detailed, demonstrating a clear understanding and handling of a complex problem. While the overall presentation was strong, incorporating more quantitative details and specific performance metrics could provide even greater depth and impact."
+        }
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 83,
+    "fields": {
+        "user": 3,
+        "conversation": "[{\"sender\": \"Assistant\", \"message\": \"Hello, and welcome to your behavioral interview! I'm glad you're here and ready to get started. Let's dive right in.\\n\\nBased on your resume and the job description, it seems like you have experience in [mention a relevant experience or skill from the resume]. Can you tell me about a time when you faced a significant challenge in this area and how you overcame it? Please walk me through the situation, your actions, and the outcome.\"}]",
+        "assessment_type": "behavioral",
+        "created_at": "2025-03-01T12:00:45.006Z",
+        "analysis": null
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 84,
+    "fields": {
+        "user": 3,
+        "conversation": "[{\"sender\": \"Assistant\", \"message\": \"Hello, and welcome to the interview! I'm glad you're here today. Let's dive right in. \\n\\nBased on your resume, I see you have experience in [mention relevant experience from resume]. Can you tell me about a time when you faced a significant challenge in that role and how you overcame it? Please walk me through the situation, your actions, and the outcome.\"}]",
+        "assessment_type": "behavioral",
+        "created_at": "2025-03-01T12:21:26.882Z",
+        "analysis": null
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 85,
+    "fields": {
+        "user": 3,
+        "conversation": "[{\"sender\": \"Assistant\", \"message\": \"Hello, and welcome to the interview! I'm glad you're here today. Let's dive right in with our first question.\\n\\nCan you tell me about a time when you had to adapt to a significant change in your work environment or responsibilities? How did you handle it, and what was the outcome?\"}, {\"sender\": \"You\", \"message\": \"Yeah. Sure. So I was working on in my school. There was a letter.\"}, {\"sender\": \"Assistant\", \"message\": \"It sounds like there was a significant event involving a letter at your school. Could you elaborate on what the situation was, how it impacted your responsibilities, and what steps you took to adapt to this change? Additionally, what was the outcome of your actions?\"}]",
+        "assessment_type": "behavioral",
+        "created_at": "2025-03-01T20:24:57.661Z",
+        "analysis": null
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 86,
+    "fields": {
+        "user": 3,
+        "conversation": "[{\"sender\": \"You\", \"message\": \"Hello. How are you doing? Hello. How are you doing?\"}, {\"sender\": \"Assistant\", \"message\": \"I'm good, thank you. Are you ready to delve into the problem for today?\\n\\nWe will tackle a problem known as \\\"Rotten Oranges\\\".\\n\\nHere is the problem: Given a 2D grid, each cell is either: \\n- an orange (which is represented by '1'), \\n- a rotten orange (represented by '2'), \\n- or an empty cell (represented by '0'). \\n\\nEvery minute, any fresh orange that is adjacent (up, down, left, or right) to a rotten orange becomes rotten. \\n\\nThe task you have is to find the minimum number of minutes that must elapse until no cell has a fresh orange. If this is impossible, return -1.\\n\\nLet's start by first making sure you understand the problem. Can you take a few minutes to go over the problem description, ask any clarifying questions or scenarios you might want to discuss?\"}]",
+        "assessment_type": "technical",
+        "created_at": "2025-03-01T20:25:54.554Z",
+        "analysis": null
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 87,
+    "fields": {
+        "user": 3,
+        "conversation": "[{\"sender\": \"You\", \"message\": \"hi\"}, {\"sender\": \"Assistant\", \"message\": \"Hello! Today, we are going to go through a problem-solving approach for LeetCode problems known as the UMPIRE method. Let's start with a LeetCode question \\\"rotten_oranges\\\". In this question, you are given a 2D grid. Each cell in the grid either contains an orange or it is empty. If a cell contains an orange, the orange can be either fresh or rotten. Every minute, any fresh orange that is adjacent (4 directions - up, down, left, or right) to a rotten orange becomes rotten. We have to find out in how many minutes all the oranges will become rotten or return -1 if it's impossible.\\n\\nStep one of the UMPIRE method is to Understand the problem. Could you summarize the problem in your own words?\"}, {\"sender\": \"You\", \"message\": \"hi\"}, {\"sender\": \"You\", \"message\": \"hi\"}, {\"sender\": \"Assistant\", \"message\": \"Hello! Today, we are going to solve a LeetCode problem called \\\"Rotten Oranges\\\". \\n\\nNow, let's go through the UMPIRE problem-solving approach to tackle this task.\\n\\nThe first step is to Understand the problem. You should come up with a concise problem statement and try to understand the key requirements. Here\\u2019s the problem - You are given a 2D grid representing a box of oranges, where each cell can have one of three values: 0 representing an empty cell, 1 representing a fresh orange, or 2 representing a rotten orange. Every minute, any fresh orange that is adjacent (4 directions, not diagonal) to a rotten orange becomes rotten. The task is to return the minimum number of minutes that must elapse until no cell has a fresh orange. If not possible (meaning there will always be some fresh oranges left), return -1.\\n\\nTry to clarify with any questions or doubts concerning the problem statement.\"}]",
+        "assessment_type": "technical",
+        "created_at": "2025-03-01T21:12:02.740Z",
+        "analysis": null
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 89,
+    "fields": {
+        "user": 3,
+        "conversation": "[{\"sender\": \"You\", \"message\": \"hi\"}, {\"sender\": \"Assistant\", \"message\": \"Hello. We're going to work on a problem today called \\\"rotten oranges\\\". The problem is stated as follows:\\n\\nIn a given grid, each cell can have one of three values:\\n\\n- The value 0 representing an empty cell.\\n- The value 1 representing a fresh orange.\\n- The value 2 representing a rotten orange. \\n\\nEvery minute, any fresh orange that is adjacent (up, down, left, or right) to a rotten orange becomes rotten. The goal here is to determine the minimum number of minutes that must elapse until no cell has a fresh orange. If this is impossible, return -1.\\n\\nNow, can you help me understand if you've got a clear understanding of the problem? What is your interpretation of the problem?\"}]",
+        "assessment_type": "technical",
+        "created_at": "2025-03-01T21:20:07.214Z",
+        "analysis": null
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 90,
+    "fields": {
+        "user": 3,
+        "conversation": "[{\"sender\": \"You\", \"message\": \"Hello. Hello. Hello.\"}]",
+        "assessment_type": "technical",
+        "created_at": "2025-03-01T21:22:15.560Z",
+        "analysis": null
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 91,
+    "fields": {
+        "user": 3,
+        "conversation": "[{\"sender\": \"You\", \"message\": \"Hi\"}, {\"sender\": \"Assistant\", \"message\": \"Hello! It's great to have you here. How are you feeling about tackling the \\\"Two Sum\\\" problem today? Do you have any initial questions or thoughts about the problem statement that you'd like to discuss?\"}, {\"sender\": \"You\", \"message\": \"No, let's start.\"}, {\"sender\": \"Assistant\", \"message\": \"Great! Let's begin by discussing the problem a bit more to ensure we have a clear understanding. \\n\\nTo clarify, we're given an array of integers and a target sum. Our task is to find two distinct indices in the array where the numbers at those indices add up to the target sum. \\n\\nLet's consider an example to illustrate this:\\n\\nSuppose `nums = [2, 7, 11, 15]` and `target = 9`. The numbers at indices 0 and 1 (i.e., 2 and 7) add up to 9, so the output should be `[0, 1]`.\\n\\nDoes this example make sense to you? Are there any other scenarios or edge cases you think we should consider before moving forward?\"}]",
+        "assessment_type": "technical",
+        "created_at": "2025-03-01T21:31:58.845Z",
+        "analysis": null
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 94,
+    "fields": {
+        "user": 3,
+        "conversation": "[{\"sender\": \"Assistant\", \"message\": \"Hello! Welcome to your mock technical interview. I'm glad to have you here today. We'll be working through a problem together, and I'll be here to guide you through the process.\\n\\nLet's start with the problem we'll be tackling today: \\\"Two Sum.\\\" Could you please read the problem statement for us?\"}]",
+        "assessment_type": "technical",
+        "created_at": "2025-03-01T21:56:23.530Z",
+        "analysis": null
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 95,
+    "fields": {
+        "user": 3,
+        "conversation": "[{\"sender\": \"Assistant\", \"message\": \"Hello! Welcome to your mock technical interview. I'm glad to have you here today. We'll be working through a problem together, and I'll be here to guide you through the process.\\n\\nLet's start with the problem at hand: reversing a linked list. Could you please read the problem statement for us? If you have any questions or need clarification, feel free to ask.\"}]",
+        "assessment_type": "technical",
+        "created_at": "2025-03-01T22:03:29.740Z",
+        "analysis": null
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 96,
+    "fields": {
+        "user": 3,
+        "conversation": "[{\"sender\": \"Assistant\", \"message\": \"Hello, and welcome to the interview! I'm glad to have you here today. Let's dive right in. \\n\\nBased on your resume and the job description, it seems like you have experience in [mention relevant experience from resume]. Can you tell me about a time when you faced a significant challenge in this area and how you overcame it? Please walk me through the situation, your actions, and the outcome.\"}]",
+        "assessment_type": "behavioral",
+        "created_at": "2025-03-01T22:35:25.383Z",
+        "analysis": {
+            "components": {
+                "situation": {
+                    "score": 0,
+                    "feedback": "The situation was not described as the interviewee did not provide any response.",
+                    "observations": [
+                        "No context or background information was provided.",
+                        "Lack of response indicates an incomplete understanding of the question or an inability to recall a relevant experience."
+                    ]
+                },
+                "task": {
+                    "score": 0,
+                    "feedback": "The task or challenge was not explained as there was no response from the interviewee.",
+                    "observations": [
+                        "No specific challenge or task was identified.",
+                        "The absence of details prevents understanding the complexity or scope of the task."
+                    ]
+                },
+                "action": {
+                    "score": 0,
+                    "feedback": "No actions were described due to the lack of response from the interviewee.",
+                    "observations": [
+                        "No steps or strategies were shared.",
+                        "It is unclear what approach the interviewee might typically take in such situations."
+                    ]
+                },
+                "result": {
+                    "score": 0,
+                    "feedback": "No results or outcomes were shared as the interviewee did not respond.",
+                    "observations": [
+                        "The impact of any actions taken is unknown.",
+                        "It is impossible to gauge the success or failure of the response."
+                    ]
+                }
+            },
+            "overall_score": 0,
+            "summary": "The interviewee did not provide any information in response to the question about a significant challenge and how it was overcome. This lack of response makes it impossible to evaluate their experience or problem-solving skills based on the STAR method. Further interaction would be necessary to obtain the needed information for a proper assessment."
+        }
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 97,
+    "fields": {
+        "user": 3,
+        "conversation": "[{\"sender\": \"Assistant\", \"message\": \"Hello! Welcome to your mock technical interview. I'm glad to have you here today. We'll be working through a problem together, and I'll be here to guide you through the process. Let's start with the problem statement for \\\"Merge Intervals.\\\"\\n\\nCould you please read the problem statement aloud for us?\"}]",
+        "assessment_type": "technical",
+        "created_at": "2025-03-01T22:35:52.684Z",
+        "analysis": null
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 98,
+    "fields": {
+        "user": 3,
+        "conversation": "[{\"sender\": \"Assistant\", \"message\": \"Hello, and welcome to the interview! I'm glad to have you here today. Let's dive right in. \\n\\nGiven your experience with developing a full-stack test prep and analytics app during your internship at the Minerva University x Nippon Foundation AI Lab, can you tell me about a time when you faced a significant challenge during the development process? How did you approach solving it, and what was the outcome?\"}]",
+        "assessment_type": "behavioral",
+        "created_at": "2025-03-01T23:01:48.499Z",
+        "analysis": null
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 99,
+    "fields": {
+        "user": 3,
+        "conversation": "[{\"sender\": \"Assistant\", \"message\": \"Hello, and welcome to the interview! I'm glad you're here today. Let's dive right in. \\n\\nTo start, could you tell me about a time when you faced a significant challenge in a project or task that was directly related to your experience as outlined in your resume? How did you approach the situation, and what was the outcome?\"}, {\"sender\": \"You\", \"message\": \"Yeah. Sure. So while I was working on a different project for my work,\"}, {\"sender\": \"Assistant\", \"message\": \"It sounds like you encountered a challenge during a project. Could you provide more details about the specific challenge you faced? What was the project about, and what made the situation particularly difficult? Additionally, I'd love to hear about the steps you took to address the challenge and the eventual outcome.\"}]",
+        "assessment_type": "behavioral",
+        "created_at": "2025-03-02T00:20:52.931Z",
+        "analysis": null
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 105,
+    "fields": {
+        "user": 3,
+        "conversation": "[{\"sender\": \"Assistant\", \"message\": \"Welcome to the interview! Let's dive into the problem. Can you start by explaining the \\\"two_sum\\\" problem in your own words? What are the inputs and expected outputs?\"}, {\"sender\": \"You\", \"message\": \"Say yeah. Sure. So in two sums, we have an array, of integers, and we are trying to find the next update to integers that will sum to target.\"}, {\"sender\": \"Assistant\", \"message\": \"Great start. Can you provide an example with specific inputs and outputs to illustrate your understanding?\"}]",
+        "assessment_type": "technical",
+        "created_at": "2025-03-02T07:00:11.911Z",
+        "analysis": null
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 106,
+    "fields": {
+        "user": 3,
+        "conversation": "[{\"sender\": \"Assistant\", \"message\": \"Hello, and welcome to the interview! I'm glad to have you here today. Let's dive right in. \\n\\nGiven your experience with developing a full-stack test prep and analytics app using React and Django during your internship at Minerva University, can you tell me about a time when you faced a significant challenge while working on this project? How did you approach solving it, and what was the outcome?\"}]",
+        "assessment_type": "behavioral",
+        "created_at": "2025-03-02T07:00:56.255Z",
+        "analysis": null
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 107,
+    "fields": {
+        "user": 3,
+        "conversation": "[{\"sender\": \"Assistant\", \"message\": \"Welcome to the interview! Let's dive into the problem. Can you start by restating the \\\"two_sum\\\" problem in your own words and provide an example of input and expected output?\"}, {\"sender\": \"You\", \"message\": \"Yeah. Sure. So we have a array of integer, and we want to find the index of two integers whose sum sum equals target. So as input, we have the array of integers and the target, and the output would be the index of two integers.\"}, {\"sender\": \"Assistant\", \"message\": \"Great start! Can you think of any constraints or edge cases that might affect your approach to solving this problem?\"}]",
+        "assessment_type": "technical",
+        "created_at": "2025-03-02T07:10:08.047Z",
+        "analysis": null
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 108,
+    "fields": {
+        "user": 3,
+        "conversation": "[{\"sender\": \"Assistant\", \"message\": \"Welcome to the interview! Let's dive into the problem. Can you start by restating the \\\"two_sum\\\" problem in your own words and provide an example of input and expected output?\"}]",
+        "assessment_type": "technical",
+        "created_at": "2025-03-02T08:47:33.392Z",
+        "analysis": null
+    }
+},
+{
+    "model": "assessments.assessment",
+    "pk": 109,
+    "fields": {
+        "user": 3,
+        "conversation": "[{\"sender\": \"Assistant\", \"message\": \"Welcome to the interview! Let's dive into the problem. Can you start by explaining the \\\"two_sum\\\" problem in your own words? What are the inputs and expected outputs?\"}, {\"sender\": \"You\", \"message\": \"Okay. Yeah. Sure. So you have a array of integers, and you have to find the index of the two integers that, equal a target number.\"}, {\"sender\": \"Assistant\", \"message\": \"Great start. Can you provide an example with specific numbers to illustrate the input and expected output?\"}]",
+        "assessment_type": "technical",
+        "created_at": "2025-03-03T02:48:35.234Z",
+        "analysis": {
+            "components": {
+                "understanding": {
+                    "score": 61,
+                    "feedback": "The candidate demonstrated a good understanding of the 'two_sum' problem by correctly describing the main goal of finding two integers in an array whose sum equals a target number. However, the candidate did not mention the return format explicitly (e.g., returning indices) or ask about possible constraints such as duplicate numbers or negative numbers.",
+                    "observations": [
+                        "Correctly identified the main goal of the problem.",
+                        "Did not clarify the expected output format or ask about constraints."
+                    ]
+                },
+                "match": {
+                    "score": 0,
+                    "feedback": "The candidate has not yet had the opportunity to identify similar patterns or relate the problem to known algorithms or problems. This evaluation will need to be updated as the interview progresses and more information is provided.",
+                    "observations": []
+                },
+                "plan": {
+                    "score": 0,
+                    "feedback": "The candidate has not yet outlined a plan for solving the problem. This evaluation will need to be updated as the interview progresses and more information is provided.",
+                    "observations": []
+                },
+                "implement": {
+                    "score": 0,
+                    "feedback": "The candidate has not yet begun to implement a solution. This evaluation will need to be updated as the interview progresses and more information is provided.",
+                    "observations": []
+                },
+                "review": {
+                    "score": 0,
+                    "feedback": "The candidate has not yet reviewed a solution as implementation has not started. This evaluation will need to be updated as the interview progresses and more information is provided.",
+                    "observations": []
+                },
+                "evaluate": {
+                    "score": 0,
+                    "feedback": "The candidate has not yet analyzed the complexity or considered optimization as no solution has been proposed or implemented. This evaluation will need to be updated as the interview progresses and more information is provided.",
+                    "observations": []
+                }
+            },
+            "overall_score": 10,
+            "summary": "The candidate has demonstrated a basic understanding of the 'two_sum' problem but has not yet progressed to matching, planning, implementing, reviewing, or evaluating a solution. Further evaluation is necessary as the interview continues."
+        }
+    }
+},
+{
+    "model": "users.userprofile",
+    "pk": 2,
+    "fields": {
+        "user": 2,
+        "first_name": "hi2",
+        "last_name": "bye2",
+        "linkedin_profile": "",
+        "email": "",
+        "is_email_verified": false
+    }
+},
+{
+    "model": "users.userprofile",
+    "pk": 3,
+    "fields": {
+        "user": 3,
+        "first_name": "Shivam",
+        "last_name": "Rawat",
+        "linkedin_profile": "",
+        "email": "shivam@uni.minerva.edu",
+        "is_email_verified": false
+    }
+},
+{
+    "model": "users.userprofile",
+    "pk": 4,
+    "fields": {
+        "user": 4,
+        "first_name": "",
+        "last_name": "",
+        "linkedin_profile": "",
+        "email": "",
+        "is_email_verified": false
+    }
+},
+{
+    "model": "users.userprofile",
+    "pk": 8,
+    "fields": {
+        "user": 9,
+        "first_name": "",
+        "last_name": "",
+        "linkedin_profile": "",
+        "email": "iraminamdar@gmail.com",
+        "is_email_verified": false
+    }
+},
+{
+    "model": "users.userprofile",
+    "pk": 9,
+    "fields": {
+        "user": 10,
+        "first_name": "",
+        "last_name": "",
+        "linkedin_profile": "",
+        "email": "iraminamdar943@gmail.com",
+        "is_email_verified": false
+    }
+},
+{
+    "model": "users.emailverification",
+    "pk": 4,
+    "fields": {
+        "user": 9,
+        "code": "843564",
+        "created_at": "2025-02-13T05:21:40.164Z"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+        "action_time": "2024-12-09T07:45:14.870Z",
+        "user": 3,
+        "content_type": 4,
+        "object_id": "1",
+        "object_repr": "shivam16",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"First name\", \"Last name\", \"Email address\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+        "action_time": "2024-12-09T07:45:17.513Z",
+        "user": 3,
+        "content_type": 4,
+        "object_id": "1",
+        "object_repr": "shivam16",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+        "action_time": "2024-12-09T07:45:37.906Z",
+        "user": 3,
+        "content_type": 4,
+        "object_id": "2",
+        "object_repr": "gabi",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"First name\", \"Last name\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+        "action_time": "2024-12-09T07:45:40.079Z",
+        "user": 3,
+        "content_type": 4,
+        "object_id": "2",
+        "object_repr": "gabi",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$2LmAQMBngVHOHUOAtcTpZD$cuGNSAoJeyyug/MF8LEhfAFflRJh1JMu9MXrd7bMkpw=",
+        "last_login": "2024-12-09T07:53:50.587Z",
+        "is_superuser": false,
+        "username": "gabi",
+        "first_name": "hi2",
+        "last_name": "bye2",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-12-09T07:31:29Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$LF8ObvZnGlDrw8JjJl3aHO$JyZKCSa8teWzm9DZJhWoQDD6LE6VEdOtY2r/rHPKuXI=",
+        "last_login": "2025-03-03T04:31:43.473Z",
+        "is_superuser": true,
+        "username": "shivamrawat",
+        "first_name": "Shivam",
+        "last_name": "Rawat",
+        "email": "shivam@uni.minerva.edu",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2024-12-09T07:43:59.755Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 4,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$hADj79YIuxlc1Bi0R59pk7$T4sjMRulG5qCQHY306Nmfo1LJksNAkbTgWZmogZ8fgk=",
+        "last_login": "2024-12-14T01:12:12.702Z",
+        "is_superuser": false,
+        "username": "Len",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-12-10T00:34:30.291Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 9,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$5wVU1JOMtWPN60CSnWFG9g$R3Qv7DiL/n4mWm/BpCZF0xQmDHzWDwH44MVBf6fbeQU=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "iram11",
+        "first_name": "",
+        "last_name": "",
+        "email": "iraminamdar@gmail.com",
+        "is_staff": false,
+        "is_active": false,
+        "date_joined": "2025-02-13T05:21:39.921Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 10,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$tLfoGdo6qiK2BCF39pejJU$SYV+wsNT1WsxrFrC9sLSBFZHvwmNYHQRpUacb1z1aBs=",
+        "last_login": "2025-02-13T05:22:53.076Z",
+        "is_superuser": false,
+        "username": "irammmm",
+        "first_name": "",
+        "last_name": "",
+        "email": "iraminamdar943@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-02-13T05:22:32.701Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "0wqlk6gtoluqqk95g5pgkut1c7rvclxe",
+    "fields": {
+        "session_data": ".eJxVjDsOwjAQBe-SGkXxR4lNSc8ZrLV3QwzBFv6QAnF3EpEC2jfz5tUYqGUyNVMyHptjI5rD72bB3ShsAK8QLrF1MZTkbbsp7U5ze45I82l3_wIT5Gl9s7HTQ9cJBaAEcOolIggtRgTGO2klWdWDI07aOWCD6l0_OimVZDiCHtZopplcITSPSrn4GNZsWaLJ9b5SHwqlp6fFYE3wxYK_P-1nTCo:1tovq4:dkyDgTQISqdj7mPa58LQew4WPrJLRibQvZv12ZMkcTI",
+        "expire_date": "2025-03-17T02:47:28.631Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "d61s9tcf2md64dzu32aex14e7jfmjes1",
+    "fields": {
+        "session_data": ".eJxVjUEOgjAQRe_C2pCWNtC6dO8ZmunMIEVtTQu6MN5dCCx0Of_9_-ZdOZinwc2FswtUHStVHX4zD3jluAIaIV5SjSlOOfh6rdQ7LfU5Ed9Oe_dPMEAZlrXshe2EUAbAKGi41USgrOoJZCO01-xNC8gNW0SQnWmx7VFroyX1YLtFmrnMd15cSGU5x-QdccEcHlNIccuxrO9DnDg_A78czRk2qsTnC16sT2U:1tmlCq:5AiOhyldkAEiTbPgdAdAldFVxCku7mF8_OpMceC34Pk",
+        "expire_date": "2025-03-11T03:02:00.707Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "fc7geyeawrbmsltdvnyxadpbw16nahnd",
+    "fields": {
+        "session_data": ".eJxVjc1OxDAMhF8F5byq2iZqU47ceYbIsV2a7tIs-SEHxLvjFT3AydbMNzNfykEtm6uZkwuknpVWl7-aB7zy8TBoh-MtdhiPkoLvHkh3url7jcS3l5P9V7BB3iQ9rP0y9722AFbDyJMhAr3olWAYe-MNezsB8sgLIgyznXBa0RhrBlphmaU0ca7vLF0euQWPjeWKvkfviDOmcC8hHgJgu-7ib-ifWmD5hApH4fQZuDmqCX5BPV5U5htjYXIflfOZLy062VLfP-4rYng:1tm66Z:3qQnZpiXNv82crRKbKpRkRJT3Rfh-qnWE-g1cquEpek",
+        "expire_date": "2025-03-09T07:08:47.167Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "nf49zt0sesxkx7pc0hrfennra88tbwnr",
+    "fields": {
+        "session_data": ".eJxVjDlyAyEABP9CrNqCYjnk0LnfQHHMepFlkDlMoNLfjcob2Ol0T9-Jsb3tplcUEwN5ISs5_d2c9R9ITxAuNr3nxefUSnTLU1kOWpe3HHB9Pdx_gd3Wfb4h-Ka1okJprphgmm0MdDtzKxhdpVLMSUitpdNcSs6tnqIU2KiUdmXnGa24wjcE89VRW8xpZtvIpvbPSWNqKN8Rw4Re7C_m9EQKJsdUB8KY3iU7E1B9ibej4Qc8Bnn8ALs0WJU:1tMGjd:3O6x0s08wqdv8ngDc0Y_E8SrhwrqHL3KHLaA7AnS4t4",
+        "expire_date": "2024-12-28T01:14:21.643Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "pjlx6adw3zelbqj375wqgrznpdswiv7i",
+    "fields": {
+        "session_data": "e30:1tiRgb:fJyo7UfTZbcfsH3m9glRFp8x7sFGXKqtdUCTqDyliX4",
+        "expire_date": "2025-02-27T05:22:53.063Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "q4tqb7v3tz1iq3lxsjg4tzsj1a03gwuj",
+    "fields": {
+        "session_data": ".eJxVjDsOwjAQBe_iGln-yR9Kes5grXfXOIAcKU4qxN0hUgpo38y8l8iwrS1vg5c8kTgLK06_WwF8cN8B3aHfZolzX5epyF2RBx3yOhM_L4f7d9BgtG-tq0pBKRsBogXD3hGBTbYSaKNccVyiB2TDCRF0iB59Reei01QhBfH-AOmAOF0:1ti9rW:Ggs-3r-0pvH3llSW8wc2aTp1JHCEyMpHQb5AwqTnWgs",
+        "expire_date": "2025-02-26T10:20:58.607Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "rxslo85f1a2r3j1xs6fpw78v4q3lmcqt",
+    "fields": {
+        "session_data": ".eJxVjDtuwzAQBe_C2hAokdDHZfqcgVjuLiPKMpnwYxVB7h4aURG3b-bNtzBQy2pq5mQ8iatQ4vJ_s4A3Dk9AG4SP2GEMJXnbPZXupLl7j8T72-m-BFbIa3v3Ti6TlGoGmBUMPGoiUItyBP0gtdVs5xGQB14QoZ_mEUeHWs-6JwfL1KKZd8bCZL4q5-JjaNlyRJPrvVEfCqeH58NQTfCHlbyIxI1zU5Eg3x73PTd5i9YQZ0z-8wwd7COGjePhXRA_v2HaYBI:1teiKT:JCJTpV9-oFiNH0Ua3ra8foVgd1-sK5tJeEIFnep97JU",
+        "expire_date": "2025-02-16T22:20:37.641Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "z2aaq74zw3rvgptx85xwzi7qi66vm06x",
+    "fields": {
+        "session_data": ".eJxVjDsOwjAQBe_iGln-yR9Kes5grXfXOIAcKU4qxN0hUgpo38y8l8iwrS1vg5c8kTgLK06_WwF8cN8B3aHfZolzX5epyF2RBx3yOhM_L4f7d9BgtG-tq0pBKRsBogXD3hGBTbYSaKNccVyiB2TDCRF0iB59Reei01QhBfH-AOmAOF0:1toxSx:5ZQQpUEoI-wNG-E4dvLw4tzVzDKVEtuxNo2zobrBQzY",
+        "expire_date": "2025-03-17T04:31:43.480Z"
+    }
+}
+]
