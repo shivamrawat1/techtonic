@@ -1,0 +1,1 @@
+web: gunicorn capstone_django.wsgi --log-file - 
