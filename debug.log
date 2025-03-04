@@ -701,3 +701,159 @@ INFO 2025-02-25 02:44:37,670 autoreload Watching for file changes with StatReloa
 INFO 2025-02-25 02:44:42,311 autoreload /Users/shivamrawat/capstone_django/capstone_django/asgi.py changed, reloading.
 INFO 2025-02-25 02:45:15,534 autoreload Watching for file changes with StatReloader
 INFO 2025-02-25 02:45:23,284 autoreload /Users/shivamrawat/capstone_django/capstone_django/settings.py changed, reloading.
+INFO 2025-03-04 04:10:17,841 collectstatic_with_app_prefix Starting static file collection with app prefix handling
+INFO 2025-03-04 04:10:17,841 collectstatic_with_app_prefix Starting static file collection with app prefix handling
+INFO 2025-03-04 04:10:17,990 collectstatic_with_app_prefix Completed static file collection with app prefix handling
+INFO 2025-03-04 04:10:17,990 collectstatic_with_app_prefix Completed static file collection with app prefix handling
+INFO 2025-03-04 04:10:48,725 collectstatic_with_app_prefix Starting static file collection with app prefix handling
+INFO 2025-03-04 04:10:48,725 collectstatic_with_app_prefix Starting static file collection with app prefix handling
+INFO 2025-03-04 04:10:48,725 collectstatic_with_app_prefix Collecting file information for duplicate detection
+INFO 2025-03-04 04:10:48,725 collectstatic_with_app_prefix Collecting file information for duplicate detection
+INFO 2025-03-04 04:11:37,124 collectstatic_with_app_prefix Starting static file collection with app prefix handling
+INFO 2025-03-04 04:11:37,124 collectstatic_with_app_prefix Starting static file collection with app prefix handling
+INFO 2025-03-04 04:11:37,124 collectstatic_with_app_prefix Collecting file information for duplicate detection
+INFO 2025-03-04 04:11:37,124 collectstatic_with_app_prefix Collecting file information for duplicate detection
+WARNING 2025-03-04 04:11:37,128 collectstatic_with_app_prefix Duplicate file interview_technical/css/styles.css found in apps: interview_technical, interview_technical
+WARNING 2025-03-04 04:11:37,128 collectstatic_with_app_prefix Duplicate file interview_technical/css/styles.css found in apps: interview_technical, interview_technical
+WARNING 2025-03-04 04:11:37,128 collectstatic_with_app_prefix Duplicate file interview_technical/js/main.js found in apps: interview_technical, interview_technical
+WARNING 2025-03-04 04:11:37,128 collectstatic_with_app_prefix Duplicate file interview_technical/js/main.js found in apps: interview_technical, interview_technical
+WARNING 2025-03-04 04:11:37,128 collectstatic_with_app_prefix Duplicate file interview_technical/questions/questions.json found in apps: interview_technical, interview_technical
+WARNING 2025-03-04 04:11:37,128 collectstatic_with_app_prefix Duplicate file interview_technical/questions/questions.json found in apps: interview_technical, interview_technical
+WARNING 2025-03-04 04:11:37,128 collectstatic_with_app_prefix Duplicate file interview_behavioral/css/styles.css found in apps: interview_behavioral, interview_behavioral
+WARNING 2025-03-04 04:11:37,128 collectstatic_with_app_prefix Duplicate file interview_behavioral/css/styles.css found in apps: interview_behavioral, interview_behavioral
+WARNING 2025-03-04 04:11:37,128 collectstatic_with_app_prefix Duplicate file interview_behavioral/js/main.js found in apps: interview_behavioral, interview_behavioral
+WARNING 2025-03-04 04:11:37,128 collectstatic_with_app_prefix Duplicate file interview_behavioral/js/main.js found in apps: interview_behavioral, interview_behavioral
+WARNING 2025-03-04 04:11:37,128 collectstatic_with_app_prefix Duplicate file assessments/css/conversation_popup.css found in apps: assessments, assessments
+WARNING 2025-03-04 04:11:37,128 collectstatic_with_app_prefix Duplicate file assessments/css/conversation_popup.css found in apps: assessments, assessments
+WARNING 2025-03-04 04:11:37,128 collectstatic_with_app_prefix Duplicate file assessments/css/view_analysis.css found in apps: assessments, assessments
+WARNING 2025-03-04 04:11:37,128 collectstatic_with_app_prefix Duplicate file assessments/css/view_analysis.css found in apps: assessments, assessments
+WARNING 2025-03-04 04:11:37,128 collectstatic_with_app_prefix Duplicate file assessments/css/list_interviews.css found in apps: assessments, assessments
+WARNING 2025-03-04 04:11:37,128 collectstatic_with_app_prefix Duplicate file assessments/css/list_interviews.css found in apps: assessments, assessments
+WARNING 2025-03-04 04:11:37,128 collectstatic_with_app_prefix Duplicate file assessments/js/assessment.js found in apps: assessments, assessments
+WARNING 2025-03-04 04:11:37,128 collectstatic_with_app_prefix Duplicate file assessments/js/assessment.js found in apps: assessments, assessments
+WARNING 2025-03-04 04:11:37,128 collectstatic_with_app_prefix Duplicate file users/css/landingpage.css found in apps: users, users
+WARNING 2025-03-04 04:11:37,128 collectstatic_with_app_prefix Duplicate file users/css/landingpage.css found in apps: users, users
+WARNING 2025-03-04 04:11:37,128 collectstatic_with_app_prefix Duplicate file users/css/style.css found in apps: users, users
+WARNING 2025-03-04 04:11:37,128 collectstatic_with_app_prefix Duplicate file users/css/style.css found in apps: users, users
+WARNING 2025-03-04 04:11:37,128 collectstatic_with_app_prefix Duplicate file users/css/setup.css found in apps: users, users
+WARNING 2025-03-04 04:11:37,128 collectstatic_with_app_prefix Duplicate file users/css/setup.css found in apps: users, users
+WARNING 2025-03-04 04:11:37,128 collectstatic_with_app_prefix Duplicate file users/images/technical.png found in apps: users, users
+WARNING 2025-03-04 04:11:37,128 collectstatic_with_app_prefix Duplicate file users/images/technical.png found in apps: users, users
+WARNING 2025-03-04 04:11:37,128 collectstatic_with_app_prefix Duplicate file users/images/hero.jpg found in apps: users, users
+WARNING 2025-03-04 04:11:37,128 collectstatic_with_app_prefix Duplicate file users/images/hero.jpg found in apps: users, users
+WARNING 2025-03-04 04:11:37,128 collectstatic_with_app_prefix Duplicate file users/images/behavioral.png found in apps: users, users
+WARNING 2025-03-04 04:11:37,128 collectstatic_with_app_prefix Duplicate file users/images/behavioral.png found in apps: users, users
+WARNING 2025-03-04 04:11:37,128 collectstatic_with_app_prefix Duplicate file users/images/assessment.png found in apps: users, users
+WARNING 2025-03-04 04:11:37,128 collectstatic_with_app_prefix Duplicate file users/images/assessment.png found in apps: users, users
+WARNING 2025-03-04 04:11:37,128 collectstatic_with_app_prefix Duplicate file users/js/landingpage.js found in apps: users, users
+WARNING 2025-03-04 04:11:37,128 collectstatic_with_app_prefix Duplicate file users/js/landingpage.js found in apps: users, users
+INFO 2025-03-04 04:11:37,401 collectstatic_with_app_prefix Completed static file collection with app prefix handling
+INFO 2025-03-04 04:11:37,401 collectstatic_with_app_prefix Completed static file collection with app prefix handling
+INFO 2025-03-04 04:13:06,526 collectstatic_with_app_prefix Starting static file collection with app prefix handling
+INFO 2025-03-04 04:13:06,526 collectstatic_with_app_prefix Starting static file collection with app prefix handling
+INFO 2025-03-04 04:13:06,526 collectstatic_with_app_prefix Collecting file information for duplicate detection
+INFO 2025-03-04 04:13:06,526 collectstatic_with_app_prefix Collecting file information for duplicate detection
+WARNING 2025-03-04 04:13:06,529 collectstatic_with_app_prefix Duplicate file interview_technical/css/styles.css found in apps: interview_technical, interview_technical
+WARNING 2025-03-04 04:13:06,529 collectstatic_with_app_prefix Duplicate file interview_technical/css/styles.css found in apps: interview_technical, interview_technical
+INFO 2025-03-04 04:13:06,529 collectstatic_with_app_prefix Keeping original path for app interview_technical: interview_technical/css/styles.css
+INFO 2025-03-04 04:13:06,529 collectstatic_with_app_prefix Keeping original path for app interview_technical: interview_technical/css/styles.css
+INFO 2025-03-04 04:13:06,529 collectstatic_with_app_prefix Will rename interview_technical/css/styles.css to interview_technical/css/interview_technical_styles.css for app interview_technical
+INFO 2025-03-04 04:13:06,529 collectstatic_with_app_prefix Will rename interview_technical/css/styles.css to interview_technical/css/interview_technical_styles.css for app interview_technical
+WARNING 2025-03-04 04:13:06,529 collectstatic_with_app_prefix Duplicate file interview_technical/js/main.js found in apps: interview_technical, interview_technical
+WARNING 2025-03-04 04:13:06,529 collectstatic_with_app_prefix Duplicate file interview_technical/js/main.js found in apps: interview_technical, interview_technical
+INFO 2025-03-04 04:13:06,529 collectstatic_with_app_prefix Keeping original path for app interview_technical: interview_technical/js/main.js
+INFO 2025-03-04 04:13:06,529 collectstatic_with_app_prefix Keeping original path for app interview_technical: interview_technical/js/main.js
+INFO 2025-03-04 04:13:06,529 collectstatic_with_app_prefix Will rename interview_technical/js/main.js to interview_technical/js/interview_technical_main.js for app interview_technical
+INFO 2025-03-04 04:13:06,529 collectstatic_with_app_prefix Will rename interview_technical/js/main.js to interview_technical/js/interview_technical_main.js for app interview_technical
+WARNING 2025-03-04 04:13:06,529 collectstatic_with_app_prefix Duplicate file interview_technical/questions/questions.json found in apps: interview_technical, interview_technical
+WARNING 2025-03-04 04:13:06,529 collectstatic_with_app_prefix Duplicate file interview_technical/questions/questions.json found in apps: interview_technical, interview_technical
+INFO 2025-03-04 04:13:06,529 collectstatic_with_app_prefix Keeping original path for app interview_technical: interview_technical/questions/questions.json
+INFO 2025-03-04 04:13:06,529 collectstatic_with_app_prefix Keeping original path for app interview_technical: interview_technical/questions/questions.json
+INFO 2025-03-04 04:13:06,529 collectstatic_with_app_prefix Will rename interview_technical/questions/questions.json to interview_technical/questions/interview_technical_questions.json for app interview_technical
+INFO 2025-03-04 04:13:06,529 collectstatic_with_app_prefix Will rename interview_technical/questions/questions.json to interview_technical/questions/interview_technical_questions.json for app interview_technical
+WARNING 2025-03-04 04:13:06,529 collectstatic_with_app_prefix Duplicate file interview_behavioral/css/styles.css found in apps: interview_behavioral, interview_behavioral
+WARNING 2025-03-04 04:13:06,529 collectstatic_with_app_prefix Duplicate file interview_behavioral/css/styles.css found in apps: interview_behavioral, interview_behavioral
+INFO 2025-03-04 04:13:06,529 collectstatic_with_app_prefix Keeping original path for app interview_behavioral: interview_behavioral/css/styles.css
+INFO 2025-03-04 04:13:06,529 collectstatic_with_app_prefix Keeping original path for app interview_behavioral: interview_behavioral/css/styles.css
+INFO 2025-03-04 04:13:06,529 collectstatic_with_app_prefix Will rename interview_behavioral/css/styles.css to interview_behavioral/css/interview_behavioral_styles.css for app interview_behavioral
+INFO 2025-03-04 04:13:06,529 collectstatic_with_app_prefix Will rename interview_behavioral/css/styles.css to interview_behavioral/css/interview_behavioral_styles.css for app interview_behavioral
+WARNING 2025-03-04 04:13:06,530 collectstatic_with_app_prefix Duplicate file interview_behavioral/js/main.js found in apps: interview_behavioral, interview_behavioral
+WARNING 2025-03-04 04:13:06,530 collectstatic_with_app_prefix Duplicate file interview_behavioral/js/main.js found in apps: interview_behavioral, interview_behavioral
+INFO 2025-03-04 04:13:06,530 collectstatic_with_app_prefix Keeping original path for app interview_behavioral: interview_behavioral/js/main.js
+INFO 2025-03-04 04:13:06,530 collectstatic_with_app_prefix Keeping original path for app interview_behavioral: interview_behavioral/js/main.js
+INFO 2025-03-04 04:13:06,530 collectstatic_with_app_prefix Will rename interview_behavioral/js/main.js to interview_behavioral/js/interview_behavioral_main.js for app interview_behavioral
+INFO 2025-03-04 04:13:06,530 collectstatic_with_app_prefix Will rename interview_behavioral/js/main.js to interview_behavioral/js/interview_behavioral_main.js for app interview_behavioral
+WARNING 2025-03-04 04:13:06,530 collectstatic_with_app_prefix Duplicate file assessments/css/conversation_popup.css found in apps: assessments, assessments
+WARNING 2025-03-04 04:13:06,530 collectstatic_with_app_prefix Duplicate file assessments/css/conversation_popup.css found in apps: assessments, assessments
+INFO 2025-03-04 04:13:06,530 collectstatic_with_app_prefix Keeping original path for app assessments: assessments/css/conversation_popup.css
+INFO 2025-03-04 04:13:06,530 collectstatic_with_app_prefix Keeping original path for app assessments: assessments/css/conversation_popup.css
+INFO 2025-03-04 04:13:06,530 collectstatic_with_app_prefix Will rename assessments/css/conversation_popup.css to assessments/css/assessments_conversation_popup.css for app assessments
+INFO 2025-03-04 04:13:06,530 collectstatic_with_app_prefix Will rename assessments/css/conversation_popup.css to assessments/css/assessments_conversation_popup.css for app assessments
+WARNING 2025-03-04 04:13:06,530 collectstatic_with_app_prefix Duplicate file assessments/css/view_analysis.css found in apps: assessments, assessments
+WARNING 2025-03-04 04:13:06,530 collectstatic_with_app_prefix Duplicate file assessments/css/view_analysis.css found in apps: assessments, assessments
+INFO 2025-03-04 04:13:06,530 collectstatic_with_app_prefix Keeping original path for app assessments: assessments/css/view_analysis.css
+INFO 2025-03-04 04:13:06,530 collectstatic_with_app_prefix Keeping original path for app assessments: assessments/css/view_analysis.css
+INFO 2025-03-04 04:13:06,530 collectstatic_with_app_prefix Will rename assessments/css/view_analysis.css to assessments/css/assessments_view_analysis.css for app assessments
+INFO 2025-03-04 04:13:06,530 collectstatic_with_app_prefix Will rename assessments/css/view_analysis.css to assessments/css/assessments_view_analysis.css for app assessments
+WARNING 2025-03-04 04:13:06,530 collectstatic_with_app_prefix Duplicate file assessments/css/list_interviews.css found in apps: assessments, assessments
+WARNING 2025-03-04 04:13:06,530 collectstatic_with_app_prefix Duplicate file assessments/css/list_interviews.css found in apps: assessments, assessments
+INFO 2025-03-04 04:13:06,530 collectstatic_with_app_prefix Keeping original path for app assessments: assessments/css/list_interviews.css
+INFO 2025-03-04 04:13:06,530 collectstatic_with_app_prefix Keeping original path for app assessments: assessments/css/list_interviews.css
+INFO 2025-03-04 04:13:06,531 collectstatic_with_app_prefix Will rename assessments/css/list_interviews.css to assessments/css/assessments_list_interviews.css for app assessments
+INFO 2025-03-04 04:13:06,531 collectstatic_with_app_prefix Will rename assessments/css/list_interviews.css to assessments/css/assessments_list_interviews.css for app assessments
+WARNING 2025-03-04 04:13:06,531 collectstatic_with_app_prefix Duplicate file assessments/js/assessment.js found in apps: assessments, assessments
+WARNING 2025-03-04 04:13:06,531 collectstatic_with_app_prefix Duplicate file assessments/js/assessment.js found in apps: assessments, assessments
+INFO 2025-03-04 04:13:06,534 collectstatic_with_app_prefix Keeping original path for app assessments: assessments/js/assessment.js
+INFO 2025-03-04 04:13:06,534 collectstatic_with_app_prefix Keeping original path for app assessments: assessments/js/assessment.js
+INFO 2025-03-04 04:13:06,534 collectstatic_with_app_prefix Will rename assessments/js/assessment.js to assessments/js/assessments_assessment.js for app assessments
+INFO 2025-03-04 04:13:06,534 collectstatic_with_app_prefix Will rename assessments/js/assessment.js to assessments/js/assessments_assessment.js for app assessments
+WARNING 2025-03-04 04:13:06,534 collectstatic_with_app_prefix Duplicate file users/css/landingpage.css found in apps: users, users
+WARNING 2025-03-04 04:13:06,534 collectstatic_with_app_prefix Duplicate file users/css/landingpage.css found in apps: users, users
+INFO 2025-03-04 04:13:06,536 collectstatic_with_app_prefix Keeping original path for app users: users/css/landingpage.css
+INFO 2025-03-04 04:13:06,536 collectstatic_with_app_prefix Keeping original path for app users: users/css/landingpage.css
+INFO 2025-03-04 04:13:06,536 collectstatic_with_app_prefix Will rename users/css/landingpage.css to users/css/users_landingpage.css for app users
+INFO 2025-03-04 04:13:06,536 collectstatic_with_app_prefix Will rename users/css/landingpage.css to users/css/users_landingpage.css for app users
+WARNING 2025-03-04 04:13:06,536 collectstatic_with_app_prefix Duplicate file users/css/style.css found in apps: users, users
+WARNING 2025-03-04 04:13:06,536 collectstatic_with_app_prefix Duplicate file users/css/style.css found in apps: users, users
+INFO 2025-03-04 04:13:06,536 collectstatic_with_app_prefix Keeping original path for app users: users/css/style.css
+INFO 2025-03-04 04:13:06,536 collectstatic_with_app_prefix Keeping original path for app users: users/css/style.css
+INFO 2025-03-04 04:13:06,536 collectstatic_with_app_prefix Will rename users/css/style.css to users/css/users_style.css for app users
+INFO 2025-03-04 04:13:06,536 collectstatic_with_app_prefix Will rename users/css/style.css to users/css/users_style.css for app users
+WARNING 2025-03-04 04:13:06,536 collectstatic_with_app_prefix Duplicate file users/css/setup.css found in apps: users, users
+WARNING 2025-03-04 04:13:06,536 collectstatic_with_app_prefix Duplicate file users/css/setup.css found in apps: users, users
+INFO 2025-03-04 04:13:06,537 collectstatic_with_app_prefix Keeping original path for app users: users/css/setup.css
+INFO 2025-03-04 04:13:06,537 collectstatic_with_app_prefix Keeping original path for app users: users/css/setup.css
+INFO 2025-03-04 04:13:06,537 collectstatic_with_app_prefix Will rename users/css/setup.css to users/css/users_setup.css for app users
+INFO 2025-03-04 04:13:06,537 collectstatic_with_app_prefix Will rename users/css/setup.css to users/css/users_setup.css for app users
+WARNING 2025-03-04 04:13:06,537 collectstatic_with_app_prefix Duplicate file users/images/technical.png found in apps: users, users
+WARNING 2025-03-04 04:13:06,537 collectstatic_with_app_prefix Duplicate file users/images/technical.png found in apps: users, users
+INFO 2025-03-04 04:13:06,537 collectstatic_with_app_prefix Keeping original path for app users: users/images/technical.png
+INFO 2025-03-04 04:13:06,537 collectstatic_with_app_prefix Keeping original path for app users: users/images/technical.png
+INFO 2025-03-04 04:13:06,537 collectstatic_with_app_prefix Will rename users/images/technical.png to users/images/users_technical.png for app users
+INFO 2025-03-04 04:13:06,537 collectstatic_with_app_prefix Will rename users/images/technical.png to users/images/users_technical.png for app users
+WARNING 2025-03-04 04:13:06,537 collectstatic_with_app_prefix Duplicate file users/images/hero.jpg found in apps: users, users
+WARNING 2025-03-04 04:13:06,537 collectstatic_with_app_prefix Duplicate file users/images/hero.jpg found in apps: users, users
+INFO 2025-03-04 04:13:06,537 collectstatic_with_app_prefix Keeping original path for app users: users/images/hero.jpg
+INFO 2025-03-04 04:13:06,537 collectstatic_with_app_prefix Keeping original path for app users: users/images/hero.jpg
+INFO 2025-03-04 04:13:06,537 collectstatic_with_app_prefix Will rename users/images/hero.jpg to users/images/users_hero.jpg for app users
+INFO 2025-03-04 04:13:06,537 collectstatic_with_app_prefix Will rename users/images/hero.jpg to users/images/users_hero.jpg for app users
+WARNING 2025-03-04 04:13:06,537 collectstatic_with_app_prefix Duplicate file users/images/behavioral.png found in apps: users, users
+WARNING 2025-03-04 04:13:06,537 collectstatic_with_app_prefix Duplicate file users/images/behavioral.png found in apps: users, users
+INFO 2025-03-04 04:13:06,537 collectstatic_with_app_prefix Keeping original path for app users: users/images/behavioral.png
+INFO 2025-03-04 04:13:06,537 collectstatic_with_app_prefix Keeping original path for app users: users/images/behavioral.png
+INFO 2025-03-04 04:13:06,537 collectstatic_with_app_prefix Will rename users/images/behavioral.png to users/images/users_behavioral.png for app users
+INFO 2025-03-04 04:13:06,537 collectstatic_with_app_prefix Will rename users/images/behavioral.png to users/images/users_behavioral.png for app users
+WARNING 2025-03-04 04:13:06,538 collectstatic_with_app_prefix Duplicate file users/images/assessment.png found in apps: users, users
+WARNING 2025-03-04 04:13:06,538 collectstatic_with_app_prefix Duplicate file users/images/assessment.png found in apps: users, users
+INFO 2025-03-04 04:13:06,538 collectstatic_with_app_prefix Keeping original path for app users: users/images/assessment.png
+INFO 2025-03-04 04:13:06,538 collectstatic_with_app_prefix Keeping original path for app users: users/images/assessment.png
+INFO 2025-03-04 04:13:06,538 collectstatic_with_app_prefix Will rename users/images/assessment.png to users/images/users_assessment.png for app users
+INFO 2025-03-04 04:13:06,538 collectstatic_with_app_prefix Will rename users/images/assessment.png to users/images/users_assessment.png for app users
+WARNING 2025-03-04 04:13:06,538 collectstatic_with_app_prefix Duplicate file users/js/landingpage.js found in apps: users, users
+WARNING 2025-03-04 04:13:06,538 collectstatic_with_app_prefix Duplicate file users/js/landingpage.js found in apps: users, users
+INFO 2025-03-04 04:13:06,538 collectstatic_with_app_prefix Keeping original path for app users: users/js/landingpage.js
+INFO 2025-03-04 04:13:06,538 collectstatic_with_app_prefix Keeping original path for app users: users/js/landingpage.js
+INFO 2025-03-04 04:13:06,538 collectstatic_with_app_prefix Will rename users/js/landingpage.js to users/js/users_landingpage.js for app users
+INFO 2025-03-04 04:13:06,538 collectstatic_with_app_prefix Will rename users/js/landingpage.js to users/js/users_landingpage.js for app users
+INFO 2025-03-04 04:13:06,719 collectstatic_with_app_prefix Completed static file collection with app prefix handling
+INFO 2025-03-04 04:13:06,719 collectstatic_with_app_prefix Completed static file collection with app prefix handling
