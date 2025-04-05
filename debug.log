@@ -917,3 +917,111 @@ INFO 2025-04-03 00:04:59,729 basehttp "GET /static/users/css/landingpage.css?v=1
 INFO 2025-04-03 00:05:08,261 basehttp "GET /register/ HTTP/1.1" 200 4226
 INFO 2025-04-03 00:05:34,432 basehttp "POST /register/ HTTP/1.1" 302 0
 INFO 2025-04-03 00:05:34,436 basehttp "GET /register/ HTTP/1.1" 200 4417
+INFO 2025-04-03 00:31:58,180 autoreload Watching for file changes with StatReloader
+INFO 2025-04-03 00:32:01,691 basehttp code 400, message Bad request version ('J')
+ERROR 2025-04-03 00:32:01,691 basehttp You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-04-03 00:32:01,692 basehttp code 400, message Bad request syntax ('\x16\x03\x01\x06À\x01\x00\x06¼\x03\x03HÃ\x1aJþ\x19Ê\x89\x032E\x17àÇZ\x13Åà')
+ERROR 2025-04-03 00:32:01,692 basehttp You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-04-03 00:33:22,533 basehttp code 400, message Bad request version ('jj\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x063\x8a\x8a\x00\x00\x00\x1b\x00\x03\x02\x00\x02\x00')
+ERROR 2025-04-03 00:33:22,534 basehttp You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-04-03 00:33:22,536 basehttp code 400, message Bad request version ('\x8a\x8d\x8c\x98ßÃä\x12')
+ERROR 2025-04-03 00:33:22,536 basehttp You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-04-03 00:33:37,205 basehttp "GET / HTTP/1.1" 200 12947
+INFO 2025-04-03 00:33:37,294 basehttp "GET /static/users/css/landingpage.css?v=1743640417 HTTP/1.1" 200 17596
+INFO 2025-04-03 00:33:46,180 basehttp "GET /login/ HTTP/1.1" 200 4061
+INFO 2025-04-03 00:33:56,133 basehttp "GET /login/ HTTP/1.1" 200 4061
+WARNING 2025-04-03 00:33:56,572 log Not Found: /favicon.ico
+WARNING 2025-04-03 00:33:56,572 basehttp "GET /favicon.ico HTTP/1.1" 404 6187
+INFO 2025-04-03 00:34:13,538 basehttp "POST /login/ HTTP/1.1" 200 4266
+INFO 2025-04-03 00:34:24,937 basehttp "POST /login/ HTTP/1.1" 302 0
+INFO 2025-04-03 00:34:24,985 basehttp "GET /dashboard/ HTTP/1.1" 200 44594
+INFO 2025-04-03 00:34:25,028 basehttp "GET /static/assessments/js/assessment.js HTTP/1.1" 200 5838
+INFO 2025-04-03 00:34:25,029 basehttp "GET /static/assessments/css/conversation_popup.css HTTP/1.1" 200 2892
+INFO 2025-04-03 00:34:25,029 basehttp "GET /static/assessments/css/conversation_popup.css?v=1743640464 HTTP/1.1" 200 2892
+INFO 2025-04-03 00:34:25,030 basehttp "GET /static/users/css/style.css HTTP/1.1" 200 6658
+INFO 2025-04-03 00:34:32,403 basehttp "GET /interview/setup/ HTTP/1.1" 200 37132
+INFO 2025-04-03 00:34:32,439 basehttp "GET /static/assessments/css/conversation_popup.css?v=1743640472 HTTP/1.1" 200 2892
+INFO 2025-04-03 00:34:32,441 basehttp "GET /static/users/css/setup.css?v=1743640472 HTTP/1.1" 200 2025
+INFO 2025-04-05 10:45:25,339 autoreload Watching for file changes with StatReloader
+INFO 2025-04-05 10:45:29,048 basehttp "GET / HTTP/1.1" 200 12947
+INFO 2025-04-05 10:45:29,372 basehttp "GET /static/users/js/landingpage.js HTTP/1.1" 200 10373
+INFO 2025-04-05 10:45:29,374 basehttp "GET /static/users/css/landingpage.css?v=1743849929 HTTP/1.1" 200 17596
+INFO 2025-04-05 10:45:29,382 basehttp "GET /static/users/images/hero.png HTTP/1.1" 200 308380
+INFO 2025-04-05 10:45:29,387 basehttp "GET /static/users/images/assessment.png HTTP/1.1" 200 556450
+INFO 2025-04-05 10:45:29,388 basehttp "GET /static/users/images/behavioral.png HTTP/1.1" 200 694756
+INFO 2025-04-05 10:45:29,389 basehttp "GET /static/users/images/technical.png HTTP/1.1" 200 1017417
+WARNING 2025-04-05 10:45:30,199 log Not Found: /favicon.ico
+WARNING 2025-04-05 10:45:30,199 basehttp "GET /favicon.ico HTTP/1.1" 404 6187
+INFO 2025-04-05 10:46:35,934 basehttp "GET / HTTP/1.1" 200 12947
+INFO 2025-04-05 10:46:35,986 basehttp "GET /static/users/images/hero.png HTTP/1.1" 304 0
+INFO 2025-04-05 10:46:35,988 basehttp "GET /static/users/images/technical.png HTTP/1.1" 304 0
+INFO 2025-04-05 10:46:35,988 basehttp "GET /static/users/css/landingpage.css?v=1743849995 HTTP/1.1" 200 17596
+INFO 2025-04-05 10:46:36,030 basehttp "GET /static/users/images/behavioral.png HTTP/1.1" 304 0
+INFO 2025-04-05 10:46:36,031 basehttp "GET /static/users/images/assessment.png HTTP/1.1" 304 0
+INFO 2025-04-05 10:47:00,246 basehttp "GET / HTTP/1.1" 200 12947
+INFO 2025-04-05 10:47:00,291 basehttp "GET /static/users/images/hero.png HTTP/1.1" 304 0
+INFO 2025-04-05 10:47:00,292 basehttp "GET /static/users/css/landingpage.css?v=1743850020 HTTP/1.1" 200 17596
+INFO 2025-04-05 10:47:00,297 basehttp "GET /static/users/images/technical.png HTTP/1.1" 200 1017417
+INFO 2025-04-05 10:47:03,117 basehttp "GET / HTTP/1.1" 200 12947
+INFO 2025-04-05 10:47:03,142 basehttp "GET /static/users/images/technical.png HTTP/1.1" 304 0
+INFO 2025-04-05 10:47:03,146 basehttp "GET /static/users/css/landingpage.css?v=1743850023 HTTP/1.1" 200 17596
+INFO 2025-04-05 10:47:03,147 basehttp "GET /static/users/images/behavioral.png HTTP/1.1" 304 0
+INFO 2025-04-05 10:47:03,147 basehttp "GET /static/users/images/assessment.png HTTP/1.1" 304 0
+INFO 2025-04-05 10:50:04,638 basehttp "GET / HTTP/1.1" 200 12947
+INFO 2025-04-05 10:50:04,707 basehttp "GET /static/users/css/landingpage.css?v=1743850204 HTTP/1.1" 200 17596
+INFO 2025-04-05 10:50:04,707 basehttp "GET /static/users/images/hero.png HTTP/1.1" 304 0
+INFO 2025-04-05 10:50:04,707 basehttp "GET /static/users/images/behavioral.png HTTP/1.1" 304 0
+INFO 2025-04-05 10:50:04,708 basehttp "GET /static/users/images/assessment.png HTTP/1.1" 304 0
+INFO 2025-04-05 10:50:04,711 basehttp "GET /static/users/images/technical.png HTTP/1.1" 200 358545
+INFO 2025-04-05 10:52:51,571 basehttp "GET / HTTP/1.1" 200 12947
+INFO 2025-04-05 10:52:51,630 basehttp "GET /static/users/css/landingpage.css?v=1743850371 HTTP/1.1" 200 17657
+INFO 2025-04-05 10:52:51,639 basehttp "GET /static/users/images/technical.png HTTP/1.1" 304 0
+INFO 2025-04-05 10:52:51,640 basehttp "GET /static/users/images/hero.png HTTP/1.1" 304 0
+INFO 2025-04-05 10:52:51,659 basehttp "GET /static/users/images/behavioral.png HTTP/1.1" 304 0
+INFO 2025-04-05 10:52:51,661 basehttp "GET /static/users/images/assessment.png HTTP/1.1" 304 0
+INFO 2025-04-05 10:53:16,675 basehttp "GET / HTTP/1.1" 200 12947
+INFO 2025-04-05 10:53:16,717 basehttp "GET /static/users/css/landingpage.css?v=1743850396 HTTP/1.1" 200 17666
+INFO 2025-04-05 10:53:16,719 basehttp "GET /static/users/images/technical.png HTTP/1.1" 304 0
+INFO 2025-04-05 10:53:19,071 basehttp "GET / HTTP/1.1" 200 12947
+INFO 2025-04-05 10:53:19,103 basehttp "GET /static/users/css/landingpage.css?v=1743850399 HTTP/1.1" 200 17666
+INFO 2025-04-05 10:53:19,118 basehttp "GET /static/users/images/hero.png HTTP/1.1" 200 308380
+INFO 2025-04-05 10:53:19,119 basehttp "GET /static/users/js/landingpage.js HTTP/1.1" 200 10373
+INFO 2025-04-05 10:53:19,123 basehttp "GET /static/users/images/technical.png HTTP/1.1" 200 358545
+INFO 2025-04-05 10:53:19,131 basehttp "GET /static/users/images/assessment.png HTTP/1.1" 200 556450
+INFO 2025-04-05 10:53:19,135 basehttp "GET /static/users/images/behavioral.png HTTP/1.1" 200 694756
+WARNING 2025-04-05 10:53:19,567 log Not Found: /favicon.ico
+WARNING 2025-04-05 10:53:19,567 basehttp "GET /favicon.ico HTTP/1.1" 404 6187
+INFO 2025-04-05 10:53:38,883 basehttp "GET / HTTP/1.1" 200 12947
+INFO 2025-04-05 10:53:38,923 basehttp "GET /static/users/css/landingpage.css?v=1743850418 HTTP/1.1" 200 17666
+INFO 2025-04-05 10:53:52,722 basehttp "GET / HTTP/1.1" 200 12947
+INFO 2025-04-05 10:53:52,743 basehttp "GET /static/users/images/technical.png HTTP/1.1" 304 0
+INFO 2025-04-05 10:53:52,747 basehttp "GET /static/users/css/landingpage.css?v=1743850432 HTTP/1.1" 200 17666
+INFO 2025-04-05 10:53:58,471 basehttp "GET / HTTP/1.1" 200 12947
+INFO 2025-04-05 10:53:58,532 basehttp "GET /static/users/css/landingpage.css?v=1743850438 HTTP/1.1" 200 17666
+INFO 2025-04-05 10:53:58,534 basehttp "GET /static/users/js/landingpage.js HTTP/1.1" 200 10373
+INFO 2025-04-05 10:53:58,549 basehttp "GET /static/users/images/hero.png HTTP/1.1" 200 308380
+INFO 2025-04-05 10:53:58,552 basehttp "GET /static/users/images/technical.png HTTP/1.1" 200 358545
+INFO 2025-04-05 10:53:58,556 basehttp "GET /static/users/images/assessment.png HTTP/1.1" 200 556450
+INFO 2025-04-05 10:53:58,556 basehttp "GET /static/users/images/behavioral.png HTTP/1.1" 200 694756
+WARNING 2025-04-05 10:53:58,856 log Not Found: /favicon.ico
+WARNING 2025-04-05 10:53:58,856 basehttp "GET /favicon.ico HTTP/1.1" 404 6187
+INFO 2025-04-05 10:54:28,679 basehttp "GET / HTTP/1.1" 200 12947
+INFO 2025-04-05 10:54:28,711 basehttp "GET /static/users/images/technical.png HTTP/1.1" 304 0
+INFO 2025-04-05 10:54:28,712 basehttp "GET /static/users/css/landingpage.css?v=1743850468 HTTP/1.1" 200 17666
+INFO 2025-04-05 10:55:17,022 basehttp "GET / HTTP/1.1" 200 12947
+INFO 2025-04-05 10:55:17,066 basehttp "GET /static/users/css/landingpage.css?v=1743850517 HTTP/1.1" 200 17721
+INFO 2025-04-05 10:55:17,078 basehttp "GET /static/users/images/behavioral.png HTTP/1.1" 304 0
+INFO 2025-04-05 10:55:17,079 basehttp "GET /static/users/images/hero.png HTTP/1.1" 304 0
+INFO 2025-04-05 10:55:17,081 basehttp "GET /static/users/images/technical.png HTTP/1.1" 304 0
+INFO 2025-04-05 10:55:17,081 basehttp "GET /static/users/images/assessment.png HTTP/1.1" 304 0
+INFO 2025-04-05 10:55:26,714 basehttp "GET / HTTP/1.1" 200 12947
+INFO 2025-04-05 10:55:26,753 basehttp "GET /static/users/css/landingpage.css?v=1743850526 HTTP/1.1" 200 17721
+INFO 2025-04-05 10:55:37,446 basehttp "GET / HTTP/1.1" 200 12972
+INFO 2025-04-05 10:55:37,470 basehttp "GET /static/users/css/landingpage.css?v=1743850537 HTTP/1.1" 200 17721
+INFO 2025-04-05 10:55:44,071 basehttp "GET / HTTP/1.1" 200 12972
+INFO 2025-04-05 10:55:44,108 basehttp "GET /static/users/css/landingpage.css?v=1743850544 HTTP/1.1" 200 17721
+INFO 2025-04-05 10:56:04,601 basehttp "GET / HTTP/1.1" 200 12669
+INFO 2025-04-05 10:56:04,633 basehttp "GET /static/users/css/landingpage.css?v=1743850564 HTTP/1.1" 200 17721
+INFO 2025-04-05 10:56:04,639 basehttp "GET /static/users/images/technical.png HTTP/1.1" 304 0
+INFO 2025-04-05 10:56:28,508 basehttp "GET / HTTP/1.1" 200 12669
+INFO 2025-04-05 10:56:28,530 basehttp "GET /static/users/css/landingpage.css?v=1743850588 HTTP/1.1" 200 17727

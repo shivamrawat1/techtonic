@@ -386,7 +386,7 @@ body {
 /* Features Section */
 .features-section {
     padding: 5rem 5%;
-    background-color: white;
+    background-color: transparent;
 }
 
 .features-container {
@@ -409,8 +409,9 @@ body {
     position: relative;
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: none;
     max-height: 350px;
+    background-color: transparent;
 }
 
 .feature-content {
@@ -432,6 +433,8 @@ body {
     background: linear-gradient(to right, rgba(79, 70, 229, 0.7), rgba(124, 58, 237, 0.4));
     opacity: 0.3;
     transition: opacity 0.3s ease;
+    mix-blend-mode: overlay;
+    pointer-events: none;
 }
 
 /* Allow individual customization for overlays if needed */
@@ -474,6 +477,7 @@ body {
     border-radius: 10px;
     transition: transform 0.3s ease;
     display: block;
+    background-color: transparent;
 }
 
 .feature-image:hover .feature-img {
@@ -484,10 +488,11 @@ body {
 .feature-img {
     width: 100%;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease;
     object-fit: contain;
     max-height: 350px;
+    background-color: transparent;
+    box-shadow: none;
 }
 
 .hero-image .feature-img {
@@ -496,24 +501,27 @@ body {
     max-width: 100%;
     object-fit: contain;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease;
+    background-color: transparent;
+    box-shadow: none;
 }
 
 .about-image .feature-img {
     height: 350px;
-    object-fit: cover;
+    object-fit: contain;
+    background-color: transparent;
 }
 
 .feature-card .feature-img {
     height: 180px;
     margin-top: 1rem;
-    object-fit: cover;
+    object-fit: contain;
+    background-color: transparent;
 }
 
 .feature-img:hover {
     transform: scale(1.02);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: none;
 }
 
 /* Image Placeholders */
