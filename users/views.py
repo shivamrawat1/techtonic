@@ -522,5 +522,9 @@ def password_reset_confirm(request, uidb64, token):
         return redirect('login')
 
 def password_reset_complete(request):
-    """Show password reset complete confirmation page."""
+    """Render the password reset complete page."""
     return render(request, 'users/password_reset_complete.html')
+
+def privacy_policy(request):
+    """Render the privacy policy page."""
+    return render(request, 'users/privacy_policy.html')

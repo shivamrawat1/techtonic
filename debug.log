@@ -1025,3 +1025,77 @@ INFO 2025-04-05 10:56:04,633 basehttp "GET /static/users/css/landingpage.css?v=1
 INFO 2025-04-05 10:56:04,639 basehttp "GET /static/users/images/technical.png HTTP/1.1" 304 0
 INFO 2025-04-05 10:56:28,508 basehttp "GET / HTTP/1.1" 200 12669
 INFO 2025-04-05 10:56:28,530 basehttp "GET /static/users/css/landingpage.css?v=1743850588 HTTP/1.1" 200 17727
+INFO 2025-04-05 10:58:16,336 autoreload Watching for file changes with StatReloader
+INFO 2025-04-05 10:58:18,858 basehttp "GET / HTTP/1.1" 200 12669
+INFO 2025-04-05 10:58:18,920 basehttp "GET /static/users/css/landingpage.css?v=1743850698 HTTP/1.1" 200 17727
+INFO 2025-04-05 10:58:18,922 basehttp "GET /static/users/images/hero.png HTTP/1.1" 304 0
+INFO 2025-04-05 10:58:18,923 basehttp "GET /static/users/images/technical.png HTTP/1.1" 304 0
+INFO 2025-04-05 10:58:18,927 basehttp "GET /static/users/images/assessment.png HTTP/1.1" 304 0
+INFO 2025-04-05 10:58:18,927 basehttp "GET /static/users/images/behavioral.png HTTP/1.1" 304 0
+INFO 2025-04-05 10:59:22,673 basehttp "GET /login/ HTTP/1.1" 302 0
+INFO 2025-04-05 10:59:22,717 basehttp "GET /dashboard/ HTTP/1.1" 200 44594
+INFO 2025-04-05 10:59:22,758 basehttp "GET /static/assessments/css/conversation_popup.css HTTP/1.1" 200 2892
+INFO 2025-04-05 10:59:22,759 basehttp "GET /static/assessments/css/conversation_popup.css?v=1743850762 HTTP/1.1" 200 2892
+INFO 2025-04-05 10:59:22,759 basehttp "GET /static/users/css/style.css HTTP/1.1" 200 6658
+INFO 2025-04-05 10:59:22,760 basehttp "GET /static/assessments/js/assessment.js HTTP/1.1" 200 5838
+INFO 2025-04-05 11:13:06,550 autoreload /Users/shivamrawat/capstone_django/users/models.py changed, reloading.
+INFO 2025-04-05 11:13:07,238 autoreload Watching for file changes with StatReloader
+INFO 2025-04-05 11:13:17,059 autoreload /Users/shivamrawat/capstone_django/users/models.py changed, reloading.
+INFO 2025-04-05 11:13:17,474 autoreload Watching for file changes with StatReloader
+INFO 2025-04-05 11:14:46,051 autoreload /Users/shivamrawat/capstone_django/users/services.py changed, reloading.
+INFO 2025-04-05 11:14:46,689 autoreload Watching for file changes with StatReloader
+INFO 2025-04-05 11:15:05,054 autoreload /Users/shivamrawat/capstone_django/users/views.py changed, reloading.
+INFO 2025-04-05 11:15:05,931 autoreload Watching for file changes with StatReloader
+INFO 2025-04-05 11:15:16,787 autoreload /Users/shivamrawat/capstone_django/users/urls.py changed, reloading.
+INFO 2025-04-05 11:15:17,129 autoreload Watching for file changes with StatReloader
+INFO 2025-04-05 11:20:44,257 autoreload /Users/shivamrawat/capstone_django/users/services.py changed, reloading.
+INFO 2025-04-05 11:20:44,991 autoreload Watching for file changes with StatReloader
+INFO 2025-04-05 11:21:11,177 autoreload /Users/shivamrawat/capstone_django/capstone_django/settings.py changed, reloading.
+INFO 2025-04-05 11:21:11,710 autoreload Watching for file changes with StatReloader
+INFO 2025-04-05 11:21:23,493 autoreload /Users/shivamrawat/capstone_django/users/services.py changed, reloading.
+INFO 2025-04-05 11:21:23,821 autoreload Watching for file changes with StatReloader
+INFO 2025-04-05 11:25:10,841 autoreload /Users/shivamrawat/capstone_django/users/urls.py changed, reloading.
+INFO 2025-04-05 11:25:11,487 autoreload Watching for file changes with StatReloader
+INFO 2025-04-05 11:26:09,429 basehttp "GET / HTTP/1.1" 200 12669
+INFO 2025-04-05 11:26:09,805 basehttp "GET /static/users/images/hero.png HTTP/1.1" 304 0
+INFO 2025-04-05 11:26:09,806 basehttp "GET /static/users/images/behavioral.png HTTP/1.1" 304 0
+INFO 2025-04-05 11:26:09,809 basehttp "GET /static/users/images/assessment.png HTTP/1.1" 304 0
+INFO 2025-04-05 11:26:09,809 basehttp "GET /static/users/images/technical.png HTTP/1.1" 304 0
+INFO 2025-04-05 11:26:09,818 basehttp "GET /static/users/css/landingpage.css?v=1743852369 HTTP/1.1" 200 17727
+WARNING 2025-04-05 11:26:10,772 log Not Found: /favicon.ico
+WARNING 2025-04-05 11:26:10,772 basehttp "GET /favicon.ico HTTP/1.1" 404 6187
+INFO 2025-04-05 11:27:20,746 basehttp "GET / HTTP/1.1" 200 12650
+INFO 2025-04-05 11:27:20,802 basehttp "GET /static/users/css/landingpage.css?v=1743852440 HTTP/1.1" 200 17727
+INFO 2025-04-05 11:29:16,369 autoreload /Users/shivamrawat/capstone_django/users/views.py changed, reloading.
+INFO 2025-04-05 11:29:17,028 autoreload Watching for file changes with StatReloader
+INFO 2025-04-05 11:29:28,010 autoreload /Users/shivamrawat/capstone_django/users/urls.py changed, reloading.
+INFO 2025-04-05 11:29:28,332 autoreload Watching for file changes with StatReloader
+INFO 2025-04-05 11:29:43,913 basehttp "GET / HTTP/1.1" 200 12658
+INFO 2025-04-05 11:29:43,983 basehttp "GET /static/users/css/landingpage.css?v=1743852583 HTTP/1.1" 200 17727
+INFO 2025-04-05 11:29:46,459 basehttp "GET /privacy-policy/ HTTP/1.1" 200 7756
+INFO 2025-04-05 11:29:46,497 basehttp "GET /static/users/css/landingpage.css?v=1743852586 HTTP/1.1" 200 17727
+INFO 2025-04-05 11:30:14,447 basehttp "GET / HTTP/1.1" 200 12658
+INFO 2025-04-05 11:30:14,485 basehttp "GET /static/users/images/technical.png HTTP/1.1" 304 0
+INFO 2025-04-05 11:30:14,486 basehttp "GET /static/users/css/landingpage.css?v=1743852614 HTTP/1.1" 200 17727
+INFO 2025-04-05 11:30:18,885 basehttp "GET /privacy-policy/ HTTP/1.1" 200 7756
+INFO 2025-04-05 11:30:18,927 basehttp "GET /static/users/css/landingpage.css?v=1743852618 HTTP/1.1" 200 17727
+INFO 2025-04-05 11:30:22,577 basehttp "GET / HTTP/1.1" 200 12658
+INFO 2025-04-05 11:30:22,594 basehttp "GET /static/users/css/landingpage.css?v=1743852622 HTTP/1.1" 200 17727
+INFO 2025-04-05 11:36:02,965 basehttp "GET /privacy-policy/ HTTP/1.1" 200 10116
+INFO 2025-04-05 11:36:03,091 basehttp "GET /static/users/css/landingpage.css?v=1743852962 HTTP/1.1" 200 17727
+INFO 2025-04-05 11:36:06,732 basehttp "GET / HTTP/1.1" 200 12658
+INFO 2025-04-05 11:36:06,765 basehttp "GET /static/users/css/landingpage.css?v=1743852966 HTTP/1.1" 200 17727
+INFO 2025-04-05 11:36:06,783 basehttp "GET /static/users/images/behavioral.png HTTP/1.1" 304 0
+INFO 2025-04-05 11:36:06,783 basehttp "GET /static/users/images/hero.png HTTP/1.1" 304 0
+INFO 2025-04-05 11:36:06,785 basehttp "GET /static/users/images/technical.png HTTP/1.1" 304 0
+INFO 2025-04-05 11:36:06,786 basehttp "GET /static/users/images/assessment.png HTTP/1.1" 304 0
+INFO 2025-04-05 12:30:52,057 basehttp "GET /privacy-policy/ HTTP/1.1" 200 10116
+INFO 2025-04-05 12:30:52,287 basehttp "GET /static/users/css/landingpage.css?v=1743856252 HTTP/1.1" 200 17727
+INFO 2025-04-05 12:34:07,541 basehttp "GET /privacy-policy/ HTTP/1.1" 200 9956
+INFO 2025-04-05 12:34:07,684 basehttp "GET /static/users/css/landingpage.css?v=1743856447 HTTP/1.1" 200 17727
+INFO 2025-04-05 12:34:20,892 basehttp "GET /privacy-policy/ HTTP/1.1" 200 9955
+INFO 2025-04-05 12:34:20,914 basehttp "GET /static/users/css/landingpage.css?v=1743856460 HTTP/1.1" 200 17727
+INFO 2025-04-05 12:34:36,873 basehttp "GET /privacy-policy/ HTTP/1.1" 200 9987
+INFO 2025-04-05 12:34:36,894 basehttp "GET /static/users/css/landingpage.css?v=1743856476 HTTP/1.1" 200 17727
+INFO 2025-04-05 12:34:46,386 basehttp "GET /privacy-policy/ HTTP/1.1" 200 9985
+INFO 2025-04-05 12:34:46,411 basehttp "GET /static/users/css/landingpage.css?v=1743856486 HTTP/1.1" 200 17727

@@ -1,0 +1,218 @@
+<!-- users/templates/users/privacy_policy.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Techtonic - Privacy Policy</title>
+    {% load static %}
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'users/css/landingpage.css' %}?v={{ STATIC_VERSION }}">
+    <style>
+        .privacy-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .privacy-content h1 {
+            font-size: 2.2rem;
+            color: #4338ca;
+            margin-bottom: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .privacy-content h2 {
+            font-size: 1.5rem;
+            color: #4338ca;
+            margin: 2rem 0 1rem 0;
+        }
+        
+        .privacy-content p {
+            margin-bottom: 1rem;
+        }
+        
+        .privacy-content ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .last-updated {
+            font-style: italic;
+            color: #666;
+            margin-top: 3rem;
+        }
+        
+        .back-btn {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.5rem 1rem;
+            background-color: #4338ca;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .back-btn:hover {
+            background-color: #3730a3;
+        }
+    </style>
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="logo">
+            <span class="logo-text">Techtonic</span>
+        </div>
+        <div class="nav-links">
+            <a href="{% url 'landingpage' %}#about">About Us</a>
+            <a href="{% url 'landingpage' %}#features">Features</a>
+            <a href="{% url 'landingpage' %}#testimonials">Testimonials</a>
+            <a href="{% url 'landingpage' %}#contact">Contact</a>
+            <div class="auth-buttons">
+                <a href="{% url 'login' %}" class="login-btn">Login</a>
+                <a href="{% url 'register' %}" class="register-btn">Register</a>
+            </div>
+        </div>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+
+    <main>
+        <div class="privacy-content">
+            <h1>Privacy Policy for TechTonic</h1>
+            
+            <p>Effective Date: May 1, 2024</p>
+            <p>Last Updated: May 1, 2024</p>
+            
+            <p>TechTonic ("we", "our", or "us") respects your privacy. This Privacy Policy describes how we collect, use, store, and share your personal data when you use our web-based platform (the "Platform"), which simulates behavioral and technical interviews and provides automated AI feedback using the UMPIRE and STAR methods.</p>
+            
+            <h2>1. Core Privacy Principles</h2>
+            <ul>
+                <li>We never sell your data.</li>
+                <li>We do not advertise on our platform.</li>
+                <li>We do not own your content.</li>
+                <li>We notify you of material changes to this policy.</li>
+            </ul>
+            
+            <h2>2. Information We Collect</h2>
+            <p><strong>A. Information You Provide</strong></p>
+            <ul>
+                <li><strong>Account Data:</strong> Name, email, password (hashed), LinkedIn (optional).</li>
+                <li><strong>Interview Content:</strong> Transcriptions, responses to questions.</li>
+                <li><strong>Assessment Data:</strong> Performance evaluations based on AI analysis.</li>
+                <li><strong>Feedback & Testimonials:</strong> User-submitted feedback, reviews, or testimonials.</li>
+                <li><strong>Support Requests:</strong> Information submitted during help inquiries or bug reports.</li>
+            </ul>
+            
+            <p><strong>B. Information Collected Automatically</strong></p>
+            <ul>
+                <li><strong>Device Data:</strong> IP address, OS version, browser type, screen size, usage stats.</li>
+                <li><strong>Usage Data:</strong> Pages visited, time spent, error logs, navigation paths.</li>
+                <li><strong>Cookies & Storage:</strong> Session cookies, preferences, authentication tokens.</li>
+            </ul>
+            
+            <h2>3. How We Use Your Data</h2>
+            <ul>
+                <li>To operate and maintain the platform.</li>
+                <li>To provide interview simulation and feedback services.</li>
+                <li>To analyze user performance for personalized suggestions.</li>
+                <li>To improve our AI algorithms (in aggregate, anonymized form).</li>
+                <li>To respond to inquiries and provide customer support.</li>
+                <li>To send relevant service updates and reminders.</li>
+            </ul>
+            
+            <h2>4. Use of AI and Voice Data</h2>
+            <p>Your voice and text responses are processed using OpenAI, Deepgram, and gTTS. AI feedback is generated automatically and stored securely. Audio input is only recorded during active sessions and is user-controlled.</p>
+            <p>We do not use your voice or data for training third-party AI models.</p>
+            
+            <h2>5. Children and Under-18 Users</h2>
+            <p>TechTonic is not intended for users under 13. Users under 18 must confirm parental or institutional consent. If under 18:</p>
+            <ul>
+                <li>We strip IP and email data before sharing anything externally.</li>
+                <li>Users under 18 are restricted from receiving marketing emails.</li>
+                <li>Certain advanced features are restricted.</li>
+                <li>Interview data is deleted after 12 months.</li>
+                <li>Support is limited to essential help functions only.</li>
+            </ul>
+            <p>FERPA-covered institutions may request student data deletion or access via email.</p>
+            
+            <h2>6. Sharing of Information</h2>
+            <p>We only share your data in the following circumstances:</p>
+            <ul>
+                <li><strong>Service Providers:</strong> Hosting, analytics, email, and AI processing (bound by contract).</li>
+                <li><strong>Legal Authorities:</strong> If required by law or court order.</li>
+                <li><strong>Successors:</strong> In case of merger, acquisition, or sale (with continued protection).</li>
+            </ul>
+            
+            <h2>7. Data Security</h2>
+            <p>We employ encryption in transit (HTTPS), secure hashing for passwords, and strict access control. Servers are secured and regularly updated.</p>
+            
+            <h2>8. Data Breach Policy</h2>
+            <p>If a breach is suspected:</p>
+            <ul>
+                <li>You'll receive a clear, plain-language notice.</li>
+                <li>We'll describe what was breached and mitigation steps.</li>
+                <li>A designated contact will be provided.</li>
+                <li>Relevant authorities and partner institutions will also be informed if required.</li>
+            </ul>
+            
+            <h2>9. Your Rights and Choices</h2>
+            <ul>
+                <li><strong>Access/Update/Delete Account:</strong> Email us at support@techtonic.com.</li>
+                <li><strong>Opt-Out of Marketing Emails:</strong> Click the "unsubscribe" link in emails.</li>
+                <li><strong>Cookie Control:</strong> Adjust browser settings to reject or remove cookies.</li>
+            </ul>
+            
+            <h2>10. International Users</h2>
+            <p>Your data may be processed outside your home country. If you're in the EU/UK, we adhere to GDPR-equivalent protections and will enter standard contractual clauses where required.</p>
+            
+            <h2>11. Retention of Data</h2>
+            <ul>
+                <li>Assessments are stored as long as your account is active.</li>
+                <li>Under-18 user data is purged after 12 months.</li>
+                <li>We may retain some data as required by law or to prevent fraud.</li>
+            </ul>
+            
+            <h2>12. Changes to This Policy</h2>
+            <p>You will be notified of updates via:</p>
+            <ul>
+                <li>Email (if registered), or</li>
+                <li>Prominent in-platform banners.</li>
+            </ul>
+            <p>Continued use after changes constitutes agreement.</p>
+            
+            <p class="last-updated">This privacy policy was last updated on May 1, 2024.</p>
+            
+            <a href="{% url 'landingpage' %}" class="back-btn">Back to Home</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <span class="logo-text">Techtonic</span>
+            </div>
+            <div class="footer-links">
+                <a href="{% url 'landingpage' %}#about">About</a>
+                <a href="{% url 'landingpage' %}#features">Features</a>
+                <a href="{% url 'landingpage' %}#testimonials">Testimonials</a>
+                <a href="{% url 'privacy_policy' %}">Privacy Policy</a>
+            </div>
+            <div class="social-links">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            </div>
+            <p class="copyright">© 2024 Techtonic. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="{% static 'users/js/landingpage.js' %}"></script>
+</body>
+</html> 
