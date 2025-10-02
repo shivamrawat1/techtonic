@@ -53,8 +53,9 @@ yarn-error.log
 .env.test.local
 .env.production.local
 
-# Railway specific
-.railway/
+docker-compose.yml
+docker-compose.prod.yml
 
 # Mac OS
 .DS_Store
+debug.log

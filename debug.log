@@ -1282,3 +1282,39 @@ INFO 2025-10-02 00:06:48,136 autoreload Watching for file changes with StatReloa
 INFO 2025-10-02 00:07:06,083 basehttp "GET /assessments/list/ HTTP/1.1" 200 35816
 INFO 2025-10-02 00:07:06,151 basehttp "GET /static/assessments/css/conversation_popup.css?v=1759363626 HTTP/1.1" 200 2892
 INFO 2025-10-02 00:07:06,152 basehttp "GET /static/assessments/css/list_interviews.css?v=1759363626 HTTP/1.1" 200 3975
+INFO 2025-10-02 00:12:09,882 autoreload /Users/shivamrawat/techtonic/capstone_django/settings.py changed, reloading.
+INFO 2025-10-02 00:12:09,885 autoreload /Users/shivamrawat/techtonic/capstone_django/settings.py changed, reloading.
+INFO 2025-10-02 00:12:10,326 autoreload Watching for file changes with StatReloader
+INFO 2025-10-02 00:12:10,346 autoreload Watching for file changes with StatReloader
+INFO 2025-10-02 00:12:23,768 basehttp "GET / HTTP/1.1" 200 12658
+INFO 2025-10-02 00:12:23,795 basehttp "GET /static/users/images/technical.png HTTP/1.1" 304 0
+INFO 2025-10-02 00:12:23,800 basehttp "GET /static/users/js/landingpage.js HTTP/1.1" 304 0
+INFO 2025-10-02 00:12:23,800 basehttp "GET /static/users/images/behavioral.png HTTP/1.1" 304 0
+INFO 2025-10-02 00:12:23,801 basehttp "GET /static/users/images/hero.png HTTP/1.1" 304 0
+INFO 2025-10-02 00:12:23,802 basehttp "GET /static/users/images/assessment.png HTTP/1.1" 304 0
+INFO 2025-10-02 00:12:23,803 basehttp "GET /static/users/css/landingpage.css?v=1759363943 HTTP/1.1" 200 17727
+INFO 2025-10-02 00:38:23,975 autoreload /Users/shivamrawat/techtonic/capstone_django/settings.py changed, reloading.
+INFO 2025-10-02 00:38:23,979 autoreload /Users/shivamrawat/techtonic/capstone_django/settings.py changed, reloading.
+INFO 2025-10-02 00:38:24,592 autoreload Watching for file changes with StatReloader
+INFO 2025-10-02 00:38:24,605 autoreload Watching for file changes with StatReloader
+INFO 2025-10-02 00:41:32,873 basehttp "GET / HTTP/1.1" 200 12658
+INFO 2025-10-02 01:57:49,581 autoreload Watching for file changes with StatReloader
+INFO 2025-10-02 01:57:55,822 basehttp "GET / HTTP/1.1" 200 12658
+INFO 2025-10-02 01:57:55,849 basehttp "GET /static/users/images/assessment.png HTTP/1.1" 304 0
+INFO 2025-10-02 01:57:55,849 basehttp "GET /static/users/images/hero.png HTTP/1.1" 304 0
+INFO 2025-10-02 01:57:55,849 basehttp "GET /static/users/images/technical.png HTTP/1.1" 304 0
+INFO 2025-10-02 01:57:55,849 basehttp "GET /static/users/images/behavioral.png HTTP/1.1" 304 0
+INFO 2025-10-02 01:57:55,850 basehttp "GET /static/users/js/landingpage.js HTTP/1.1" 304 0
+INFO 2025-10-02 01:57:55,853 basehttp "GET /static/users/css/landingpage.css?v=1759370275 HTTP/1.1" 200 17727
+INFO 2025-10-02 02:00:25,038 basehttp "GET /login/ HTTP/1.1" 200 4061
+INFO 2025-10-02 02:07:21,854 basehttp "GET / HTTP/1.1" 200 12658
+INFO 2025-10-02 02:07:21,887 basehttp "GET /static/users/css/landingpage.css?v=1759370841 HTTP/1.1" 200 17727
+INFO 2025-10-02 02:07:29,358 autoreload Watching for file changes with StatReloader
+INFO 2025-10-02 02:07:31,658 basehttp "GET / HTTP/1.1" 200 12658
+INFO 2025-10-02 02:07:31,779 basehttp "GET /static/users/css/landingpage.css?v=1759370851 HTTP/1.1" 200 17727
+INFO 2025-10-02 02:09:34,757 autoreload /Users/shivamrawat/techtonic/capstone_django/settings.py changed, reloading.
+INFO 2025-10-02 02:09:35,179 autoreload Watching for file changes with StatReloader
+WARNING 2025-10-02 02:25:49,008 log Not Found: /favicon.ico
+WARNING 2025-10-02 02:28:32,037 log Not Found: /favicon.ico
+WARNING 2025-10-02 02:35:30,542 log Not Found: /favicon.ico
+WARNING 2025-10-02 02:36:20,328 log Not Found: /favicon.ico

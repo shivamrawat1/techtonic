@@ -1,0 +1,86 @@
+# Ignore everything by default
+*
+
+# Include specific files and directories we need
+!manage.py
+!pyproject.toml
+!uv.lock
+!runtime.txt
+!Procfile
+!deploy.sh
+!crontab
+!readme.md
+
+# Include Django project directories
+!capstone_django/
+!capstone_django/**
+!interview_behavioral/
+!interview_behavioral/**
+!interview_technical/
+!interview_technical/**
+!assessments/
+!assessments/**
+!users/
+!users/**
+
+# Include static files directories (but not collected staticfiles)
+!interview_behavioral/static/
+!interview_technical/static/
+!assessments/static/
+!users/static/
+
+# Include templates
+!interview_behavioral/templates/
+!interview_technical/templates/
+!assessments/templates/
+!users/templates/
+
+# Include migrations
+!interview_behavioral/migrations/
+!interview_technical/migrations/
+!assessments/migrations/
+!users/migrations/
+
+# Include management commands
+!users/management/
+!capstone_django/management/
+
+# Include specific Python files in root directories
+!*/__init__.py
+!*/admin.py
+!*/apps.py
+!*/models.py
+!*/views.py
+!*/urls.py
+!*/tests.py
+!*/services.py
+!*/openai_client.py
+!*/interview_analyzer.py
+
+# Include service files
+!*/services/
+!*/services/**
+
+# Include specific config files
+!capstone_django/wsgi.py
+!capstone_django/asgi.py
+!capstone_django/urls.py
+!capstone_django/settings.py
+!capstone_django/context_processors.py
+!capstone_django/middleware.py
+
+# Include specific static files we need
+!interview_technical/static/interview_technical/questions/questions.json
+
+# Include specific template files
+!*/templates/**/*.html
+!*/templates/**/*.txt
+
+# Include specific Python files in subdirectories
+!*/migrations/__init__.py
+!*/migrations/*.py
+!*/management/__init__.py
+!*/management/commands/__init__.py
+!*/management/commands/*.py
+!*/services/__init__.py
+!*/services/*.py

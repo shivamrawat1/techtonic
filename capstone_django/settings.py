@@ -99,7 +99,7 @@ MIDDLEWARE = [
 ]
 
 # Add cache control middleware in development mode
-if DEBUG:
+if False:  # Always use PostgreSQL
     MIDDLEWARE.append('capstone_django.middleware.DisableBrowserCachingMiddleware')
 
 ROOT_URLCONF = 'capstone_django.urls'
@@ -127,8 +127,8 @@ WSGI_APPLICATION = 'capstone_django.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-# Use SQLite locally, PostgreSQL in production
-if DEBUG:
+# Use PostgreSQL for both local and production
+if False:  # Always use PostgreSQL
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -136,7 +136,7 @@ if DEBUG:
         }
     }
 else:
-    # Railway automatically sets DATABASE_URL
+    # Production database configuration using DATABASE_URL environment variable
     import dj_database_url
     DATABASES = {
         'default': dj_database_url.config(
@@ -184,7 +184,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # In development, serve static files directly from the apps
-if DEBUG:
+if False:  # Always use PostgreSQL
     STATICFILES_DIRS = [
         os.path.join(BASE_DIR, 'interview_technical', 'static'),
         os.path.join(BASE_DIR, 'interview_behavioral', 'static'),
@@ -249,3 +249,14 @@ if not DEBUG:
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Docker-specific settings
+if os.environ.get('DOCKER_CONTAINER'):
+    # Additional Docker optimizations
+    DATABASES['default']['OPTIONS'] = {
+        'connect_timeout': 10,
+        'options': '-c default_transaction_isolation=read_committed'
+    }
+    
+    # Optimize for containerized environment
+    LOGGING['handlers']['console']['level'] = 'WARNING'
