@@ -1099,3 +1099,186 @@ INFO 2025-04-05 12:34:36,873 basehttp "GET /privacy-policy/ HTTP/1.1" 200 9987
 INFO 2025-04-05 12:34:36,894 basehttp "GET /static/users/css/landingpage.css?v=1743856476 HTTP/1.1" 200 17727
 INFO 2025-04-05 12:34:46,386 basehttp "GET /privacy-policy/ HTTP/1.1" 200 9985
 INFO 2025-04-05 12:34:46,411 basehttp "GET /static/users/css/landingpage.css?v=1743856486 HTTP/1.1" 200 17727
+INFO 2025-10-01 21:58:52,609 autoreload Watching for file changes with StatReloader
+INFO 2025-10-01 22:02:58,080 autoreload Watching for file changes with StatReloader
+INFO 2025-10-01 22:03:53,301 autoreload Watching for file changes with StatReloader
+INFO 2025-10-01 22:03:59,073 basehttp "GET / HTTP/1.1" 301 0
+INFO 2025-10-01 22:03:59,081 basehttp code 400, message Bad request version ('ÚÚ\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06SÊÊ\x00\x00DÍ\x00\x05\x00\x03\x02h2\x00\x05\x00\x05\x01\x00\x00\x00\x00\x00#\x00\x00\x00\x12\x00\x00\x00+\x00\x07\x06')
+ERROR 2025-10-01 22:03:59,082 basehttp You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-10-01 22:03:59,084 basehttp code 400, message Bad request version ('Ûè\x9eòàoËQÐbà')
+ERROR 2025-10-01 22:03:59,085 basehttp You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-10-01 22:04:08,024 basehttp code 400, message Bad request version ('\x02h2\x08http/1.1\x00')
+ERROR 2025-10-01 22:04:08,024 basehttp You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-10-01 22:04:08,025 basehttp code 400, message Bad request version ('ÚÚ\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06SÚÚ\x00\x00\x00\x12\x00\x00\x00+\x00\x07\x06')
+ERROR 2025-10-01 22:04:08,026 basehttp You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-10-01 22:04:15,018 basehttp code 400, message Bad request version ('ö²÷\x8bÆ\x15¨\x9ci´')
+ERROR 2025-10-01 22:04:15,018 basehttp You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-10-01 22:04:15,018 basehttp code 400, message Bad request version ('\x00\x12\x00\x10\x04\x03\x08\x04\x04\x01\x05\x03\x08\x05\x05\x01\x08\x06\x06\x01\x00')
+ERROR 2025-10-01 22:04:15,019 basehttp You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-10-01 22:04:15,019 basehttp code 400, message Bad request version ('\x00\x02\x01\x00\x00')
+ERROR 2025-10-01 22:04:15,019 basehttp You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-10-01 22:04:15,020 basehttp code 400, message Bad request version ('Ð7ÀÐ;)A')
+ERROR 2025-10-01 22:04:15,020 basehttp You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-10-01 22:05:53,679 autoreload /Users/shivamrawat/techtonic/capstone_django/settings.py changed, reloading.
+INFO 2025-10-01 22:05:54,095 autoreload Watching for file changes with StatReloader
+INFO 2025-10-01 22:06:11,004 autoreload Watching for file changes with StatReloader
+INFO 2025-10-01 22:06:12,824 basehttp "GET / HTTP/1.1" 200 12658
+INFO 2025-10-01 22:06:12,912 basehttp "GET /static/users/css/landingpage.css?v=1759356372 HTTP/1.1" 200 17727
+INFO 2025-10-01 22:06:12,915 basehttp "GET /static/users/js/landingpage.js HTTP/1.1" 200 10373
+INFO 2025-10-01 22:06:12,919 basehttp "GET /static/users/images/hero.png HTTP/1.1" 200 308380
+INFO 2025-10-01 22:06:12,921 basehttp "GET /static/users/images/technical.png HTTP/1.1" 200 358545
+INFO 2025-10-01 22:06:12,923 basehttp "GET /static/users/images/assessment.png HTTP/1.1" 200 556450
+INFO 2025-10-01 22:06:12,925 basehttp "GET /static/users/images/behavioral.png HTTP/1.1" 200 694756
+WARNING 2025-10-01 22:06:13,131 log Not Found: /favicon.ico
+WARNING 2025-10-01 22:06:13,132 basehttp "GET /favicon.ico HTTP/1.1" 404 6458
+INFO 2025-10-01 22:06:20,639 basehttp "GET /login/ HTTP/1.1" 200 4061
+INFO 2025-10-01 22:06:23,771 basehttp "GET /register/ HTTP/1.1" 200 4226
+INFO 2025-10-01 22:07:01,818 basehttp "POST /register/ HTTP/1.1" 302 0
+INFO 2025-10-01 22:07:01,823 basehttp "GET /register/ HTTP/1.1" 200 4435
+INFO 2025-10-01 22:10:20,007 basehttp "POST /register/ HTTP/1.1" 302 0
+INFO 2025-10-01 22:10:20,011 basehttp "GET /register/ HTTP/1.1" 200 4417
+INFO 2025-10-01 22:10:22,815 basehttp "GET /login/ HTTP/1.1" 200 4061
+INFO 2025-10-01 22:10:53,176 basehttp "POST /login/ HTTP/1.1" 200 4266
+INFO 2025-10-01 22:11:09,000 basehttp "POST /login/ HTTP/1.1" 200 4266
+INFO 2025-10-01 22:11:11,092 basehttp "GET /register/ HTTP/1.1" 200 4226
+INFO 2025-10-01 22:11:31,871 basehttp "POST /register/ HTTP/1.1" 302 0
+INFO 2025-10-01 22:11:31,876 basehttp "GET /register/ HTTP/1.1" 200 4435
+INFO 2025-10-01 22:12:27,114 autoreload /Users/shivamrawat/techtonic/users/views.py changed, reloading.
+INFO 2025-10-01 22:12:27,506 autoreload Watching for file changes with StatReloader
+INFO 2025-10-01 22:13:06,196 basehttp "POST /register/ HTTP/1.1" 302 0
+INFO 2025-10-01 22:13:06,209 basehttp "GET /verify-email/ HTTP/1.1" 200 4529
+INFO 2025-10-01 22:13:21,199 basehttp "POST /verify-email/ HTTP/1.1" 302 0
+INFO 2025-10-01 22:13:21,203 basehttp "GET /login/ HTTP/1.1" 302 0
+INFO 2025-10-01 22:13:21,222 basehttp "GET /dashboard/ HTTP/1.1" 200 40474
+INFO 2025-10-01 22:13:21,264 basehttp "GET /static/assessments/css/conversation_popup.css?v=1759356801 HTTP/1.1" 200 2892
+INFO 2025-10-01 22:13:21,265 basehttp "GET /static/assessments/js/assessment.js HTTP/1.1" 200 5838
+INFO 2025-10-01 22:13:21,265 basehttp "GET /static/assessments/css/conversation_popup.css HTTP/1.1" 200 2892
+INFO 2025-10-01 22:13:21,265 basehttp "GET /static/users/css/style.css HTTP/1.1" 200 6658
+INFO 2025-10-01 22:13:24,509 basehttp "GET /dashboard/ HTTP/1.1" 200 40474
+INFO 2025-10-01 22:13:25,379 basehttp "GET /dashboard/ HTTP/1.1" 200 40474
+INFO 2025-10-01 22:13:59,480 basehttp "GET /assessments/list/ HTTP/1.1" 200 34438
+INFO 2025-10-01 22:13:59,492 basehttp "GET /static/assessments/css/list_interviews.css?v=1759356839 HTTP/1.1" 200 3975
+INFO 2025-10-01 22:14:01,162 basehttp "GET /dashboard/ HTTP/1.1" 200 40474
+INFO 2025-10-01 22:14:03,425 basehttp "GET /interview/setup/ HTTP/1.1" 200 37129
+INFO 2025-10-01 22:14:03,444 basehttp "GET /static/users/css/setup.css?v=1759356843 HTTP/1.1" 200 2025
+INFO 2025-10-01 22:14:03,445 basehttp "GET /static/assessments/css/conversation_popup.css?v=1759356843 HTTP/1.1" 200 2892
+INFO 2025-10-01 22:14:09,134 basehttp "POST /interview/ HTTP/1.1" 200 8290
+INFO 2025-10-01 22:14:09,158 basehttp "GET /static/interview_technical/css/technical_styles.css?v=1759356849 HTTP/1.1" 200 16805
+INFO 2025-10-01 22:14:09,162 basehttp "GET /static/interview_technical/js/technical_main.js?v=1759356849 HTTP/1.1" 200 28244
+WARNING 2025-10-01 22:14:12,922 log Not Found: /favicon.ico
+WARNING 2025-10-01 22:14:12,923 basehttp "GET /favicon.ico HTTP/1.1" 404 6458
+INFO 2025-10-01 22:14:18,060 basehttp "POST /interview/get_response/ HTTP/1.1" 200 194
+INFO 2025-10-01 22:14:19,184 basehttp "POST /interview/synthesize_text/ HTTP/1.1" 200 105408
+INFO 2025-10-01 22:14:38,260 basehttp "POST /interview/get_response/ HTTP/1.1" 200 154
+INFO 2025-10-01 22:14:39,294 basehttp "POST /interview/synthesize_text/ HTTP/1.1" 200 87552
+INFO 2025-10-01 22:14:46,158 basehttp "POST /assessments/save/ HTTP/1.1" 200 44
+INFO 2025-10-01 22:14:46,172 basehttp "GET /assessments/list/ HTTP/1.1" 200 35816
+INFO 2025-10-01 22:14:46,196 basehttp "GET /static/assessments/css/list_interviews.css?v=1759356886 HTTP/1.1" 200 3975
+INFO 2025-10-01 22:14:46,197 basehttp "GET /static/assessments/css/conversation_popup.css?v=1759356886 HTTP/1.1" 200 2892
+INFO 2025-10-01 22:14:52,637 basehttp "GET /dashboard/ HTTP/1.1" 200 40476
+INFO 2025-10-01 22:16:17,997 basehttp "GET /account/ HTTP/1.1" 200 38191
+INFO 2025-10-01 22:16:20,734 basehttp "GET /dashboard/ HTTP/1.1" 200 40476
+INFO 2025-10-01 22:37:40,739 basehttp code 400, message Bad request version ('\x00\x12\x00\x10\x04\x03\x08\x04\x04\x01\x05\x03\x08\x05\x05\x01\x08\x06\x06\x01\x00')
+INFO 2025-10-01 22:37:40,743 basehttp code 400, message Bad request version ('×#\x0fuhì')
+ERROR 2025-10-01 22:37:40,745 basehttp You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-10-01 22:37:40,745 basehttp You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-10-01 22:37:40,750 basehttp code 400, message Bad request version ('ºº\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x063')
+INFO 2025-10-01 22:37:40,750 basehttp code 400, message Bad request version ('\x9bÒ\x03Ñ\x8b¿\x12\x11ª\x01\x8fì\x11\x13¿ä\x9bóuµ}ÙYWx¦\x95Ëyq\x9cÐ\x00')
+ERROR 2025-10-01 22:37:40,750 basehttp You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-10-01 22:37:40,750 basehttp You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-10-01 23:41:43,722 autoreload /Users/shivamrawat/techtonic/capstone_django/settings.py changed, reloading.
+INFO 2025-10-01 23:41:44,540 autoreload Watching for file changes with StatReloader
+INFO 2025-10-01 23:42:06,855 autoreload /Users/shivamrawat/techtonic/capstone_django/settings.py changed, reloading.
+INFO 2025-10-01 23:42:07,343 autoreload Watching for file changes with StatReloader
+INFO 2025-10-01 23:42:23,277 basehttp code 400, message Bad request version ('ºº\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06szz\x00\x00\x00')
+ERROR 2025-10-01 23:42:23,278 basehttp You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-10-01 23:42:23,280 basehttp code 400, message Bad request version ('\x05')
+ERROR 2025-10-01 23:42:23,280 basehttp You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-10-01 23:42:27,586 basehttp code 400, message Bad request version ("z\x15\x9c\x04+Ó$È'ûp\x00")
+ERROR 2025-10-01 23:42:27,586 basehttp You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-10-01 23:42:27,587 basehttp code 400, message Bad request version ('\x96+règ\x91\x00')
+ERROR 2025-10-01 23:42:27,587 basehttp You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-10-01 23:42:42,940 autoreload Watching for file changes with StatReloader
+INFO 2025-10-01 23:42:44,522 basehttp code 400, message Bad request version ('jj\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06\x93ZZ\x00\x00\x00\x12\x00\x00\x003\x04ï\x04í')
+ERROR 2025-10-01 23:42:44,523 basehttp You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-10-01 23:42:44,524 basehttp code 400, message Bad request version ('Ä')
+ERROR 2025-10-01 23:42:44,524 basehttp You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-10-01 23:44:47,328 autoreload Watching for file changes with StatReloader
+INFO 2025-10-01 23:44:51,335 basehttp code 400, message Bad request version ('\x06sØtY¤\x93Â')
+ERROR 2025-10-01 23:44:51,335 basehttp You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-10-01 23:44:51,336 basehttp code 400, message Bad request syntax ('\x16\x03\x01\x06à\x01\x00\x06Ü\x03\x03St\x13Ë"\xadýëev\x99SJKB%\x04\x02ÿ\x9f\x8b\x05\x1aý\x80\x87Û÷¨,')
+ERROR 2025-10-01 23:44:51,336 basehttp You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-10-01 23:45:20,917 basehttp code 400, message Bad request version ('JJ\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06\x93')
+INFO 2025-10-01 23:45:20,919 basehttp code 400, message Bad request version ('\x00\x12\x00\x10\x04\x03\x08\x04\x04\x01\x05\x03\x08\x05\x05\x01\x08\x06\x06\x01\x00-\x00\x02\x01\x01\x00\x05\x00\x05\x01\x00\x00\x00\x00\x00\x12\x00\x00\x003\x04ï\x04í')
+ERROR 2025-10-01 23:45:20,919 basehttp You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-10-01 23:45:20,920 basehttp You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-10-01 23:45:20,928 basehttp code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x07\x00\x01\x00\x06ü\x03\x03Sb\x860ìA"©lª9³´Ë\x9b;\x18O±pìF\x7f,µ£ýP©°V\x83')
+ERROR 2025-10-01 23:45:20,935 basehttp You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-10-01 23:45:20,928 basehttp code 400, message Bad request version ('\x912\x8b\x17[æ\x1ao³\x12»JñW\x90\x98>#Ø¹R9\x82yÕ¿ªL¸\x92')
+ERROR 2025-10-01 23:45:20,936 basehttp You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-10-01 23:45:23,747 basehttp code 400, message Bad request version ('é;\x0fåX9¤Ê\x9c\x18R~ÇLXæ,\x1a>j½?µ\x94Sz±%æ')
+ERROR 2025-10-01 23:45:23,747 basehttp You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-10-01 23:45:23,748 basehttp code 400, message Bad request version ('JJ\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x063\x8a\x8a\x00\x00\x00+\x00\x07\x06zz\x03\x04\x03\x03DÍ\x00\x05\x00\x03\x02h2\x003\x04ï\x04íêê\x00\x01\x00\x11ì\x04Àr7')
+ERROR 2025-10-01 23:45:23,748 basehttp You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-10-01 23:45:23,748 basehttp code 400, message Bad request version ('fÞLÙ\x8e=L')
+ERROR 2025-10-01 23:45:23,750 basehttp You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-10-01 23:45:23,751 basehttp code 400, message Bad request version ("IU\x01&'¤>\x08ãº\x9a\x1a\x83¥I9jøbÛÂJ2ü\x82hEG{È\x8f¢¥Ï)T")
+ERROR 2025-10-01 23:45:23,751 basehttp You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-10-01 23:45:30,402 autoreload Watching for file changes with StatReloader
+INFO 2025-10-01 23:45:32,165 basehttp code 400, message Bad request syntax ('\x16\x03\x01\x07\x00\x01\x00\x06ü\x03\x03so!çÙ·p')
+ERROR 2025-10-01 23:45:32,166 basehttp You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-10-01 23:45:32,167 basehttp code 400, message Bad request version ('ªª\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x063')
+ERROR 2025-10-01 23:45:32,168 basehttp You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-10-01 23:45:36,286 autoreload Watching for file changes with StatReloader
+INFO 2025-10-01 23:45:46,478 basehttp code 400, message Bad request version ('ZZ\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06\x93jj\x00\x00ÿ\x01\x00\x01\x00\x00')
+ERROR 2025-10-01 23:45:46,478 basehttp You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-10-01 23:45:46,479 basehttp code 400, message Bad request version ('\x00\x12\x00\x10\x04\x03\x08\x04\x04\x01\x05\x03\x08\x05\x05\x01\x08\x06\x06\x01DÍ\x00\x05\x00\x03\x02h2\x00\x17\x00\x00\x00')
+ERROR 2025-10-01 23:45:46,479 basehttp You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-10-01 23:45:46,479 basehttp code 400, message Bad request version ('\x9d%Ã')
+ERROR 2025-10-01 23:45:46,480 basehttp You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-10-01 23:45:46,481 basehttp code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x06')
+ERROR 2025-10-01 23:45:46,481 basehttp You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-10-01 23:45:55,967 autoreload Watching for file changes with StatReloader
+INFO 2025-10-01 23:46:25,962 basehttp "GET / HTTP/1.1" 200 12658
+INFO 2025-10-01 23:46:26,026 basehttp "GET /static/users/css/landingpage.css?v=1759362385 HTTP/1.1" 200 17727
+INFO 2025-10-01 23:46:26,028 basehttp "GET /static/users/images/hero.png HTTP/1.1" 200 308380
+INFO 2025-10-01 23:46:26,029 basehttp "GET /static/users/images/technical.png HTTP/1.1" 200 358545
+INFO 2025-10-01 23:46:26,031 basehttp "GET /static/users/js/landingpage.js HTTP/1.1" 200 10373
+INFO 2025-10-01 23:46:26,035 basehttp "GET /static/users/images/assessment.png HTTP/1.1" 200 556450
+INFO 2025-10-01 23:46:26,036 basehttp "GET /static/users/images/behavioral.png HTTP/1.1" 200 694756
+WARNING 2025-10-01 23:46:26,339 log Not Found: /favicon.ico
+WARNING 2025-10-01 23:46:26,339 basehttp "GET /favicon.ico HTTP/1.1" 404 6458
+INFO 2025-10-01 23:46:27,662 basehttp "GET / HTTP/1.1" 200 12658
+INFO 2025-10-01 23:46:27,729 basehttp "GET /static/users/css/landingpage.css?v=1759362387 HTTP/1.1" 200 17727
+INFO 2025-10-01 23:46:44,770 autoreload Watching for file changes with StatReloader
+INFO 2025-10-01 23:46:47,240 basehttp code 400, message Bad request version ('eT²ôö.\x13g\x00_\x11ãÿ}©Jd\x80\x96ê"èaÌe\x00')
+ERROR 2025-10-01 23:46:47,241 basehttp You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-10-01 23:46:47,244 basehttp code 400, message Bad request version ('ÊÊ\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06s\x1a\x1a\x00\x00\x00')
+ERROR 2025-10-01 23:46:47,245 basehttp You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-10-01 23:58:14,134 autoreload Watching for file changes with StatReloader
+INFO 2025-10-01 23:58:16,011 basehttp code 400, message Bad request version ('ªª\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x063')
+ERROR 2025-10-01 23:58:16,011 basehttp You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-10-01 23:58:16,012 basehttp code 400, message Bad request syntax ('\x16\x03\x01\x06à\x01\x00\x06Ü\x03\x03á¹óU×')
+ERROR 2025-10-01 23:58:16,012 basehttp You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-10-01 23:59:35,588 autoreload Watching for file changes with StatReloader
+INFO 2025-10-01 23:59:37,345 basehttp "GET / HTTP/1.1" 200 12658
+INFO 2025-10-01 23:59:37,420 basehttp "GET /static/users/images/behavioral.png HTTP/1.1" 304 0
+INFO 2025-10-01 23:59:37,420 basehttp "GET /static/users/images/technical.png HTTP/1.1" 304 0
+INFO 2025-10-01 23:59:37,421 basehttp "GET /static/users/images/assessment.png HTTP/1.1" 304 0
+INFO 2025-10-01 23:59:37,421 basehttp "GET /static/users/js/landingpage.js HTTP/1.1" 304 0
+INFO 2025-10-01 23:59:37,421 basehttp "GET /static/users/images/hero.png HTTP/1.1" 304 0
+INFO 2025-10-01 23:59:37,423 basehttp "GET /static/users/css/landingpage.css?v=1759363177 HTTP/1.1" 200 17727
+WARNING 2025-10-01 23:59:37,492 log Not Found: /favicon.ico
+WARNING 2025-10-01 23:59:37,494 basehttp "GET /favicon.ico HTTP/1.1" 404 6458
+INFO 2025-10-02 00:00:59,576 autoreload /Users/shivamrawat/techtonic/.venv/lib/python3.11/site-packages/openai/types/create_embedding_response.py changed, reloading.
+INFO 2025-10-02 00:01:00,419 autoreload Watching for file changes with StatReloader
+INFO 2025-10-02 00:01:34,203 autoreload Watching for file changes with StatReloader
+INFO 2025-10-02 00:01:35,835 basehttp "GET / HTTP/1.1" 200 12658
+INFO 2025-10-02 00:01:35,890 basehttp "GET /static/users/css/landingpage.css?v=1759363295 HTTP/1.1" 200 17727
+INFO 2025-10-02 00:06:36,046 autoreload Watching for file changes with StatReloader
+INFO 2025-10-02 00:06:38,191 basehttp "GET / HTTP/1.1" 200 12658
+INFO 2025-10-02 00:06:38,341 basehttp "GET /static/users/css/landingpage.css?v=1759363598 HTTP/1.1" 200 17727
+INFO 2025-10-02 00:06:48,136 autoreload Watching for file changes with StatReloader
+INFO 2025-10-02 00:07:06,083 basehttp "GET /assessments/list/ HTTP/1.1" 200 35816
+INFO 2025-10-02 00:07:06,151 basehttp "GET /static/assessments/css/conversation_popup.css?v=1759363626 HTTP/1.1" 200 2892
+INFO 2025-10-02 00:07:06,152 basehttp "GET /static/assessments/css/list_interviews.css?v=1759363626 HTTP/1.1" 200 3975

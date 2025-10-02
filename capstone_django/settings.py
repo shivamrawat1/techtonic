@@ -29,7 +29,14 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-algti7*qmf0=um(t=3crm
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
 
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '*').split(',')
+# More explicit environment detection
+ENVIRONMENT = os.environ.get('ENVIRONMENT', 'development')
+if ENVIRONMENT == 'production':
+    DEBUG = False
+elif ENVIRONMENT == 'development':
+    DEBUG = True
+
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 
 # Configure logging
 LOGGING = {
