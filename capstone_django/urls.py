@@ -17,7 +17,7 @@ Including another URLconf
 # django_project/urls.py
 from django.contrib import admin
 from django.urls import path, include
-from django.shortcuts import redirect
+from django.http import HttpResponse
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,4 +25,5 @@ urlpatterns = [
     path('interview_behavioral/', include('interview_behavioral.urls')),  # Behavioral interview app
     path('', include('users.urls')),  # Users app
     path('assessments/', include('assessments.urls')),  # Assessments app
+    path('health/', lambda r: HttpResponse(status=200))
 ]
