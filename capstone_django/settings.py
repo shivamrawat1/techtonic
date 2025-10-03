@@ -36,6 +36,11 @@ if ENVIRONMENT == 'production':
 elif ENVIRONMENT == 'development':
     DEBUG = True
 
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://techtonic-app-253702771417.us-central1.run.app',
+]
+
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 
 # Configure logging
@@ -249,10 +254,6 @@ if not DEBUG:
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
-CSRF_TRUSTED_ORIGINS = [
-    'https://techtonic-app-253702771417.us-central1.run.app',
-]
 
 # Docker-specific settings
 if os.environ.get('DOCKER_CONTAINER'):
