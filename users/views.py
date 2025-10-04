@@ -169,32 +169,7 @@ def register(request):
                 raise e
 
         except Exception as e:
-            # Provide more specific error messages
-            error_message = str(e)
-            if "Failed to send verification email" in error_message:
-                messages.error(
-                    request,
-                    "Registration successful but failed to send verification email. Please try again or contact support.",
-                )
-            elif "username" in error_message.lower():
-                messages.error(
-                    request,
-                    "Registration failed due to username issue. Please try a different username.",
-                )
-            elif "email" in error_message.lower():
-                messages.error(
-                    request,
-                    "Registration failed due to email issue. Please check your email address.",
-                )
-            elif "password" in error_message.lower():
-                messages.error(
-                    request,
-                    "Registration failed due to password issue. Please ensure your password meets the requirements.",
-                )
-            else:
-                messages.error(
-                    request, f"Registration failed: {error_message}. Please try again."
-                )
+            messages.error(request, f"Registration failed: {str(e)}")
             return redirect("register")
 
     return render(request, "users/register.html")
