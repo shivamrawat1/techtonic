@@ -36,11 +36,9 @@ class DeepgramService:
             # Call the transcribe_file method
             response = await self.deepgram_client.listen.asyncprerecorded.v("1").transcribe_file(payload, options)
             
-            print("Deepgram response:", response)  # Debug print
             
             # Extract the transcript from the response
             return response.results.channels[0].alternatives[0].transcript
         except Exception as e:
-            print(f"Error in transcribe_audio: {e}")
-            traceback.print_exc()  # Print detailed traceback
+            
             raise e

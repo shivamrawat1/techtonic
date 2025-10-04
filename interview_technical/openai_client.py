@@ -131,7 +131,6 @@ class OpenAIClient:
                     self.logger.warning("No assistant response found.")
                     return 'No assistant response found.'
             elif run.status == 'failed':
-                # Print the last error for debugging
                 self.logger.error(f"Run failed with error: {run.last_error}")
                 return f'Run failed with error: {run.last_error}'
             else:

@@ -28,10 +28,8 @@ class OpenAIClient:
                 model="gpt-4o",
                 temperature=0.1,
             )
-            print(f"Assistant created with ID: {assistant.id}")
             return assistant
         except Exception as e:
-            print(f"Error creating assistant: {e}")
             return None
 
     def initialize_interview(self, resume, job_description):
@@ -43,7 +41,6 @@ class OpenAIClient:
         # Create a new thread for the entire interview session
         try:
             self.thread = self.client.beta.threads.create()
-            print(f"New interview thread created with ID: {self.thread.id}")
             
             # Add an initial system message to start the interview
             self.client.beta.threads.messages.create(
@@ -51,8 +48,8 @@ class OpenAIClient:
                 role="user",
                 content="Welcome me to the interview and ask me your first question."
             )
-        except Exception as e:
-            print(f"Error creating thread: {e}")
+        except Exception:
+            pass
 
     def get_response(self, user_message):
         """Get a response from the assistant based on the user's message."""
@@ -60,7 +57,7 @@ class OpenAIClient:
             if not self.thread:
                 # If thread doesn't exist for some reason, create one
                 self.thread = self.client.beta.threads.create()
-                print(f"Created new thread with ID: {self.thread.id} because no thread existed")
+               
             
             # Add the user message to the existing thread
             self.client.beta.threads.messages.create(
@@ -68,14 +65,14 @@ class OpenAIClient:
                 role="user",
                 content=user_message
             )
-            print(f"Added user message to thread {self.thread.id}")
+          
 
             # Run the assistant on the thread
             run = self.client.beta.threads.runs.create(
                 thread_id=self.thread.id,
                 assistant_id=self.assistant.id
             )
-            print(f"Run started with ID: {run.id}")
+           
 
             # Poll the run until it completes or fails
             max_retries = 30
@@ -83,13 +80,13 @@ class OpenAIClient:
             while run.status not in ['completed', 'failed', 'cancelled', 'incomplete'] and retries < max_retries:
                 time.sleep(1)
                 run = self.client.beta.threads.runs.retrieve(thread_id=self.thread.id, run_id=run.id)
-                print(f"Polling run status: {run.status}")
+               
                 retries += 1
 
             if run.status == 'completed':
                 # Retrieve the assistant's reply
                 messages = self.client.beta.threads.messages.list(thread_id=self.thread.id)
-                print(f"Messages retrieved: {messages.data}")
+               
 
                 # Find the assistant's messages
                 assistant_messages = [msg for msg in messages.data if msg.role == 'assistant']
@@ -99,19 +96,19 @@ class OpenAIClient:
                     assistant_message = ''.join(
                         content_item.text.value for content_item in assistant_reply.content if content_item.type == 'text'
                     )
-                    print(f"Assistant's response: {assistant_message}")
+                  
                     return assistant_message
                 else:
-                    print("No assistant response found.")
+                   
                     return 'No assistant response found.'
             elif run.status == 'failed':
-                # Print the last error for debugging
-                print(f"Run failed with error: {run.last_error}")
+        
+                
                 return f'Run failed with error: {run.last_error}'
             else:
-                print(f"Error: Run status is {run.status} after polling.")
+                
                 return f'Error: Run status is {run.status}.'
 
         except Exception as e:
-            print(f"An error occurred: {e}")
+           
             return f'An error occurred: {str(e)}'

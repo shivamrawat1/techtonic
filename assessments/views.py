@@ -76,8 +76,7 @@ def view_analysis(request, assessment_id):
             assessment.save()
             
         except json.JSONDecodeError as e:
-            print(f"Error decoding conversation: {e}")
-            print(f"Raw conversation data: {assessment.conversation}")
+         
             return render(request, 'assessments/view_analysis.html', {
                 'error': 'Unable to analyze conversation data',
                 'assessment': assessment
@@ -93,28 +92,20 @@ def delete_assessment(request, assessment_id):
     import traceback
     from django.contrib import messages
     
-    print(f"Delete assessment request received for ID: {assessment_id}")
-    print(f"Request method: {request.method}")
+
     
     if request.method == 'POST':
         try:
-            print(f"Looking for assessment with ID: {assessment_id} for user: {request.user}")
             assessment = get_object_or_404(Assessment, id=assessment_id, user=request.user)
-            print(f"Assessment found with ID: {assessment.id}")
             
             # Delete the assessment
             assessment.delete()
-            print(f"Assessment with ID: {assessment_id} deleted successfully")
+          
             
             # Add success message
             messages.success(request, "Assessment deleted successfully.")
             
         except Exception as e:
-            # Log the error
-            print(f"Error deleting assessment: {str(e)}")
-            print(traceback.format_exc())
-            
-            # Add error message
             messages.error(request, f"Error deleting assessment: {str(e)}")
     
     # Always redirect back to the list page

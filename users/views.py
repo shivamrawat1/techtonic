@@ -120,7 +120,7 @@ def register(request):
                         EmailVerification.objects.filter(user=existing_user).delete()
                         existing_user.delete()
                     except Exception as e:
-                        print(f"Error deleting unverified user: {str(e)}")
+                        pass
                 else:
                     messages.error(request, 'Email already exists')
                     return redirect('register')
@@ -159,8 +159,7 @@ def register(request):
                     user.delete()
                 raise e
 
-        except Exception as e:
-            print(f"Registration error: {str(e)}")  # For debugging
+        except Exception:
             messages.error(request, 'Registration failed. Please try again.')
             return redirect('register')
 
@@ -259,8 +258,7 @@ def account(request):
             request.user.save()
             
             return redirect(f'{request.path}?success=true')
-        except Exception as e:
-            print(f"Error updating profile: {str(e)}")  # For debugging
+        except Exception:
             messages.error(request, 'Failed to update profile. Please try again.')
             return redirect('account')
     

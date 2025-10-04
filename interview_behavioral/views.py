@@ -56,7 +56,7 @@ def index(request):
     context = {
         'duration': request.session.get('interview_duration', 30)
     }
-    print(f"Behavioral Interview Duration: {context['duration']}")  # Debug print
+   
     return render(request, 'interview_behavioral/index.html', context)
 
 @csrf_exempt
@@ -85,7 +85,7 @@ def get_response(request):
                 openai_clients[session_key].initialize_interview(resume, job_description)
                 request.session['openai_client_key'] = session_key
                 
-                print(f"Created new OpenAI client for session {session_key}")
+               
             
             # Get response using the session's OpenAI client
             assistant_message = openai_clients[session_key].get_response(user_message)
