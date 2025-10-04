@@ -61,16 +61,10 @@ LOGGING = {
             "class": "logging.StreamHandler",
             "formatter": "verbose",
         },
-        "file": {
-            "level": "INFO",
-            "class": "logging.FileHandler",
-            "filename": os.path.join(BASE_DIR, "debug.log"),
-            "formatter": "verbose",
-        },
     },
     "loggers": {
         "django": {
-            "handlers": ["console", "file"],
+            "handlers": ["console"],
             "level": "INFO",
             "propagate": True,
         },
@@ -228,6 +222,11 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 # Use WhiteNoise for static files in production
 if not DEBUG:
     STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+    # WhiteNoise configuration
+    WHITENOISE_USE_FINDERS = True
+    WHITENOISE_AUTOREFRESH = False
+    WHITENOISE_MANIFEST_STRICT = False
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

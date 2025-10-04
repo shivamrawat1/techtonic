@@ -27,6 +27,13 @@ RUN pip install --no-cache-dir -e .
 # Copy project
 COPY . .
 
+# Set environment variables for collectstatic
+ENV DJANGO_SETTINGS_MODULE=capstone_django.settings
+ENV ENVIRONMENT=production
+
+# Collect static files before switching to non-root user
+RUN python manage.py collectstatic --noinput
+
 # Create a non-root user
 RUN adduser --disabled-password --gecos '' appuser && chown -R appuser:appuser /app
 USER appuser
