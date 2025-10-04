@@ -1,30 +1,25 @@
 import json
 import os
-import logging
 from openai import OpenAI
 
-# Set up logging
-logger = logging.getLogger(__name__)
 
 class InterviewAnalyzer:
     def __init__(self):
         try:
             self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
             if not os.getenv("OPENAI_API_KEY"):
-                logger.error("OPENAI_API_KEY environment variable not set")
-        except Exception as e:
-            logger.error(f"Error initializing OpenAI client: {str(e)}")
-            raise
+                pass
+        except Exception:
+            raise Exception
 
     def analyze_interview(self, conversation, assessment_type):
         try:
-            if assessment_type == 'technical':
+            if assessment_type == "technical":
                 return self._analyze_technical(conversation)
             else:
                 return self._analyze_behavioral(conversation)
-        except Exception as e:
-            logger.error(f"Error analyzing {assessment_type} interview: {str(e)}")
-            raise
+        except Exception:
+            raise Exception
 
     def _analyze_technical(self, conversation):
         prompt = {
@@ -96,7 +91,7 @@ class InterviewAnalyzer:
                     },
                     "overall_score": X,
                     "summary": "..."
-                }"""
+                }""",
         }
 
         return self._get_analysis(prompt, conversation)
@@ -153,17 +148,14 @@ class InterviewAnalyzer:
                     },
                     "overall_score": X,
                     "summary": "..."
-                }"""
+                }""",
         }
 
         return self._get_analysis(prompt, conversation)
 
     def _get_analysis(self, prompt, conversation):
         try:
-            messages = [
-                prompt,
-                {"role": "user", "content": json.dumps(conversation)}
-            ]
+            messages = [prompt, {"role": "user", "content": json.dumps(conversation)}]
 
             response = self.client.chat.completions.create(
                 model="gpt-4-turbo",
@@ -172,6 +164,5 @@ class InterviewAnalyzer:
             )
 
             return json.loads(response.choices[0].message.content)
-        except Exception as e:
-            logger.error(f"Error getting analysis from OpenAI: {str(e)}")
-            raise 
+        except Exception:
+            raise Exception

@@ -1,8 +1,8 @@
 # interview_app/openai_client.py
 import os
 import time
-import logging
 from openai import OpenAI
+
 
 class OpenAIClient:
     def __init__(self):
@@ -11,19 +11,16 @@ class OpenAIClient:
         self.assistant = None
         self.selected_question = None
         self.thread = None  # Store the thread ID for the entire interview session
-        
-        # Set up logging
-        logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-        self.logger = logging.getLogger(__name__)
 
     def create_assistant(self):
         """Create an assistant for conducting technical interviews."""
         try:
             question_context = (
                 f"The selected LeetCode question is: {self.selected_question}\n\n"
-                if self.selected_question else ""
+                if self.selected_question
+                else ""
             )
-            
+
             assistant = self.client.beta.assistants.create(
                 name="Technical Interview Assistant",
                 instructions=(
@@ -55,30 +52,29 @@ class OpenAIClient:
                 model="gpt-4o",
                 temperature=0.1,
             )
-            self.logger.info(f"Assistant created with ID: {assistant.id}")
+            pass
             return assistant
-        except Exception as e:
-            self.logger.error(f"Error creating assistant: {e}")
-            return None
+        except Exception:
+            raise Exception
 
     def initialize_interview(self, question):
         """Initialize the interview with a selected question."""
         try:
             self.selected_question = question
             self.assistant = self.create_assistant()
-            
+
             # Create a new thread for the entire interview session
             self.thread = self.client.beta.threads.create()
-            self.logger.info(f"New interview thread created with ID: {self.thread.id}")
-            
+            pass
+
             # Add an initial system message to start the interview
             self.client.beta.threads.messages.create(
                 thread_id=self.thread.id,
                 role="user",
-                content="Welcome me to the interview and then start."
+                content="Welcome me to the interview and then start.",
             )
-        except Exception as e:
-            self.logger.error(f"Error initializing interview: {e}")
+        except Exception:
+            raise Exception
 
     def get_response(self, user_message):
         """Get a response from the assistant based on the user's message."""
@@ -86,56 +82,66 @@ class OpenAIClient:
             if not self.thread:
                 # If thread doesn't exist for some reason, create one
                 self.thread = self.client.beta.threads.create()
-                self.logger.info(f"Created new thread with ID: {self.thread.id} because no thread existed")
-            
+                pass
+
             # Add the user message to the existing thread
             self.client.beta.threads.messages.create(
-                thread_id=self.thread.id,
-                role="user",
-                content=user_message
+                thread_id=self.thread.id, role="user", content=user_message
             )
-            self.logger.info(f"Added user message to thread {self.thread.id}")
+            pass
 
             # Run the assistant on the thread
             run = self.client.beta.threads.runs.create(
-                thread_id=self.thread.id,
-                assistant_id=self.assistant.id
+                thread_id=self.thread.id, assistant_id=self.assistant.id
             )
-            self.logger.info(f"Run started with ID: {run.id}")
+            pass
 
             # Poll the run until it completes or fails
             max_retries = 30
             retries = 0
-            while run.status not in ['completed', 'failed', 'cancelled', 'incomplete'] and retries < max_retries:
+            while (
+                run.status not in ["completed", "failed", "cancelled", "incomplete"]
+                and retries < max_retries
+            ):
                 time.sleep(1)
-                run = self.client.beta.threads.runs.retrieve(thread_id=self.thread.id, run_id=run.id)
-                self.logger.info(f"Polling run status: {run.status}")
+                run = self.client.beta.threads.runs.retrieve(
+                    thread_id=self.thread.id, run_id=run.id
+                )
+                pass
                 retries += 1
 
-            if run.status == 'completed':
+            if run.status == "completed":
                 # Retrieve the assistant's reply
-                messages = self.client.beta.threads.messages.list(thread_id=self.thread.id)
-                self.logger.info(f"Messages retrieved: {len(messages.data)} messages")
+                messages = self.client.beta.threads.messages.list(
+                    thread_id=self.thread.id
+                )
+                pass
 
                 # Find the assistant's messages
-                assistant_messages = [msg for msg in messages.data if msg.role == 'assistant']
+                assistant_messages = [
+                    msg for msg in messages.data if msg.role == "assistant"
+                ]
                 if assistant_messages:
-                    assistant_reply = assistant_messages[0]  # Get the most recent assistant message
+                    assistant_reply = assistant_messages[
+                        0
+                    ]  # Get the most recent assistant message
                     # Extract the text content from the message
-                    assistant_message = ''.join(
-                        content_item.text.value for content_item in assistant_reply.content if content_item.type == 'text'
+                    assistant_message = "".join(
+                        content_item.text.value
+                        for content_item in assistant_reply.content
+                        if content_item.type == "text"
                     )
-                    self.logger.info(f"Assistant's response length: {len(assistant_message)} characters")
+                    pass
                     return assistant_message
                 else:
-                    self.logger.warning("No assistant response found.")
-                    return 'No assistant response found.'
-            elif run.status == 'failed':
-                self.logger.error(f"Run failed with error: {run.last_error}")
-                return f'Run failed with error: {run.last_error}'
+                    pass
+                    return "No assistant response found."
+            elif run.status == "failed":
+                pass
+                return f"Run failed with error: {run.last_error}"
             else:
-                self.logger.error(f"Error: Run status is {run.status} after polling.")
-                return f'Error: Run status is {run.status}.'
+                pass
+                return f"Error: Run status is {run.status}."
         except Exception as e:
-            self.logger.error(f"An error occurred: {e}")
-            return f'An error occurred: {str(e)}'
+            pass
+            return f"An error occurred: {str(e)}"
