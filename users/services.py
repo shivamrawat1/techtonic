@@ -5,7 +5,7 @@ from django.utils import timezone
 from datetime import timedelta
 import logging
 
-from .models import EmailVerification, User
+from .models import EmailVerification
 
 logger = logging.getLogger(__name__)
 

@@ -1,7 +1,7 @@
 # users/views.py
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -17,7 +17,6 @@ from django.utils.encoding import force_bytes, force_str
 from django.template.loader import render_to_string
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse
-from django.contrib.auth.forms import PasswordResetForm, SetPasswordForm
 from django.urls import reverse
 
 def landingpage(request):
@@ -119,7 +118,7 @@ def register(request):
                     try:
                         EmailVerification.objects.filter(user=existing_user).delete()
                         existing_user.delete()
-                    except Exception as e:
+                    except Exception:
                         pass
                 else:
                     messages.error(request, 'Email already exists')
@@ -230,7 +229,7 @@ def resend_code(request):
     except (User.DoesNotExist, EmailVerification.DoesNotExist):
         messages.error(request, 'Invalid verification session. Please register again.')
         return redirect('register')
-    except Exception as e:
+    except Exception:
         messages.error(request, 'Failed to send verification code. Please try again.')
     
     return redirect('verify_email')
@@ -277,7 +276,6 @@ def delete_account(request):
 def dashboard_view(request):
     # Import Assessment model from assessments app
     from assessments.models import Assessment
-    from django.db.models import Avg, Count, Q
     import json
     from datetime import datetime, timedelta
     

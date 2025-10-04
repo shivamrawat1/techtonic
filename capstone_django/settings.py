@@ -1,3 +1,7 @@
+from pathlib import Path
+import os
+from dotenv import load_dotenv
+
 """
 Django settings for capstone_django project.
 
@@ -9,11 +13,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-import os
-import logging
-from dotenv import load_dotenv
 load_dotenv()
-from pathlib import Path
 
 load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -24,53 +24,55 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-algti7*qmf0=um(t=3crm)@urn&u$fdj3bcu-th7u&^&zdr78_')
+SECRET_KEY = os.environ.get(
+    "SECRET_KEY", "django-insecure-algti7*qmf0=um(t=3crm)@urn&u$fdj3bcu-th7u&^&zdr78_"
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
+DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
 
 # More explicit environment detection
-ENVIRONMENT = os.environ.get('ENVIRONMENT', 'development')
-if ENVIRONMENT == 'production':
+ENVIRONMENT = os.environ.get("ENVIRONMENT", "development")
+if ENVIRONMENT == "production":
     DEBUG = False
-elif ENVIRONMENT == 'development':
+elif ENVIRONMENT == "development":
     DEBUG = True
 
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://techtonic-app-253702771417.us-central1.run.app',
+    "https://techtonic-app-253702771417.us-central1.run.app",
 ]
 
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
 
 # Configure logging
 LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'formatters': {
-        'verbose': {
-            'format': '{levelname} {asctime} {module} {message}',
-            'style': '{',
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "{levelname} {asctime} {module} {message}",
+            "style": "{",
         },
     },
-    'handlers': {
-        'console': {
-            'level': 'INFO',
-            'class': 'logging.StreamHandler',
-            'formatter': 'verbose',
+    "handlers": {
+        "console": {
+            "level": "INFO",
+            "class": "logging.StreamHandler",
+            "formatter": "verbose",
         },
-        'file': {
-            'level': 'INFO',
-            'class': 'logging.FileHandler',
-            'filename': os.path.join(BASE_DIR, 'debug.log'),
-            'formatter': 'verbose',
+        "file": {
+            "level": "INFO",
+            "class": "logging.FileHandler",
+            "filename": os.path.join(BASE_DIR, "debug.log"),
+            "formatter": "verbose",
         },
     },
-    'loggers': {
-        'django': {
-            'handlers': ['console', 'file'],
-            'level': 'INFO',
-            'propagate': True,
+    "loggers": {
+        "django": {
+            "handlers": ["console", "file"],
+            "level": "INFO",
+            "propagate": True,
         },
     },
 }
@@ -78,55 +80,55 @@ LOGGING = {
 # Application definition
 
 INSTALLED_APPS = [
-    'interview_behavioral',
-    'assessments',
-    'users',
-    'interview_technical',
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'django_extensions',
-    'whitenoise.runserver_nostatic',  # Add whitenoise for static files
+    "interview_behavioral",
+    "assessments",
+    "users",
+    "interview_technical",
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "django_extensions",
+    "whitenoise.runserver_nostatic",  # Add whitenoise for static files
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # Add whitenoise middleware
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",  # Add whitenoise middleware
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
 # Add cache control middleware in development mode
 if False:  # Always use PostgreSQL
-    MIDDLEWARE.append('capstone_django.middleware.DisableBrowserCachingMiddleware')
+    MIDDLEWARE.append("capstone_django.middleware.DisableBrowserCachingMiddleware")
 
-ROOT_URLCONF = 'capstone_django.urls'
+ROOT_URLCONF = "capstone_django.urls"
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'interview_app', 'templates')],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-                'capstone_django.context_processors.static_version',
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [os.path.join(BASE_DIR, "interview_app", "templates")],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
+                "capstone_django.context_processors.static_version",
             ],
         },
     },
 ]
 
-WSGI_APPLICATION = 'capstone_django.wsgi.application'
+WSGI_APPLICATION = "capstone_django.wsgi.application"
 
 
 # Database
@@ -135,17 +137,18 @@ WSGI_APPLICATION = 'capstone_django.wsgi.application'
 # Use PostgreSQL for both local and production
 if False:  # Always use PostgreSQL
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
         }
     }
 else:
     # Production database configuration using DATABASE_URL environment variable
     import dj_database_url
+
     DATABASES = {
-        'default': dj_database_url.config(
-            default=os.environ.get('DATABASE_URL'),
+        "default": dj_database_url.config(
+            default=os.environ.get("DATABASE_URL"),
             conn_max_age=600,
             conn_health_checks=True,
         )
@@ -157,16 +160,16 @@ else:
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
 
@@ -174,9 +177,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = "UTC"
 
 USE_I18N = True
 
@@ -186,62 +189,62 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = "/static/"
 
 # In development, serve static files directly from the apps
 if False:  # Always use PostgreSQL
     STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, 'interview_technical', 'static'),
-        os.path.join(BASE_DIR, 'interview_behavioral', 'static'),
-        os.path.join(BASE_DIR, 'assessments', 'static'),
-        os.path.join(BASE_DIR, 'users', 'static'),
+        os.path.join(BASE_DIR, "interview_technical", "static"),
+        os.path.join(BASE_DIR, "interview_behavioral", "static"),
+        os.path.join(BASE_DIR, "assessments", "static"),
+        os.path.join(BASE_DIR, "users", "static"),
     ]
-    
+
     # Add cache control middleware to prevent caching in development
-    MIDDLEWARE.append('django.middleware.cache.FetchFromCacheMiddleware')
-    
+    MIDDLEWARE.append("django.middleware.cache.FetchFromCacheMiddleware")
+
     # Cache settings for development - disable caching
     CACHES = {
-        'default': {
-            'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+        "default": {
+            "BACKEND": "django.core.cache.backends.dummy.DummyCache",
         }
     }
-    
+
     # Add cache control headers for static files
-    STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
-    
+    STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
+
 else:
     # In production, use collectstatic
     STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, 'interview_technical', 'static'),
-        os.path.join(BASE_DIR, 'interview_behavioral', 'static'),
-        os.path.join(BASE_DIR, 'assessments', 'static'),
-        os.path.join(BASE_DIR, 'users', 'static'),
+        os.path.join(BASE_DIR, "interview_technical", "static"),
+        os.path.join(BASE_DIR, "interview_behavioral", "static"),
+        os.path.join(BASE_DIR, "assessments", "static"),
+        os.path.join(BASE_DIR, "users", "static"),
     ]
 
 # Directory where collectstatic will collect files for production
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # Use WhiteNoise for static files in production
 if not DEBUG:
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL = 'dashboard'
-LOGOUT_REDIRECT_URL = 'landingpage'
+LOGIN_URL = "login"
+LOGIN_REDIRECT_URL = "dashboard"
+LOGOUT_REDIRECT_URL = "landingpage"
 
 # Email settings
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_PASSWORD")
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 SERVER_EMAIL = EMAIL_HOST_USER
 
@@ -253,15 +256,15 @@ if not DEBUG:
     SECURE_HSTS_SECONDS = 31536000  # 1 year
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
-    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 # Docker-specific settings
-if os.environ.get('DOCKER_CONTAINER'):
+if os.environ.get("DOCKER_CONTAINER"):
     # Additional Docker optimizations
-    DATABASES['default']['OPTIONS'] = {
-        'connect_timeout': 10,
-        'options': '-c default_transaction_isolation=read_committed'
+    DATABASES["default"]["OPTIONS"] = {
+        "connect_timeout": 10,
+        "options": "-c default_transaction_isolation=read_committed",
     }
-    
+
     # Optimize for containerized environment
-    LOGGING['handlers']['console']['level'] = 'WARNING'
+    LOGGING["handlers"]["console"]["level"] = "WARNING"

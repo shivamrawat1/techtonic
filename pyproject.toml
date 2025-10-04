@@ -113,3 +113,8 @@ dependencies = [
     "yarl==1.18.3",
     "zope-interface==7.2",
 ]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.13.3",
+]

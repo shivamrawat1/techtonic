@@ -2,7 +2,6 @@ import json
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Assessment
 from .interview_analyzer import InterviewAnalyzer
@@ -11,11 +10,6 @@ from django.contrib import messages
 
 # assessments/views.py
 
-import json
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth.decorators import login_required
-from .models import Assessment
 
 @csrf_exempt
 @login_required  # Ensures only logged-in users can access this view
@@ -75,7 +69,7 @@ def view_analysis(request, assessment_id):
             assessment.analysis = analysis
             assessment.save()
             
-        except json.JSONDecodeError as e:
+        except json.JSONDecodeError:
          
             return render(request, 'assessments/view_analysis.html', {
                 'error': 'Unable to analyze conversation data',
@@ -89,8 +83,6 @@ def view_analysis(request, assessment_id):
 
 @login_required
 def delete_assessment(request, assessment_id):
-    import traceback
-    from django.contrib import messages
     
 
     

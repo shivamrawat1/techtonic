@@ -1,6 +1,5 @@
 # interview_behavioral/services/speech_recognition_handler.py
 
-import asyncio
 from .deepgram_service import DeepgramService
 
 class SpeechRecognitionService:

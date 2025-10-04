@@ -29,7 +29,7 @@ class OpenAIClient:
                 temperature=0.1,
             )
             return assistant
-        except Exception as e:
+        except Exception:
             return None
 
     def initialize_interview(self, resume, job_description):

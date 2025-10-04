@@ -5,7 +5,6 @@ from deepgram import (
     FileSource,
 )
 import os
-import traceback
 
 class DeepgramService:
     def __init__(self, api_key: str = None):

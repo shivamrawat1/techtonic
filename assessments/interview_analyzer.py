@@ -2,7 +2,6 @@ import json
 import os
 import logging
 from openai import OpenAI
-from django.conf import settings
 
 # Set up logging
 logger = logging.getLogger(__name__)
