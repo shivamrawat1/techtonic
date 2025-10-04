@@ -34,7 +34,7 @@ steps:
       - '--timeout'
       - '15m'
       - '--set-env-vars'
-      - 'CSRF_TRUSTED_ORIGINS=https://techtonic-app-253702771417.us-central1.run.app'
+      - 'CSRF_TRUSTED_ORIGINS=https://techtonic-app-253702771417.us-central1.run.app,ENVIRONMENT=production,ALLOWED_HOSTS=techtonic-app-253702771417.us-central1.run.app,DOCKER_CONTAINER=true'
 
 options:
   logging: CLOUD_LOGGING_ONLY

@@ -27,16 +27,19 @@ RUN pip install --no-cache-dir -e .
 # Copy project
 COPY . .
 
+# Make start script executable
+RUN chmod +x start.sh
+
 # Create a non-root user
 RUN adduser --disabled-password --gecos '' appuser && chown -R appuser:appuser /app
 USER appuser
 
-# Expose port
-EXPOSE 8000
+# Expose port (match Cloud Run --port)
+EXPOSE 8080
 
-# Health check
-HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost:8000/ || exit 1
+# Health check (adjusted for Django readiness)
+HEALTHCHECK --interval=30s --timeout=10s --start-period=30s --retries=5 \
+    CMD curl -f http://localhost:8080/health || exit 1
 
-# Run the application
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--workers", "3", "capstone_django.wsgi:application"]
+# Run the application using the start script
+CMD ["./start.sh"]
