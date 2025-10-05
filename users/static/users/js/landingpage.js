@@ -22,8 +22,7 @@ class TechtonicLanding {
         this.setupScrollProgress();
         this.setupNavigation();
         this.setupScrollAnimations();
-        this.setupTestimonials();
-        this.setupPricingToggle();
+        // Removed testimonials and pricing sections from the page
         this.setupContactForm();
         this.setupBackToTop();
         this.setupParallaxEffects();
@@ -171,135 +170,7 @@ class TechtonicLanding {
         return 'translateY(30px)';
     }
 
-    // Testimonials Slider
-    setupTestimonials() {
-        const slider = document.getElementById('testimonialsSlider');
-        const prevBtn = document.getElementById('prevTestimonial');
-        const nextBtn = document.getElementById('nextTestimonial');
-        const dots = document.querySelectorAll('.testimonial-dots .dot');
-        const cards = document.querySelectorAll('.testimonial-card');
-
-        if (!slider || !cards.length) return;
-
-        let currentSlide = 0;
-        let autoSlideInterval;
-
-        const showSlide = (index) => {
-            cards.forEach((card, i) => {
-                card.classList.toggle('active', i === index);
-            });
-
-            dots.forEach((dot, i) => {
-                dot.classList.toggle('active', i === index);
-            });
-
-            currentSlide = index;
-        };
-
-        const nextSlide = () => {
-            const next = (currentSlide + 1) % cards.length;
-            showSlide(next);
-        };
-
-        const prevSlide = () => {
-            const prev = (currentSlide - 1 + cards.length) % cards.length;
-            showSlide(prev);
-        };
-
-        const startAutoSlide = () => {
-            autoSlideInterval = setInterval(nextSlide, 5000);
-        };
-
-        const stopAutoSlide = () => {
-            clearInterval(autoSlideInterval);
-        };
-
-        // Event listeners
-        if (nextBtn) nextBtn.addEventListener('click', () => {
-            nextSlide();
-            stopAutoSlide();
-            startAutoSlide();
-        });
-
-        if (prevBtn) prevBtn.addEventListener('click', () => {
-            prevSlide();
-            stopAutoSlide();
-            startAutoSlide();
-        });
-
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                showSlide(index);
-                stopAutoSlide();
-                startAutoSlide();
-            });
-        });
-
-        // Pause on hover
-        const container = slider.closest('.testimonials-container');
-        if (container) {
-            container.addEventListener('mouseenter', stopAutoSlide);
-            container.addEventListener('mouseleave', startAutoSlide);
-        }
-
-        // Initialize
-        showSlide(0);
-        startAutoSlide();
-
-        // Touch/swipe support
-        this.setupTouchSwipe(slider, nextSlide, prevSlide);
-    }
-
-    setupTouchSwipe(element, nextCallback, prevCallback) {
-        let startX = 0;
-        let endX = 0;
-
-        element.addEventListener('touchstart', (e) => {
-            startX = e.touches[0].clientX;
-        });
-
-        element.addEventListener('touchend', (e) => {
-            endX = e.changedTouches[0].clientX;
-            const diff = startX - endX;
-
-            if (Math.abs(diff) > 50) { // Minimum swipe distance
-                if (diff > 0) {
-                    nextCallback();
-                } else {
-                    prevCallback();
-                }
-            }
-        });
-    }
-
-    // Pricing Toggle
-    setupPricingToggle() {
-        const toggle = document.getElementById('pricing-toggle');
-        const monthlyPrices = document.querySelectorAll('.monthly-price');
-        const yearlyPrices = document.querySelectorAll('.yearly-price');
-
-        if (!toggle) return;
-
-        toggle.addEventListener('change', () => {
-            const isYearly = toggle.checked;
-
-            monthlyPrices.forEach(price => {
-                price.style.display = isYearly ? 'none' : 'inline';
-            });
-
-            yearlyPrices.forEach(price => {
-                price.style.display = isYearly ? 'inline' : 'none';
-            });
-
-            // Animate price change
-            document.querySelectorAll('.plan-price').forEach(priceEl => {
-                priceEl.classList.add('price-changing');
-                setTimeout(() => {
-                    priceEl.classList.remove('price-changing');
-                }, 300);
-            });
-        });
-    }
+    // Testimonials and pricing code removed as those sections no longer exist
 
     // Contact Form
     setupContactForm() {

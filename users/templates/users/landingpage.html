@@ -143,8 +143,7 @@
                     <a href="#about" class="nav-link" data-section="about">About</a>
                     <a href="#features" class="nav-link" data-section="features">Features</a>
                     <a href="#how-it-works" class="nav-link" data-section="how-it-works">How It Works</a>
-                    <a href="#pricing" class="nav-link" data-section="pricing">Pricing</a>
-                    <a href="#testimonials" class="nav-link" data-section="testimonials">Reviews</a>
+                    
                     <a href="#contact" class="nav-link" data-section="contact">Contact</a>
                 </div>
                 
@@ -178,10 +177,7 @@
             
             <div class="hero-container">
             <div class="hero-content">
-                    <div class="hero-badge animate-fade-in-up">
-                        <i class="fas fa-star"></i>
-                        <span>Trusted by 10,000+ developers</span>
-                    </div>
+                    
                     
                     <h1 class="hero-title animate-fade-in-up">
                         Master Your <span class="text-gradient">Technical Interviews</span><br>
@@ -194,20 +190,7 @@
                         for behavioral questions. Get personalized feedback and track your progress.
                     </p>
                     
-                    <div class="hero-stats animate-fade-in-up">
-                        <div class="stat">
-                            <span class="stat-number">95%</span>
-                            <span class="stat-label">Success Rate</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">50k+</span>
-                            <span class="stat-label">Interviews Practiced</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">4.9★</span>
-                            <span class="stat-label">User Rating</span>
-                        </div>
-                    </div>
+                    
                     
                     <div class="hero-actions animate-fade-in-up">
                         <a href="{% url 'register' %}" class="btn btn-primary btn-large">
@@ -281,7 +264,7 @@
             </div>
                 
                 <div class="about-grid">
-            <div class="about-content">
+                    <div class="about-content">
                         <div class="about-text">
                             <h3>Why Choose Techtonic?</h3>
                             <p>Our platform is built by engineers who've been through the interview process themselves. 
@@ -311,39 +294,6 @@
                         </div>
                     </div>
                     
-                    <div class="about-visual">
-                        <div class="stats-container">
-                            <div class="stat-card">
-                                <div class="stat-icon">
-                                    <i class="fas fa-users"></i>
-                                </div>
-                                <div class="stat-content">
-                                    <span class="stat-number">10,000+</span>
-                                    <span class="stat-label">Active Users</span>
-                                </div>
-                            </div>
-                            
-                            <div class="stat-card">
-                                <div class="stat-icon">
-                                    <i class="fas fa-trophy"></i>
-                                </div>
-                                <div class="stat-content">
-                                    <span class="stat-number">95%</span>
-                                    <span class="stat-label">Success Rate</span>
-                                </div>
-                            </div>
-                            
-                            <div class="stat-card">
-                                <div class="stat-icon">
-                                    <i class="fas fa-clock"></i>
-                                </div>
-                                <div class="stat-content">
-                                    <span class="stat-number">24/7</span>
-                                    <span class="stat-label">AI Practice</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
@@ -490,243 +440,7 @@
             </div>
         </section>
 
-        <!-- Pricing Section -->
-        <section id="pricing" class="pricing-section">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-badge">Pricing</span>
-                    <h2 class="section-title">
-                        Choose Your <span class="text-gradient">Perfect Plan</span>
-                    </h2>
-                    <p class="section-description">
-                        Start free and upgrade as you grow
-                    </p>
-                </div>
-                
-                <div class="pricing-toggle">
-                    <span class="toggle-label">Monthly</span>
-                    <div class="toggle-switch">
-                        <input type="checkbox" id="pricing-toggle" class="toggle-input">
-                        <label for="pricing-toggle" class="toggle-slider"></label>
-                    </div>
-                    <span class="toggle-label">Yearly <span class="discount-badge">Save 20%</span></span>
-                </div>
-                
-                <div class="pricing-grid">
-                    <!-- Free Plan -->
-                    <div class="pricing-card" data-aos="fade-up" data-aos-delay="100">
-                        <div class="pricing-header">
-                            <h3 class="plan-name">Free</h3>
-                            <div class="plan-price">
-                                <span class="currency">$</span>
-                                <span class="amount">0</span>
-                                <span class="period">/month</span>
-                            </div>
-                            <p class="plan-description">Perfect for getting started</p>
-                        </div>
-                        
-                        <div class="plan-features">
-                            <ul>
-                                <li><i class="fas fa-check"></i> 3 Technical interviews/month</li>
-                                <li><i class="fas fa-check"></i> 2 Behavioral interviews/month</li>
-                                <li><i class="fas fa-check"></i> Basic feedback</li>
-                                <li><i class="fas fa-check"></i> Community support</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="plan-action">
-                            <a href="{% url 'register' %}" class="btn btn-outline">Get Started Free</a>
-                        </div>
-                    </div>
-                    
-                    <!-- Pro Plan -->
-                    <div class="pricing-card featured" data-aos="fade-up" data-aos-delay="200">
-                        <div class="popular-badge">Most Popular</div>
-                        <div class="pricing-header">
-                            <h3 class="plan-name">Pro</h3>
-                            <div class="plan-price">
-                                <span class="currency">$</span>
-                                <span class="amount monthly-price">29</span>
-                                <span class="amount yearly-price">23</span>
-                                <span class="period">/month</span>
-                            </div>
-                            <p class="plan-description">For serious interview preparation</p>
-                        </div>
-                        
-                        <div class="plan-features">
-                            <ul>
-                                <li><i class="fas fa-check"></i> Unlimited interviews</li>
-                                <li><i class="fas fa-check"></i> Advanced AI feedback</li>
-                                <li><i class="fas fa-check"></i> Progress analytics</li>
-                                <li><i class="fas fa-check"></i> Mock interviews</li>
-                                <li><i class="fas fa-check"></i> Priority support</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="plan-action">
-                            <a href="{% url 'register' %}" class="btn btn-primary">Start Pro Trial</a>
-                        </div>
-                    </div>
-                    
-                    <!-- Enterprise Plan -->
-                    <div class="pricing-card" data-aos="fade-up" data-aos-delay="300">
-                        <div class="pricing-header">
-                            <h3 class="plan-name">Enterprise</h3>
-                            <div class="plan-price">
-                                <span class="currency">$</span>
-                                <span class="amount monthly-price">99</span>
-                                <span class="amount yearly-price">79</span>
-                                <span class="period">/month</span>
-                            </div>
-                            <p class="plan-description">For teams and organizations</p>
-                        </div>
-                        
-                        <div class="plan-features">
-                            <ul>
-                                <li><i class="fas fa-check"></i> Everything in Pro</li>
-                                <li><i class="fas fa-check"></i> Team management</li>
-                                <li><i class="fas fa-check"></i> Custom assessments</li>
-                                <li><i class="fas fa-check"></i> API access</li>
-                                <li><i class="fas fa-check"></i> Dedicated support</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="plan-action">
-                            <a href="#contact" class="btn btn-outline">Contact Sales</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Testimonials Section -->
-        <section id="testimonials" class="testimonials-section">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-badge">Success Stories</span>
-                    <h2 class="section-title">
-                        What Our <span class="text-gradient">Users</span> Say
-                    </h2>
-                    <p class="section-description">
-                        Real success stories from developers who landed their dream jobs
-                    </p>
-                </div>
-                
-                <div class="testimonials-container">
-                    <div class="testimonials-slider" id="testimonialsSlider">
-                        <!-- Testimonial 1 -->
-                        <div class="testimonial-card active">
-                        <div class="testimonial-content">
-                                <div class="testimonial-rating">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <blockquote>
-                                    "The UMPIRE framework for technical interviews helped me structure my problem-solving approach perfectly. 
-                                    I went from failing coding interviews to receiving multiple offers, including one from Google!"
-                                </blockquote>
-                            <div class="testimonial-author">
-                                    <div class="author-avatar">
-                                        <img src="{% static 'users/images/avatar1.jpg' %}" alt="John Doe" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                                        <div class="avatar-fallback" style="display: none;">
-                                            <i class="fas fa-user"></i>
-                                        </div>
-                                    </div>
-                                <div class="author-info">
-                                    <h4>John Doe</h4>
-                                    <p>Software Engineer @ Google</p>
-                                        <span class="company-logo">
-                                            <i class="fab fa-google"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Testimonial 2 -->
-                    <div class="testimonial-card">
-                        <div class="testimonial-content">
-                                <div class="testimonial-rating">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <blockquote>
-                                    "Practicing behavioral questions with the STAR method really improved my storytelling skills. 
-                                    The AI feedback was incredibly detailed and helped me ace my Meta interview!"
-                                </blockquote>
-                            <div class="testimonial-author">
-                                    <div class="author-avatar">
-                                        <img src="{% static 'users/images/avatar2.jpg' %}" alt="Jane Smith" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                                        <div class="avatar-fallback" style="display: none;">
-                                            <i class="fas fa-user"></i>
-                                        </div>
-                                    </div>
-                                <div class="author-info">
-                                    <h4>Jane Smith</h4>
-                                    <p>Product Manager @ Meta</p>
-                                        <span class="company-logo">
-                                            <i class="fab fa-meta"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Testimonial 3 -->
-                    <div class="testimonial-card">
-                        <div class="testimonial-content">
-                                <div class="testimonial-rating">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <blockquote>
-                                    "Having both technical and behavioral practice on one platform made my preparation complete. 
-                                    The progress tracking helped me identify my weaknesses, and Amazon loved my structured approach!"
-                                </blockquote>
-                            <div class="testimonial-author">
-                                    <div class="author-avatar">
-                                        <img src="{% static 'users/images/avatar3.jpg' %}" alt="Mike Johnson" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                                        <div class="avatar-fallback" style="display: none;">
-                                            <i class="fas fa-user"></i>
-                                        </div>
-                                    </div>
-                                <div class="author-info">
-                                    <h4>Mike Johnson</h4>
-                                    <p>Software Engineer @ Amazon</p>
-                                        <span class="company-logo">
-                                            <i class="fab fa-amazon"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="testimonials-controls">
-                        <button class="testimonial-nav prev" id="prevTestimonial" aria-label="Previous testimonial">
-                            <i class="fas fa-chevron-left"></i>
-                        </button>
-                        <div class="testimonial-dots">
-                            <span class="dot active" data-slide="0"></span>
-                            <span class="dot" data-slide="1"></span>
-                            <span class="dot" data-slide="2"></span>
-                        </div>
-                        <button class="testimonial-nav next" id="nextTestimonial" aria-label="Next testimonial">
-                            <i class="fas fa-chevron-right"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
+        
 
         <!-- Contact Section -->
         <section id="contact" class="contact-section">
@@ -860,67 +574,28 @@
                     <span class="logo-text">Techtonic</span>
                 </div>
                         <p>Master your technical interviews with AI-powered practice and proven frameworks.</p>
-                        <div class="social-links">
-                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                            <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                        </div>
                     </div>
-                    
                     <div class="footer-links">
                         <div class="footer-column">
-                            <h4>Product</h4>
-                            <ul>
-                                <li><a href="#features">Features</a></li>
-                                <li><a href="#pricing">Pricing</a></li>
-                                <li><a href="#how-it-works">How It Works</a></li>
-                                <li><a href="#">API</a></li>
-                            </ul>
-                        </div>
-                        
-                        <div class="footer-column">
-                            <h4>Company</h4>
+                            <h4>Explore</h4>
                             <ul>
                                 <li><a href="#about">About</a></li>
-                                <li><a href="#">Careers</a></li>
-                                <li><a href="#">Blog</a></li>
+                                <li><a href="#features">Features</a></li>
+                                <li><a href="#how-it-works">How It Works</a></li>
                                 <li><a href="#contact">Contact</a></li>
                             </ul>
                         </div>
-                        
-                        <div class="footer-column">
-                            <h4>Resources</h4>
-                            <ul>
-                                <li><a href="#">Help Center</a></li>
-                                <li><a href="#">Documentation</a></li>
-                                <li><a href="#">Community</a></li>
-                                <li><a href="#">Status</a></li>
-                            </ul>
-                        </div>
-                        
                         <div class="footer-column">
                             <h4>Legal</h4>
                             <ul>
                                 <li><a href="{% url 'privacy_policy' %}">Privacy Policy</a></li>
-                                <li><a href="#">Terms of Service</a></li>
-                                <li><a href="#">Cookie Policy</a></li>
-                                <li><a href="#">GDPR</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
-                
                 <div class="footer-bottom">
                     <div class="footer-copyright">
                         <p>&copy; 2024 Techtonic. All rights reserved.</p>
-                    </div>
-                    <div class="footer-newsletter">
-                        <p>Stay updated with the latest interview tips</p>
-                        <div class="newsletter-form">
-                            <input type="email" placeholder="Enter your email">
-                            <button type="submit" class="btn btn-primary">Subscribe</button>
-                        </div>
                     </div>
                 </div>
             </div>

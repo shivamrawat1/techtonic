@@ -553,7 +553,7 @@ h6 {
 
 .about-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 4rem;
     align-items: center;
 }
@@ -571,16 +571,25 @@ h6 {
 
 .framework-highlights {
     margin-top: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
 }
 
 .framework-item {
     display: flex;
     gap: 1rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0;
     padding: 1.5rem;
     background: white;
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-sm);
+}
+
+@media (max-width: 768px) {
+    .framework-highlights {
+        grid-template-columns: 1fr;
+    }
 }
 
 .framework-icon {
@@ -840,325 +849,9 @@ h6 {
     line-height: 1.7;
 }
 
-/* Pricing Section */
-.pricing-section {
-    padding: 6rem 0;
-}
+/* Pricing Section removed */
 
-.pricing-toggle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    margin-bottom: 3rem;
-}
-
-.toggle-label {
-    font-weight: 600;
-    color: var(--text-secondary);
-}
-
-.discount-badge {
-    background: #10b981;
-    color: white;
-    padding: 0.25rem 0.5rem;
-    border-radius: var(--radius-sm);
-    font-size: 0.75rem;
-    margin-left: 0.5rem;
-}
-
-.toggle-switch {
-    position: relative;
-}
-
-.toggle-input {
-    display: none;
-}
-
-.toggle-slider {
-    width: 60px;
-    height: 30px;
-    background: var(--border-color);
-    border-radius: 15px;
-    position: relative;
-    cursor: pointer;
-    transition: background var(--transition-normal);
-}
-
-.toggle-slider::before {
-    content: '';
-    position: absolute;
-    top: 3px;
-    left: 3px;
-    width: 24px;
-    height: 24px;
-    background: white;
-    border-radius: 50%;
-    transition: transform var(--transition-normal);
-}
-
-.toggle-input:checked+.toggle-slider {
-    background: #667eea;
-}
-
-.toggle-input:checked+.toggle-slider::before {
-    transform: translateX(30px);
-}
-
-.pricing-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-.pricing-card {
-    background: white;
-    border-radius: var(--radius-xl);
-    padding: 2rem;
-    box-shadow: var(--shadow-lg);
-    position: relative;
-    transition: transform var(--transition-normal);
-}
-
-.pricing-card:hover {
-    transform: translateY(-5px);
-}
-
-.pricing-card.featured {
-    border: 2px solid #667eea;
-    transform: scale(1.05);
-}
-
-.popular-badge {
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--primary-gradient);
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: var(--radius-lg);
-    font-size: 0.875rem;
-    font-weight: 600;
-}
-
-.pricing-header {
-    text-align: center;
-    margin-bottom: 2rem;
-}
-
-.plan-name {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-}
-
-.plan-price {
-    display: flex;
-    align-items: baseline;
-    justify-content: center;
-    gap: 0.25rem;
-    margin-bottom: 1rem;
-}
-
-.currency {
-    font-size: 1.25rem;
-    color: var(--text-secondary);
-}
-
-.amount {
-    font-size: 3rem;
-    font-weight: 800;
-    color: var(--text-primary);
-}
-
-.period {
-    font-size: 1rem;
-    color: var(--text-secondary);
-}
-
-.yearly-price {
-    display: none;
-}
-
-.pricing-toggle .toggle-input:checked~.pricing-grid .monthly-price {
-    display: none;
-}
-
-.pricing-toggle .toggle-input:checked~.pricing-grid .yearly-price {
-    display: block;
-}
-
-.plan-description {
-    color: var(--text-secondary);
-}
-
-.plan-features ul {
-    list-style: none;
-    margin-bottom: 2rem;
-}
-
-.plan-features li {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 1rem;
-    color: var(--text-secondary);
-}
-
-.plan-features i {
-    color: #10b981;
-}
-
-.plan-action {
-    text-align: center;
-}
-
-/* Testimonials Section */
-.testimonials-section {
-    padding: 6rem 0;
-    background: var(--bg-secondary);
-}
-
-.testimonials-container {
-    position: relative;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.testimonials-slider {
-    position: relative;
-    overflow: hidden;
-    border-radius: var(--radius-xl);
-}
-
-.testimonial-card {
-    display: none;
-    background: white;
-    padding: 3rem;
-    border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-lg);
-    text-align: center;
-}
-
-.testimonial-card.active {
-    display: block;
-    animation: fadeIn 0.5s ease-in-out;
-}
-
-.testimonial-rating {
-    display: flex;
-    justify-content: center;
-    gap: 0.25rem;
-    margin-bottom: 1.5rem;
-}
-
-.testimonial-rating i {
-    color: #fbbf24;
-    font-size: 1.25rem;
-}
-
-.testimonial-content blockquote {
-    font-size: 1.25rem;
-    line-height: 1.7;
-    color: var(--text-secondary);
-    margin-bottom: 2rem;
-    font-style: italic;
-}
-
-.testimonial-author {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-}
-
-.author-avatar {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    overflow: hidden;
-    flex-shrink: 0;
-}
-
-.author-avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.avatar-fallback {
-    width: 100%;
-    height: 100%;
-    background: var(--primary-gradient);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 1.5rem;
-}
-
-.author-info h4 {
-    margin-bottom: 0.25rem;
-}
-
-.author-info p {
-    color: var(--text-secondary);
-    margin-bottom: 0.25rem;
-}
-
-.company-logo i {
-    color: #667eea;
-    font-size: 1.25rem;
-}
-
-.testimonials-controls {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-.testimonial-nav {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: white;
-    border: 2px solid var(--border-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all var(--transition-normal);
-    color: var(--text-secondary);
-}
-
-.testimonial-nav:hover {
-    background: var(--primary-gradient);
-    border-color: transparent;
-    color: white;
-}
-
-.testimonial-dots {
-    display: flex;
-    gap: 0.5rem;
-}
-
-.dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: var(--border-color);
-    cursor: pointer;
-    transition: background var(--transition-fast);
-}
-
-.dot.active {
-    background: #667eea;
-}
+/* Testimonials Section removed */
 
 /* Contact Section */
 .contact-section {

@@ -8,7 +8,6 @@ class GTTSService:
 
     def synthesize_speech(self, text: str) -> bytes:
         """Synthesize speech from text using gTTS and return audio bytes."""
-        print(f"Synthesizing speech for text: {text}")
         
         # Create an in-memory bytes buffer
         mp3_fp = io.BytesIO()
@@ -23,5 +22,4 @@ class GTTSService:
         mp3_fp.seek(0)
         audio_content = mp3_fp.read()
         
-        print("Speech synthesis completed successfully")
         return audio_content
